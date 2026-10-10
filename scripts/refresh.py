@@ -207,7 +207,8 @@ def main():
     result=validate(teams,matches,baseline)
     # No owners, cookies, rosters, or private ESPN fields saved.
     report={'season':YEAR,'league_id':LEAGUE_ID,'generated_at_utc':dt.datetime.now(dt.timezone.utc).isoformat(),
-            'validation':result,'safe_teams':teams,'matchups':matches}
+            'validation':result,'safe_teams':teams,'matchups':matches,
+            'current_matchup_period':(source.get('status') or {}).get('currentMatchupPeriod')}
     (output/'validation.json').write_text(json.dumps(report,indent=2)+'\n')
     print(f"Matched {result['verified_team_scores']}/{result['target_team_scores']} baseline team-week scores")
     if not result['passed']:
