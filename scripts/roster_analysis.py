@@ -151,7 +151,16 @@ def extract_week(data,pool,week,expected_ids,league_week):
         for p in roster:
             other=universe[p['id']]
             if abs(p['points']-other['points'])>.011:
-                raise ValueError(f'Week {week}: boxscore/pool point discrepancy for player {p["id"]}')
+                # Diagnostic uses only final numeric scoring and stat metadata, never credentials or raw private payloads.
+                raw=next(row for row in pool if int((row.get('playerPoolEntry') or row).get('id',row.get('id',-1)))==p['id'])
+                entry=raw.get('playerPoolEntry') or raw
+                stats=((entry.get('player') or raw.get('player') or {}).get('stats') or entry.get('stats') or [])
+                week_stats=[{'period':x.get('scoringPeriodId'),'source':x.get('statSourceId',x.get('statTypeId')),
+                             'split':x.get('statSplitTypeId'),'hasActual':x.get('appliedTotal') is not None}
+                            for x in stats if str(x.get('scoringPeriodId'))==str(week)]
+                raise ValueError(f'Week {week}: boxscore/pool point discrepancy for player {p["id"]}; '
+                                 f'boxscore={p["points"]:.2f}, pool={other["points"]:.2f}, '
+                                 f'weekly stat metadata={week_stats[:8]}')
     counts={pos:sum(p['pos']==pos for p in universe.values()) for pos in BASE}
     minima={'QB':32,'RB':40,'WR':50,'TE':28,'K':25,'DST':28}
     if any(counts[k]<v for k,v in minima.items()):raise ValueError(f'ESPN player pool too small to rank NFL players: {counts}')
