@@ -225,11 +225,25 @@ def analyze_week(observed,universe,week,espn_to_canonical):
 
 
 def build(league,mapping,weeks,fixture_dir=None):
-    if int(league.get('leagueId',-1))!=LEAGUE_ID or int(league.get('season',-1))!=YEAR:raise ValueError('Wrong approved league dataset')
+    if league.get('title')!='Fantasy 2K Infinity' or league.get('source')!='ESPN authenticated, baseline reconciled':raise ValueError('Wrong approved league dataset source')
     if int(mapping.get('league_id',-1))!=LEAGUE_ID or int(mapping.get('season',-1))!=YEAR:raise ValueError('Wrong team-ID map')
     ids={int(eid):int(cid) for cid,eid in mapping['baseline_to_espn'].items()}
     if len(ids)!=10 or {t['id'] for t in league['teams']}!=set(ids.values()):raise ValueError('Unverified team ID mapping')
     complete=int(league['completedThrough'])
+    if complete<1:raise ValueError('Approved league has no completed weeks')
+    by_id={int(t['id']):t for t in league['teams']}
+    if len(by_id)!=10:raise ValueError('Duplicate approved team IDs')
+    for tid,t in by_id.items():
+        rows=t.get('weeks')
+        if not isinstance(rows,list) or len(rows)!=complete:raise ValueError(f'Approved team {tid} does not have exactly {complete} completed weeks')
+        if any(int(row.get('week',-1))!=i for i,row in enumerate(rows,1)):raise ValueError(f'Approved team {tid} has inconsistent week ordering')
+        if abs(sum(float(row['pf']) for row in rows)-float(t['pf']))>.02:raise ValueError(f'Approved team {tid} weekly PF does not reconcile')
+        for row in rows:
+            opp=int(row['opp'])
+            if opp==tid or opp not in by_id:raise ValueError('Invalid approved opponent ID')
+            other=by_id[opp]['weeks'][int(row['week'])-1]
+            if int(other['opp'])!=tid or abs(float(other['pf'])-float(row['pa']))>.02 or abs(float(other['pa'])-float(row['pf']))>.02:
+                raise ValueError('Approved league matchups are not reciprocal')
     if any(w<1 or w>complete for w in weeks):raise ValueError('Only approved completed fantasy weeks can be analyzed')
     result={'leagueId':LEAGUE_ID,'season':YEAR,'completedThrough':complete,
             'generatedAt':datetime.now(timezone.utc).isoformat(),'method':'finalized historical boxscore + complete ESPN weekly player pool',
