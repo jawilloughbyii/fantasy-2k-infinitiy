@@ -202,7 +202,10 @@
 .week-column>strong{font-size:11px;white-space:nowrap;color:#284765}
 .week-track{height:142px;width:min(100%,62px);display:flex;align-items:flex-end;background:linear-gradient(0deg,#f6f9ff,#fff);border:1px solid #edf0f6;border-radius:8px 8px 2px 2px;overflow:hidden}
 .week-fill{width:100%;background:#4a87ed;border-radius:6px 6px 0 0;min-height:2px}
-.week-fill.hi,.week-fill.lo{background:#159e87}
+.week-fill.below{background:#b5c4d5}.week-fill.above{background:#4a87ed}
+.week-average-rule{height:1px;border-top:1.5px dashed #788da4;position:absolute;left:0;right:0;pointer-events:none}.week-track{position:relative}
+.week-chart-legend{font-size:11px;color:#60758d;display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin-top:12px}.week-chart-legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px}.week-range{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0}.week-range button{border:1px solid #d9e4f0;padding:7px 11px;border-radius:8px;background:#fff;color:#42617d;font-size:11px;font-weight:750}.week-range button.active{background:#e8f1ff;border-color:#94b8ed;color:#204e8a}
+@media(max-width:600px){.week-column>strong{font-size:10px}.week-column{gap:6px}.week-track{width:min(100%,47px)}.week-range button{flex:1}}
 .week-column>span{color:#6e829a;font-size:11px;font-weight:750}
 .divergence{border:1px solid #dce7f4;background:#f1f6fd;border-radius:11px;padding:13px 15px;font-size:12px;color:#365879;line-height:1.65;margin:16px 0 0}
 .identity-ledger{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
@@ -253,11 +256,17 @@
 @media(max-width:600px){.hero-dna strong{font-size:12px}.hero-dna{gap:7px}}
 
 /* League-wide scoring snapshot */
-.league-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}.league-heading h2{font-size:18px;margin:0;letter-spacing:-.025em}.league-heading p{color:var(--muted);margin:2px 0 0;font-size:12px}.league-overview{display:grid;gap:14px}.league-kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.league-kpis .card{box-shadow:none;background:#f8faff;padding:15px}.league-kpis .label{font-size:10px;color:#677b96;font-weight:750;letter-spacing:.06em;text-transform:uppercase}.league-kpis strong{font-size:25px;display:block;letter-spacing:-.04em;margin-top:4px}.league-kpis small{display:block;color:#73859c;font-size:11px}.league-chart{width:100%;height:auto;display:block;max-height:320px}.league-legend{display:flex;gap:16px;flex-wrap:wrap;color:#657790;font-size:11px;margin-top:8px}.league-legend i{display:inline-block;width:19px;border-top:3px solid #3478e9;vertical-align:middle;margin-right:6px}.league-insight{font-size:12px;color:#526681;background:#f3f7fc;padding:11px 13px;border-radius:9px;margin-top:8px}
+.league-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}.league-heading h2{font-size:18px;margin:0;letter-spacing:-.025em}.league-heading p{color:var(--muted);margin:2px 0 0;font-size:12px}.league-overview{display:grid;gap:14px}.league-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.league-kpis .card{box-shadow:none;background:#f8faff;padding:15px}.league-kpis .label{font-size:10px;color:#677b96;font-weight:750;letter-spacing:.06em;text-transform:uppercase}.league-kpis strong{font-size:25px;display:block;letter-spacing:-.04em;margin-top:4px}.league-kpis small{display:block;color:#73859c;font-size:11px}.league-chart{width:100%;height:auto;display:block;max-height:320px}.league-legend{display:flex;gap:16px;flex-wrap:wrap;color:#657790;font-size:11px;margin-top:8px}.league-legend i{display:inline-block;width:19px;border-top:3px solid #3478e9;vertical-align:middle;margin-right:6px}.league-insight{font-size:12px;color:#526681;background:#f3f7fc;padding:11px 13px;border-radius:9px;margin-top:8px}
 @media(max-width:720px){.league-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.league-kpis strong{font-size:21px}.league-overview{gap:12px}}
 
 .personality-map{overflow:hidden}.map-svg{display:block;width:100%;height:auto;max-height:440px;border-radius:12px}.map-svg [data-select]:focus circle{stroke:#0b1829;stroke-width:4}.maplegend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}.map-team{border:1px solid #e5ebf3;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:10px;text-align:left;background:#fff;color:#223b59;cursor:pointer;min-width:0}.map-team.selected{border-color:#4384e6;background:#edf4ff}.map-team b{display:grid;place-items:center;width:23px;height:23px;flex:none;border-radius:50%;background:#377dd5;color:#fff;font-size:11px}.map-team span{font-weight:750;font-size:12px;flex:1;min-width:0;overflow-wrap:anywhere}.map-team small{font-size:11px;color:#647a92;white-space:nowrap}.history-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.history-summary>div{background:#f4f7fc;padding:13px;border-radius:10px;display:flex;flex-direction:column;gap:7px}.history-summary small{font-size:10px;text-transform:uppercase;color:#60758b;font-weight:750}.history-summary strong{font-size:14px;color:#193450}.history-summary span{font-size:11px;color:#617790}.history-track{display:flex;gap:8px;overflow-x:auto;margin-top:15px;padding-bottom:7px}.history-item{flex:0 0 125px;border:1px solid #e2eaf3;border-radius:9px;padding:10px;display:flex;flex-direction:column;gap:6px}.history-item span,.history-item small{font-size:10px;color:#68809c}.history-item strong{font-size:11px;color:#183a5e;overflow-wrap:anywhere}
 @media(max-width:700px){.maplegend{grid-template-columns:1fr}.history-summary{grid-template-columns:1fr}.map-team small{font-size:10px}.personality-map .sectionhead{margin-bottom:8px}}
+/* V1.1 mobile refinements */
+.method-details{margin-top:16px;border-top:1px solid #e3eaf3;padding-top:12px}.method-details summary{cursor:pointer;color:#315f9c;font-weight:800;padding:7px 0}.method-details[open] summary{margin-bottom:14px}
+.mobile-quadrants{display:none}.quadrant-card{border:1px solid #d9e5f1;border-radius:10px;overflow:hidden;background:white}.quadrant-card>button{border:0;background:transparent;width:100%;display:flex;align-items:center;justify-content:space-between;text-align:left;padding:12px 13px;color:#27435f;gap:12px;font-size:12px}.quadrant-card>button span{font-size:11px;color:#647f99;white-space:nowrap}.quadrant-card.expanded>button{background:#edf4ff}.quadrant-members{padding:8px;display:grid;gap:5px}.quadrant-members button{display:flex;flex-direction:column;align-items:flex-start;gap:3px;background:#f8fbff;border:1px solid #e6ebf3;border-radius:7px;padding:9px 10px;color:#26435e;font-size:12px;font-weight:750;width:100%;text-align:left}.quadrant-members button.selected{border-color:#3478e9;background:#eaf2ff}.quadrant-members small{font-size:10px;color:#71869e;font-weight:500}.history-track.compact{display:grid;grid-template-columns:repeat(auto-fit,minmax(76px,1fr));gap:7px;overflow:visible}.history-track.compact .history-item{min-width:0;flex:initial;padding:8px;gap:3px;min-height:69px}.history-track.compact .history-item strong{font-size:10px}.form-facts{display:flex;gap:8px 18px;flex-wrap:wrap;padding:6px 0}
+.league-chart text.mobile-hidden{display:none}
+@media(max-width:700px){.personality-map .map-svg{max-height:230px}.map-quadrant-labels{display:none}.mobile-quadrants{display:grid;gap:8px;margin-top:12px}.mobile-quadrants>p{font-size:11px;color:#657790;margin:0 0 3px}.personality-map .maplegend{display:none}.profile-chart.all-season{gap:2px}.profile-chart.all-season .week-column>strong{font-size:8px}.profile-chart.all-season .week-column>span{font-size:9px}.history-track.compact{grid-template-columns:repeat(auto-fit,minmax(71px,1fr))}}
+@media(max-width:410px){.league-chart{min-height:135px}.week-chart-legend{gap:7px}.league-kpis .card{padding:12px}.league-kpis strong{font-size:20px}}
 </style></head>
 <body>
 <div class="shell"><aside class="side"><div class="brand"><div class="mark">2K</div><div><strong>FANTASY 2K<br>INFINITY</strong><small>LEAGUE REPORT</small></div></div><div class="navcat">WORKSPACE</div>
@@ -271,1188 +280,14 @@
 <main class="main"><div class="topline"><div><div class="eyebrow">2026 · League report</div><h1 id="pageTitle">League overview</h1></div><div class="topright"><span class="tag"><span id="weekStatus">Weeks 1–4 · Final</span></span></div></div>
 <p class="intro" id="intro">Who won, who got lucky, and how each team is really scoring.</p>
 <div class="controls"><div><span class="fieldlabel">VIEW TEAM</span><select id="teamSelect" class="select" aria-label="Select fantasy team"><option value="1">Aubreys 3rd Leg</option><option value="2">Jaxon and the Giant Jazz</option><option value="3" selected>Israeli Nutonyaboob</option><option value="4">Golden Ponies</option><option value="5">Quattro Padres</option><option value="6">The Domestic House Cats</option><option value="7">Project Haily Mary</option><option value="8">General&#x27;s Dorm Room</option><option value="9">Comepig</option><option value="10">Got Rice?</option></select></div><div class="tiny"><span id="sourceStatus">Validated ESPN snapshot · Week 4 · Local fallback</span></div></div><div id="view" class="content"></div><div class="footnote"><span id="footerStatus">Fantasy 2K Infinity · Validated ESPN snapshot · Final scores only</span></div></main></div>
-<script id="fantasydata" type="application/json">{
-  "title": "Fantasy 2K Infinity",
-  "completedThrough": 4,
-  "simulationRuns": 100000,
-  "teams": [
-    {
-      "id": 1,
-      "name": "Aubreys 3rd Leg",
-      "division": "House Atreides",
-      "weeks": [
-        {
-          "week": 1,
-          "pf": 93.36,
-          "pa": 184.5,
-          "opp": 8,
-          "proj": 125.29,
-          "win": 0,
-          "xw": 0.22222222,
-          "weekLuck": -0.22222222,
-          "delta": -31.93,
-          "rank": 8
-        },
-        {
-          "week": 2,
-          "pf": 131.44,
-          "pa": 120.8,
-          "opp": 9,
-          "proj": 123.82,
-          "win": 1,
-          "xw": 0.77777778,
-          "weekLuck": 0.22222222,
-          "delta": 7.62,
-          "rank": 3
-        },
-        {
-          "week": 3,
-          "pf": 117.06,
-          "pa": 98.58,
-          "opp": 5,
-          "proj": 124.32,
-          "win": 1,
-          "xw": 0.44444444,
-          "weekLuck": 0.55555556,
-          "delta": -7.26,
-          "rank": 6
-        },
-        {
-          "week": 4,
-          "pf": 168.88,
-          "pa": 85.92,
-          "opp": 2,
-          "proj": 117.66,
-          "win": 1,
-          "xw": 1.0,
-          "weekLuck": 0.0,
-          "delta": 51.22,
-          "rank": 1
-        }
-      ],
-      "wins": 3,
-      "losses": 1,
-      "divrank": 1,
-      "pf": 510.74,
-      "pa": 489.8,
-      "proj": 491.09,
-      "pd": 20.94,
-      "projdelta": 19.65,
-      "projPct": 4.001,
-      "xw": 2.44444444,
-      "luck": 0.55555556,
-      "luckpp": 13.889,
-      "winsAllPlay": 21.99999996,
-      "simWinMean": 2.441,
-      "simRankMean": 1.554,
-      "winDist": [
-        0.0,
-        9.623,
-        44.108,
-        38.788,
-        7.481
-      ],
-      "rankDist": [
-        63.022,
-        24.365,
-        7.619,
-        4.164,
-        0.83
-      ],
-      "rankLuckPct": 68.5,
-      "winLuckPct": 73.1,
-      "simTop2Pct": 87.4,
-      "projWeeks": 4
-    },
-    {
-      "id": 2,
-      "name": "Jaxon and the Giant Jazz",
-      "division": "House Atreides",
-      "weeks": [
-        {
-          "week": 1,
-          "pf": 126.22,
-          "pa": 142.2,
-          "opp": 7,
-          "proj": 130.43,
-          "win": 0,
-          "xw": 0.33333333,
-          "weekLuck": -0.33333333,
-          "delta": -4.21,
-          "rank": 7
-        },
-        {
-          "week": 2,
-          "pf": 160.66,
-          "pa": 95.72,
-          "opp": 10,
-          "proj": 130.9,
-          "win": 1,
-          "xw": 1.0,
-          "weekLuck": 0.0,
-          "delta": 29.76,
-          "rank": 1
-        },
-        {
-          "week": 3,
-          "pf": 160.48,
-          "pa": 123.74,
-          "opp": 4,
-          "proj": 137.69,
-          "win": 1,
-          "xw": 1.0,
-          "weekLuck": 0.0,
-          "delta": 22.79,
-          "rank": 1
-        },
-        {
-          "week": 4,
-          "pf": 85.92,
-          "pa": 168.88,
-          "opp": 1,
-          "proj": 137.39,
-          "win": 0,
-          "xw": 0.11111111,
-          "weekLuck": -0.11111111,
-          "delta": -51.47,
-          "rank": 9
-        }
-      ],
-      "wins": 2,
-      "losses": 2,
-      "divrank": 2,
-      "pf": 533.28,
-      "pa": 530.54,
-      "proj": 536.41,
-      "pd": 2.74,
-      "projdelta": -3.13,
-      "projPct": -0.584,
-      "xw": 2.44444444,
-      "luck": -0.44444444,
-      "luckpp": -11.111,
-      "winsAllPlay": 21.99999996,
-      "simWinMean": 2.445,
-      "simRankMean": 1.453,
-      "winDist": [
-        0.0,
-        0.0,
-        59.156,
-        37.183,
-        3.661
-      ],
-      "rankDist": [
-        60.805,
-        33.317,
-        5.7,
-        0.178,
-        0.0
-      ],
-      "rankLuckPct": 22.5,
-      "winLuckPct": 29.6,
-      "simTop2Pct": 94.1,
-      "projWeeks": 4
-    },
-    {
-      "id": 3,
-      "name": "Israeli Nutonyaboob",
-      "division": "House Atreides",
-      "weeks": [
-        {
-          "week": 1,
-          "pf": 86.82,
-          "pa": 127.76,
-          "opp": 6,
-          "proj": 121.6,
-          "win": 0,
-          "xw": 0.11111111,
-          "weekLuck": -0.11111111,
-          "delta": -34.78,
-          "rank": 9
-        },
-        {
-          "week": 2,
-          "pf": 78.22,
-          "pa": 151.56,
-          "opp": 7,
-          "proj": 119.54,
-          "win": 0,
-          "xw": 0.0,
-          "weekLuck": 0.0,
-          "delta": -41.32,
-          "rank": 10
-        },
-        {
-          "week": 3,
-          "pf": 134.54,
-          "pa": 102.22,
-          "opp": 10,
-          "proj": 118.12,
-          "win": 1,
-          "xw": 0.77777778,
-          "weekLuck": 0.22222222,
-          "delta": 16.42,
-          "rank": 3
-        },
-        {
-          "week": 4,
-          "pf": 131.96,
-          "pa": 101.04,
-          "opp": 4,
-          "proj": 121.11,
-          "win": 1,
-          "xw": 0.55555556,
-          "weekLuck": 0.44444444,
-          "delta": 10.85,
-          "rank": 5
-        }
-      ],
-      "wins": 2,
-      "losses": 2,
-      "divrank": 2,
-      "pf": 431.54,
-      "pa": 482.58,
-      "proj": 480.37,
-      "pd": -51.04,
-      "projdelta": -48.83,
-      "projPct": -10.165,
-      "xw": 1.44444445,
-      "luck": 0.55555555,
-      "luckpp": 13.889,
-      "winsAllPlay": 13.000000049999999,
-      "simWinMean": 1.443,
-      "simRankMean": 2.956,
-      "winDist": [
-        8.756,
-        42.912,
-        43.608,
-        4.724,
-        0.0
-      ],
-      "rankDist": [
-        16.324,
-        23.539,
-        21.948,
-        24.574,
-        13.615
-      ],
-      "rankLuckPct": 71.9,
-      "winLuckPct": 73.5,
-      "simTop2Pct": 39.9,
-      "projWeeks": 4
-    },
-    {
-      "id": 4,
-      "name": "Golden Ponies",
-      "division": "House Atreides",
-      "weeks": [
-        {
-          "week": 1,
-          "pf": 86.06,
-          "pa": 143.76,
-          "opp": 9,
-          "proj": 116.4,
-          "win": 0,
-          "xw": 0.0,
-          "weekLuck": 0.0,
-          "delta": -30.34,
-          "rank": 10
-        },
-        {
-          "week": 2,
-          "pf": 117.88,
-          "pa": 88.2,
-          "opp": 5,
-          "proj": 118.11,
-          "win": 1,
-          "xw": 0.44444444,
-          "weekLuck": 0.55555556,
-          "delta": -0.23,
-          "rank": 6
-        },
-        {
-          "week": 3,
-          "pf": 123.74,
-          "pa": 160.48,
-          "opp": 2,
-          "proj": 123.61,
-          "win": 0,
-          "xw": 0.66666667,
-          "weekLuck": -0.66666667,
-          "delta": 0.13,
-          "rank": 4
-        },
-        {
-          "week": 4,
-          "pf": 101.04,
-          "pa": 131.96,
-          "opp": 3,
-          "proj": 125.24,
-          "win": 0,
-          "xw": 0.33333333,
-          "weekLuck": -0.33333333,
-          "delta": -24.2,
-          "rank": 7
-        }
-      ],
-      "wins": 1,
-      "losses": 3,
-      "divrank": 4,
-      "pf": 428.72,
-      "pa": 524.4,
-      "proj": 483.36,
-      "pd": -95.68,
-      "projdelta": -54.64,
-      "projPct": -11.304,
-      "xw": 1.44444444,
-      "luck": -0.44444444,
-      "luckpp": -11.111,
-      "winsAllPlay": 12.99999996,
-      "simWinMean": 1.45,
-      "simRankMean": 2.957,
-      "winDist": [
-        12.22,
-        40.781,
-        36.808,
-        10.191,
-        0.0
-      ],
-      "rankDist": [
-        19.744,
-        21.156,
-        18.878,
-        24.064,
-        16.158
-      ],
-      "rankLuckPct": 28.2,
-      "winLuckPct": 32.6,
-      "simTop2Pct": 40.9,
-      "projWeeks": 4
-    },
-    {
-      "id": 5,
-      "name": "Quattro Padres",
-      "division": "House Atreides",
-      "weeks": [
-        {
-          "week": 1,
-          "pf": 131.56,
-          "pa": 147.36,
-          "opp": 10,
-          "proj": 122.94,
-          "win": 0,
-          "xw": 0.55555556,
-          "weekLuck": -0.55555556,
-          "delta": 8.62,
-          "rank": 5
-        },
-        {
-          "week": 2,
-          "pf": 88.2,
-          "pa": 117.88,
-          "opp": 4,
-          "proj": 121.51,
-          "win": 0,
-          "xw": 0.11111111,
-          "weekLuck": -0.11111111,
-          "delta": -33.31,
-          "rank": 9
-        },
-        {
-          "week": 3,
-          "pf": 98.58,
-          "pa": 117.06,
-          "opp": 1,
-          "proj": 123.02,
-          "win": 0,
-          "xw": 0.11111111,
-          "weekLuck": -0.11111111,
-          "delta": -24.44,
-          "rank": 9
-        },
-        {
-          "week": 4,
-          "pf": 110.52,
-          "pa": 164.98,
-          "opp": 8,
-          "proj": 129.26,
-          "win": 0,
-          "xw": 0.44444444,
-          "weekLuck": -0.44444444,
-          "delta": -18.74,
-          "rank": 6
-        }
-      ],
-      "wins": 0,
-      "losses": 4,
-      "divrank": 5,
-      "pf": 428.86,
-      "pa": 547.28,
-      "proj": 496.73,
-      "pd": -118.42,
-      "projdelta": -67.87,
-      "projPct": -13.663,
-      "xw": 1.22222222,
-      "luck": -1.22222222,
-      "luckpp": -30.556,
-      "winsAllPlay": 10.99999998,
-      "simWinMean": 1.224,
-      "simRankMean": 3.314,
-      "winDist": [
-        19.485,
-        44.746,
-        29.94,
-        5.514,
-        0.315
-      ],
-      "rankDist": [
-        14.385,
-        16.639,
-        16.947,
-        27.293,
-        24.736
-      ],
-      "rankLuckPct": 12.4,
-      "winLuckPct": 9.7,
-      "simTop2Pct": 31.0,
-      "projWeeks": 4
-    },
-    {
-      "id": 6,
-      "name": "The Domestic House Cats",
-      "division": "House Harkonnen",
-      "weeks": [
-        {
-          "week": 1,
-          "pf": 127.76,
-          "pa": 86.82,
-          "opp": 3,
-          "proj": 120.0,
-          "win": 1,
-          "xw": 0.44444444,
-          "weekLuck": 0.55555556,
-          "delta": 7.76,
-          "rank": 6
-        },
-        {
-          "week": 2,
-          "pf": 118.22,
-          "pa": 105.36,
-          "opp": 8,
-          "proj": 130.61,
-          "win": 1,
-          "xw": 0.55555556,
-          "weekLuck": 0.44444444,
-          "delta": -12.39,
-          "rank": 5
-        },
-        {
-          "week": 3,
-          "pf": 141.06,
-          "pa": 84.34,
-          "opp": 7,
-          "proj": 122.53,
-          "win": 1,
-          "xw": 0.88888889,
-          "weekLuck": 0.11111111,
-          "delta": 18.53,
-          "rank": 2
-        },
-        {
-          "week": 4,
-          "pf": 153.02,
-          "pa": 144.98,
-          "opp": 9,
-          "proj": 125.18,
-          "win": 1,
-          "xw": 0.77777778,
-          "weekLuck": 0.22222222,
-          "delta": 27.84,
-          "rank": 3
-        }
-      ],
-      "wins": 4,
-      "losses": 0,
-      "divrank": 1,
-      "pf": 540.06,
-      "pa": 421.5,
-      "proj": 498.32,
-      "pd": 118.56,
-      "projdelta": 41.74,
-      "projPct": 8.376,
-      "xw": 2.66666667,
-      "luck": 1.33333333,
-      "luckpp": 33.333,
-      "winsAllPlay": 24.00000003,
-      "simWinMean": 2.672,
-      "simRankMean": 1.826,
-      "winDist": [
-        0.597,
-        8.16,
-        31.931,
-        42.099,
-        17.213
-      ],
-      "rankDist": [
-        52.014,
-        25.008,
-        14.108,
-        6.077,
-        2.793
-      ],
-      "rankLuckPct": 74.0,
-      "winLuckPct": 91.4,
-      "simTop2Pct": 77.0,
-      "projWeeks": 4
-    },
-    {
-      "id": 7,
-      "name": "Project Haily Mary",
-      "division": "House Harkonnen",
-      "weeks": [
-        {
-          "week": 1,
-          "pf": 142.2,
-          "pa": 126.22,
-          "opp": 2,
-          "proj": 123.65,
-          "win": 1,
-          "xw": 0.66666667,
-          "weekLuck": 0.33333333,
-          "delta": 18.55,
-          "rank": 4
-        },
-        {
-          "week": 2,
-          "pf": 151.56,
-          "pa": 78.22,
-          "opp": 3,
-          "proj": 126.76,
-          "win": 1,
-          "xw": 0.88888889,
-          "weekLuck": 0.11111111,
-          "delta": 24.8,
-          "rank": 2
-        },
-        {
-          "week": 3,
-          "pf": 84.34,
-          "pa": 141.06,
-          "opp": 6,
-          "proj": 118.34,
-          "win": 0,
-          "xw": 0.0,
-          "weekLuck": 0.0,
-          "delta": -34.0,
-          "rank": 10
-        },
-        {
-          "week": 4,
-          "pf": 91.9,
-          "pa": 61.82,
-          "opp": 10,
-          "proj": 108.81,
-          "win": 1,
-          "xw": 0.22222222,
-          "weekLuck": 0.77777778,
-          "delta": -16.91,
-          "rank": 8
-        }
-      ],
-      "wins": 3,
-      "losses": 1,
-      "divrank": 2,
-      "pf": 470.0,
-      "pa": 407.32,
-      "proj": 477.56,
-      "pd": 62.68,
-      "projdelta": -7.56,
-      "projPct": -1.583,
-      "xw": 1.77777778,
-      "luck": 1.22222222,
-      "luckpp": 30.556,
-      "winsAllPlay": 16.00000002,
-      "simWinMean": 1.776,
-      "simRankMean": 3.02,
-      "winDist": [
-        2.849,
-        29.683,
-        54.472,
-        12.996,
-        0.0
-      ],
-      "rankDist": [
-        11.219,
-        23.18,
-        29.346,
-        24.848,
-        11.407
-      ],
-      "rankLuckPct": 77.2,
-      "winLuckPct": 93.5,
-      "simTop2Pct": 34.4,
-      "projWeeks": 4
-    },
-    {
-      "id": 8,
-      "name": "General's Dorm Room",
-      "division": "House Harkonnen",
-      "weeks": [
-        {
-          "week": 1,
-          "pf": 184.5,
-          "pa": 93.36,
-          "opp": 1,
-          "proj": 120.03,
-          "win": 1,
-          "xw": 1.0,
-          "weekLuck": 0.0,
-          "delta": 64.47,
-          "rank": 1
-        },
-        {
-          "week": 2,
-          "pf": 105.36,
-          "pa": 118.22,
-          "opp": 6,
-          "proj": 124.43,
-          "win": 0,
-          "xw": 0.33333333,
-          "weekLuck": -0.33333333,
-          "delta": -19.07,
-          "rank": 7
-        },
-        {
-          "week": 3,
-          "pf": 102.88,
-          "pa": 119.34,
-          "opp": 9,
-          "proj": 126.95,
-          "win": 0,
-          "xw": 0.33333333,
-          "weekLuck": -0.33333333,
-          "delta": -24.07,
-          "rank": 7
-        },
-        {
-          "week": 4,
-          "pf": 164.98,
-          "pa": 110.52,
-          "opp": 5,
-          "proj": 132.9,
-          "win": 1,
-          "xw": 0.88888889,
-          "weekLuck": 0.11111111,
-          "delta": 32.08,
-          "rank": 2
-        }
-      ],
-      "wins": 2,
-      "losses": 2,
-      "divrank": 3,
-      "pf": 557.72,
-      "pa": 441.44,
-      "proj": 504.31,
-      "pd": 116.28,
-      "projdelta": 53.41,
-      "projPct": 10.591,
-      "xw": 2.55555555,
-      "luck": -0.55555555,
-      "luckpp": -13.889,
-      "winsAllPlay": 22.99999995,
-      "simWinMean": 2.553,
-      "simRankMean": 1.934,
-      "winDist": [
-        0.0,
-        4.943,
-        44.682,
-        40.538,
-        9.837
-      ],
-      "rankDist": [
-        41.356,
-        31.731,
-        20.534,
-        4.943,
-        1.436
-      ],
-      "rankLuckPct": 16.6,
-      "winLuckPct": 27.3,
-      "simTop2Pct": 73.1,
-      "projWeeks": 4
-    },
-    {
-      "id": 9,
-      "name": "Comepig",
-      "division": "House Harkonnen",
-      "weeks": [
-        {
-          "week": 1,
-          "pf": 143.76,
-          "pa": 86.06,
-          "opp": 4,
-          "proj": 123.25,
-          "win": 1,
-          "xw": 0.77777778,
-          "weekLuck": 0.22222222,
-          "delta": 20.51,
-          "rank": 3
-        },
-        {
-          "week": 2,
-          "pf": 120.8,
-          "pa": 131.44,
-          "opp": 1,
-          "proj": 109.72,
-          "win": 0,
-          "xw": 0.66666667,
-          "weekLuck": -0.66666667,
-          "delta": 11.08,
-          "rank": 4
-        },
-        {
-          "week": 3,
-          "pf": 119.34,
-          "pa": 102.88,
-          "opp": 8,
-          "proj": 125.04,
-          "win": 1,
-          "xw": 0.55555556,
-          "weekLuck": 0.44444444,
-          "delta": -5.7,
-          "rank": 5
-        },
-        {
-          "week": 4,
-          "pf": 144.98,
-          "pa": 153.02,
-          "opp": 6,
-          "proj": 137.65,
-          "win": 0,
-          "xw": 0.66666667,
-          "weekLuck": -0.66666667,
-          "delta": 7.33,
-          "rank": 4
-        }
-      ],
-      "wins": 2,
-      "losses": 2,
-      "divrank": 3,
-      "pf": 528.88,
-      "pa": 473.4,
-      "proj": 495.66,
-      "pd": 55.48,
-      "projdelta": 33.22,
-      "projPct": 6.702,
-      "xw": 2.66666668,
-      "luck": -0.66666668,
-      "luckpp": -16.667,
-      "winsAllPlay": 24.00000012,
-      "simWinMean": 2.665,
-      "simRankMean": 1.864,
-      "winDist": [
-        1.073,
-        9.703,
-        30.033,
-        40.008,
-        19.183
-      ],
-      "rankDist": [
-        52.74,
-        22.93,
-        13.538,
-        6.727,
-        4.065
-      ],
-      "rankLuckPct": 17.6,
-      "winLuckPct": 25.8,
-      "simTop2Pct": 75.7,
-      "projWeeks": 4
-    },
-    {
-      "id": 10,
-      "name": "Got Rice?",
-      "division": "House Harkonnen",
-      "weeks": [
-        {
-          "week": 1,
-          "pf": 147.36,
-          "pa": 131.56,
-          "opp": 5,
-          "proj": 116.5,
-          "win": 1,
-          "xw": 0.88888889,
-          "weekLuck": 0.11111111,
-          "delta": 30.86,
-          "rank": 2
-        },
-        {
-          "week": 2,
-          "pf": 95.72,
-          "pa": 160.66,
-          "opp": 2,
-          "proj": 127.12,
-          "win": 0,
-          "xw": 0.22222222,
-          "weekLuck": -0.22222222,
-          "delta": -31.4,
-          "rank": 8
-        },
-        {
-          "week": 3,
-          "pf": 102.22,
-          "pa": 134.54,
-          "opp": 3,
-          "proj": 124.47,
-          "win": 0,
-          "xw": 0.22222222,
-          "weekLuck": -0.22222222,
-          "delta": -22.25,
-          "rank": 8
-        },
-        {
-          "week": 4,
-          "pf": 61.82,
-          "pa": 91.9,
-          "opp": 7,
-          "proj": 109.57,
-          "win": 0,
-          "xw": 0.0,
-          "weekLuck": 0.0,
-          "delta": -47.75,
-          "rank": 10
-        }
-      ],
-      "wins": 1,
-      "losses": 3,
-      "divrank": 5,
-      "pf": 407.12,
-      "pa": 518.66,
-      "proj": 477.66,
-      "pd": -111.54,
-      "projdelta": -70.54,
-      "projPct": -14.768,
-      "xw": 1.33333333,
-      "luck": -0.33333333,
-      "luckpp": -8.333,
-      "winsAllPlay": 11.999999970000001,
-      "simWinMean": 1.331,
-      "simRankMean": 3.785,
-      "winDist": [
-        6.828,
-        57.566,
-        31.294,
-        4.312,
-        0.0
-      ],
-      "rankDist": [
-        5.065,
-        12.57,
-        17.127,
-        29.303,
-        35.935
-      ],
-      "rankLuckPct": 18.0,
-      "winLuckPct": 35.6,
-      "simTop2Pct": 17.6,
-      "projWeeks": 4
-    }
-  ],
-  "generated": "2026-10-10T17:59:24.048222+00:00",
-  "methodNotes": [
-    "Private ESPN backfill reconciled against 40 known scores and opponents for Weeks 1–4.",
-    "Only completed periods before ESPN's current matchup period enter scoring calculations.",
-    "Original Weeks 1–4 displayed projection values are not verified pregame snapshots. Missing future projections remain blank.",
-    "No player data, manager names, ESPN authentication credentials or playoff odds are published."
-  ],
-  "source": "ESPN authenticated, baseline reconciled",
-  "projectionCoverage": {
-    "kind": "historical ESPN screenshot displayed values",
-    "throughWeek": 4,
-    "notice": "Screenshots may contain in-game projections; no future projections fabricated."
-  },
-  "weeklyLeagueAverage": [
-    126.96,
-    116.81,
-    118.42,
-    121.5
-  ],
-  "leagueAveragePf": 120.92,
-  "leagueMedianPf": 120.07,
-  "dnaHistory": [
-    {
-      "throughWeek": 1,
-      "status": "provisional",
-      "teams": [
-        {
-          "id": 1,
-          "category": "Not enough weeks",
-          "averagePf": 93.36,
-          "cvPct": 0.0
-        },
-        {
-          "id": 2,
-          "category": "Not enough weeks",
-          "averagePf": 126.22,
-          "cvPct": 0.0
-        },
-        {
-          "id": 3,
-          "category": "Not enough weeks",
-          "averagePf": 86.82,
-          "cvPct": 0.0
-        },
-        {
-          "id": 4,
-          "category": "Not enough weeks",
-          "averagePf": 86.06,
-          "cvPct": 0.0
-        },
-        {
-          "id": 5,
-          "category": "Not enough weeks",
-          "averagePf": 131.56,
-          "cvPct": 0.0
-        },
-        {
-          "id": 6,
-          "category": "Not enough weeks",
-          "averagePf": 127.76,
-          "cvPct": 0.0
-        },
-        {
-          "id": 7,
-          "category": "Not enough weeks",
-          "averagePf": 142.2,
-          "cvPct": 0.0
-        },
-        {
-          "id": 8,
-          "category": "Not enough weeks",
-          "averagePf": 184.5,
-          "cvPct": 0.0
-        },
-        {
-          "id": 9,
-          "category": "Not enough weeks",
-          "averagePf": 143.76,
-          "cvPct": 0.0
-        },
-        {
-          "id": 10,
-          "category": "Not enough weeks",
-          "averagePf": 147.36,
-          "cvPct": 0.0
-        }
-      ]
-    },
-    {
-      "throughWeek": 2,
-      "status": "provisional",
-      "teams": [
-        {
-          "id": 1,
-          "category": "Not enough weeks",
-          "averagePf": 112.4,
-          "cvPct": 16.94
-        },
-        {
-          "id": 2,
-          "category": "Not enough weeks",
-          "averagePf": 143.44,
-          "cvPct": 12.01
-        },
-        {
-          "id": 3,
-          "category": "Not enough weeks",
-          "averagePf": 82.52,
-          "cvPct": 5.21
-        },
-        {
-          "id": 4,
-          "category": "Not enough weeks",
-          "averagePf": 101.97,
-          "cvPct": 15.6
-        },
-        {
-          "id": 5,
-          "category": "Not enough weeks",
-          "averagePf": 109.88,
-          "cvPct": 19.73
-        },
-        {
-          "id": 6,
-          "category": "Not enough weeks",
-          "averagePf": 122.99,
-          "cvPct": 3.88
-        },
-        {
-          "id": 7,
-          "category": "Not enough weeks",
-          "averagePf": 146.88,
-          "cvPct": 3.19
-        },
-        {
-          "id": 8,
-          "category": "Not enough weeks",
-          "averagePf": 144.93,
-          "cvPct": 27.3
-        },
-        {
-          "id": 9,
-          "category": "Not enough weeks",
-          "averagePf": 132.28,
-          "cvPct": 8.68
-        },
-        {
-          "id": 10,
-          "category": "Not enough weeks",
-          "averagePf": 121.54,
-          "cvPct": 21.24
-        }
-      ]
-    },
-    {
-      "throughWeek": 3,
-      "status": "provisional",
-      "teams": [
-        {
-          "id": 1,
-          "category": "Not enough weeks",
-          "averagePf": 113.95,
-          "cvPct": 13.78
-        },
-        {
-          "id": 2,
-          "category": "Not enough weeks",
-          "averagePf": 149.12,
-          "cvPct": 10.86
-        },
-        {
-          "id": 3,
-          "category": "Not enough weeks",
-          "averagePf": 99.86,
-          "cvPct": 24.81
-        },
-        {
-          "id": 4,
-          "category": "Not enough weeks",
-          "averagePf": 109.23,
-          "cvPct": 15.16
-        },
-        {
-          "id": 5,
-          "category": "Not enough weeks",
-          "averagePf": 106.11,
-          "cvPct": 17.42
-        },
-        {
-          "id": 6,
-          "category": "Not enough weeks",
-          "averagePf": 129.01,
-          "cvPct": 7.26
-        },
-        {
-          "id": 7,
-          "category": "Not enough weeks",
-          "averagePf": 126.03,
-          "cvPct": 23.59
-        },
-        {
-          "id": 8,
-          "category": "Not enough weeks",
-          "averagePf": 130.91,
-          "cvPct": 28.95
-        },
-        {
-          "id": 9,
-          "category": "Not enough weeks",
-          "averagePf": 127.97,
-          "cvPct": 8.74
-        },
-        {
-          "id": 10,
-          "category": "Not enough weeks",
-          "averagePf": 115.1,
-          "cvPct": 19.95
-        }
-      ]
-    },
-    {
-      "throughWeek": 4,
-      "status": "provisional",
-      "teams": [
-        {
-          "id": 1,
-          "category": "Balanced, with swings",
-          "averagePf": 127.69,
-          "cvPct": 21.46
-        },
-        {
-          "id": 2,
-          "category": "High-upside contender",
-          "averagePf": 133.32,
-          "cvPct": 23.06
-        },
-        {
-          "id": 3,
-          "category": "High ceiling, low floor",
-          "averagePf": 107.88,
-          "cvPct": 23.69
-        },
-        {
-          "id": 4,
-          "category": "Inconsistent underdog",
-          "averagePf": 107.18,
-          "cvPct": 13.78
-        },
-        {
-          "id": 5,
-          "category": "Inconsistent underdog",
-          "averagePf": 107.22,
-          "cvPct": 15.04
-        },
-        {
-          "id": 6,
-          "category": "Reliable contender",
-          "averagePf": 135.02,
-          "cvPct": 9.77
-        },
-        {
-          "id": 7,
-          "category": "High ceiling, low floor",
-          "averagePf": 117.5,
-          "cvPct": 25.26
-        },
-        {
-          "id": 8,
-          "category": "High ceiling, low floor",
-          "averagePf": 139.43,
-          "cvPct": 25.81
-        },
-        {
-          "id": 9,
-          "category": "Reliable contender",
-          "averagePf": 132.22,
-          "cvPct": 9.2
-        },
-        {
-          "id": 10,
-          "category": "High ceiling, low floor",
-          "averagePf": 101.78,
-          "cvPct": 29.93
-        }
-      ]
-    }
-  ],
-  "recentDna": []
-}</script>
+<script id="fantasydata" type="application/json">{"title":"Fantasy 2K Infinity","completedThrough":4,"simulationRuns":100000,"teams":[{"id":1,"name":"Aubreys 3rd Leg","division":"House Atreides","weeks":[{"week":1,"pf":93.36,"pa":184.5,"opp":8,"proj":125.29,"win":0,"xw":0.22222222,"weekLuck":-0.22222222,"delta":-31.93,"rank":8},{"week":2,"pf":131.44,"pa":120.8,"opp":9,"proj":123.82,"win":1,"xw":0.77777778,"weekLuck":0.22222222,"delta":7.62,"rank":3},{"week":3,"pf":117.06,"pa":98.58,"opp":5,"proj":124.32,"win":1,"xw":0.44444444,"weekLuck":0.55555556,"delta":-7.26,"rank":6},{"week":4,"pf":168.88,"pa":85.92,"opp":2,"proj":117.66,"win":1,"xw":1.0,"weekLuck":0.0,"delta":51.22,"rank":1}],"wins":3,"losses":1,"divrank":1,"pf":510.74,"pa":489.8,"proj":491.09,"pd":20.94,"projdelta":19.65,"projPct":4.001,"xw":2.44444444,"luck":0.55555556,"luckpp":13.889,"winsAllPlay":21.99999996,"simWinMean":2.441,"simRankMean":1.554,"winDist":[0.0,9.623,44.108,38.788,7.481],"rankDist":[63.022,24.365,7.619,4.164,0.83],"rankLuckPct":68.5,"winLuckPct":73.1,"simTop2Pct":87.4,"projWeeks":4},{"id":2,"name":"Jaxon and the Giant Jazz","division":"House Atreides","weeks":[{"week":1,"pf":126.22,"pa":142.2,"opp":7,"proj":130.43,"win":0,"xw":0.33333333,"weekLuck":-0.33333333,"delta":-4.21,"rank":7},{"week":2,"pf":160.66,"pa":95.72,"opp":10,"proj":130.9,"win":1,"xw":1.0,"weekLuck":0.0,"delta":29.76,"rank":1},{"week":3,"pf":160.48,"pa":123.74,"opp":4,"proj":137.69,"win":1,"xw":1.0,"weekLuck":0.0,"delta":22.79,"rank":1},{"week":4,"pf":85.92,"pa":168.88,"opp":1,"proj":137.39,"win":0,"xw":0.11111111,"weekLuck":-0.11111111,"delta":-51.47,"rank":9}],"wins":2,"losses":2,"divrank":2,"pf":533.28,"pa":530.54,"proj":536.41,"pd":2.74,"projdelta":-3.13,"projPct":-0.584,"xw":2.44444444,"luck":-0.44444444,"luckpp":-11.111,"winsAllPlay":21.99999996,"simWinMean":2.445,"simRankMean":1.453,"winDist":[0.0,0.0,59.156,37.183,3.661],"rankDist":[60.805,33.317,5.7,0.178,0.0],"rankLuckPct":22.5,"winLuckPct":29.6,"simTop2Pct":94.1,"projWeeks":4},{"id":3,"name":"Israeli Nutonyaboob","division":"House Atreides","weeks":[{"week":1,"pf":86.82,"pa":127.76,"opp":6,"proj":121.6,"win":0,"xw":0.11111111,"weekLuck":-0.11111111,"delta":-34.78,"rank":9},{"week":2,"pf":78.22,"pa":151.56,"opp":7,"proj":119.54,"win":0,"xw":0.0,"weekLuck":0.0,"delta":-41.32,"rank":10},{"week":3,"pf":134.54,"pa":102.22,"opp":10,"proj":118.12,"win":1,"xw":0.77777778,"weekLuck":0.22222222,"delta":16.42,"rank":3},{"week":4,"pf":131.96,"pa":101.04,"opp":4,"proj":121.11,"win":1,"xw":0.55555556,"weekLuck":0.44444444,"delta":10.85,"rank":5}],"wins":2,"losses":2,"divrank":2,"pf":431.54,"pa":482.58,"proj":480.37,"pd":-51.04,"projdelta":-48.83,"projPct":-10.165,"xw":1.44444445,"luck":0.55555555,"luckpp":13.889,"winsAllPlay":13.000000049999999,"simWinMean":1.443,"simRankMean":2.956,"winDist":[8.756,42.912,43.608,4.724,0.0],"rankDist":[16.324,23.539,21.948,24.574,13.615],"rankLuckPct":71.9,"winLuckPct":73.5,"simTop2Pct":39.9,"projWeeks":4},{"id":4,"name":"Golden Ponies","division":"House Atreides","weeks":[{"week":1,"pf":86.06,"pa":143.76,"opp":9,"proj":116.4,"win":0,"xw":0.0,"weekLuck":0.0,"delta":-30.34,"rank":10},{"week":2,"pf":117.88,"pa":88.2,"opp":5,"proj":118.11,"win":1,"xw":0.44444444,"weekLuck":0.55555556,"delta":-0.23,"rank":6},{"week":3,"pf":123.74,"pa":160.48,"opp":2,"proj":123.61,"win":0,"xw":0.66666667,"weekLuck":-0.66666667,"delta":0.13,"rank":4},{"week":4,"pf":101.04,"pa":131.96,"opp":3,"proj":125.24,"win":0,"xw":0.33333333,"weekLuck":-0.33333333,"delta":-24.2,"rank":7}],"wins":1,"losses":3,"divrank":4,"pf":428.72,"pa":524.4,"proj":483.36,"pd":-95.68,"projdelta":-54.64,"projPct":-11.304,"xw":1.44444444,"luck":-0.44444444,"luckpp":-11.111,"winsAllPlay":12.99999996,"simWinMean":1.45,"simRankMean":2.957,"winDist":[12.22,40.781,36.808,10.191,0.0],"rankDist":[19.744,21.156,18.878,24.064,16.158],"rankLuckPct":28.2,"winLuckPct":32.6,"simTop2Pct":40.9,"projWeeks":4},{"id":5,"name":"Quattro Padres","division":"House Atreides","weeks":[{"week":1,"pf":131.56,"pa":147.36,"opp":10,"proj":122.94,"win":0,"xw":0.55555556,"weekLuck":-0.55555556,"delta":8.62,"rank":5},{"week":2,"pf":88.2,"pa":117.88,"opp":4,"proj":121.51,"win":0,"xw":0.11111111,"weekLuck":-0.11111111,"delta":-33.31,"rank":9},{"week":3,"pf":98.58,"pa":117.06,"opp":1,"proj":123.02,"win":0,"xw":0.11111111,"weekLuck":-0.11111111,"delta":-24.44,"rank":9},{"week":4,"pf":110.52,"pa":164.98,"opp":8,"proj":129.26,"win":0,"xw":0.44444444,"weekLuck":-0.44444444,"delta":-18.74,"rank":6}],"wins":0,"losses":4,"divrank":5,"pf":428.86,"pa":547.28,"proj":496.73,"pd":-118.42,"projdelta":-67.87,"projPct":-13.663,"xw":1.22222222,"luck":-1.22222222,"luckpp":-30.556,"winsAllPlay":10.99999998,"simWinMean":1.224,"simRankMean":3.314,"winDist":[19.485,44.746,29.94,5.514,0.315],"rankDist":[14.385,16.639,16.947,27.293,24.736],"rankLuckPct":12.4,"winLuckPct":9.7,"simTop2Pct":31.0,"projWeeks":4},{"id":6,"name":"The Domestic House Cats","division":"House Harkonnen","weeks":[{"week":1,"pf":127.76,"pa":86.82,"opp":3,"proj":120.0,"win":1,"xw":0.44444444,"weekLuck":0.55555556,"delta":7.76,"rank":6},{"week":2,"pf":118.22,"pa":105.36,"opp":8,"proj":130.61,"win":1,"xw":0.55555556,"weekLuck":0.44444444,"delta":-12.39,"rank":5},{"week":3,"pf":141.06,"pa":84.34,"opp":7,"proj":122.53,"win":1,"xw":0.88888889,"weekLuck":0.11111111,"delta":18.53,"rank":2},{"week":4,"pf":153.02,"pa":144.98,"opp":9,"proj":125.18,"win":1,"xw":0.77777778,"weekLuck":0.22222222,"delta":27.84,"rank":3}],"wins":4,"losses":0,"divrank":1,"pf":540.06,"pa":421.5,"proj":498.32,"pd":118.56,"projdelta":41.74,"projPct":8.376,"xw":2.66666667,"luck":1.33333333,"luckpp":33.333,"winsAllPlay":24.00000003,"simWinMean":2.672,"simRankMean":1.826,"winDist":[0.597,8.16,31.931,42.099,17.213],"rankDist":[52.014,25.008,14.108,6.077,2.793],"rankLuckPct":74.0,"winLuckPct":91.4,"simTop2Pct":77.0,"projWeeks":4},{"id":7,"name":"Project Haily Mary","division":"House Harkonnen","weeks":[{"week":1,"pf":142.2,"pa":126.22,"opp":2,"proj":123.65,"win":1,"xw":0.66666667,"weekLuck":0.33333333,"delta":18.55,"rank":4},{"week":2,"pf":151.56,"pa":78.22,"opp":3,"proj":126.76,"win":1,"xw":0.88888889,"weekLuck":0.11111111,"delta":24.8,"rank":2},{"week":3,"pf":84.34,"pa":141.06,"opp":6,"proj":118.34,"win":0,"xw":0.0,"weekLuck":0.0,"delta":-34.0,"rank":10},{"week":4,"pf":91.9,"pa":61.82,"opp":10,"proj":108.81,"win":1,"xw":0.22222222,"weekLuck":0.77777778,"delta":-16.91,"rank":8}],"wins":3,"losses":1,"divrank":2,"pf":470.0,"pa":407.32,"proj":477.56,"pd":62.68,"projdelta":-7.56,"projPct":-1.583,"xw":1.77777778,"luck":1.22222222,"luckpp":30.556,"winsAllPlay":16.00000002,"simWinMean":1.776,"simRankMean":3.02,"winDist":[2.849,29.683,54.472,12.996,0.0],"rankDist":[11.219,23.18,29.346,24.848,11.407],"rankLuckPct":77.2,"winLuckPct":93.5,"simTop2Pct":34.4,"projWeeks":4},{"id":8,"name":"General's Dorm Room","division":"House Harkonnen","weeks":[{"week":1,"pf":184.5,"pa":93.36,"opp":1,"proj":120.03,"win":1,"xw":1.0,"weekLuck":0.0,"delta":64.47,"rank":1},{"week":2,"pf":105.36,"pa":118.22,"opp":6,"proj":124.43,"win":0,"xw":0.33333333,"weekLuck":-0.33333333,"delta":-19.07,"rank":7},{"week":3,"pf":102.88,"pa":119.34,"opp":9,"proj":126.95,"win":0,"xw":0.33333333,"weekLuck":-0.33333333,"delta":-24.07,"rank":7},{"week":4,"pf":164.98,"pa":110.52,"opp":5,"proj":132.9,"win":1,"xw":0.88888889,"weekLuck":0.11111111,"delta":32.08,"rank":2}],"wins":2,"losses":2,"divrank":3,"pf":557.72,"pa":441.44,"proj":504.31,"pd":116.28,"projdelta":53.41,"projPct":10.591,"xw":2.55555555,"luck":-0.55555555,"luckpp":-13.889,"winsAllPlay":22.99999995,"simWinMean":2.553,"simRankMean":1.934,"winDist":[0.0,4.943,44.682,40.538,9.837],"rankDist":[41.356,31.731,20.534,4.943,1.436],"rankLuckPct":16.6,"winLuckPct":27.3,"simTop2Pct":73.1,"projWeeks":4},{"id":9,"name":"Comepig","division":"House Harkonnen","weeks":[{"week":1,"pf":143.76,"pa":86.06,"opp":4,"proj":123.25,"win":1,"xw":0.77777778,"weekLuck":0.22222222,"delta":20.51,"rank":3},{"week":2,"pf":120.8,"pa":131.44,"opp":1,"proj":109.72,"win":0,"xw":0.66666667,"weekLuck":-0.66666667,"delta":11.08,"rank":4},{"week":3,"pf":119.34,"pa":102.88,"opp":8,"proj":125.04,"win":1,"xw":0.55555556,"weekLuck":0.44444444,"delta":-5.7,"rank":5},{"week":4,"pf":144.98,"pa":153.02,"opp":6,"proj":137.65,"win":0,"xw":0.66666667,"weekLuck":-0.66666667,"delta":7.33,"rank":4}],"wins":2,"losses":2,"divrank":3,"pf":528.88,"pa":473.4,"proj":495.66,"pd":55.48,"projdelta":33.22,"projPct":6.702,"xw":2.66666668,"luck":-0.66666668,"luckpp":-16.667,"winsAllPlay":24.00000012,"simWinMean":2.665,"simRankMean":1.864,"winDist":[1.073,9.703,30.033,40.008,19.183],"rankDist":[52.74,22.93,13.538,6.727,4.065],"rankLuckPct":17.6,"winLuckPct":25.8,"simTop2Pct":75.7,"projWeeks":4},{"id":10,"name":"Got Rice?","division":"House Harkonnen","weeks":[{"week":1,"pf":147.36,"pa":131.56,"opp":5,"proj":116.5,"win":1,"xw":0.88888889,"weekLuck":0.11111111,"delta":30.86,"rank":2},{"week":2,"pf":95.72,"pa":160.66,"opp":2,"proj":127.12,"win":0,"xw":0.22222222,"weekLuck":-0.22222222,"delta":-31.4,"rank":8},{"week":3,"pf":102.22,"pa":134.54,"opp":3,"proj":124.47,"win":0,"xw":0.22222222,"weekLuck":-0.22222222,"delta":-22.25,"rank":8},{"week":4,"pf":61.82,"pa":91.9,"opp":7,"proj":109.57,"win":0,"xw":0.0,"weekLuck":0.0,"delta":-47.75,"rank":10}],"wins":1,"losses":3,"divrank":5,"pf":407.12,"pa":518.66,"proj":477.66,"pd":-111.54,"projdelta":-70.54,"projPct":-14.768,"xw":1.33333333,"luck":-0.33333333,"luckpp":-8.333,"winsAllPlay":11.999999970000001,"simWinMean":1.331,"simRankMean":3.785,"winDist":[6.828,57.566,31.294,4.312,0.0],"rankDist":[5.065,12.57,17.127,29.303,35.935],"rankLuckPct":18.0,"winLuckPct":35.6,"simTop2Pct":17.6,"projWeeks":4}],"generated":"2026-10-10T17:59:24.048222+00:00","methodNotes":["Private ESPN backfill reconciled against 40 known scores and opponents for Weeks 1–4.","Only completed periods before ESPN's current matchup period enter scoring calculations.","Original Weeks 1–4 displayed projection values are not verified pregame snapshots. Missing future projections remain blank.","No player data, manager names, ESPN authentication credentials or playoff odds are published."],"source":"ESPN authenticated, baseline reconciled","projectionCoverage":{"kind":"historical ESPN screenshot displayed values","throughWeek":4,"notice":"Screenshots may contain in-game projections; no future projections fabricated."},"weeklyLeagueAverage":[126.96,116.81,118.42,121.5],"leagueAveragePf":120.92,"leagueMedianPf":120.07,"dnaHistory":[{"throughWeek":1,"status":"provisional","teams":[{"id":1,"category":"Not enough weeks","averagePf":93.36,"cvPct":0.0},{"id":2,"category":"Not enough weeks","averagePf":126.22,"cvPct":0.0},{"id":3,"category":"Not enough weeks","averagePf":86.82,"cvPct":0.0},{"id":4,"category":"Not enough weeks","averagePf":86.06,"cvPct":0.0},{"id":5,"category":"Not enough weeks","averagePf":131.56,"cvPct":0.0},{"id":6,"category":"Not enough weeks","averagePf":127.76,"cvPct":0.0},{"id":7,"category":"Not enough weeks","averagePf":142.2,"cvPct":0.0},{"id":8,"category":"Not enough weeks","averagePf":184.5,"cvPct":0.0},{"id":9,"category":"Not enough weeks","averagePf":143.76,"cvPct":0.0},{"id":10,"category":"Not enough weeks","averagePf":147.36,"cvPct":0.0}]},{"throughWeek":2,"status":"provisional","teams":[{"id":1,"category":"Not enough weeks","averagePf":112.4,"cvPct":16.94},{"id":2,"category":"Not enough weeks","averagePf":143.44,"cvPct":12.01},{"id":3,"category":"Not enough weeks","averagePf":82.52,"cvPct":5.21},{"id":4,"category":"Not enough weeks","averagePf":101.97,"cvPct":15.6},{"id":5,"category":"Not enough weeks","averagePf":109.88,"cvPct":19.73},{"id":6,"category":"Not enough weeks","averagePf":122.99,"cvPct":3.88},{"id":7,"category":"Not enough weeks","averagePf":146.88,"cvPct":3.19},{"id":8,"category":"Not enough weeks","averagePf":144.93,"cvPct":27.3},{"id":9,"category":"Not enough weeks","averagePf":132.28,"cvPct":8.68},{"id":10,"category":"Not enough weeks","averagePf":121.54,"cvPct":21.24}]},{"throughWeek":3,"status":"provisional","teams":[{"id":1,"category":"Not enough weeks","averagePf":113.95,"cvPct":13.78},{"id":2,"category":"Not enough weeks","averagePf":149.12,"cvPct":10.86},{"id":3,"category":"Not enough weeks","averagePf":99.86,"cvPct":24.81},{"id":4,"category":"Not enough weeks","averagePf":109.23,"cvPct":15.16},{"id":5,"category":"Not enough weeks","averagePf":106.11,"cvPct":17.42},{"id":6,"category":"Not enough weeks","averagePf":129.01,"cvPct":7.26},{"id":7,"category":"Not enough weeks","averagePf":126.03,"cvPct":23.59},{"id":8,"category":"Not enough weeks","averagePf":130.91,"cvPct":28.95},{"id":9,"category":"Not enough weeks","averagePf":127.97,"cvPct":8.74},{"id":10,"category":"Not enough weeks","averagePf":115.1,"cvPct":19.95}]},{"throughWeek":4,"status":"provisional","teams":[{"id":1,"category":"Balanced, with swings","averagePf":127.69,"cvPct":21.46},{"id":2,"category":"High-upside contender","averagePf":133.32,"cvPct":23.06},{"id":3,"category":"High ceiling, low floor","averagePf":107.88,"cvPct":23.69},{"id":4,"category":"Inconsistent underdog","averagePf":107.18,"cvPct":13.78},{"id":5,"category":"Inconsistent underdog","averagePf":107.22,"cvPct":15.04},{"id":6,"category":"Reliable contender","averagePf":135.02,"cvPct":9.77},{"id":7,"category":"High ceiling, low floor","averagePf":117.5,"cvPct":25.26},{"id":8,"category":"High ceiling, low floor","averagePf":139.43,"cvPct":25.81},{"id":9,"category":"Reliable contender","averagePf":132.22,"cvPct":9.2},{"id":10,"category":"High ceiling, low floor","averagePf":101.78,"cvPct":29.93}]}],"recentDna":[],"leagueId":418244680,"season":2026,"approvedAt":"2026-10-10T17:59:24.048222+00:00"}</script>
 <script>
 (()=>{'use strict';
 let DB=JSON.parse(document.getElementById('fantasydata').textContent);
 let teams=DB.teams,byId=Object.fromEntries(teams.map(x=>[x.id,x]));
 const RANK_COLORS=['#167c60','#3d7be8','#4db8c4','#f4af51','#db7180'];
 const navTabs=[['overview','Overview'],['performance','Team DNA & scoring'],['luck','Who got lucky?'],['divisions','What if?'],['method','How it works']];
-let state={tab:'overview',selected:3,division:'All',sort:'luck'};
+let state={tab:'overview',selected:3,division:'All',sort:'luck',weekRange:'latest',quadrant:'all'};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=(n,k=2)=>Number(n).toLocaleString('en-US',{minimumFractionDigits:k,maximumFractionDigits:k});
 const sign=(n,k=2)=> (n>0?'+':'')+fmt(n,k);
@@ -1468,20 +303,20 @@ function luckRows(){return [...teams].sort((a,b)=>b.luck-a.luck).map(t=>{const p
 function sparkline(t){
  const known=t.weeks.filter(w=>w.proj!==null&&w.proj!==undefined);
  if(!known.length)return `<div class="data-note">No historical projection snapshots are available.</div>`;
- const series=[['Actual points','#306bf5','pf'],['ESPN displayed projection','#0c9d99','proj']];
+ const hasFrozen=known.some(w=>w.projSource==='scheduled snapshot'),series=[['Actual points','#306bf5','pf'],[hasFrozen?'Recorded ESPN projection':'ESPN displayed projection','#0c9d99','proj']];
  const n=known.length,W=760,H=275,L=47,R=22,T=30,B=40,values=known.flatMap(w=>[w.pf,w.proj]);
  const min=Math.max(0,Math.floor((Math.min(...values)-14)/20)*20),max=Math.ceil((Math.max(...values)+18)/20)*20;
  const x=i=>L+i*(W-L-R)/Math.max(1,n-1),y=v=>T+(max-v)*(H-T-B)/(max-min||1);
  let g='';for(let i=0;i<5;i++){const v=min+(max-min)*i/4,yy=y(v);g+=`<line x1="${L}" x2="${W-R}" y1="${yy}" y2="${yy}" stroke="#e8edf4"/><text x="${L-9}" y="${yy+4}" text-anchor="end" fill="#718198" font-size="11">${Math.round(v)}</text>`}
  for(let i=0;i<n;i++)g+=`<text x="${x(i)}" y="${H-10}" text-anchor="middle" fill="#657993" font-size="12" font-weight="650">W${known[i].week}</text>`;
  for(const [label,col,key] of series){g+=`<polyline points="${known.map((w,i)=>`${x(i)},${y(w[key])}`).join(' ')}" stroke="${col}" fill="none" stroke-width="3.3" ${key==='proj'?'stroke-dasharray="7 5"':''} stroke-linejoin="round" stroke-linecap="round"/>`;known.forEach((w,i)=>g+=`<circle cx="${x(i)}" cy="${y(w[key])}" r="5.2" fill="white" stroke="${col}" stroke-width="2.7"><title>Week ${w.week}: ${label} ${fmt(w[key])}</title></circle>`)}
- return `<svg class="spark" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t.name)} recorded actual scores versus historical screenshot projections">${g}</svg><div class="graphlegend">${series.map(([label,col,key])=>`<span><b style="border-color:${col};${key==='proj'?'border-top-style:dashed':''}"></b>${label}</span>`).join('')}</div><div class="data-note">Projection coverage: Weeks 1–${known.at(-1).week} only · ESPN screenshot values, not confirmed pregame forecasts. Missing weeks are excluded.</div>`;
+ return `<svg class="spark" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t.name)} recorded actual scores versus recorded ESPN projections">${g}</svg><div class="graphlegend">${series.map(([label,col,key])=>`<span><b style="border-color:${col};${key==='proj'?'border-top-style:dashed':''}"></b>${label}</span>`).join('')}</div><div class="data-note">Projection coverage: ${known.map(w=>`W${w.week} (${w.projSource==='scheduled snapshot'?'scheduled capture':'historical screenshot'})`).join(', ')}. Historical screenshots may include in-game values. Scheduled captures are timestamped but kickoff timing is not independently verified. Missing weeks stay excluded.</div>`;
 }
 function teamHero(t){return `<div class="selhero refinedhero"><div><div class="eyebrow" style="color:#91baff">${divShort(t)} · #${t.divrank} in division</div><h2>${teamName(t)}</h2><div class="hero-dna"><span class="hero-dna-kicker">TEAM DNA</span><strong>${esc(scoringProfiles[t.id].category)}</strong><span class="hero-trend">${esc(scoringProfiles[t.id].momentum)}</span></div><p>Through Week ${DB.completedThrough} · ${DB.completedThrough<=5?'Provisional':DB.completedThrough<=9?'Emerging':'Season-to-date'} profile</p></div><div class="hero-record"><div class="cap">Record</div><div class="big">${t.wins}–${t.losses}</div></div></div>`}
 function teamVerdict(t){
  const l=Math.abs(t.luck),pct=Math.abs(t.projPct||0);
  const luckPhrase=t.luck>.075?`The schedule has helped: ${t.wins} wins versus ${fmt(t.xw)} expected (${fmt(l)} extra wins).`:t.luck<-.075?`This team has faced a tough draw: ${t.wins} wins versus ${fmt(t.xw)} expected (${fmt(l)} fewer wins).`:`The schedule has been fairly neutral: ${t.wins} actual wins versus ${fmt(t.xw)} expected.`;
- const projPhrase=t.projWeeks?`Across ${t.projWeeks} weeks with recorded ESPN screenshot projections, scoring is ${fmt(pct,1)}% ${t.projPct>=0?'above':'below'} those displayed figures.`:'No comparable ESPN projection snapshots are available.';
+ const projPhrase=t.projWeeks?`Across ${t.projWeeks} weeks with recorded ESPN projections, scoring is ${fmt(pct,1)}% ${t.projPct>=0?'above':'below'} those recorded figures.`:'No comparable ESPN projection snapshots are available.';
  return `<div class="verdict"><div class="verdict-kicker">THE STORY SO FAR · WEEKS 1–${DB.completedThrough}</div><div class="verdict-body">${luckPhrase} ${projPhrase}</div></div>`;
 }
 function insight(t){return `<div class="infocard"><strong>How to read this</strong><div>${t.wins} wins on the actual schedule, versus ${fmt(t.xw)} expected when comparing weekly scores against all nine other teams. This is about opponents, not draft or lineup choices.</div></div>`}
@@ -1501,8 +336,8 @@ function overviewTrends(t){
  for(const w of t.weeks){lucky+=w.weekLuck;luckSeries.push(lucky);if(w.proj!==null&&w.proj!==undefined){actual+=w.pf;projected+=w.proj;projSeries.push(100*(actual/projected-1));}}
  const last=t.weeks.at(-1),l=luckSeries.at(-1),v=projSeries.at(-1),prev=projSeries.length>1?projSeries.at(-2):0,movement=v-prev;
  const luckTakeaway=Math.abs(last.weekLuck)<.025?`Week ${last.week} barely changed schedule luck.`:last.weekLuck>0?`Week ${last.week} added ${fmt(last.weekLuck,2)} wins of schedule luck.`:`Week ${last.week} reduced schedule luck by ${fmt(-last.weekLuck,2)} wins.`;
- const perfTakeaway=projSeries.length?`Across ${projSeries.length} recorded weeks, scoring is ${Math.abs(v)<.1?'near':v>0?'above':'below'} the screenshot projection. ${DB.completedThrough>projSeries.length?'No new projection snapshots are available for later weeks.':`The cumulative gap ${Math.abs(movement)<.05?'barely changed':movement>0?'improved':'worsened'} most recently.`}`:'Projection snapshots are not available.';
- return `<div class="trendgrid"><div class="card trendcard">${section('Is this team getting lucky?','Running total of extra wins from weekly matchups')}<div class="trendmetric"><strong class="${tone(l)}">${sign(l)}</strong><small>extra wins through W${last.week}</small></div>${trendPlot(luckSeries,{color:'#3978dc',unit:'Cumulative matchup luck in wins'})}<div class="trend-takeaway">${luckTakeaway}</div><div class="trendfooter">Dashed line = zero luck. Above it means a favorable schedule.</div></div><div class="card trendcard">${section('Is this team beating projections?','Recorded screenshot projection coverage only')}<div class="trendmetric"><strong class="${tone(v||0)}">${projSeries.length?sign(v,1)+'%':'N/A'}</strong><small>${projSeries.length?sign(actual-projected)+' total points':'No comparable projection history'}</small></div>${projSeries.length?trendPlot(projSeries,{suffix:'%',color:'#129983',unit:'Cumulative percentage versus recorded ESPN screenshot projection'}):''}<div class="trend-takeaway">${perfTakeaway}</div><div class="trendfooter">Historical screenshots may contain in-game projection updates; gaps are never estimated.</div></div></div>`;
+ const perfTakeaway=projSeries.length?`Across ${projSeries.length} recorded weeks, scoring is ${Math.abs(v)<.1?'near':v>0?'above':'below'} the recorded projection. ${DB.completedThrough>projSeries.length?'No new projection snapshots are available for later weeks.':`The cumulative gap ${Math.abs(movement)<.05?'barely changed':movement>0?'improved':'worsened'} most recently.`}`:'Projection snapshots are not available.';
+ return `<div class="trendgrid"><div class="card trendcard">${section('Is this team getting lucky?','Running total of extra wins from weekly matchups')}<div class="trendmetric"><strong class="${tone(l)}">${sign(l)}</strong><small>extra wins through W${last.week}</small></div>${trendPlot(luckSeries,{color:'#3978dc',unit:'Cumulative matchup luck in wins'})}<div class="trend-takeaway">${luckTakeaway}</div><div class="trendfooter">Dashed line = zero luck. Above it means a favorable schedule.</div></div><div class="card trendcard">${section('Is this team beating projections?','Weeks with recorded ESPN projections only')}<div class="trendmetric"><strong class="${tone(v||0)}">${projSeries.length?sign(v,1)+'%':'N/A'}</strong><small>${projSeries.length?sign(actual-projected)+' total points':'No comparable projection history'}</small></div>${projSeries.length?trendPlot(projSeries,{suffix:'%',color:'#129983',unit:'Cumulative percentage versus recorded ESPN projection'}):''}<div class="trend-takeaway">${perfTakeaway}</div><div class="trendfooter">W1–W4 snapshots may include in-game figures; later scheduled captures have separate provenance. Gaps are never estimated.</div></div></div>`;
 }
 function weekHeadlines(){
  const w=DB.completedThrough,a=[...teams].sort((x,y)=>y.weeks.at(-1).weekLuck-x.weeks.at(-1).weekLuck),latest=teams.map(t=>({t,r:t.weeks.at(-1)})),hasProj=latest.every(x=>x.r.delta!==null);
@@ -1525,9 +360,9 @@ function leagueOverview(){
  g+=`<line x1="${L}" x2="${W-R}" y1="${y(season)}" y2="${y(season)}" stroke="#8795a8" stroke-dasharray="5 5"/><text x="${W-R}" y="${y(season)-7}" fill="#617187" font-size="10" text-anchor="end">Season ${fmt(season,1)}</text>`;
  g+=`<polyline points="${weekly.map((v,i)=>`${x(i)},${y(v)}`).join(' ')}" fill="none" stroke="#3478e9" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>`;
  let start=rolling.findIndex(v=>v!==null);if(start>=0)g+=`<polyline points="${rolling.map((v,i)=>v===null?'':`${x(i)},${y(v)}`).filter(Boolean).join(' ')}" fill="none" stroke="#119784" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`;
- weekly.forEach((v,i)=>{g+=`<circle cx="${x(i)}" cy="${y(v)}" r="5" stroke="white" stroke-width="2" fill="#3478e9"><title>Week ${i+1} league average: ${fmt(v,2)}</title></circle><text x="${x(i)}" y="${H-10}" text-anchor="middle" font-size="11" fill="#62758f">W${i+1}</text>`;if(rolling[i]!==null)g+=`<circle cx="${x(i)}" cy="${y(rolling[i])}" r="4" stroke="white" stroke-width="2" fill="#119784"><title>Through Week ${i+1}: 3-week average ${fmt(rolling[i],2)}</title></circle>`;});
+ weekly.forEach((v,i)=>{g+=`<circle cx="${x(i)}" cy="${y(v)}" r="5" stroke="white" stroke-width="2" fill="#3478e9"><title>Week ${i+1} league average: ${fmt(v,2)}</title></circle><text x="${x(i)}" y="${H-10}" text-anchor="middle" font-size="${n>12?10:11}" class="${n>9&&i%2!==0?'mobile-hidden':''}" fill="#62758f">W${i+1}</text>`;if(rolling[i]!==null)g+=`<circle cx="${x(i)}" cy="${y(rolling[i])}" r="4" stroke="white" stroke-width="2" fill="#119784"><title>Through Week ${i+1}: 3-week average ${fmt(rolling[i],2)}</title></circle>`;});
  const direction=Math.abs(change)<.05?'flat':change>0?'up':'down';
- return `<div class="card league-overview"><div class="league-heading"><div><h2>Across the league</h2><p>All 10 teams · Final scores only · Not affected by team selection</p></div><span class="mini-pill">THROUGH WEEK ${n}</span></div><div class="league-kpis"><div class="card"><span class="label">Average PF / team / week</span><strong>${fmt(season,1)}</strong><small>Completed fantasy weeks only</small></div><div class="card"><span class="label">Latest week average</span><strong>${fmt(latest,1)}</strong><small class="${tone(change)}">${sign(change,1)} vs previous week</small></div><div class="card"><span class="label">Last 3 weeks</span><strong>${fmt(recent,1)}</strong><small class="${tone(versus)}">${sign(versus,1)} vs season average</small></div><div class="card"><span class="label">Median team-week PF</span><strong>${fmt(DB.leagueMedianPf??median(teams.flatMap(t=>t.weeks.map(w=>w.pf))),1)}</strong><small>Typical completed score</small></div><div class="card"><span class="label">League weekly high</span><strong>${fmt(Math.max(...weekly),1)}</strong><small>Week ${weekly.indexOf(Math.max(...weekly))+1} league average</small></div></div><div>${section('Is league scoring changing?','Average fantasy points per team each week; green is the trailing 3-week average')}<svg class="league-chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="League weekly average points ${weekly.map(v=>fmt(v,1)).join(', ')}; three-week rolling average ${rolling.filter(v=>v!==null).map(v=>fmt(v,1)).join(', ')}">${g}</svg><div class="league-legend"><span><i></i>Weekly average PF</span><span><i style="border-color:#119784"></i>Trailing 3-week average (starts Week 3)</span><span><i style="border-color:#8795a8;border-top-style:dashed"></i>Season average</span></div><div class="league-insight">League scoring is ${direction} versus last week (${sign(change,1)} points per team). The recent three-week average is ${fmt(recent,1)}, ${versus<0?`${fmt(-versus,1)} below`:`${fmt(versus,1)} above`} the season average. These are early-season trends from ${n} completed weeks.</div></div></div>`;
+ return `<div class="card league-overview"><div class="league-heading"><div><h2>Across the league</h2><p>All 10 teams · Final scores only · Not affected by team selection</p></div><span class="mini-pill">THROUGH WEEK ${n}</span></div><div class="league-kpis"><div class="card"><span class="label">Average PF / team / week</span><strong>${fmt(season,1)}</strong><small>Completed fantasy weeks only</small></div><div class="card"><span class="label">Latest week average</span><strong>${fmt(latest,1)}</strong><small class="${tone(change)}">${sign(change,1)} vs previous week</small></div><div class="card"><span class="label">Last 3 weeks</span><strong>${fmt(recent,1)}</strong><small class="${tone(versus)}">${sign(versus,1)} vs season average</small></div><div class="card"><span class="label">Median team-week PF</span><strong>${fmt(DB.leagueMedianPf??median(teams.flatMap(t=>t.weeks.map(w=>w.pf))),1)}</strong><small>Typical completed score</small></div></div><div>${section('Is league scoring changing?','Average fantasy points per team each week; green is the trailing 3-week average')}<svg class="league-chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="League weekly average points ${weekly.map(v=>fmt(v,1)).join(', ')}; three-week rolling average ${rolling.filter(v=>v!==null).map(v=>fmt(v,1)).join(', ')}">${g}</svg><div class="league-legend"><span><i></i>Weekly average PF</span><span><i style="border-color:#119784"></i>Trailing 3-week average (starts Week 3)</span><span><i style="border-color:#8795a8;border-top-style:dashed"></i>Season average</span></div><div class="league-insight">League scoring is ${direction} versus last week (${sign(change,1)} points per team). The recent three-week average is ${fmt(recent,1)}, ${versus<0?`${fmt(-versus,1)} below`:`${fmt(versus,1)} above`} the season average. These are early-season trends from ${n} completed weeks.</div></div></div>`;
 }
 function overview(){
  let t=selected();
@@ -1569,16 +404,16 @@ function divisions(){
  return `<div class="explainer"><strong>What if teams had faced different opponents?</strong> We reshuffled the completed weeks ${fmt(DB.simulationRuns,0)} times, keeping every team's real score. These charts describe <strong>past schedule luck</strong> only; playoff forecasting remains on hold.</div><div class="slot">${divisionSection('House Atreides')}${divisionSection('House Harkonnen')}</div><div class="card simspotlight">${section('What this means for the selected team',teamName(t))}${standingsReading(t)}<div class="sim-facts"><div><span>Actual place</span><strong>#${t.divrank}</strong></div><div><span>Most common result</span><strong>#${most.place}</strong><small>${fmt(most.pct,1)}% of simulations</small></div><div><span>Average simulated place</span><strong>#${fmt(t.simRankMean,1)}</strong></div></div><div class="simple-rank-list">${t.rankDist.map((v,i)=>`<div class="simple-rank"><span>${rankOrdinal(i+1)}</span><div class="barback"><div class="barfill" style="width:${v}%;background:${RANK_COLORS[i]}"></div></div><strong>${fmt(v,1)}%</strong></div>`).join('')}</div><div class="barcardnote">The 0–100 score gives half-credit when simulated and actual ranks tie. Higher scores mean a more favorable observed finish relative to reshuffled schedules.</div></div>`;
 }
 
-function method(){return `<div class="card bigmethod">${section('How the numbers work','Definitions and safeguards for the ESPN-connected report')}
-<h3>1. Data source and freshness</h3><p>Ten anonymous team names and ESPN matchup scores from private league 418244680. ESPN credentials remain GitHub secrets; the website reads only a processed JSON file. Only complete fantasy weeks before ESPN’s current matchup period are eligible. Weeks 1–4 were checked against 40 screenshot-verified final scores and opponents. If an update fails validation, the last successful data file stays live.</p>
+function method(){return `<div class="card bigmethod">${section('How the numbers work','A quick guide, with detailed rules available below')}<p><strong>Team strength:</strong> average points scored. <strong>Consistency:</strong> week-to-week variation. <strong>Schedule luck:</strong> actual wins compared with expected all-play wins. <strong>Team DNA:</strong> a descriptive tag that can change as more scores arrive. Only finalized weeks count.</p><details class="method-details"><summary>See all calculation rules and data safeguards</summary>
+<h3>1. Data source and freshness</h3><p>Ten anonymous team names and ESPN matchup scores from private league 418244680. ESPN credentials remain GitHub secrets; the website reads only a processed JSON file. Only complete fantasy weeks before ESPN’s current matchup period are eligible. Weeks 1–4 were checked against 40 screenshot-verified final scores and opponents. A failed update does not publish new data; the page shows its approved snapshot and timestamp.</p>
 <h3>2. Schedule luck</h3><p>Expected weekly wins = (other teams outscored + half of other teams tied) ÷ 9. Sum the weekly values for season expected wins. Matchup luck = actual wins − expected wins. Positive means the schedule has helped. Bad beat = loss despite a weekly top-three score; lucky escape = win despite a bottom-three score.</p>
 <h3>3. League scoring</h3><p>League PF per week = average of all 10 finalized weekly team scores. Trailing three-week league average uses only the most recent three completed fantasy weeks. League median is computed from all finalized team-week scores.</p>
 <h3>4. Scoring Personality Map</h3><p>Horizontal axis = average weekly PF; vertical axis = relative scoring volatility (population standard deviation ÷ mean, shown as a percentage). The visual quadrants split at league average PF and 20% CV. Upper-left: Volatile underdogs; upper-right: High-upside wildcards; lower-left: Steady, lower-output; lower-right: Reliable contenders. These broad quadrants do not replace the more specific season DNA tags.</p>
 <h3>5. Team DNA — the seven rules, in order</h3><p>First matching rule wins. League average refers to all ten teams’ mean completed-week PF.</p><div class="dna-method-rules"><div><strong>High ceiling, low floor</strong><span>CV ≥ 23.5% and ceiling ≥ 110% of league average.</span></div><div><strong>Boom-or-bust</strong><span>CV ≥ 23.5%, if the first rule does not apply.</span></div><div><strong>Reliable contender</strong><span>CV ≤ 13.5% and Avg PF ≥ 104% of league average.</span></div><div><strong>Steady scorer</strong><span>CV ≤ 13.5%, otherwise.</span></div><div><strong>High-upside contender</strong><span>Avg PF ≥ 108% of league average, unless an earlier rule applies.</span></div><div><strong>Inconsistent underdog</strong><span>Avg PF ≤ 92% of league average, unless an earlier rule applies.</span></div><div><strong>Balanced, with swings</strong><span>All remaining teams.</span></div></div>
-<h3>6. Season, recent and sustained identity</h3><p>Season DNA uses all complete weeks and is provisional for Weeks 1–5, emerging at 6–9, and more established from Week 10. Its weekly category history starts at Week 4. Recent DNA uses only the last four weeks, beginning at Week 7 so it is meaningfully distinguishable from season-to-date. A sustained tag must persist for three weekly updates. Momentum compares first two versus last two weeks for 4–5 games; from six games onward, it compares the last three versus the preceding three. A ≥ 12% change relative to season mean is Heating up (positive) or Cooling off (negative).</p>
-<h3>7. ESPN projections</h3><p>Our first four weeks contain ESPN projection numbers captured in screenshots; these may have changed during play. They are not verified pregame forecasts. Later weeks without a saved projection snapshot stay missing and are excluded from projection comparisons; the denominator only covers weeks with known projections.</p>
+<h3>6. Season, recent and sustained identity</h3><p>Season DNA uses all complete weeks and is provisional for Weeks 1–5, emerging at 6–9, and more established from Week 10. Its weekly category history starts at Week 4. Recent DNA uses only the last four weeks, beginning at Week 7 so it is meaningfully distinguishable from season-to-date. A category change is sustained only after three consecutive weekly updates in the new category; otherwise a stable category remains stable, not a change. Momentum compares first two versus last two weeks for 4–5 games; from six games onward, it compares the last three versus the preceding three. A ≥ 12% change relative to season mean is Heating up (positive) or Cooling off (negative). League-relative form compares the team-minus-league average advantage over the same two non-overlapping periods; changes within three points/week are called Holding league position.</p>
+<h3>7. ESPN projections</h3><p>Weeks 1–4 contain displayed ESPN screenshot projections that may have changed during games. A separate optional Wednesday ET workflow attempts to freeze each new week’s ten projected scores before games, but cannot independently verify kickoff timing. Every row records its projection source. Missing or incomplete captures stay blank and are excluded from the denominator.</p>
 <h3>8. Historical schedule reshuffles</h3><p>Each trial randomly creates five valid weekly matchups, retaining every actual team score, fixed division membership, and no self-matches. The result measures how observed historical division finishes compare with alternate schedules. A tie for division wins shares competition rank. It is not a playoff forecast or the percentage of success caused by luck.</p>
-<div class="callout">Playoff modeling is deliberately deferred until the commissioner confirms the actual qualification and tiebreaker rules. No owner names, private player rosters, or ESPN cookies are published in the JSON.</div></div>`;}
+<div class="callout">Playoff modeling is deliberately deferred until the commissioner confirms the actual qualification and tiebreaker rules. No owner names, private player rosters, or ESPN cookies are published in the JSON.</div></details></div>`;}
 
 /* SCORING PERSONALITIES · Four observed weeks, profiles deliberately provisional. */
 const mean=a=>a.reduce((u,v)=>u+v,0)/Math.max(a.length,1);
@@ -1588,10 +423,12 @@ let leagueMean=mean(teams.map(t=>t.pf/DB.completedThrough));
 let scoringProfiles=buildScoringProfiles();
 function buildScoringProfiles(){return Object.fromEntries(teams.map(t=>{
  const scores=t.weeks.map(w=>w.pf),average=mean(scores),sd=stdev(scores),low=Math.min(...scores),high=Math.max(...scores),spread=high-low;
- const old=scores.length>=6?mean(scores.slice(-6,-3)):mean(scores.slice(0,2));
- const recent=scores.length>=6?mean(scores.slice(-3)):mean(scores.slice(-2));
- const shift=recent-old,relShift=shift/Math.max(1,average)*100;
- // League-relative but stable definitions: volatility = SD / mean across observed final weeks.
+ const n=scores.length,window=n>=6?3:2,oldScores=n>=6?scores.slice(-6,-3):scores.slice(0,2),newScores=scores.slice(-window),old=mean(oldScores),recent=mean(newScores),shift=recent-old,relShift=100*shift/Math.max(1,average);
+ const leagueWeeks=Array.from({length:n},(_,i)=>mean(teams.map(z=>z.weeks[i].pf)));
+ const oldLeague=n>=6?mean(leagueWeeks.slice(-6,-3)):mean(leagueWeeks.slice(0,2));
+ const newLeague=mean(leagueWeeks.slice(-window));
+ const oldAdv=old-oldLeague,newAdv=recent-newLeague,relativeChange=newAdv-oldAdv;
+ const relativeLabel=Math.abs(relativeChange)<3?'Holding league position':relativeChange>0?'Gaining on the league':'Losing ground to the league';
  const cv=sd/average;
  let category,definition;
  if(cv>=.235 && high>=leagueMean*1.10){category='High ceiling, low floor';definition='Explosive weekly peak, but a large gap between best and worst scores.';}
@@ -1603,67 +440,94 @@ function buildScoringProfiles(){return Object.fromEntries(teams.map(t=>{
  else {category='Balanced, with swings';definition='Some variation in scoring, without an extreme floor or ceiling.';}
  const momentum=relShift>=12?'Heating up':relShift<=-12?'Cooling off':'Mostly flat';
  const trendClass=relShift>=12?'green':relShift<=-12?'red':'';
- // Only 2 observations in each half: illustrative, not statistically stable.
- const earlyRange=scores.length>=6?Math.max(...scores.slice(-6,-3))-Math.min(...scores.slice(-6,-3)):Math.abs(scores[1]-scores[0]);
- const lateRange=scores.length>=6?Math.max(...scores.slice(-3))-Math.min(...scores.slice(-3)):Math.abs(scores.at(-1)-scores.at(-2));
+ const earlyRange=Math.max(...oldScores)-Math.min(...oldScores),lateRange=Math.max(...newScores)-Math.min(...newScores);
  const variationShift=lateRange<earlyRange*.65?'Recent weeks closer together':lateRange>earlyRange*1.45?'Recent weeks farther apart':'Recent spread similar';
- return [t.id,{scores,average,sd,low,high,spread,cv,category,definition,old,recent,shift,relShift,momentum,trendClass,variationShift,earlyRange,lateRange}];
+ return [t.id,{scores,average,sd,low,high,spread,cv,category,definition,old,recent,shift,relShift,momentum,trendClass,variationShift,earlyRange,lateRange,window,oldAdv,newAdv,relativeChange,relativeLabel}];
 }));}
-function identityBadge(t){const p=scoringProfiles[t.id];return `<div class="identity-strip"><div class="identity-copy"><div class="identity-kicker">SCORING IDENTITY · EARLY READ</div><div class="identity-label">${esc(p.category)}</div><div class="identity-sub">${esc(p.definition)} ${DB.completedThrough<6?'Provisional identity':DB.completedThrough<10?'Emerging season pattern':'Season-to-date identity'} · ${DB.completedThrough} completed weeks.</div></div><div class="identity-side"><span class="tag-soft ${p.trendClass}">${esc(p.momentum)} · ${sign(p.shift,1)} pts/wk</span><span class="tag-soft">${fmt(p.average,1)} pts/wk</span></div></div>`}
+function identityBadge(t){const p=scoringProfiles[t.id];return `<div class="identity-strip"><div class="identity-copy"><div class="identity-kicker">SCORING IDENTITY · ${DB.completedThrough<=5?'PROVISIONAL':DB.completedThrough<=9?'EMERGING':'SEASON PROFILE'}</div><div class="identity-label">${esc(p.category)}</div><div class="identity-sub">${esc(p.definition)} ${DB.completedThrough<6?'Provisional identity':DB.completedThrough<10?'Emerging season pattern':'Season-to-date identity'} · ${DB.completedThrough} completed weeks.</div></div><div class="identity-side"><span class="tag-soft ${p.trendClass}">${esc(p.momentum)} · ${sign(p.shift,1)} pts/wk</span><span class="tag-soft">${fmt(p.average,1)} pts/wk</span></div></div>`}
 function profileMini(t){let p=scoringProfiles[t.id];return `<div class="dna-cards"><div class="dna-mini"><span>Average</span><strong>${fmt(p.average,1)}</strong><small>points / week</small></div><div class="dna-mini"><span>Floor</span><strong>${fmt(p.low,1)}</strong><small>lowest final score</small></div><div class="dna-mini"><span>Ceiling</span><strong>${fmt(p.high,1)}</strong><small>highest final score</small></div><div class="dna-mini"><span>Volatility</span><strong>${fmt(p.sd,1)}</strong><small>standard deviation · lower is steadier</small></div></div>`}
-function weeklyDNA(t){let p=scoringProfiles[t.id],max=Math.max(...teams.flatMap(z=>scoringProfiles[z.id].scores),1);return `<div class="profile-chart">${t.weeks.map(w=>`<div class="week-column"><strong>${fmt(w.pf,1)}</strong><div class="week-track"><div class="week-fill ${w.pf===p.high?'hi':w.pf===p.low?'lo':''}" style="height:${Math.max(2,100*w.pf/max)}%" title="Week ${w.week}: ${fmt(w.pf)} points"></div></div><span>W${w.week}</span></div>`).join('')}</div>`}
-function momentumStory(t){const p=scoringProfiles[t.id];return `<div class="divergence"><strong>Is the identity changing?</strong> ${DB.completedThrough>=6?'Previous three':'First two'} weeks: <strong>${fmt(p.old,1)}</strong> points/week; most recent ${DB.completedThrough>=6?'three':'two'}: <strong>${fmt(p.recent,1)}</strong> points/week (${sign(p.shift,1)}). <strong>${p.momentum}</strong>. ${p.variationShift}, but two games per period are not enough to call this a lasting change. Classification updates as more completed weeks are added.</div>`}
+function weeklyDNA(t){
+ const p=scoringProfiles[t.id],max=Math.max(...teams.flatMap(z=>scoringProfiles[z.id].scores),1);
+ const full=t.weeks,view=state.weekRange==='all'?full:full.slice(-6);
+ const bars=view.map(w=>`<div class="week-column"><strong>${fmt(w.pf,1)}</strong><div class="week-track"><div class="week-average-rule" style="bottom:${100*p.average/max}%" title="Team season average ${fmt(p.average,1)}"></div><div class="week-fill ${w.pf>=p.average?'above':'below'}" style="height:${Math.max(2,100*w.pf/max)}%" title="Week ${w.week}: ${fmt(w.pf)} points · ${w.pf>=p.average?'at or above':'below'} season average"></div></div><span>W${w.week}</span></div>`).join('');
+ return `${full.length>6?`<div class="week-range"><button data-range="latest" class="${state.weekRange!=='all'?'active':''}" aria-pressed="${state.weekRange!=='all'}">Latest 6 weeks</button><button data-range="all" class="${state.weekRange==='all'?'active':''}" aria-pressed="${state.weekRange==='all'}">All season</button></div>`:''}<div class="profile-chart ${state.weekRange==='all'?'all-season':''}">${bars}</div><div class="week-chart-legend"><span><i style="background:#4a87ed"></i>At / above season average</span><span><i style="background:#b5c4d5"></i>Below season average</span><span>Dashed line: ${fmt(p.average,1)} PF season average</span></div>`;
+}
+function momentumStory(t){const p=scoringProfiles[t.id];return `<div class="divergence"><strong>Is the identity changing?</strong><div class="form-facts"><span>Previous ${p.window} weeks: <strong>${fmt(p.old,1)} PF/wk</strong></span><span>Latest ${p.window}: <strong>${fmt(p.recent,1)} PF/wk</strong> (${sign(p.shift,1)})</span></div><strong>Raw form: ${esc(p.momentum)}.</strong> ${esc(p.variationShift)}. <strong>League-relative form: ${esc(p.relativeLabel)}</strong> (${sign(p.relativeChange,1)} points/week versus the league baseline). ${DB.completedThrough<=5?'Only two observations per comparison window; this is an early directional signal.':`Based on two separate three-week windows; ${DB.completedThrough<10?'the season classification remains emerging.':'the season classification uses the entire completed season.'}`} Classification and commentary update after each completed week.</div>`;}
 function dnaLeaderboard(){return `<div class="identity-ledger">${[...teams].sort((a,b)=>scoringProfiles[b.id].average-scoringProfiles[a.id].average).map(t=>{let p=scoringProfiles[t.id];return `<button class="profile-row ${t.id===state.selected?'selected':''}" data-select="${t.id}" aria-label="View ${esc(t.name)} scoring identity"><span class="profile-title">${teamName(t)}</span><span class="profile-sub">${fmt(p.average,1)} pts/week · Range ${fmt(p.low,1)}–${fmt(p.high,1)} · SD ${fmt(p.sd,1)}</span><span class="profile-bottom"><span class="tag-soft">${esc(p.category)}</span><span class="tag-soft ${p.trendClass}">${esc(p.momentum)}</span></span></button>`}).join('')}</div>`}
-function profilePage(){const t=selected(),p=scoringProfiles[t.id];return `${identityBadge(t)}${personalityMap()}${dnaHistoryCard(t)}<div class="card">${section('How this team scores',teamName(t)+' · final scores through Week '+DB.completedThrough)}${profileMini(t)}${weeklyDNA(t)}${momentumStory(t)}<div class="data-note">Scoring profiles use completed weeks only. Recent form is descriptive, not a guarantee about future output.</div></div><div class="card">${section('The league’s scoring personalities','Choose a team to see its full profile')}${dnaLeaderboard()}</div><div class="card">${section('Scoring versus recorded ESPN projections','Historical screenshot projections are not necessarily pregame forecasts')}<div class="perf-hero"><div><span>Difference across ${t.projWeeks||0} recorded weeks</span><strong class="${tone(t.projPct||0)}">${t.projWeeks?sign(t.projPct,1)+'%':'N/A'}</strong></div><div><span>Total points difference</span><strong class="${tone(t.projdelta||0)}">${t.projWeeks?sign(t.projdelta):'N/A'}</strong></div></div>${sparkline(t)}</div>`;}
+function profilePage(){const t=selected(),p=scoringProfiles[t.id];return `${identityBadge(t)}${personalityMap()}${dnaHistoryCard(t)}<div class="card">${section('How this team scores',teamName(t)+' · final scores through Week '+DB.completedThrough)}${profileMini(t)}${weeklyDNA(t)}${momentumStory(t)}<div class="data-note">Scoring profiles use completed weeks only. Recent form is descriptive, not a guarantee about future output.</div></div><div class="card">${section('The league’s scoring personalities','Choose a team to see its full profile')}${dnaLeaderboard()}</div><div class="card">${section('Scoring versus recorded ESPN projections','W1–W4 screenshots may differ from scheduled pre-week captures')}<div class="perf-hero"><div><span>Difference across ${t.projWeeks||0} recorded weeks</span><strong class="${tone(t.projPct||0)}">${t.projWeeks?sign(t.projPct,1)+'%':'N/A'}</strong></div><div><span>Total points difference</span><strong class="${tone(t.projdelta||0)}">${t.projWeeks?sign(t.projdelta):'N/A'}</strong></div></div>${sparkline(t)}</div>`;}
 
 function personalityMap(){
- const list=[...teams].sort((a,b)=>b.pf/DB.completedThrough-a.pf/DB.completedThrough),cols={steady:'#167c60',wild:'#3d7be8',underdog:'#cd7182',low:'#d89b42'};
+ const list=[...teams].sort((a,b)=>b.pf/DB.completedThrough-a.pf/DB.completedThrough);
  const W=780,H=410,L=66,R=39,T=35,B=60,xvals=list.map(t=>scoringProfiles[t.id].average),yvals=list.map(t=>scoringProfiles[t.id].cv*100);
  const minX=Math.floor((Math.min(...xvals)-8)/10)*10,maxX=Math.ceil((Math.max(...xvals)+8)/10)*10,maxY=Math.max(35,Math.ceil((Math.max(...yvals)+5)/5)*5),midX=leagueMean,midY=20;
  const x=v=>L+(v-minX)/(maxX-minX)*(W-L-R),y=v=>H-B-v/maxY*(H-T-B);
- const quadrants=[['Volatile underdogs',L,T,x(midX)-L,y(midY)-T,'#fbeff2'],['High-upside wildcards',x(midX),T,W-R-x(midX),y(midY)-T,'#ecf2fc'],['Steady, lower-output',L,y(midY),x(midX)-L,H-B-y(midY),'#f8f4e9'],['Reliable contenders',x(midX),y(midY),W-R-x(midX),H-B-y(midY),'#ebf6f1']];
- let g=quadrants.map(q=>`<rect x="${q[1]}" y="${q[2]}" width="${q[3]}" height="${q[4]}" fill="${q[5]}"/>`).join('');
+ const qnames=['Volatile underdogs','High-upside wildcards','Steady, lower-output','Reliable contenders'];
+ const quadrant=p=>(p.average<midX?(p.cv*100>midY?0:2):(p.cv*100>midY?1:3));
+ const grouped=qnames.map((name,q)=>({name,q,members:list.filter(t=>quadrant(scoringProfiles[t.id])===q)}));
+ const qrects=[[L,T,x(midX)-L,y(midY)-T,'#fbeff2'],[x(midX),T,W-R-x(midX),y(midY)-T,'#ecf2fc'],[L,y(midY),x(midX)-L,H-B-y(midY),'#f8f4e9'],[x(midX),y(midY),W-R-x(midX),H-B-y(midY),'#ebf6f1']];
+ let g=qrects.map(q=>`<rect x="${q[0]}" y="${q[1]}" width="${q[2]}" height="${q[3]}" fill="${q[4]}"/>`).join('');
  for(let i=0;i<=4;i++){let n=minX+(maxX-minX)*i/4,xx=x(n);g+=`<line x1="${xx}" x2="${xx}" y1="${T}" y2="${H-B}" stroke="#d4deea" stroke-width=".7"/><text x="${xx}" y="${H-B+19}" text-anchor="middle" font-size="12" fill="#526782">${fmt(n,0)}</text>`}
  for(let i=0;i<=4;i++){let n=maxY*i/4,yy=y(n);g+=`<line x1="${L}" x2="${W-R}" y1="${yy}" y2="${yy}" stroke="#d4deea" stroke-width=".7"/><text x="${L-9}" y="${yy+4}" text-anchor="end" font-size="12" fill="#526782">${fmt(n,0)}%</text>`}
  g+=`<line x1="${x(midX)}" x2="${x(midX)}" y1="${T}" y2="${H-B}" stroke="#869bb0" stroke-dasharray="5 4" stroke-width="1.5"/><line x1="${L}" x2="${W-R}" y1="${y(midY)}" y2="${y(midY)}" stroke="#869bb0" stroke-dasharray="5 4" stroke-width="1.5"/>`;
- g+=`<text x="${(L+x(midX))/2}" y="${T+20}" text-anchor="middle" font-size="12" font-weight="750" fill="#87445a">Volatile underdogs</text><text x="${(x(midX)+W-R)/2}" y="${T+20}" text-anchor="middle" font-size="12" font-weight="750" fill="#31568e">High-upside wildcards</text><text x="${(L+x(midX))/2}" y="${H-B-14}" text-anchor="middle" font-size="12" font-weight="750" fill="#8c6830">Steady, lower-output</text><text x="${(x(midX)+W-R)/2}" y="${H-B-14}" text-anchor="middle" font-size="12" font-weight="750" fill="#1e7459">Reliable contenders</text>`;
- list.forEach((t,i)=>{let p=scoringProfiles[t.id],xx=x(p.average),yy=y(p.cv*100),sel=t.id===state.selected;g+=`<g data-select="${t.id}" tabindex="0" role="button" aria-label="Select ${esc(t.name)}" style="cursor:pointer"><circle cx="${xx}" cy="${yy}" r="${sel?17:13}" fill="${sel?'#143c78':'#377dd5'}" stroke="white" stroke-width="${sel?4:2.2}"/><text x="${xx}" y="${yy+4.2}" text-anchor="middle" font-size="11" font-weight="800" fill="white">${i+1}</text><title>${esc(t.name)} · ${fmt(p.average,1)} PF/wk · ${fmt(100*p.cv,1)}% volatility · ${esc(p.category)}</title></g>`;});
- return `<div class="card personality-map">${section('The Scoring Personality Map','Strong scoring → right · More unpredictable → up · Select a dot or team name')}<svg viewBox="0 0 ${W} ${H}" class="map-svg" role="img" aria-label="Scoring personality map with ten numbered selectable fantasy teams">${g}<text x="${(W+L-R)/2}" y="${H-12}" fill="#344c68" font-size="13" font-weight="700" text-anchor="middle">Average points per week →</text><text transform="translate(15,${(H-B+T)/2}) rotate(-90)" text-anchor="middle" fill="#344c68" font-size="13" font-weight="700">Scoring volatility →</text></svg><div class="maplegend">${list.map((t,i)=>`<button class="map-team ${t.id===state.selected?'selected':''}" data-select="${t.id}"><b>${i+1}</b><span>${teamName(t)}</span><small>${fmt(scoringProfiles[t.id].average,1)} PF · ${fmt(scoringProfiles[t.id].cv*100,1)}% CV</small></button>`).join('')}</div><div class="data-note">Axes split at league average (${fmt(leagueMean,1)} PF) and 20% volatility. Quadrants are broad visual groupings; the Team DNA tag uses its separate seven-rule classification. Early identities are provisional.</div></div>`;
+ g+=`<g class="map-quadrant-labels"><text x="${(L+x(midX))/2}" y="${T+20}" text-anchor="middle" font-size="12" font-weight="750" fill="#87445a">Volatile underdogs</text><text x="${(x(midX)+W-R)/2}" y="${T+20}" text-anchor="middle" font-size="12" font-weight="750" fill="#31568e">High-upside wildcards</text><text x="${(L+x(midX))/2}" y="${H-B-14}" text-anchor="middle" font-size="12" font-weight="750" fill="#8c6830">Steady, lower-output</text><text x="${(x(midX)+W-R)/2}" y="${H-B-14}" text-anchor="middle" font-size="12" font-weight="750" fill="#1e7459">Reliable contenders</text></g>`;
+ // Collision handling displaces only MARKERS; lines preserve the exact measured coordinate.
+ const placed=[];list.forEach((t,i)=>{let p=scoringProfiles[t.id],xx=x(p.average),yy=y(p.cv*100),px=xx,py=yy,sel=t.id===state.selected;
+  for(let step=0;step<42;step++){let collision=placed.some(z=>Math.hypot(px-z.px,py-z.py)<35);if(!collision)break;let angle=(i*2.399963+step*.83);let rad=10+5*Math.ceil((step+1)/4);px=Math.max(L+17,Math.min(W-R-17,xx+Math.cos(angle)*rad));py=Math.max(T+31,Math.min(H-B-22,yy+Math.sin(angle)*rad));}
+  placed.push({px,py});if(Math.hypot(px-xx,py-yy)>3)g+=`<line x1="${xx}" y1="${yy}" x2="${px}" y2="${py}" stroke="#607e9e" stroke-width="1.3" stroke-dasharray="2 2"/>`;
+  g+=`<g data-select="${t.id}" tabindex="0" role="button" aria-label="Select ${esc(t.name)}" style="cursor:pointer"><circle cx="${px}" cy="${py}" r="23" fill="transparent"/><circle cx="${px}" cy="${py}" r="${sel?17:13}" fill="${sel?'#143c78':'#377dd5'}" stroke="white" stroke-width="${sel?4:2.2}"/><text x="${px}" y="${py+4.2}" text-anchor="middle" font-size="11" font-weight="800" fill="white" style="pointer-events:none">${i+1}</text><title>${esc(t.name)} · ${fmt(p.average,1)} PF/wk · ${fmt(100*p.cv,1)}% volatility · ${esc(p.category)}</title></g>`;
+ });
+ const cards=grouped.map(gr=>`<div class="quadrant-card ${state.quadrant===String(gr.q)?'expanded':''}"><button data-quadrant="${gr.q}" aria-expanded="${state.quadrant===String(gr.q)}"><strong>${gr.name}</strong><span>${gr.members.length} ${gr.members.length===1?'team':'teams'} ${state.quadrant===String(gr.q)?'−':'+'}</span></button>${state.quadrant===String(gr.q)?`<div class="quadrant-members">${gr.members.map(t=>`<button data-select="${t.id}" class="${t.id===state.selected?'selected':''}">${teamName(t)}<small>${fmt(scoringProfiles[t.id].average,1)} PF · ${fmt(scoringProfiles[t.id].cv*100,1)}% CV</small></button>`).join('')}</div>`:''}</div>`).join('');
+ return `<div class="card personality-map">${section('The Scoring Personality Map','Strong scoring → right · More unpredictable → up · Choose any team')}<svg viewBox="0 0 ${W} ${H}" class="map-svg" role="img" aria-label="Scoring personality map with ten numbered selectable fantasy teams">${g}<text x="${(W+L-R)/2}" y="${H-12}" fill="#344c68" font-size="13" font-weight="700" text-anchor="middle">Average points per week →</text><text transform="translate(15,${(H-B+T)/2}) rotate(-90)" text-anchor="middle" fill="#344c68" font-size="13" font-weight="700">Scoring volatility →</text></svg><div class="mobile-quadrants"><p>Explore by scoring personality · tap a group to view its teams</p>${cards}</div><div class="maplegend">${list.map((t,i)=>`<button class="map-team ${t.id===state.selected?'selected':''}" data-select="${t.id}"><b>${i+1}</b><span>${teamName(t)}</span><small>${fmt(scoringProfiles[t.id].average,1)} PF · ${fmt(scoringProfiles[t.id].cv*100,1)}% CV</small></button>`).join('')}</div><div class="data-note">Axes split at league average (${fmt(leagueMean,1)} PF) and 20% volatility. Nearby points may use leader lines so every team remains selectable. Map quadrants are broad; the seven-rule Team DNA label is separate.</div></div>`;
 }
 function dnaHistoryCard(t){
  const history=(DB.dnaHistory||[]).filter(h=>h.throughWeek>=4),recent=(DB.recentDna||[]).find(r=>r.id===t.id),last=history.at(-1);
  if(!history.length)return '';
  const latest=last.teams.find(x=>x.id===t.id);let streak=0;for(let i=history.length-1;i>=0;i--){let q=history[i].teams.find(x=>x.id===t.id);if(q?.category===latest?.category)streak++;else break;}
- const phase=DB.completedThrough<=5?'Provisional':DB.completedThrough<=9?'Emerging':'More established';
- const confirmed=streak>=3?'This category has appeared in three consecutive updates.':'Identity change is not yet sustained; three consecutive weekly updates are required.';
- return `<div class="card dna-history">${section('How is this team changing?','Weekly season-to-date DNA snapshots; recent scoring is assessed separately')}<div class="history-summary"><div><small>Season DNA</small><strong>${esc(scoringProfiles[t.id].category)}</strong><span>${phase} · ${DB.completedThrough} weeks</span></div><div><small>Recent four-week DNA</small><strong>${recent?esc(recent.category):'Not yet available'}</strong><span>${recent?'W'+recent.weeks[0]+'–W'+recent.weeks[1]:'Available once seven weeks are complete'}</span></div><div><small>Current momentum</small><strong>${esc(scoringProfiles[t.id].momentum)}</strong><span>${sign(scoringProfiles[t.id].shift,1)} PF per week</span></div></div><div class="history-track">${history.map(h=>{let q=h.teams.find(z=>z.id===t.id);return `<div class="history-item"><span>W${h.throughWeek}</span><strong>${esc(q.category)}</strong><small>${fmt(q.cvPct,1)}% CV</small></div>`}).join('')}</div><p class="data-note">${confirmed} Season DNA uses all completed weeks; recent DNA uses the last four once enough non-overlapping history exists. A recent profile is descriptive, not a forecast.</p></div>`;
+ const started=history.length>streak,phase=DB.completedThrough<=5?'Provisional':DB.completedThrough<=9?'Emerging':'More established';
+ const confirmed=started?(streak>=3?`New identity sustained for ${streak} consecutive weekly updates.`:`Potential identity change: ${streak}/3 consecutive weekly updates. Not yet sustained.`):`Stable observed category across ${streak} available classification snapshots; no category change detected.`;
+ const short={'High ceiling, low floor':'High / low','Boom-or-bust':'Boom / bust','Reliable contender':'Reliable','Steady scorer':'Steady','High-upside contender':'High upside','Inconsistent underdog':'Underdog','Balanced, with swings':'Balanced'};
+ return `<div class="card dna-history">${section('How is this team changing?','Season-long and recent scoring profiles')}<div class="history-summary"><div><small>Season DNA</small><strong>${esc(scoringProfiles[t.id].category)}</strong><span>${phase} · ${DB.completedThrough} weeks</span></div><div><small>Recent four-week DNA</small><strong>${recent?esc(recent.category):'Not yet available'}</strong><span>${recent?'W'+recent.weeks[0]+'–W'+recent.weeks[1]:'Starts after Week 6'}</span></div><div><small>Momentum</small><strong>${esc(scoringProfiles[t.id].momentum)}</strong><span>${esc(scoringProfiles[t.id].relativeLabel)} · ${sign(scoringProfiles[t.id].relativeChange,1)} PF/wk versus league</span></div></div><div class="history-track compact">${history.map(h=>{let q=h.teams.find(z=>z.id===t.id);return `<div class="history-item" title="Week ${h.throughWeek}: ${esc(q.category)} · ${fmt(q.cvPct,1)}% CV"><span>W${h.throughWeek}</span><strong>${esc(short[q.category]||q.category)}</strong><small>${fmt(q.cvPct,1)}% CV</small></div>`}).join('')}</div><p class="data-note">${confirmed} Season DNA uses all completed weeks; recent DNA uses the latest four only once there are seven complete weeks. These are descriptive measures, not predictions.</p></div>`;
 }
 const titles={overview:['League overview','Who won, who got the helpful matchups, and who scored above projections.'],luck:['Who got lucky?',"Who is ahead or behind thanks to the weekly schedule?"],performance:['Team DNA & scoring','Which teams have a steady floor, explosive ceiling, or changing momentum?'],divisions:['What if the schedule changed?','Retrospective weekly schedule reshuffles. Playoff forecasting is deferred.'],method:['How it works','Simple explanations of the statistics used throughout this report.']};
 const functions={overview,luck,performance:perf,divisions,method};
-function render(){document.getElementById('view').innerHTML=functions[state.tab]();document.getElementById('pageTitle').textContent=titles[state.tab][0];document.getElementById('intro').textContent=titles[state.tab][1];document.querySelectorAll('[data-tab]').forEach(el=>el.classList.toggle('active',el.dataset.tab===state.tab));document.getElementById('teamSelect').value=String(state.selected);document.getElementById('weekStatus').textContent=`Weeks 1–${DB.completedThrough} · Final`;const mobile=document.getElementById('mobileSection');if(mobile)mobile.value=state.tab;}
+function render(){document.getElementById('view').innerHTML=functions[state.tab]();document.getElementById('pageTitle').textContent=titles[state.tab][0];document.getElementById('intro').textContent=titles[state.tab][1];document.querySelectorAll('[data-tab]').forEach(el=>el.classList.toggle('active',el.dataset.tab===state.tab));document.getElementById('teamSelect').value=String(state.selected);document.getElementById('weekStatus').textContent=`Final through W${DB.completedThrough} · Updated ${dataTimestamp(DB)}`;const mobile=document.getElementById('mobileSection');if(mobile)mobile.value=state.tab;}
 function init(){document.getElementById('teamSelect').innerHTML=teams.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('');document.getElementById('mobileNav').innerHTML=`<label for="mobileSection">EXPLORE</label><select id="mobileSection" aria-label="Dashboard section">${navTabs.map(([id,name])=>`<option value="${id}">${name}</option>`).join('')}</select>`;document.getElementById('mobileSection').addEventListener('change',e=>{state.tab=e.target.value;render();window.scrollTo(0,0)});render()}
-document.addEventListener('click',e=>{let btn=e.target.closest('[data-tab]');if(btn){state.tab=btn.dataset.tab;render();window.scrollTo({top:0,behavior:'instant'});return;}btn=e.target.closest('[data-select]');if(btn){state.selected=Number(btn.dataset.select);if(btn.dataset.jump)state.tab=btn.dataset.jump;render();if(btn.dataset.jump)window.scrollTo(0,0);return;}});
+document.addEventListener('click',e=>{let range=e.target.closest('[data-range]');if(range){state.weekRange=range.dataset.range;render();return;}let quadrant=e.target.closest('[data-quadrant]');if(quadrant){state.quadrant=state.quadrant===quadrant.dataset.quadrant?'all':quadrant.dataset.quadrant;render();return;}let btn=e.target.closest('[data-tab]');if(btn){state.tab=btn.dataset.tab;render();window.scrollTo({top:0,behavior:'instant'});return;}btn=e.target.closest('[data-select]');if(btn){state.selected=Number(btn.dataset.select);if(btn.dataset.jump)state.tab=btn.dataset.jump;render();if(btn.dataset.jump)window.scrollTo(0,0);return;}});
 document.getElementById('teamSelect').addEventListener('change',e=>{state.selected=Number(e.target.value);render();});
 document.addEventListener('change',async e=>{
 
 
 });
-async function loadData(){
- const status=document.getElementById('sourceStatus');
- try{
-  const resp=await fetch('./data/league.json?v='+Date.now(),{cache:'no-store'});
-  if(!resp.ok)throw new Error('No approved published dataset');
-  const fresh=await resp.json();
-  if(!fresh||fresh.completedThrough<4||!Array.isArray(fresh.teams)||fresh.teams.length!==10||!fresh.teams.every(t=>t.weeks.length===fresh.completedThrough))throw new Error('Public data validation failed');
-  const ids=fresh.teams.map(t=>t.id);if(new Set(ids).size!==10)throw new Error('Duplicate team IDs');
-  DB=fresh;teams=DB.teams;byId=Object.fromEntries(teams.map(t=>[t.id,t]));leagueMean=mean(teams.map(t=>t.pf/DB.completedThrough));scoringProfiles=buildScoringProfiles();
-  status.textContent=`Validated ESPN data · through Week ${DB.completedThrough}`;document.getElementById('sideStatus').innerHTML=`<span class="dot"></span>${10*DB.completedThrough} finalized team-weeks<br>${fmt(DB.simulationRuns,0)} schedule simulations<br>Approved data file loaded`;
-  document.getElementById('footerStatus').textContent=`Fantasy 2K Infinity · Validated ESPN data · ${DB.generated||'Last approved refresh'}`;
- }catch(error){
-  status.textContent=`Validated local fallback · through Week ${DB.completedThrough}`;document.getElementById('sideStatus').innerHTML=`<span class="dot"></span>${10*DB.completedThrough} finalized team-weeks<br>${fmt(DB.simulationRuns,0)} schedule simulations<br>Showing embedded snapshot`;
-  document.getElementById('footerStatus').textContent='Fantasy 2K Infinity · Showing last embedded validated snapshot · ESPN refresh not loaded';
+function validatePublicData(fresh){
+ if(!fresh||fresh.completedThrough<4||fresh.completedThrough>18||!Array.isArray(fresh.teams)||fresh.teams.length!==10)throw new Error('Invalid approved data');
+ if(fresh.leagueId!==undefined && Number(fresh.leagueId)!==418244680)throw new Error('Wrong league');
+ if(fresh.season!==undefined && Number(fresh.season)!==2026)throw new Error('Wrong season');
+ const ids=fresh.teams.map(t=>t.id);if(new Set(ids).size!==10)throw new Error('Duplicate team IDs');
+ if(!fresh.teams.every(t=>Array.isArray(t.weeks)&&t.weeks.length===fresh.completedThrough))throw new Error('Incomplete weeks');
+ const known=new Set(ids);for(const t of fresh.teams){let wins=0,pf=0,pa=0;
+  for(let i=0;i<t.weeks.length;i++){let w=t.weeks[i];if(w.week!==i+1||!known.has(w.opp)||w.opp===t.id||![w.pf,w.pa].every(v=>Number.isFinite(v)&&v>=0))throw new Error('Invalid weekly matchup');wins+=Number(w.win)||0;pf+=w.pf;pa+=w.pa;}
+  if(Math.abs(pf-t.pf)>.05||Math.abs(pa-t.pa)>.05||wins!==t.wins)throw new Error('Season totals inconsistent');
  }
- init();
+ const indexed=Object.fromEntries(fresh.teams.map(t=>[t.id,t]));for(const t of fresh.teams)for(const w of t.weeks){const peer=indexed[w.opp].weeks[w.week-1];if(peer.opp!==t.id||Math.abs(peer.pf-w.pa)>.02||Math.abs(peer.pa-w.pf)>.02)throw new Error('Non-symmetric matchup');}
+ if(fresh.completedThrough<DB.completedThrough)throw new Error('Older than approved embedded snapshot');
+ if(fresh.completedThrough===DB.completedThrough){
+  const oldTime=Date.parse(DB.approvedAt||DB.generated||0),newTime=Date.parse(fresh.approvedAt||fresh.generated||0);
+  if(Number.isFinite(oldTime)&&Number.isFinite(newTime)&&newTime<oldTime)throw new Error('Older approval timestamp');
+  const oldById=Object.fromEntries(DB.teams.map(t=>[t.id,t]));
+  for(const t of fresh.teams){const prior=oldById[t.id];if(!prior)throw new Error('Unknown team');for(let i=0;i<t.weeks.length;i++){let a=t.weeks[i],b=prior.weeks[i];if(a.pf!==b.pf||a.pa!==b.pa||a.opp!==b.opp)throw new Error('Unapproved same-week stat correction');}}
+ }
+ return true;
+}
+function dataTimestamp(db){let s=db.approvedAt||db.generated;if(!s)return 'time not recorded';let date=new Date(s);return Number.isNaN(date.getTime())?'time not recorded':date.toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});}
+function showStatus(embedded,error){const status=document.getElementById('sourceStatus'),time=dataTimestamp(DB),source=embedded?'Approved embedded snapshot':'Validated ESPN file';status.textContent=`${embedded?'Offline fallback':'Current approved data'} · W${DB.completedThrough} · ${time}`;
+ document.getElementById('sideStatus').innerHTML=`<span class="dot"></span>${10*DB.completedThrough} finalized team-weeks<br>${fmt(DB.simulationRuns,0)} schedule simulations<br>${source}`;
+ document.getElementById('footerStatus').textContent=`Fantasy 2K Infinity · ${source} · Completed through Week ${DB.completedThrough} · Updated ${time}${embedded?' · External feed unavailable or older':''}`;
+ if(embedded&&error)document.getElementById('sourceStatus').title='External data unavailable or rejected; displaying approved embedded dataset.';
+}
+async function loadData(){let fallback=false,problem=null;
+ try{const resp=await fetch('./data/league.json?v='+Date.now(),{cache:'no-store'});if(!resp.ok)throw new Error('External data unavailable');const fresh=await resp.json();validatePublicData(fresh);DB=fresh;teams=DB.teams;byId=Object.fromEntries(teams.map(t=>[t.id,t]));leagueMean=mean(teams.map(t=>t.pf/DB.completedThrough));scoringProfiles=buildScoringProfiles();}
+ catch(error){fallback=true;problem=error;}
+ showStatus(fallback,problem);init();
 }
 document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-select][role="button"]')){e.preventDefault();state.selected=Number(e.target.dataset.select);render();}});
 loadData();
