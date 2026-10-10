@@ -42,7 +42,17 @@ def score_stat(p,week):
         if split is not None and int(split)!=1:continue
         if s.get('appliedTotal') is not None:
             matched.append(float(s['appliedTotal']))
-    if len(matched)>1 and max(matched)-min(matched)>.011:raise ValueError(f'Ambiguous actual weekly stats, week {week}')
+    if len(matched)>1 and max(matched)-min(matched)>.011:
+        # Limit diagnostics to non-sensitive score/stat metadata; never log payloads or cookies.
+        pid=data.get('id',p.get('playerId',p.get('id','unknown')))
+        details=[{'period':s.get('scoringPeriodId'),'source':s.get('statSourceId'),
+                  'type':s.get('statTypeId'),'split':s.get('statSplitTypeId'),
+                  'points':s.get('appliedTotal')}
+                 for s in stats if str(s.get('scoringPeriodId'))==str(week)
+                 and str(s.get('statSourceId',s.get('statTypeId',-1)))=='0'
+                 and (s.get('statSplitTypeId') is None or str(s.get('statSplitTypeId'))=='1')
+                 and s.get('appliedTotal') is not None]
+        raise ValueError(f'Ambiguous actual weekly stats, week {week}, player ID {pid}: {details}')
     if matched:
         value=matched[0]
         if not math.isfinite(value):raise ValueError('Non-finite player points')
