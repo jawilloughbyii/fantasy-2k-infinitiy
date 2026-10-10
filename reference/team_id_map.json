@@ -1,0 +1,18 @@
+{
+  "league_id": 418244680,
+  "season": 2026,
+  "baseline_to_espn": {
+    "1": 9,
+    "2": 8,
+    "3": 2,
+    "4": 4,
+    "5": 3,
+    "6": 10,
+    "7": 7,
+    "8": 1,
+    "9": 5,
+    "10": 6
+  },
+  "verified_scores": 40,
+  "note": "Stable team IDs verified against 40 final scores. Team display names can change."
+}
