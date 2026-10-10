@@ -1,0 +1,44 @@
+name: Test ESPN connection
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-connection:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify private league access
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: |
+          python - <<'PY'
+          import json, os, sys, urllib.request, urllib.error
+          s2 = os.environ.get('ESPN_S2', '').strip()
+          swid = os.environ.get('ESPN_SWID', '').strip()
+          if not s2 or not swid:
+              sys.exit('Connection failed: ESPN_S2 or ESPN_SWID secret is missing.')
+          url = ('https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/'
+                 'seasons/2026/segments/0/leagues/418244680?view=mSettings&view=mTeam')
+          req = urllib.request.Request(url, headers={
+              'Cookie': f'espn_s2={s2}; SWID={swid}',
+              'Accept': 'application/json',
+              'User-Agent': 'Fantasy2KInfinityConnectionCheck/1.0',
+          })
+          try:
+              with urllib.request.urlopen(req, timeout=25) as response:
+                  payload = json.load(response)
+          except urllib.error.HTTPError as err:
+              sys.exit(f'Connection failed: ESPN returned HTTP {err.code}. Check that cookies are current, copied without quotes, and the league ID and season are correct.')
+          except Exception as err:
+              sys.exit(f'Connection failed: {type(err).__name__}. Check GitHub Actions logs for this step; no credentials are printed.')
+          if str(payload.get('id')) != '418244680':
+              sys.exit('Connection failed: response did not match the expected league ID.')
+          teams = payload.get('teams') or []
+          print('SUCCESS: Authenticated ESPN connection to league 418244680 (2026).')
+          print(f'ESPN returned {len(teams)} teams. No credentials or roster data were printed.')
+          PY
