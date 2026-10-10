@@ -2,6 +2,12 @@ name: ESPN finalized roster analysis (read only)
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/preview-roster-analysis.yml'
+      - 'scripts/roster_analysis.py'
+      - 'scripts/test_roster_analysis.py'
 
 permissions:
   contents: read
