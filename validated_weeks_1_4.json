@@ -1,0 +1,339 @@
+{
+  "source": "manual ESPN screenshots, validated through week 4",
+  "season": 2026,
+  "league_id": 418244680,
+  "teams": [
+    {
+      "team_id": 1,
+      "team_name": "Aubreys 3rd Leg",
+      "division": "House Atreides"
+    },
+    {
+      "team_id": 2,
+      "team_name": "Jaxon and the Giant Jazz",
+      "division": "House Atreides"
+    },
+    {
+      "team_id": 3,
+      "team_name": "Israeli Nutonyaboob",
+      "division": "House Atreides"
+    },
+    {
+      "team_id": 4,
+      "team_name": "Golden Ponies",
+      "division": "House Atreides"
+    },
+    {
+      "team_id": 5,
+      "team_name": "Quattro Padres",
+      "division": "House Atreides"
+    },
+    {
+      "team_id": 6,
+      "team_name": "The Domestic House Cats",
+      "division": "House Harkonnen"
+    },
+    {
+      "team_id": 7,
+      "team_name": "Project Haily Mary",
+      "division": "House Harkonnen"
+    },
+    {
+      "team_id": 8,
+      "team_name": "General's Dorm Room",
+      "division": "House Harkonnen"
+    },
+    {
+      "team_id": 9,
+      "team_name": "Comepig",
+      "division": "House Harkonnen"
+    },
+    {
+      "team_id": 10,
+      "team_name": "Got Rice?",
+      "division": "House Harkonnen"
+    }
+  ],
+  "scores": [
+    {
+      "week": 1,
+      "team_id": 1,
+      "opponent_id": 8,
+      "points": 93.36,
+      "displayed_projection": 125.29
+    },
+    {
+      "week": 1,
+      "team_id": 2,
+      "opponent_id": 7,
+      "points": 126.22,
+      "displayed_projection": 130.43
+    },
+    {
+      "week": 1,
+      "team_id": 3,
+      "opponent_id": 6,
+      "points": 86.82,
+      "displayed_projection": 121.6
+    },
+    {
+      "week": 1,
+      "team_id": 4,
+      "opponent_id": 9,
+      "points": 86.06,
+      "displayed_projection": 116.4
+    },
+    {
+      "week": 1,
+      "team_id": 5,
+      "opponent_id": 10,
+      "points": 131.56,
+      "displayed_projection": 122.94
+    },
+    {
+      "week": 1,
+      "team_id": 6,
+      "opponent_id": 3,
+      "points": 127.76,
+      "displayed_projection": 120.0
+    },
+    {
+      "week": 1,
+      "team_id": 7,
+      "opponent_id": 2,
+      "points": 142.2,
+      "displayed_projection": 123.65
+    },
+    {
+      "week": 1,
+      "team_id": 8,
+      "opponent_id": 1,
+      "points": 184.5,
+      "displayed_projection": 120.03
+    },
+    {
+      "week": 1,
+      "team_id": 9,
+      "opponent_id": 4,
+      "points": 143.76,
+      "displayed_projection": 123.25
+    },
+    {
+      "week": 1,
+      "team_id": 10,
+      "opponent_id": 5,
+      "points": 147.36,
+      "displayed_projection": 116.5
+    },
+    {
+      "week": 2,
+      "team_id": 1,
+      "opponent_id": 9,
+      "points": 131.44,
+      "displayed_projection": 123.82
+    },
+    {
+      "week": 2,
+      "team_id": 2,
+      "opponent_id": 10,
+      "points": 160.66,
+      "displayed_projection": 130.9
+    },
+    {
+      "week": 2,
+      "team_id": 3,
+      "opponent_id": 7,
+      "points": 78.22,
+      "displayed_projection": 119.54
+    },
+    {
+      "week": 2,
+      "team_id": 4,
+      "opponent_id": 5,
+      "points": 117.88,
+      "displayed_projection": 118.11
+    },
+    {
+      "week": 2,
+      "team_id": 5,
+      "opponent_id": 4,
+      "points": 88.2,
+      "displayed_projection": 121.51
+    },
+    {
+      "week": 2,
+      "team_id": 6,
+      "opponent_id": 8,
+      "points": 118.22,
+      "displayed_projection": 130.61
+    },
+    {
+      "week": 2,
+      "team_id": 7,
+      "opponent_id": 3,
+      "points": 151.56,
+      "displayed_projection": 126.76
+    },
+    {
+      "week": 2,
+      "team_id": 8,
+      "opponent_id": 6,
+      "points": 105.36,
+      "displayed_projection": 124.43
+    },
+    {
+      "week": 2,
+      "team_id": 9,
+      "opponent_id": 1,
+      "points": 120.8,
+      "displayed_projection": 109.72
+    },
+    {
+      "week": 2,
+      "team_id": 10,
+      "opponent_id": 2,
+      "points": 95.72,
+      "displayed_projection": 127.12
+    },
+    {
+      "week": 3,
+      "team_id": 1,
+      "opponent_id": 5,
+      "points": 117.06,
+      "displayed_projection": 124.32
+    },
+    {
+      "week": 3,
+      "team_id": 2,
+      "opponent_id": 4,
+      "points": 160.48,
+      "displayed_projection": 137.69
+    },
+    {
+      "week": 3,
+      "team_id": 3,
+      "opponent_id": 10,
+      "points": 134.54,
+      "displayed_projection": 118.12
+    },
+    {
+      "week": 3,
+      "team_id": 4,
+      "opponent_id": 2,
+      "points": 123.74,
+      "displayed_projection": 123.61
+    },
+    {
+      "week": 3,
+      "team_id": 5,
+      "opponent_id": 1,
+      "points": 98.58,
+      "displayed_projection": 123.02
+    },
+    {
+      "week": 3,
+      "team_id": 6,
+      "opponent_id": 7,
+      "points": 141.06,
+      "displayed_projection": 122.53
+    },
+    {
+      "week": 3,
+      "team_id": 7,
+      "opponent_id": 6,
+      "points": 84.34,
+      "displayed_projection": 118.34
+    },
+    {
+      "week": 3,
+      "team_id": 8,
+      "opponent_id": 9,
+      "points": 102.88,
+      "displayed_projection": 126.95
+    },
+    {
+      "week": 3,
+      "team_id": 9,
+      "opponent_id": 8,
+      "points": 119.34,
+      "displayed_projection": 125.04
+    },
+    {
+      "week": 3,
+      "team_id": 10,
+      "opponent_id": 3,
+      "points": 102.22,
+      "displayed_projection": 124.47
+    },
+    {
+      "week": 4,
+      "team_id": 1,
+      "opponent_id": 2,
+      "points": 168.88,
+      "displayed_projection": 117.66
+    },
+    {
+      "week": 4,
+      "team_id": 2,
+      "opponent_id": 1,
+      "points": 85.92,
+      "displayed_projection": 137.39
+    },
+    {
+      "week": 4,
+      "team_id": 3,
+      "opponent_id": 4,
+      "points": 131.96,
+      "displayed_projection": 121.11
+    },
+    {
+      "week": 4,
+      "team_id": 4,
+      "opponent_id": 3,
+      "points": 101.04,
+      "displayed_projection": 125.24
+    },
+    {
+      "week": 4,
+      "team_id": 5,
+      "opponent_id": 8,
+      "points": 110.52,
+      "displayed_projection": 129.26
+    },
+    {
+      "week": 4,
+      "team_id": 6,
+      "opponent_id": 9,
+      "points": 153.02,
+      "displayed_projection": 125.18
+    },
+    {
+      "week": 4,
+      "team_id": 7,
+      "opponent_id": 10,
+      "points": 91.9,
+      "displayed_projection": 108.81
+    },
+    {
+      "week": 4,
+      "team_id": 8,
+      "opponent_id": 5,
+      "points": 164.98,
+      "displayed_projection": 132.9
+    },
+    {
+      "week": 4,
+      "team_id": 9,
+      "opponent_id": 6,
+      "points": 144.98,
+      "displayed_projection": 137.65
+    },
+    {
+      "week": 4,
+      "team_id": 10,
+      "opponent_id": 7,
+      "points": 61.82,
+      "displayed_projection": 109.57
+    }
+  ]
+}
