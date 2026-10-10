@@ -80,7 +80,7 @@ class RosterCases(unittest.TestCase):
             r.fetch_week(1)
         player_filter=calls[1][1]['players']
         self.assertEqual(player_filter['sortPercOwned'],{'sortPriority':1,'sortAsc':False})
-        self.assertEqual(player_filter['filterStatsForTopScoringPeriodIds'],{'value':1,'additionalValue':['002026']})
+        self.assertEqual(player_filter['filterStatsForTopScoringPeriodIds'],{'value':18,'additionalValue':['002026']})
         self.assertEqual(player_filter['limit'],r.PAGE_SIZE)
 
     def test_sanitized_approved_dataset_reaches_retrieval(self):
