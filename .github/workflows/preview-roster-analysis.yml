@@ -1,0 +1,40 @@
+name: ESPN finalized roster analysis (read only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preview-rosters:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run roster edge-case tests
+        run: python scripts/test_roster_analysis.py
+      - name: Retrieve historical locked lineups and rank weekly NFL players
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/roster_analysis.py --league-data data/league.json --mapping reference/team_id_map.json --output output/roster_analysis.json
+      - name: Attach validated roster analysis to approved data copy
+        run: |
+          python scripts/attach_roster_analysis.py --league-data data/league.json --roster-data output/roster_analysis.json --output output/league.json
+          python scripts/sync_site_snapshot.py --html index.html --data output/league.json --output output/index.html
+      - name: Upload preview (manual review; no publishing)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fantasy-roster-analysis-preview
+          path: |
+            output/roster_analysis.json
+            output/league.json
+            output/index.html
+          if-no-files-found: warn
+          retention-days: 7
