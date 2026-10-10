@@ -37,6 +37,7 @@ def score_stat(p,week):
     matched=[]
     for s in stats:
         if int(s.get('scoringPeriodId',-1))!=week:continue
+        if s.get('seasonId') is not None and int(s['seasonId'])!=YEAR:continue
         if int(s.get('statSourceId',s.get('statTypeId',-1)))!=0:continue
         split=s.get('statSplitTypeId')
         if split is not None and int(split)!=1:continue
@@ -50,6 +51,7 @@ def score_stat(p,week):
                   'points':s.get('appliedTotal'), 'seasonId':s.get('seasonId'),
                   'keys':sorted(s.keys())}
                  for s in stats if str(s.get('scoringPeriodId'))==str(week)
+                 and (s.get('seasonId') is None or str(s.get('seasonId'))==str(YEAR))
                  and str(s.get('statSourceId',s.get('statTypeId',-1)))=='0'
                  and (s.get('statSplitTypeId') is None or str(s.get('statSplitTypeId'))=='1')
                  and s.get('appliedTotal') is not None]
