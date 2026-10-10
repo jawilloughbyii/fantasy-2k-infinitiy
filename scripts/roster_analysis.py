@@ -34,15 +34,20 @@ def score_stat(p,week):
     data=p.get('playerPoolEntry') or p
     player=data.get('player') or p.get('player') or {}
     stats=player.get('stats') or data.get('stats') or []
-    matched=[]
+    explicit=[]
+    untagged=[]
     for s in stats:
         if int(s.get('scoringPeriodId',-1))!=week:continue
-        if s.get('seasonId') is not None and int(s['seasonId'])!=YEAR:continue
+        season=s.get('seasonId')
+        if season is not None and int(season)!=YEAR:continue
         if int(s.get('statSourceId',s.get('statTypeId',-1)))!=0:continue
         split=s.get('statSplitTypeId')
         if split is not None and int(split)!=1:continue
         if s.get('appliedTotal') is not None:
-            matched.append(float(s['appliedTotal']))
+            (explicit if season is not None else untagged).append(float(s['appliedTotal']))
+    # A season-tagged 2026 actual supersedes a duplicate with no season tag.
+    # Never blend different years, season totals, or projections.
+    matched=explicit if explicit else untagged
     if len(matched)>1 and max(matched)-min(matched)>.011:
         # Limit diagnostics to non-sensitive score/stat metadata; never log payloads or cookies.
         pid=data.get('id',p.get('playerId',p.get('id','unknown')))
