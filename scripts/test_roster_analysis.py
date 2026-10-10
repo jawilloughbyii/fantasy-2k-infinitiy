@@ -69,6 +69,20 @@ class RosterCases(unittest.TestCase):
         copy={k:dict(v) for k,v in self.pool.items()};cut=self.nth('RB',20)['points'];copy[self.nth('RB',21)['id']]['points']=cut
         sets,_=r.qualified_sets(copy)
         self.assertIn(self.nth('RB',21)['id'],sets['RB'])
+    def test_weekly_player_pool_request_has_sort_and_actual_stats_filter(self):
+        calls=[]
+        def fake_request(params,filters=None):
+            calls.append((params,filters))
+            if any(k=='view' and v=='kona_player_info' for k,v in params):
+                return {'players':[{'id':1}]}
+            return {'id':r.LEAGUE_ID,'schedule':[{'id':i} for i in range(5)]}
+        with patch.object(r,'_get_json',side_effect=fake_request):
+            r.fetch_week(1)
+        player_filter=calls[1][1]['players']
+        self.assertEqual(player_filter['sortPercOwned'],{'sortPriority':1,'sortAsc':False})
+        self.assertEqual(player_filter['filterStatsForTopScoringPeriodIds'],{'value':1,'additionalValue':['002026']})
+        self.assertEqual(player_filter['limit'],r.PAGE_SIZE)
+
     def test_sanitized_approved_dataset_reaches_retrieval(self):
         league=json.loads((Path(__file__).parents[1]/'data/league.json').read_text())
         mapping=json.loads((Path(__file__).parents[1]/'reference/team_id_map.json').read_text())
