@@ -253,8 +253,11 @@
 @media(max-width:600px){.hero-dna strong{font-size:12px}.hero-dna{gap:7px}}
 
 /* League-wide scoring snapshot */
-.league-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}.league-heading h2{font-size:18px;margin:0;letter-spacing:-.025em}.league-heading p{color:var(--muted);margin:2px 0 0;font-size:12px}.league-overview{display:grid;gap:14px}.league-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.league-kpis .card{box-shadow:none;background:#f8faff;padding:15px}.league-kpis .label{font-size:10px;color:#677b96;font-weight:750;letter-spacing:.06em;text-transform:uppercase}.league-kpis strong{font-size:25px;display:block;letter-spacing:-.04em;margin-top:4px}.league-kpis small{display:block;color:#73859c;font-size:11px}.league-chart{width:100%;height:auto;display:block;max-height:320px}.league-legend{display:flex;gap:16px;flex-wrap:wrap;color:#657790;font-size:11px;margin-top:8px}.league-legend i{display:inline-block;width:19px;border-top:3px solid #3478e9;vertical-align:middle;margin-right:6px}.league-insight{font-size:12px;color:#526681;background:#f3f7fc;padding:11px 13px;border-radius:9px;margin-top:8px}
+.league-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}.league-heading h2{font-size:18px;margin:0;letter-spacing:-.025em}.league-heading p{color:var(--muted);margin:2px 0 0;font-size:12px}.league-overview{display:grid;gap:14px}.league-kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.league-kpis .card{box-shadow:none;background:#f8faff;padding:15px}.league-kpis .label{font-size:10px;color:#677b96;font-weight:750;letter-spacing:.06em;text-transform:uppercase}.league-kpis strong{font-size:25px;display:block;letter-spacing:-.04em;margin-top:4px}.league-kpis small{display:block;color:#73859c;font-size:11px}.league-chart{width:100%;height:auto;display:block;max-height:320px}.league-legend{display:flex;gap:16px;flex-wrap:wrap;color:#657790;font-size:11px;margin-top:8px}.league-legend i{display:inline-block;width:19px;border-top:3px solid #3478e9;vertical-align:middle;margin-right:6px}.league-insight{font-size:12px;color:#526681;background:#f3f7fc;padding:11px 13px;border-radius:9px;margin-top:8px}
 @media(max-width:720px){.league-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.league-kpis strong{font-size:21px}.league-overview{gap:12px}}
+
+.personality-map{overflow:hidden}.map-svg{display:block;width:100%;height:auto;max-height:440px;border-radius:12px}.map-svg [data-select]:focus circle{stroke:#0b1829;stroke-width:4}.maplegend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}.map-team{border:1px solid #e5ebf3;border-radius:10px;padding:10px 11px;display:flex;align-items:center;gap:10px;text-align:left;background:#fff;color:#223b59;cursor:pointer;min-width:0}.map-team.selected{border-color:#4384e6;background:#edf4ff}.map-team b{display:grid;place-items:center;width:23px;height:23px;flex:none;border-radius:50%;background:#377dd5;color:#fff;font-size:11px}.map-team span{font-weight:750;font-size:12px;flex:1;min-width:0;overflow-wrap:anywhere}.map-team small{font-size:11px;color:#647a92;white-space:nowrap}.history-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.history-summary>div{background:#f4f7fc;padding:13px;border-radius:10px;display:flex;flex-direction:column;gap:7px}.history-summary small{font-size:10px;text-transform:uppercase;color:#60758b;font-weight:750}.history-summary strong{font-size:14px;color:#193450}.history-summary span{font-size:11px;color:#617790}.history-track{display:flex;gap:8px;overflow-x:auto;margin-top:15px;padding-bottom:7px}.history-item{flex:0 0 125px;border:1px solid #e2eaf3;border-radius:9px;padding:10px;display:flex;flex-direction:column;gap:6px}.history-item span,.history-item small{font-size:10px;color:#68809c}.history-item strong{font-size:11px;color:#183a5e;overflow-wrap:anywhere}
+@media(max-width:700px){.maplegend{grid-template-columns:1fr}.history-summary{grid-template-columns:1fr}.map-team small{font-size:10px}.personality-map .sectionhead{margin-bottom:8px}}
 </style></head>
 <body>
 <div class="shell"><aside class="side"><div class="brand"><div class="mark">2K</div><div><strong>FANTASY 2K<br>INFINITY</strong><small>LEAGUE REPORT</small></div></div><div class="navcat">WORKSPACE</div>
@@ -263,11 +266,11 @@
 <button class="navbtn" data-tab="performance"><span class="navico">↗</span><span class="text">Team DNA & scoring</span></button>
 <button class="navbtn" data-tab="divisions"><span class="navico">▥</span><span class="text">What if?</span></button>
 <div class="navcat" style="margin-top:20px">REFERENCE</div><button class="navbtn" data-tab="method"><span class="navico">ⓘ</span><span class="text">How it works</span></button>
-<div class="sidefoot"><span class="dot"></span>40 finalized team-weeks<br>100,000 past-schedule simulations<br>Offline dashboard</div></aside>
+<div class="sidefoot" id="sideStatus"><span class="dot"></span>40 finalized team-weeks<br>100,000 past-schedule simulations<br>Validated fallback available</div></aside>
 <nav class="mobile-nav" id="mobileNav"></nav>
-<main class="main"><div class="topline"><div><div class="eyebrow">2026 · League report</div><h1 id="pageTitle">League overview</h1></div><div class="topright"><span class="tag">Weeks 1–4 · Final</span><button class="action" id="csvBtn">↓ Export CSV</button></div></div>
+<main class="main"><div class="topline"><div><div class="eyebrow">2026 · League report</div><h1 id="pageTitle">League overview</h1></div><div class="topright"><span class="tag"><span id="weekStatus">Weeks 1–4 · Final</span></span><button class="action" id="csvBtn">↓ Export CSV</button></div></div>
 <p class="intro" id="intro">Who won, who got lucky, and how each team is really scoring.</p>
-<div class="controls"><div><span class="fieldlabel">VIEW TEAM</span><select id="teamSelect" class="select" aria-label="Select fantasy team"><option value="1">Aubreys 3rd Leg</option><option value="2">Jaxon and the Giant Jazz</option><option value="3" selected>Israeli Nutonyaboob</option><option value="4">Golden Ponies</option><option value="5">Quattro Padres</option><option value="6">The Domestic House Cats</option><option value="7">Project Haily Mary</option><option value="8">General&#x27;s Dorm Room</option><option value="9">Comepig</option><option value="10">Got Rice?</option></select></div><div class="tiny">Source: ESPN screenshots · last complete week: 4</div></div><div id="view" class="content"></div><div class="footnote">Fantasy 2K Infinity · Based on four completed weeks · Not updated live</div></main></div>
+<div class="controls"><div><span class="fieldlabel">VIEW TEAM</span><select id="teamSelect" class="select" aria-label="Select fantasy team"><option value="1">Aubreys 3rd Leg</option><option value="2">Jaxon and the Giant Jazz</option><option value="3" selected>Israeli Nutonyaboob</option><option value="4">Golden Ponies</option><option value="5">Quattro Padres</option><option value="6">The Domestic House Cats</option><option value="7">Project Haily Mary</option><option value="8">General&#x27;s Dorm Room</option><option value="9">Comepig</option><option value="10">Got Rice?</option></select></div><div class="tiny"><span id="sourceStatus">Validated ESPN snapshot · Week 4 · Local fallback</span></div></div><div id="view" class="content"></div><div class="footnote"><span id="footerStatus">Fantasy 2K Infinity · Validated ESPN snapshot · Final scores only</span></div></main></div>
 <script id="fantasydata" type="application/json">{
   "title": "Fantasy 2K Infinity",
   "completedThrough": 4,
@@ -339,7 +342,7 @@
       "xw": 2.44444444,
       "luck": 0.55555556,
       "luckpp": 13.889,
-      "winsAllPlay": 21.999999959999997,
+      "winsAllPlay": 21.99999996,
       "simWinMean": 2.441,
       "simRankMean": 1.554,
       "winDist": [
@@ -358,7 +361,8 @@
       ],
       "rankLuckPct": 68.5,
       "winLuckPct": 73.1,
-      "simTop2Pct": 87.4
+      "simTop2Pct": 87.4,
+      "projWeeks": 4
     },
     {
       "id": 2,
@@ -426,7 +430,7 @@
       "xw": 2.44444444,
       "luck": -0.44444444,
       "luckpp": -11.111,
-      "winsAllPlay": 21.999999959999997,
+      "winsAllPlay": 21.99999996,
       "simWinMean": 2.445,
       "simRankMean": 1.453,
       "winDist": [
@@ -445,7 +449,8 @@
       ],
       "rankLuckPct": 22.5,
       "winLuckPct": 29.6,
-      "simTop2Pct": 94.1
+      "simTop2Pct": 94.1,
+      "projWeeks": 4
     },
     {
       "id": 3,
@@ -513,7 +518,7 @@
       "xw": 1.44444445,
       "luck": 0.55555555,
       "luckpp": 13.889,
-      "winsAllPlay": 13.00000005,
+      "winsAllPlay": 13.000000049999999,
       "simWinMean": 1.443,
       "simRankMean": 2.956,
       "winDist": [
@@ -532,7 +537,8 @@
       ],
       "rankLuckPct": 71.9,
       "winLuckPct": 73.5,
-      "simTop2Pct": 39.9
+      "simTop2Pct": 39.9,
+      "projWeeks": 4
     },
     {
       "id": 4,
@@ -619,7 +625,8 @@
       ],
       "rankLuckPct": 28.2,
       "winLuckPct": 32.6,
-      "simTop2Pct": 40.9
+      "simTop2Pct": 40.9,
+      "projWeeks": 4
     },
     {
       "id": 5,
@@ -687,7 +694,7 @@
       "xw": 1.22222222,
       "luck": -1.22222222,
       "luckpp": -30.556,
-      "winsAllPlay": 10.999999979999998,
+      "winsAllPlay": 10.99999998,
       "simWinMean": 1.224,
       "simRankMean": 3.314,
       "winDist": [
@@ -706,7 +713,8 @@
       ],
       "rankLuckPct": 12.4,
       "winLuckPct": 9.7,
-      "simTop2Pct": 31.0
+      "simTop2Pct": 31.0,
+      "projWeeks": 4
     },
     {
       "id": 6,
@@ -774,7 +782,7 @@
       "xw": 2.66666667,
       "luck": 1.33333333,
       "luckpp": 33.333,
-      "winsAllPlay": 24.000000030000002,
+      "winsAllPlay": 24.00000003,
       "simWinMean": 2.672,
       "simRankMean": 1.826,
       "winDist": [
@@ -793,7 +801,8 @@
       ],
       "rankLuckPct": 74.0,
       "winLuckPct": 91.4,
-      "simTop2Pct": 77.0
+      "simTop2Pct": 77.0,
+      "projWeeks": 4
     },
     {
       "id": 7,
@@ -880,7 +889,8 @@
       ],
       "rankLuckPct": 77.2,
       "winLuckPct": 93.5,
-      "simTop2Pct": 34.4
+      "simTop2Pct": 34.4,
+      "projWeeks": 4
     },
     {
       "id": 8,
@@ -948,7 +958,7 @@
       "xw": 2.55555555,
       "luck": -0.55555555,
       "luckpp": -13.889,
-      "winsAllPlay": 22.999999950000003,
+      "winsAllPlay": 22.99999995,
       "simWinMean": 2.553,
       "simRankMean": 1.934,
       "winDist": [
@@ -967,7 +977,8 @@
       ],
       "rankLuckPct": 16.6,
       "winLuckPct": 27.3,
-      "simTop2Pct": 73.1
+      "simTop2Pct": 73.1,
+      "projWeeks": 4
     },
     {
       "id": 9,
@@ -1054,7 +1065,8 @@
       ],
       "rankLuckPct": 17.6,
       "winLuckPct": 25.8,
-      "simTop2Pct": 75.7
+      "simTop2Pct": 75.7,
+      "projWeeks": 4
     },
     {
       "id": 10,
@@ -1141,93 +1153,303 @@
       ],
       "rankLuckPct": 18.0,
       "winLuckPct": 35.6,
-      "simTop2Pct": 17.6
+      "simTop2Pct": 17.6,
+      "projWeeks": 4
     }
   ],
-  "week5": [
-    {
-      "id": 1,
-      "opp": 3,
-      "partial": 7.9,
-      "projected": 91.64,
-      "matchup": 1
-    },
-    {
-      "id": 2,
-      "opp": 8,
-      "partial": 0.0,
-      "projected": 120.21,
-      "matchup": 5
-    },
-    {
-      "id": 3,
-      "opp": 1,
-      "partial": 0.0,
-      "projected": 122.85,
-      "matchup": 1
-    },
-    {
-      "id": 4,
-      "opp": 7,
-      "partial": 0.0,
-      "projected": 121.71,
-      "matchup": 4
-    },
-    {
-      "id": 5,
-      "opp": 9,
-      "partial": 1.0,
-      "projected": 125.9,
-      "matchup": 3
-    },
-    {
-      "id": 6,
-      "opp": 10,
-      "partial": 42.2,
-      "projected": 138.6,
-      "matchup": 2
-    },
-    {
-      "id": 7,
-      "opp": 4,
-      "partial": 29.84,
-      "projected": 110.5,
-      "matchup": 4
-    },
-    {
-      "id": 8,
-      "opp": 2,
-      "partial": 0.0,
-      "projected": 122.4,
-      "matchup": 5
-    },
-    {
-      "id": 9,
-      "opp": 5,
-      "partial": 31.5,
-      "projected": 151.2,
-      "matchup": 3
-    },
-    {
-      "id": 10,
-      "opp": 6,
-      "partial": 0.0,
-      "projected": 122.76,
-      "matchup": 2
-    }
-  ],
-  "generated": "2026-10-09",
+  "generated": "2026-10-10T17:59:24.048222+00:00",
   "methodNotes": [
-    "Projection values are displayed ESPN screenshot numbers, possibly updated during play and not necessarily pregame forecasts.",
-    "Simulations randomly reassign opponents as valid weekly pairings across all 10 teams, preserving each team’s actual score each week and the fixed two-division membership.",
-    "Division rank is competition rank based on wins only; ESPN may apply further tiebreakers beyond the available screenshots.",
-    "Standings luck percentile uses the observed rank against simulated ranks with half credit for ties. It is not the percentage of wins caused by luck."
-  ]
+    "Private ESPN backfill reconciled against 40 known scores and opponents for Weeks 1–4.",
+    "Only completed periods before ESPN's current matchup period enter scoring calculations.",
+    "Original Weeks 1–4 displayed projection values are not verified pregame snapshots. Missing future projections remain blank.",
+    "No player data, manager names, ESPN authentication credentials or playoff odds are published."
+  ],
+  "source": "ESPN authenticated, baseline reconciled",
+  "projectionCoverage": {
+    "kind": "historical ESPN screenshot displayed values",
+    "throughWeek": 4,
+    "notice": "Screenshots may contain in-game projections; no future projections fabricated."
+  },
+  "weeklyLeagueAverage": [
+    126.96,
+    116.81,
+    118.42,
+    121.5
+  ],
+  "leagueAveragePf": 120.92,
+  "leagueMedianPf": 120.07,
+  "dnaHistory": [
+    {
+      "throughWeek": 1,
+      "status": "provisional",
+      "teams": [
+        {
+          "id": 1,
+          "category": "Not enough weeks",
+          "averagePf": 93.36,
+          "cvPct": 0.0
+        },
+        {
+          "id": 2,
+          "category": "Not enough weeks",
+          "averagePf": 126.22,
+          "cvPct": 0.0
+        },
+        {
+          "id": 3,
+          "category": "Not enough weeks",
+          "averagePf": 86.82,
+          "cvPct": 0.0
+        },
+        {
+          "id": 4,
+          "category": "Not enough weeks",
+          "averagePf": 86.06,
+          "cvPct": 0.0
+        },
+        {
+          "id": 5,
+          "category": "Not enough weeks",
+          "averagePf": 131.56,
+          "cvPct": 0.0
+        },
+        {
+          "id": 6,
+          "category": "Not enough weeks",
+          "averagePf": 127.76,
+          "cvPct": 0.0
+        },
+        {
+          "id": 7,
+          "category": "Not enough weeks",
+          "averagePf": 142.2,
+          "cvPct": 0.0
+        },
+        {
+          "id": 8,
+          "category": "Not enough weeks",
+          "averagePf": 184.5,
+          "cvPct": 0.0
+        },
+        {
+          "id": 9,
+          "category": "Not enough weeks",
+          "averagePf": 143.76,
+          "cvPct": 0.0
+        },
+        {
+          "id": 10,
+          "category": "Not enough weeks",
+          "averagePf": 147.36,
+          "cvPct": 0.0
+        }
+      ]
+    },
+    {
+      "throughWeek": 2,
+      "status": "provisional",
+      "teams": [
+        {
+          "id": 1,
+          "category": "Not enough weeks",
+          "averagePf": 112.4,
+          "cvPct": 16.94
+        },
+        {
+          "id": 2,
+          "category": "Not enough weeks",
+          "averagePf": 143.44,
+          "cvPct": 12.01
+        },
+        {
+          "id": 3,
+          "category": "Not enough weeks",
+          "averagePf": 82.52,
+          "cvPct": 5.21
+        },
+        {
+          "id": 4,
+          "category": "Not enough weeks",
+          "averagePf": 101.97,
+          "cvPct": 15.6
+        },
+        {
+          "id": 5,
+          "category": "Not enough weeks",
+          "averagePf": 109.88,
+          "cvPct": 19.73
+        },
+        {
+          "id": 6,
+          "category": "Not enough weeks",
+          "averagePf": 122.99,
+          "cvPct": 3.88
+        },
+        {
+          "id": 7,
+          "category": "Not enough weeks",
+          "averagePf": 146.88,
+          "cvPct": 3.19
+        },
+        {
+          "id": 8,
+          "category": "Not enough weeks",
+          "averagePf": 144.93,
+          "cvPct": 27.3
+        },
+        {
+          "id": 9,
+          "category": "Not enough weeks",
+          "averagePf": 132.28,
+          "cvPct": 8.68
+        },
+        {
+          "id": 10,
+          "category": "Not enough weeks",
+          "averagePf": 121.54,
+          "cvPct": 21.24
+        }
+      ]
+    },
+    {
+      "throughWeek": 3,
+      "status": "provisional",
+      "teams": [
+        {
+          "id": 1,
+          "category": "Not enough weeks",
+          "averagePf": 113.95,
+          "cvPct": 13.78
+        },
+        {
+          "id": 2,
+          "category": "Not enough weeks",
+          "averagePf": 149.12,
+          "cvPct": 10.86
+        },
+        {
+          "id": 3,
+          "category": "Not enough weeks",
+          "averagePf": 99.86,
+          "cvPct": 24.81
+        },
+        {
+          "id": 4,
+          "category": "Not enough weeks",
+          "averagePf": 109.23,
+          "cvPct": 15.16
+        },
+        {
+          "id": 5,
+          "category": "Not enough weeks",
+          "averagePf": 106.11,
+          "cvPct": 17.42
+        },
+        {
+          "id": 6,
+          "category": "Not enough weeks",
+          "averagePf": 129.01,
+          "cvPct": 7.26
+        },
+        {
+          "id": 7,
+          "category": "Not enough weeks",
+          "averagePf": 126.03,
+          "cvPct": 23.59
+        },
+        {
+          "id": 8,
+          "category": "Not enough weeks",
+          "averagePf": 130.91,
+          "cvPct": 28.95
+        },
+        {
+          "id": 9,
+          "category": "Not enough weeks",
+          "averagePf": 127.97,
+          "cvPct": 8.74
+        },
+        {
+          "id": 10,
+          "category": "Not enough weeks",
+          "averagePf": 115.1,
+          "cvPct": 19.95
+        }
+      ]
+    },
+    {
+      "throughWeek": 4,
+      "status": "provisional",
+      "teams": [
+        {
+          "id": 1,
+          "category": "Balanced, with swings",
+          "averagePf": 127.69,
+          "cvPct": 21.46
+        },
+        {
+          "id": 2,
+          "category": "High-upside contender",
+          "averagePf": 133.32,
+          "cvPct": 23.06
+        },
+        {
+          "id": 3,
+          "category": "High ceiling, low floor",
+          "averagePf": 107.88,
+          "cvPct": 23.69
+        },
+        {
+          "id": 4,
+          "category": "Inconsistent underdog",
+          "averagePf": 107.18,
+          "cvPct": 13.78
+        },
+        {
+          "id": 5,
+          "category": "Inconsistent underdog",
+          "averagePf": 107.22,
+          "cvPct": 15.04
+        },
+        {
+          "id": 6,
+          "category": "Reliable contender",
+          "averagePf": 135.02,
+          "cvPct": 9.77
+        },
+        {
+          "id": 7,
+          "category": "High ceiling, low floor",
+          "averagePf": 117.5,
+          "cvPct": 25.26
+        },
+        {
+          "id": 8,
+          "category": "High ceiling, low floor",
+          "averagePf": 139.43,
+          "cvPct": 25.81
+        },
+        {
+          "id": 9,
+          "category": "Reliable contender",
+          "averagePf": 132.22,
+          "cvPct": 9.2
+        },
+        {
+          "id": 10,
+          "category": "High ceiling, low floor",
+          "averagePf": 101.78,
+          "cvPct": 29.93
+        }
+      ]
+    }
+  ],
+  "recentDna": []
 }</script>
 <script>
 (()=>{'use strict';
-const DB=JSON.parse(document.getElementById('fantasydata').textContent);
-const teams=DB.teams,byId=Object.fromEntries(teams.map(x=>[x.id,x]));
+let DB=JSON.parse(document.getElementById('fantasydata').textContent);
+let teams=DB.teams,byId=Object.fromEntries(teams.map(x=>[x.id,x]));
 const RANK_COLORS=['#167c60','#3d7be8','#4db8c4','#f4af51','#db7180'];
 const navTabs=[['overview','Overview'],['luck','Who got lucky?'],['performance','Team DNA & scoring'],['divisions','What if?'],['method','How it works']];
 let state={tab:'overview',selected:3,division:'All',sort:'luck'};
@@ -1244,22 +1466,22 @@ const section=(title,sub,other='')=>`<div class="sectionhead"><div><h3 class="se
 const selected=()=>byId[state.selected];
 function luckRows(){return [...teams].sort((a,b)=>b.luck-a.luck).map(t=>{const p=Math.min(Math.abs(t.luck)/1.5,1)*47;return `<div class="rankline ${t.id===state.selected?'selected':''}" data-select="${t.id}"><div class="rankname">${teamName(t)}<span class="ranksub">${divShort(t)} · ${t.wins}–${t.losses}</span></div><div class="lucktrack"><div class="luckbar" style="background:${t.luck>=0?'#13a876':'#da6d7d'};left:${t.luck>=0?50:50-p}%;width:${p}%"></div></div><div class="lucknum ${tone(t.luck)}">${sign(t.luck)}</div></div>`}).join('')}
 function sparkline(t){
+ const known=t.weeks.filter(w=>w.proj!==null&&w.proj!==undefined);
+ if(!known.length)return `<div class="data-note">No historical projection snapshots are available.</div>`;
  const series=[['Actual points','#306bf5','pf'],['ESPN displayed projection','#0c9d99','proj']];
- const n=t.weeks.length,W=760,H=275,L=47,R=22,T=30,B=40;
- const values=t.weeks.flatMap(w=>[w.pf,w.proj]);
+ const n=known.length,W=760,H=275,L=47,R=22,T=30,B=40,values=known.flatMap(w=>[w.pf,w.proj]);
  const min=Math.max(0,Math.floor((Math.min(...values)-14)/20)*20),max=Math.ceil((Math.max(...values)+18)/20)*20;
- const x=i=>L+i*(W-L-R)/Math.max(1,n-1),y=v=>T+(max-v)*(H-T-B)/(max-min);
- let g='';
- for(let i=0;i<5;i++){const val=min+(max-min)*i/4,yy=y(val);g+=`<line x1="${L}" x2="${W-R}" y1="${yy}" y2="${yy}" stroke="#e8edf4"/><text x="${L-9}" y="${yy+4}" text-anchor="end" fill="#718198" font-size="11">${Math.round(val)}</text>`}
- for(let i=0;i<n;i++){g+=`<text x="${x(i)}" y="${H-10}" text-anchor="middle" fill="#657993" font-size="12" font-weight="650">W${i+1}</text>`}
- for(const [label,col,key] of series){g+=`<polyline points="${t.weeks.map((w,i)=>`${x(i)},${y(w[key])}`).join(' ')}" stroke="${col}" fill="none" stroke-width="3.3" ${key==='proj'?'stroke-dasharray="7 5"':''} stroke-linejoin="round" stroke-linecap="round"/>`;t.weeks.forEach((w,i)=>{g+=`<circle cx="${x(i)}" cy="${y(w[key])}" r="5.2" fill="white" stroke="${col}" stroke-width="2.7"><title>Week ${i+1}: ${label} ${fmt(w[key])}</title></circle>`})}
- return `<svg class="spark" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t.name)} weekly points scored versus displayed ESPN projections">${g}</svg><div class="graphlegend">${series.map(([label,col,key])=>`<span><b style="border-color:${col};${key==='proj'?'border-top-style:dashed':''}"></b>${label}</span>`).join('')}</div>`;
+ const x=i=>L+i*(W-L-R)/Math.max(1,n-1),y=v=>T+(max-v)*(H-T-B)/(max-min||1);
+ let g='';for(let i=0;i<5;i++){const v=min+(max-min)*i/4,yy=y(v);g+=`<line x1="${L}" x2="${W-R}" y1="${yy}" y2="${yy}" stroke="#e8edf4"/><text x="${L-9}" y="${yy+4}" text-anchor="end" fill="#718198" font-size="11">${Math.round(v)}</text>`}
+ for(let i=0;i<n;i++)g+=`<text x="${x(i)}" y="${H-10}" text-anchor="middle" fill="#657993" font-size="12" font-weight="650">W${known[i].week}</text>`;
+ for(const [label,col,key] of series){g+=`<polyline points="${known.map((w,i)=>`${x(i)},${y(w[key])}`).join(' ')}" stroke="${col}" fill="none" stroke-width="3.3" ${key==='proj'?'stroke-dasharray="7 5"':''} stroke-linejoin="round" stroke-linecap="round"/>`;known.forEach((w,i)=>g+=`<circle cx="${x(i)}" cy="${y(w[key])}" r="5.2" fill="white" stroke="${col}" stroke-width="2.7"><title>Week ${w.week}: ${label} ${fmt(w[key])}</title></circle>`)}
+ return `<svg class="spark" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(t.name)} recorded actual scores versus historical screenshot projections">${g}</svg><div class="graphlegend">${series.map(([label,col,key])=>`<span><b style="border-color:${col};${key==='proj'?'border-top-style:dashed':''}"></b>${label}</span>`).join('')}</div><div class="data-note">Projection coverage: Weeks 1–${known.at(-1).week} only · ESPN screenshot values, not confirmed pregame forecasts. Missing weeks are excluded.</div>`;
 }
-function teamHero(t){return `<div class="selhero refinedhero"><div><div class="eyebrow" style="color:#91baff">${divShort(t)} · #${t.divrank} in division</div><h2>${teamName(t)}</h2><div class="hero-dna"><span class="hero-dna-kicker">TEAM DNA</span><strong>${esc(scoringProfiles[t.id].category)}</strong><span class="hero-trend">${esc(scoringProfiles[t.id].momentum)}</span></div><p>Through Week ${DB.completedThrough} · Early-season profile</p></div><div class="hero-record"><div class="cap">Record</div><div class="big">${t.wins}–${t.losses}</div></div></div>`}
+function teamHero(t){return `<div class="selhero refinedhero"><div><div class="eyebrow" style="color:#91baff">${divShort(t)} · #${t.divrank} in division</div><h2>${teamName(t)}</h2><div class="hero-dna"><span class="hero-dna-kicker">TEAM DNA</span><strong>${esc(scoringProfiles[t.id].category)}</strong><span class="hero-trend">${esc(scoringProfiles[t.id].momentum)}</span></div><p>Through Week ${DB.completedThrough} · ${DB.completedThrough<=5?'Provisional':DB.completedThrough<=9?'Emerging':'Season-to-date'} profile</p></div><div class="hero-record"><div class="cap">Record</div><div class="big">${t.wins}–${t.losses}</div></div></div>`}
 function teamVerdict(t){
- const l=Math.abs(t.luck),pct=Math.abs(t.projPct);
- const luckPhrase=t.luck>.075?`The schedule has helped: ${t.wins} wins versus ${fmt(t.xw)} expected from weekly scoring (${fmt(l)} extra wins).`:t.luck<-.075?`This team has had a tough draw: ${t.wins} wins versus ${fmt(t.xw)} expected from weekly scoring (${fmt(l)} fewer wins).`:`The schedule has been fairly neutral: ${t.wins} actual wins versus ${fmt(t.xw)} expected.`;
- const projPhrase=t.projPct>.15?`It has scored ${fmt(pct,1)}% above ESPN's displayed projections.`:t.projPct<-.15?`It has scored ${fmt(pct,1)}% below ESPN's displayed projections.`:`Its scoring is roughly in line with ESPN's displayed projections.`;
+ const l=Math.abs(t.luck),pct=Math.abs(t.projPct||0);
+ const luckPhrase=t.luck>.075?`The schedule has helped: ${t.wins} wins versus ${fmt(t.xw)} expected (${fmt(l)} extra wins).`:t.luck<-.075?`This team has faced a tough draw: ${t.wins} wins versus ${fmt(t.xw)} expected (${fmt(l)} fewer wins).`:`The schedule has been fairly neutral: ${t.wins} actual wins versus ${fmt(t.xw)} expected.`;
+ const projPhrase=t.projWeeks?`Across ${t.projWeeks} weeks with recorded ESPN screenshot projections, scoring is ${fmt(pct,1)}% ${t.projPct>=0?'above':'below'} those displayed figures.`:'No comparable ESPN projection snapshots are available.';
  return `<div class="verdict"><div class="verdict-kicker">THE STORY SO FAR · WEEKS 1–${DB.completedThrough}</div><div class="verdict-body">${luckPhrase} ${projPhrase}</div></div>`;
 }
 function insight(t){return `<div class="infocard"><strong>How to read this</strong><div>${t.wins} wins on the actual schedule, versus ${fmt(t.xw)} expected when comparing weekly scores against all nine other teams. This is about opponents, not draft or lineup choices.</div></div>`}
@@ -1275,20 +1497,20 @@ function trendPlot(values,{suffix='',unit='',color='#326ff1'}={}){
  return `<svg class="trendsvg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${unit} from week 1 through week ${n}: ${values.map(v=>sign(v,1)+suffix).join(', ')}">${out}</svg>`;
 }
 function overviewTrends(t){
- let lucky=0,actual=0,projected=0;
- const luckSeries=[],projSeries=[];
- for(const w of t.weeks){lucky+=w.weekLuck;actual+=w.pf;projected+=w.proj;luckSeries.push(lucky);projSeries.push(100*(actual/projected-1))}
+ let lucky=0,actual=0,projected=0;const luckSeries=[],projSeries=[];
+ for(const w of t.weeks){lucky+=w.weekLuck;luckSeries.push(lucky);if(w.proj!==null&&w.proj!==undefined){actual+=w.pf;projected+=w.proj;projSeries.push(100*(actual/projected-1));}}
  const last=t.weeks.at(-1),l=luckSeries.at(-1),v=projSeries.at(-1),prev=projSeries.length>1?projSeries.at(-2):0,movement=v-prev;
- const luckTakeaway=Math.abs(last.weekLuck)<.025?`Week ${last.week} barely changed the schedule-luck total.`:last.weekLuck>0?`Week ${last.week} added ${fmt(last.weekLuck,2)} wins to its schedule-luck total.`:`Week ${last.week} reduced its schedule-luck total by ${fmt(-last.weekLuck,2)} wins.`;
- const perfTakeaway=`The cumulative gap ${Math.abs(movement)<.05?'barely changed':movement>0?'improved':'worsened'} in Week ${last.week}${Math.abs(movement)>.05?` by ${fmt(Math.abs(movement),1)} percentage points`:''}. ${v<-.1?'Scoring remains below the displayed projections.':v>.1?'Scoring remains above the displayed projections.':'Scoring is close to projections.'}`;
- return `<div class="trendgrid"><div class="card trendcard">${section('Is this team getting lucky?','Running total of extra wins from the weekly schedule')}<div class="trendmetric"><strong class="${tone(l)}">${sign(l)}</strong><small>extra wins through W${last.week}</small></div>${trendPlot(luckSeries,{color:'#3978dc',unit:'Cumulative matchup luck in wins'})}<div class="trend-takeaway">${luckTakeaway}</div><div class="trendfooter">Dashed line = zero luck. Above it means a favorable schedule.</div></div><div class="card trendcard">${section('Is this team beating projections?','Running percentage vs ESPN’s displayed scores')}<div class="trendmetric"><strong class="${tone(v)}">${sign(v,1)}%</strong><small>${sign(actual-projected)} total points</small></div>${trendPlot(projSeries,{suffix:'%',color:'#129983',unit:'Cumulative percent above or below ESPN displayed projection'})}<div class="trend-takeaway">${perfTakeaway}</div><div class="trendfooter">Dashed line = on projection. ESPN values may have changed after kickoff.</div></div></div>`;
+ const luckTakeaway=Math.abs(last.weekLuck)<.025?`Week ${last.week} barely changed schedule luck.`:last.weekLuck>0?`Week ${last.week} added ${fmt(last.weekLuck,2)} wins of schedule luck.`:`Week ${last.week} reduced schedule luck by ${fmt(-last.weekLuck,2)} wins.`;
+ const perfTakeaway=projSeries.length?`Across ${projSeries.length} recorded weeks, scoring is ${Math.abs(v)<.1?'near':v>0?'above':'below'} the screenshot projection. ${DB.completedThrough>projSeries.length?'No new projection snapshots are available for later weeks.':`The cumulative gap ${Math.abs(movement)<.05?'barely changed':movement>0?'improved':'worsened'} most recently.`}`:'Projection snapshots are not available.';
+ return `<div class="trendgrid"><div class="card trendcard">${section('Is this team getting lucky?','Running total of extra wins from weekly matchups')}<div class="trendmetric"><strong class="${tone(l)}">${sign(l)}</strong><small>extra wins through W${last.week}</small></div>${trendPlot(luckSeries,{color:'#3978dc',unit:'Cumulative matchup luck in wins'})}<div class="trend-takeaway">${luckTakeaway}</div><div class="trendfooter">Dashed line = zero luck. Above it means a favorable schedule.</div></div><div class="card trendcard">${section('Is this team beating projections?','Recorded screenshot projection coverage only')}<div class="trendmetric"><strong class="${tone(v||0)}">${projSeries.length?sign(v,1)+'%':'N/A'}</strong><small>${projSeries.length?sign(actual-projected)+' total points':'No comparable projection history'}</small></div>${projSeries.length?trendPlot(projSeries,{suffix:'%',color:'#129983',unit:'Cumulative percentage versus recorded ESPN screenshot projection'}):''}<div class="trend-takeaway">${perfTakeaway}</div><div class="trendfooter">Historical screenshots may contain in-game projection updates; gaps are never estimated.</div></div></div>`;
 }
 function weekHeadlines(){
- const w=DB.completedThrough,a=[...teams].sort((x,y)=>y.weeks[w-1].weekLuck-x.weeks[w-1].weekLuck),above=[...teams].sort((x,y)=>y.weeks[w-1].delta-x.weeks[w-1].delta);
- const items=[{label:'BIGGEST SCHEDULE BOOST',t:a[0],amount:sign(a[0].weeks[w-1].weekLuck),detail:'extra matchup-luck wins',to:'luck'},
- {label:'TOUGHEST DRAW',t:a.at(-1),amount:sign(a.at(-1).weeks[w-1].weekLuck),detail:'matchup-luck wins',to:'luck'},
- {label:'FARTHEST ABOVE ESPN',t:above[0],amount:sign(above[0].weeks[w-1].delta,1),detail:'points vs displayed projection',to:'performance'}];
- return `<div class="weekly-headline"><div class="weekly-title"><h3 class="sectiontitle">Week ${w} talking points</h3><div class="sublabel">Three stories worth sharing in the group chat</div></div><div class="headlinegrid">${items.map(q=>`<button class="headline-item" data-select="${q.t.id}" data-jump="${q.to}" aria-label="View ${esc(q.t.name)} on ${q.to} page"><span class="headline-label">${q.label}</span><strong>${teamName(q.t)}</strong><span class="headline-stat ${tone(q.t.weeks[w-1][q.to==='luck'?'weekLuck':'delta'])}">${q.amount} <small>${q.detail}</small></span></button>`).join('')}</div></div>`;
+ const w=DB.completedThrough,a=[...teams].sort((x,y)=>y.weeks.at(-1).weekLuck-x.weeks.at(-1).weekLuck),latest=teams.map(t=>({t,r:t.weeks.at(-1)})),hasProj=latest.every(x=>x.r.delta!==null);
+ const above=hasProj?[...latest].sort((x,y)=>y.r.delta-x.r.delta):[...latest].sort((x,y)=>y.r.pf-x.r.pf);
+ const items=[{label:'BIGGEST SCHEDULE BOOST',t:a[0],amount:sign(a[0].weeks.at(-1).weekLuck),detail:'extra luck wins',to:'luck'},
+ {label:'TOUGHEST DRAW',t:a.at(-1),amount:sign(a.at(-1).weeks.at(-1).weekLuck),detail:'matchup luck wins',to:'luck'},
+ {label:hasProj?'FARTHEST ABOVE ESPN':'HIGHEST SCORER',t:above[0].t,amount:hasProj?sign(above[0].r.delta,1):fmt(above[0].r.pf,1),detail:hasProj?'points vs screenshot projection':'fantasy points',to:'performance'}];
+ return `<div class="weekly-headline"><div class="weekly-title"><h3 class="sectiontitle">Week ${w} talking points</h3><div class="sublabel">Three stories worth sharing in the group chat</div></div><div class="headlinegrid">${items.map(q=>`<button class="headline-item" data-select="${q.t.id}" data-jump="${q.to}"><span class="headline-label">${q.label}</span><strong>${teamName(q.t)}</strong><span class="headline-stat">${q.amount} <small>${q.detail}</small></span></button>`).join('')}</div></div>`;
 }
 function leagueOverview(){
  const n=DB.completedThrough;
@@ -1305,11 +1527,11 @@ function leagueOverview(){
  let start=rolling.findIndex(v=>v!==null);if(start>=0)g+=`<polyline points="${rolling.map((v,i)=>v===null?'':`${x(i)},${y(v)}`).filter(Boolean).join(' ')}" fill="none" stroke="#119784" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`;
  weekly.forEach((v,i)=>{g+=`<circle cx="${x(i)}" cy="${y(v)}" r="5" stroke="white" stroke-width="2" fill="#3478e9"><title>Week ${i+1} league average: ${fmt(v,2)}</title></circle><text x="${x(i)}" y="${H-10}" text-anchor="middle" font-size="11" fill="#62758f">W${i+1}</text>`;if(rolling[i]!==null)g+=`<circle cx="${x(i)}" cy="${y(rolling[i])}" r="4" stroke="white" stroke-width="2" fill="#119784"><title>Through Week ${i+1}: 3-week average ${fmt(rolling[i],2)}</title></circle>`;});
  const direction=Math.abs(change)<.05?'flat':change>0?'up':'down';
- return `<div class="card league-overview"><div class="league-heading"><div><h2>Across the league</h2><p>All 10 teams · Final scores only · Not affected by team selection</p></div><span class="mini-pill">THROUGH WEEK ${n}</span></div><div class="league-kpis"><div class="card"><span class="label">Average PF / team / week</span><strong>${fmt(season,1)}</strong><small>${fmt(season*10,1)} combined per week</small></div><div class="card"><span class="label">Latest week average</span><strong>${fmt(latest,1)}</strong><small class="${tone(change)}">${sign(change,1)} vs previous week</small></div><div class="card"><span class="label">Last 3 weeks</span><strong>${fmt(recent,1)}</strong><small class="${tone(versus)}">${sign(versus,1)} vs season average</small></div><div class="card"><span class="label">League weekly high</span><strong>${fmt(Math.max(...weekly),1)}</strong><small>Week ${weekly.indexOf(Math.max(...weekly))+1} league average</small></div></div><div>${section('Is league scoring changing?','Average fantasy points per team each week; green is the trailing 3-week average')}<svg class="league-chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="League weekly average points ${weekly.map(v=>fmt(v,1)).join(', ')}; three-week rolling average ${rolling.filter(v=>v!==null).map(v=>fmt(v,1)).join(', ')}">${g}</svg><div class="league-legend"><span><i></i>Weekly average PF</span><span><i style="border-color:#119784"></i>Trailing 3-week average (starts Week 3)</span><span><i style="border-color:#8795a8;border-top-style:dashed"></i>Season average</span></div><div class="league-insight">League scoring is ${direction} versus last week (${sign(change,1)} points per team). The recent three-week average is ${fmt(recent,1)}, ${versus<0?`${fmt(-versus,1)} below`:`${fmt(versus,1)} above`} the season average. These are early-season trends from ${n} completed weeks.</div></div></div>`;
+ return `<div class="card league-overview"><div class="league-heading"><div><h2>Across the league</h2><p>All 10 teams · Final scores only · Not affected by team selection</p></div><span class="mini-pill">THROUGH WEEK ${n}</span></div><div class="league-kpis"><div class="card"><span class="label">Average PF / team / week</span><strong>${fmt(season,1)}</strong><small>${fmt(season*10,1)} combined per week</small></div><div class="card"><span class="label">Latest week average</span><strong>${fmt(latest,1)}</strong><small class="${tone(change)}">${sign(change,1)} vs previous week</small></div><div class="card"><span class="label">Last 3 weeks</span><strong>${fmt(recent,1)}</strong><small class="${tone(versus)}">${sign(versus,1)} vs season average</small></div><div class="card"><span class="label">Median team-week PF</span><strong>${fmt(DB.leagueMedianPf??median(teams.flatMap(t=>t.weeks.map(w=>w.pf))),1)}</strong><small>Typical completed score</small></div><div class="card"><span class="label">League weekly high</span><strong>${fmt(Math.max(...weekly),1)}</strong><small>Week ${weekly.indexOf(Math.max(...weekly))+1} league average</small></div></div><div>${section('Is league scoring changing?','Average fantasy points per team each week; green is the trailing 3-week average')}<svg class="league-chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="League weekly average points ${weekly.map(v=>fmt(v,1)).join(', ')}; three-week rolling average ${rolling.filter(v=>v!==null).map(v=>fmt(v,1)).join(', ')}">${g}</svg><div class="league-legend"><span><i></i>Weekly average PF</span><span><i style="border-color:#119784"></i>Trailing 3-week average (starts Week 3)</span><span><i style="border-color:#8795a8;border-top-style:dashed"></i>Season average</span></div><div class="league-insight">League scoring is ${direction} versus last week (${sign(change,1)} points per team). The recent three-week average is ${fmt(recent,1)}, ${versus<0?`${fmt(-versus,1)} below`:`${fmt(versus,1)} above`} the season average. These are early-season trends from ${n} completed weeks.</div></div></div>`;
 }
 function overview(){
  let t=selected();
- return `${teamHero(t)}<div class="kpis overview-kpis">${kpi('Record',`${t.wins}–${t.losses}`,`${fmt(t.xw)} expected wins by scoring`)}${kpi('Schedule luck',sign(t.luck),`${t.luck>=0?'Helped':'Hurt'} by matchups · wins`,tone(t.luck))}${kpi('Points vs ESPN',`${sign(t.projPct,1)}%`,`${sign(t.projdelta)} total fantasy points`,tone(t.projPct))}</div>${teamVerdict(t)}${overviewTrends(t)}${leagueOverview()}${weekHeadlines()}`;
+ return `${teamHero(t)}<div class="kpis overview-kpis">${kpi('Record',`${t.wins}–${t.losses}`,`${fmt(t.xw)} expected wins by scoring`)}${kpi('Schedule luck',sign(t.luck),`${t.luck>=0?'Helped':'Hurt'} by matchups · wins`,tone(t.luck))}${kpi('Points vs ESPN',t.projWeeks?`${sign(t.projPct,1)}%`:'N/A',t.projWeeks?`${sign(t.projdelta)} pts · ${t.projWeeks} recorded weeks`:'No projection snapshots',tone(t.projPct||0))}</div>${teamVerdict(t)}${overviewTrends(t)}${leagueOverview()}${weekHeadlines()}`;
 }
 function badBeatReport(){
  const rows=teams.map(t=>{const highLoss=t.weeks.filter(w=>!w.win&&w.rank<=3),lowWin=t.weeks.filter(w=>w.win&&w.rank>=8),oppAvg=t.pa/t.weeks.length;
@@ -1327,7 +1549,7 @@ function luck(){
 }
 function oldPerf(){
  let t=selected(),sorts=[...teams].sort((a,b)=>b.projPct-a.projPct);
- return `<div class="explainer"><strong>The question:</strong> Which teams scored above or below the ESPN projections visible in the captured screenshots? Those projections may have changed during games, so this is not a pure pregame prediction test.</div><div class="subgrid"><div class="card">${section('Scoring vs. ESPN projection','Green = more points than displayed projection · red = fewer')}<div class="rankguide"><span>Below</span><span>0</span><span>Above</span></div>${sorts.map(z=>{let width=Math.min(Math.abs(z.projPct)/18,1)*48;return `<div class="barrow ${z.id===state.selected?'selected':''}" data-select="${z.id}" style="cursor:pointer" title="${esc(z.name)}: ${sign(z.projdelta)} points versus ESPN displayed projections"><div class="name">${teamName(z)}</div><div class="perftrack"><div class="perfbar" style="background:${z.projPct>=0?'#15946c':'#cd6678'};left:${z.projPct>=0?50:50-width}%;width:${width}%"></div></div><div class="med ${tone(z.projPct)}">${sign(z.projPct,1)}%</div></div>`}).join('')}<div class="barcardnote">The chart compares total actual fantasy points to ESPN’s displayed projection total. Tap a team for detail.</div></div><div class="card">${section('Selected team · scoring',teamName(t))}<div class="perf-hero"><div><span>Compared with projection</span><strong class="${tone(t.projPct)}">${sign(t.projPct,1)}%</strong></div><div><span>Total points difference</span><strong class="${tone(t.projdelta)}">${sign(t.projdelta)}</strong></div></div>${sparkline(t)}<div class="perf-bottom">${fmt(t.pf)} points scored · ${fmt(t.proj)} projected across four completed weeks.</div></div></div>`;
+ return `<div class="explainer"><strong>The question:</strong> Which teams scored above or below the ESPN projections visible in the captured screenshots? Those projections may have changed during games, so this is not a pure pregame prediction test.</div><div class="subgrid"><div class="card">${section('Scoring vs. ESPN projection','Green = more points than displayed projection · red = fewer')}<div class="rankguide"><span>Below</span><span>0</span><span>Above</span></div>${sorts.map(z=>{let width=Math.min(Math.abs(z.projPct)/18,1)*48;return `<div class="barrow ${z.id===state.selected?'selected':''}" data-select="${z.id}" style="cursor:pointer" title="${esc(z.name)}: ${sign(z.projdelta)} points versus ESPN displayed projections"><div class="name">${teamName(z)}</div><div class="perftrack"><div class="perfbar" style="background:${z.projPct>=0?'#15946c':'#cd6678'};left:${z.projPct>=0?50:50-width}%;width:${width}%"></div></div><div class="med ${tone(z.projPct)}">${sign(z.projPct,1)}%</div></div>`}).join('')}<div class="barcardnote">The chart compares total actual fantasy points to ESPN’s displayed projection total. Tap a team for detail.</div></div><div class="card">${section('Selected team · scoring',teamName(t))}<div class="perf-hero"><div><span>Compared with projection</span><strong class="${tone(t.projPct)}">${sign(t.projPct,1)}%</strong></div><div><span>Total points difference</span><strong class="${tone(t.projdelta)}">${sign(t.projdelta)}</strong></div></div>${sparkline(t)}<div class="perf-bottom">${fmt(t.pf)} points scored · ${fmt(t.proj)} projected across recorded weeks.</div></div></div>`;
 }
 function perf(){return profilePage();}
 function rankStack(t){return `<div class="stack" aria-label="Simulated position probabilities: ${t.rankDist.map((v,i)=>`place ${i+1}: ${fmt(v,1)} percent`).join(', ')}">${t.rankDist.map((v,i)=>`<span title="${i+1}${['st','nd','rd','th','th'][i]} place · ${fmt(v,1)}%" style="width:${v}%;background:${RANK_COLORS[i]}"></span>`).join('')}</div>`}
@@ -1340,22 +1562,35 @@ function standingsReading(t){
 }
 function divisionSection(name){
  const tt=teams.filter(x=>x.division===name).sort((a,b)=>a.divrank-b.divrank||b.pf-a.pf);
- return `<div class="card distcard">${section(name,'Same scores, different weekly opponents')}<div class="distlegend">${RANK_COLORS.map((c,i)=>`<span><i style="background:${c}"></i>${rankOrdinal(i+1)}</span>`).join('')}</div><div class="disthead refined-disthead"><span>Team · actual</span><span>Chance of each finish</span><span>Most likely</span></div><div>${tt.map(t=>{let common=commonRank(t);return `<div class="distrow refined-distrow ${t.id===state.selected?'selected':''}" data-select="${t.id}" title="Tap to see ${esc(t.name)}"><div><div class="rankname">${teamName(t)}</div><div class="tiny">Actual: #${t.divrank} · ${t.wins}–${t.losses}</div></div>${rankStack(t)}<div class="likely"><strong>#${common.place}</strong><small>${fmt(common.pct,1)}% of runs</small></div></div>`}).join('')}</div><div class="barcardnote">Colored bars show how often a team finished in each division position across 100,000 schedule reshuffles. Tap any row to read the result.</div></div>`;
+ return `<div class="card distcard">${section(name,'Same scores, different weekly opponents')}<div class="distlegend">${RANK_COLORS.map((c,i)=>`<span><i style="background:${c}"></i>${rankOrdinal(i+1)}</span>`).join('')}</div><div class="disthead refined-disthead"><span>Team · actual</span><span>Chance of each finish</span><span>Most likely</span></div><div>${tt.map(t=>{let common=commonRank(t);return `<div class="distrow refined-distrow ${t.id===state.selected?'selected':''}" data-select="${t.id}" title="Tap to see ${esc(t.name)}"><div><div class="rankname">${teamName(t)}</div><div class="tiny">Actual: #${t.divrank} · ${t.wins}–${t.losses}</div></div>${rankStack(t)}<div class="likely"><strong>#${common.place}</strong><small>${fmt(common.pct,1)}% of runs</small></div></div>`}).join('')}</div><div class="barcardnote">Colored bars show how often a team finished in each division position across ${fmt(DB.simulationRuns,0)} schedule reshuffles. Tap any row to read the result.</div></div>`;
 }
 function divisions(){
  const t=selected(),most=commonRank(t);
- return `<div class="explainer"><strong>What if teams had faced different opponents?</strong> We reshuffled the four completed weeks 100,000 times, keeping every team's real score. The charts immediately below describe <strong>past schedule luck</strong>. A separate, explicitly hypothetical playoff race follows.</div><div class="slot">${divisionSection('House Atreides')}${divisionSection('House Harkonnen')}</div><div class="card simspotlight">${section('What this means for the selected team',teamName(t))}${standingsReading(t)}<div class="sim-facts"><div><span>Actual place</span><strong>#${t.divrank}</strong></div><div><span>Most common result</span><strong>#${most.place}</strong><small>${fmt(most.pct,1)}% of simulations</small></div><div><span>Average simulated place</span><strong>#${fmt(t.simRankMean,1)}</strong></div></div><div class="simple-rank-list">${t.rankDist.map((v,i)=>`<div class="simple-rank"><span>${rankOrdinal(i+1)}</span><div class="barback"><div class="barfill" style="width:${v}%;background:${RANK_COLORS[i]}"></div></div><strong>${fmt(v,1)}%</strong></div>`).join('')}</div><div class="barcardnote">The 0–100 score gives half-credit when simulated and actual ranks tie. Higher scores mean a more favorable observed finish relative to reshuffled schedules.</div></div>${playoffCard()}`;
+ return `<div class="explainer"><strong>What if teams had faced different opponents?</strong> We reshuffled the completed weeks ${fmt(DB.simulationRuns,0)} times, keeping every team's real score. These charts describe <strong>past schedule luck</strong> only; playoff forecasting remains on hold.</div><div class="slot">${divisionSection('House Atreides')}${divisionSection('House Harkonnen')}</div><div class="card simspotlight">${section('What this means for the selected team',teamName(t))}${standingsReading(t)}<div class="sim-facts"><div><span>Actual place</span><strong>#${t.divrank}</strong></div><div><span>Most common result</span><strong>#${most.place}</strong><small>${fmt(most.pct,1)}% of simulations</small></div><div><span>Average simulated place</span><strong>#${fmt(t.simRankMean,1)}</strong></div></div><div class="simple-rank-list">${t.rankDist.map((v,i)=>`<div class="simple-rank"><span>${rankOrdinal(i+1)}</span><div class="barback"><div class="barfill" style="width:${v}%;background:${RANK_COLORS[i]}"></div></div><strong>${fmt(v,1)}%</strong></div>`).join('')}</div><div class="barcardnote">The 0–100 score gives half-credit when simulated and actual ranks tie. Higher scores mean a more favorable observed finish relative to reshuffled schedules.</div></div>`;
 }
 
-function method(){return `<div class="card bigmethod">${section('How we measure luck','For anyone who wants to see how the numbers work')}<h3>1. All-play expected wins</h3><p>For each completed week, compare a team's PF against each of the other nine teams' PF. If it would beat 7 of 9, its expected wins for that week are 7/9 = 0.778. Sum across all four weeks.</p><div class="formula">Expected wins = Σ (opponents outscored + 0.5 × opponents tied) / 9</div><h3>2. Matchup luck</h3><p>Subtract the all-play expected wins from actual head-to-head wins. Positive values imply the scheduled opponents gave you more wins than your scoring strength alone would predict. Luck percentage points are that difference divided by the four completed weeks.</p><div class="formula">Luck wins = Actual wins − Expected wins<br>Luck (pp) = 100 × Luck wins / 4</div><h3>3. Standings luck percentile</h3><p>The simulator runs <strong>100,000</strong> alternative four-week schedules, forming a random valid pairing of ten teams every week. All real weekly scores and division memberships remain fixed. Division standing is recalculated from each team's simulated wins. Higher percentile = a more fortunate observed finish versus the simulated distribution. Equal ranks receive half credit.</p><div class="formula">Rank luck percentile = 100 × [P(simulated rank worse) + 0.5 × P(equal rank)]</div><h3>4. Over / under-performance</h3><p>Compare actual points with the gray ESPN projected value shown in each screenshot. Each displayed projection may have been revised after games began, so don't interpret this as a strict pregame surprise index.</p><div class="formula">Projection variance % = 100 × (Σ actual PF / Σ displayed projected PF − 1)</div><h3>5. Bad beats and lucky escapes</h3><p>A bad beat is a loss when finishing in the top three scorers that week; a lucky escape is a win with a bottom-three weekly score. Opponent average points can show whether the actual opponents scored unusually well compared with the league.</p><h3>6. Team DNA: exact scoring categories</h3><p>These are <strong>early-season descriptions</strong>, calculated exclusively from completed weekly team scores. Each team gets exactly one season-to-date DNA category. We evaluate the following rules <strong>in order</strong>; the first matching rule wins. Categories are recalculated when more finalized weeks are entered.</p><div class="formula">Weekly average = mean of final scores<br>Volatility (CV) = population standard deviation of weekly points ÷ weekly average<br>League average = average team points per week across all 10 teams<br>Ceiling = team's highest weekly final score; floor = lowest</div><div class="dna-method-rules"><div><strong>1. High ceiling, low floor</strong><span>CV ≥ 23.5% <em>and</em> best weekly score ≥ 110% of the league weekly average.</span></div><div><strong>2. Boom-or-bust</strong><span>CV ≥ 23.5%, but the first rule did not apply.</span></div><div><strong>3. Reliable contender</strong><span>CV ≤ 13.5% <em>and</em> own weekly average ≥ 104% of league average.</span></div><div><strong>4. Steady scorer</strong><span>CV ≤ 13.5%, but not a Reliable contender.</span></div><div><strong>5. High-upside contender</strong><span>Own weekly average ≥ 108% of league average, if none of the earlier rules match.</span></div><div><strong>6. Inconsistent underdog</strong><span>Own weekly average ≤ 92% of league average, if none of the earlier rules match.</span></div><div><strong>7. Balanced, with swings</strong><span>All remaining teams.</span></div></div><h3>7. Momentum: is the DNA changing?</h3><p>Momentum is <strong>separate from scoring identity</strong>: it compares the first two completed weeks with the most recent two completed weeks. If the recent average is at least 12% above the team's season-to-date weekly average, it is <strong>Heating up</strong>; if at least 12% below, <strong>Cooling off</strong>; otherwise <strong>Mostly flat</strong>. This is a descriptive two-week comparison—not evidence the underlying team quality has permanently changed.</p><div class="formula">Momentum % = 100 × (average of latest two weeks − average of first two weeks) ÷ season-to-date weekly average<br>Heating up ≥ +12% · Cooling off ≤ −12% · Otherwise Mostly flat</div><h3>8. Playoff race scenario</h3><p>The optional model simulates future fantasy scores, shrinks four-week team averages 30% toward the league average, and assumes randomly drawn weekly opponents. It uses user-selectable regular-season length and playoff spots, ranks by wins and then fantasy points, and does not know your actual remaining matchups, ESPN qualification rules, or league tiebreakers. It is not official playoff probability.</p><h3>9. Across the league</h3><p>The league average PF is the mean of all ten teams’ final scores per week. The weekly series averages the ten team scores for that week; the trailing three-week value averages the three most recent weekly league averages and begins at Week 3. The season average uses all completed team-weeks. Only finalized weeks are included; this league-wide panel does not change with the team filter.</p><h3>10. Important limitations</h3><p>This isn't a causal estimate of what share of someone's achievements was “caused by luck.” It measures sensitivity to weekly head-to-head pairings using your observed scores. The simulation does not reproduce any ESPN division scheduling restrictions, nor does it apply unknown ESPN tiebreakers; tied win totals share a competition rank. A four-week sample is small. Only completed weeks are included; an illustrative playoff simulator is provided separately with clearly stated hypothetical assumptions, not actual schedule-based playoff odds.</p><div class="callout">Data integrity: 40 completed team-week scores, 20 finalized matchups, 10 teams, and every four-game PF / PA total / record reconciled with ESPN standings. All simulated results are generated using reproducible seed 20261009.</div></div>`}
+function method(){return `<div class="card bigmethod">${section('How the numbers work','Definitions and safeguards for the ESPN-connected report')}
+<h3>1. Data source and freshness</h3><p>Ten anonymous team names and ESPN matchup scores from private league 418244680. ESPN credentials remain GitHub secrets; the website reads only a processed JSON file. Only complete fantasy weeks before ESPN’s current matchup period are eligible. Weeks 1–4 were checked against 40 screenshot-verified final scores and opponents. If an update fails validation, the last successful data file stays live.</p>
+<h3>2. Schedule luck</h3><p>Expected weekly wins = (other teams outscored + half of other teams tied) ÷ 9. Sum the weekly values for season expected wins. Matchup luck = actual wins − expected wins. Positive means the schedule has helped. Bad beat = loss despite a weekly top-three score; lucky escape = win despite a bottom-three score.</p>
+<h3>3. League scoring</h3><p>League PF per week = average of all 10 finalized weekly team scores. Trailing three-week league average uses only the most recent three completed fantasy weeks. League median is computed from all finalized team-week scores.</p>
+<h3>4. Scoring Personality Map</h3><p>Horizontal axis = average weekly PF; vertical axis = relative scoring volatility (population standard deviation ÷ mean, shown as a percentage). The visual quadrants split at league average PF and 20% CV. Upper-left: Volatile underdogs; upper-right: High-upside wildcards; lower-left: Steady, lower-output; lower-right: Reliable contenders. These broad quadrants do not replace the more specific season DNA tags.</p>
+<h3>5. Team DNA — the seven rules, in order</h3><p>First matching rule wins. League average refers to all ten teams’ mean completed-week PF.</p><div class="dna-method-rules"><div><strong>High ceiling, low floor</strong><span>CV ≥ 23.5% and ceiling ≥ 110% of league average.</span></div><div><strong>Boom-or-bust</strong><span>CV ≥ 23.5%, if the first rule does not apply.</span></div><div><strong>Reliable contender</strong><span>CV ≤ 13.5% and Avg PF ≥ 104% of league average.</span></div><div><strong>Steady scorer</strong><span>CV ≤ 13.5%, otherwise.</span></div><div><strong>High-upside contender</strong><span>Avg PF ≥ 108% of league average, unless an earlier rule applies.</span></div><div><strong>Inconsistent underdog</strong><span>Avg PF ≤ 92% of league average, unless an earlier rule applies.</span></div><div><strong>Balanced, with swings</strong><span>All remaining teams.</span></div></div>
+<h3>6. Season, recent and sustained identity</h3><p>Season DNA uses all complete weeks and is provisional for Weeks 1–5, emerging at 6–9, and more established from Week 10. Its weekly category history starts at Week 4. Recent DNA uses only the last four weeks, beginning at Week 7 so it is meaningfully distinguishable from season-to-date. A sustained tag must persist for three weekly updates. Momentum compares first two versus last two weeks for 4–5 games; from six games onward, it compares the last three versus the preceding three. A ≥ 12% change relative to season mean is Heating up (positive) or Cooling off (negative).</p>
+<h3>7. ESPN projections</h3><p>Our first four weeks contain ESPN projection numbers captured in screenshots; these may have changed during play. They are not verified pregame forecasts. Later weeks without a saved projection snapshot stay missing and are excluded from projection comparisons; the denominator only covers weeks with known projections.</p>
+<h3>8. Historical schedule reshuffles</h3><p>Each trial randomly creates five valid weekly matchups, retaining every actual team score, fixed division membership, and no self-matches. The result measures how observed historical division finishes compare with alternate schedules. A tie for division wins shares competition rank. It is not a playoff forecast or the percentage of success caused by luck.</p>
+<div class="callout">Playoff modeling is deliberately deferred until the commissioner confirms the actual qualification and tiebreaker rules. No owner names, private player rosters, or ESPN cookies are published in the JSON.</div></div>`;}
 
 /* SCORING PERSONALITIES · Four observed weeks, profiles deliberately provisional. */
 const mean=a=>a.reduce((u,v)=>u+v,0)/Math.max(a.length,1);
+const median=a=>{const b=[...a].sort((x,y)=>x-y),m=Math.floor(b.length/2);return b.length%2?b[m]:(b[m-1]+b[m])/2};
 const stdev=a=>Math.sqrt(mean(a.map(x=>(x-mean(a))**2)));
-const leagueMean=mean(teams.map(t=>t.pf/DB.completedThrough));
-const scoringProfiles=Object.fromEntries(teams.map(t=>{
+let leagueMean=mean(teams.map(t=>t.pf/DB.completedThrough));
+let scoringProfiles=buildScoringProfiles();
+function buildScoringProfiles(){return Object.fromEntries(teams.map(t=>{
  const scores=t.weeks.map(w=>w.pf),average=mean(scores),sd=stdev(scores),low=Math.min(...scores),high=Math.max(...scores),spread=high-low;
- const old=mean(scores.slice(0,2)),recent=mean(scores.slice(-2)),shift=recent-old,relShift=shift/Math.max(1,average)*100;
+ const old=scores.length>=6?mean(scores.slice(-6,-3)):mean(scores.slice(0,2));
+ const recent=scores.length>=6?mean(scores.slice(-3)):mean(scores.slice(-2));
+ const shift=recent-old,relShift=shift/Math.max(1,average)*100;
  // League-relative but stable definitions: volatility = SD / mean across observed final weeks.
  const cv=sd/average;
  let category,definition;
@@ -1369,58 +1604,70 @@ const scoringProfiles=Object.fromEntries(teams.map(t=>{
  const momentum=relShift>=12?'Heating up':relShift<=-12?'Cooling off':'Mostly flat';
  const trendClass=relShift>=12?'green':relShift<=-12?'red':'';
  // Only 2 observations in each half: illustrative, not statistically stable.
- const earlyRange=Math.abs(scores[1]-scores[0]),lateRange=Math.abs(scores.at(-1)-scores.at(-2));
+ const earlyRange=scores.length>=6?Math.max(...scores.slice(-6,-3))-Math.min(...scores.slice(-6,-3)):Math.abs(scores[1]-scores[0]);
+ const lateRange=scores.length>=6?Math.max(...scores.slice(-3))-Math.min(...scores.slice(-3)):Math.abs(scores.at(-1)-scores.at(-2));
  const variationShift=lateRange<earlyRange*.65?'Recent weeks closer together':lateRange>earlyRange*1.45?'Recent weeks farther apart':'Recent spread similar';
  return [t.id,{scores,average,sd,low,high,spread,cv,category,definition,old,recent,shift,relShift,momentum,trendClass,variationShift,earlyRange,lateRange}];
-}));
-function identityBadge(t){const p=scoringProfiles[t.id];return `<div class="identity-strip"><div class="identity-copy"><div class="identity-kicker">SCORING IDENTITY · EARLY READ</div><div class="identity-label">${esc(p.category)}</div><div class="identity-sub">${esc(p.definition)} Only ${DB.completedThrough} weeks of scores — treat this as a developing profile.</div></div><div class="identity-side"><span class="tag-soft ${p.trendClass}">${esc(p.momentum)} · ${sign(p.shift,1)} pts/wk</span><span class="tag-soft">${fmt(p.average,1)} pts/wk</span></div></div>`}
+}));}
+function identityBadge(t){const p=scoringProfiles[t.id];return `<div class="identity-strip"><div class="identity-copy"><div class="identity-kicker">SCORING IDENTITY · EARLY READ</div><div class="identity-label">${esc(p.category)}</div><div class="identity-sub">${esc(p.definition)} ${DB.completedThrough<6?'Provisional identity':DB.completedThrough<10?'Emerging season pattern':'Season-to-date identity'} · ${DB.completedThrough} completed weeks.</div></div><div class="identity-side"><span class="tag-soft ${p.trendClass}">${esc(p.momentum)} · ${sign(p.shift,1)} pts/wk</span><span class="tag-soft">${fmt(p.average,1)} pts/wk</span></div></div>`}
 function profileMini(t){let p=scoringProfiles[t.id];return `<div class="dna-cards"><div class="dna-mini"><span>Average</span><strong>${fmt(p.average,1)}</strong><small>points / week</small></div><div class="dna-mini"><span>Floor</span><strong>${fmt(p.low,1)}</strong><small>lowest final score</small></div><div class="dna-mini"><span>Ceiling</span><strong>${fmt(p.high,1)}</strong><small>highest final score</small></div><div class="dna-mini"><span>Volatility</span><strong>${fmt(p.sd,1)}</strong><small>standard deviation · lower is steadier</small></div></div>`}
 function weeklyDNA(t){let p=scoringProfiles[t.id],max=Math.max(...teams.flatMap(z=>scoringProfiles[z.id].scores),1);return `<div class="profile-chart">${t.weeks.map(w=>`<div class="week-column"><strong>${fmt(w.pf,1)}</strong><div class="week-track"><div class="week-fill ${w.pf===p.high?'hi':w.pf===p.low?'lo':''}" style="height:${Math.max(2,100*w.pf/max)}%" title="Week ${w.week}: ${fmt(w.pf)} points"></div></div><span>W${w.week}</span></div>`).join('')}</div>`}
-function momentumStory(t){const p=scoringProfiles[t.id];return `<div class="divergence"><strong>Is the identity changing?</strong> First two weeks: <strong>${fmt(p.old,1)}</strong> points/week; most recent two: <strong>${fmt(p.recent,1)}</strong> points/week (${sign(p.shift,1)}). <strong>${p.momentum}</strong>. ${p.variationShift}, but two games per period are not enough to call this a lasting change. Classification updates as more completed weeks are added.</div>`}
+function momentumStory(t){const p=scoringProfiles[t.id];return `<div class="divergence"><strong>Is the identity changing?</strong> ${DB.completedThrough>=6?'Previous three':'First two'} weeks: <strong>${fmt(p.old,1)}</strong> points/week; most recent ${DB.completedThrough>=6?'three':'two'}: <strong>${fmt(p.recent,1)}</strong> points/week (${sign(p.shift,1)}). <strong>${p.momentum}</strong>. ${p.variationShift}, but two games per period are not enough to call this a lasting change. Classification updates as more completed weeks are added.</div>`}
 function dnaLeaderboard(){return `<div class="identity-ledger">${[...teams].sort((a,b)=>scoringProfiles[b.id].average-scoringProfiles[a.id].average).map(t=>{let p=scoringProfiles[t.id];return `<button class="profile-row ${t.id===state.selected?'selected':''}" data-select="${t.id}" aria-label="View ${esc(t.name)} scoring identity"><span class="profile-title">${teamName(t)}</span><span class="profile-sub">${fmt(p.average,1)} pts/week · Range ${fmt(p.low,1)}–${fmt(p.high,1)} · SD ${fmt(p.sd,1)}</span><span class="profile-bottom"><span class="tag-soft">${esc(p.category)}</span><span class="tag-soft ${p.trendClass}">${esc(p.momentum)}</span></span></button>`}).join('')}</div>`}
-function profilePage(){const t=selected(),p=scoringProfiles[t.id];return `${identityBadge(t)}<div class="card">${section('How this team scores',teamName(t)+' · patterns through Week '+DB.completedThrough)}${profileMini(t)}${weeklyDNA(t)}${momentumStory(t)}<div class="data-note">Identity labels are based on weekly scoring average, relative variance, floor, and ceiling. They describe only the four recorded weeks. A strong two-week improvement is not evidence of a permanent new scoring level.</div></div><div class="card">${section('The league’s scoring personalities','Choose a team to see its full profile')}${dnaLeaderboard()}</div><div class="subgrid"><div class="card">${section('Scoring versus ESPN','Displayed projections, not necessarily frozen at kickoff')}<div class="perf-hero"><div><span>Points above or below projections</span><strong class="${tone(t.projPct)}">${sign(t.projPct,1)}%</strong></div><div><span>Total points difference</span><strong class="${tone(t.projdelta)}">${sign(t.projdelta)}</strong></div></div>${sparkline(t)}<div class="data-note">Captures may include in-game ESPN updates. Do not treat these as pregame forecast accuracy.</div></div><div class="card">${section('Who outscored the ESPN number?','Ranked by season total percent difference')}<div class="rankguide"><span>Below</span><span>0</span><span>Above</span></div>${[...teams].sort((a,b)=>b.projPct-a.projPct).map(z=>{let width=Math.min(Math.abs(z.projPct)/18,1)*48;return `<div class="barrow ${z.id===state.selected?'selected':''}" data-select="${z.id}" style="cursor:pointer"><div class="name">${teamName(z)}</div><div class="perftrack"><div class="perfbar" style="background:${z.projPct>=0?'#15946c':'#cd6678'};left:${z.projPct>=0?50:50-width}%;width:${width}%"></div></div><div class="med ${tone(z.projPct)}">${sign(z.projPct,1)}%</div></div>`}).join('')}</div></div>`;}
-/* PLAYOFF SCENARIO: clearly assumption-driven. Not ESPN official playoff odds. */
-let playoffSettings={seasonWeeks:14,slots:4};
-const playoffCache=new Map();
-function rand32(seed){return ()=>{let x=seed+=0x6D2B79F5;x=Math.imul(x^(x>>>15),x|1);x^=x+Math.imul(x^(x>>>7),x|61);return((x^(x>>>14))>>>0)/4294967296;}}
-function gaussian(rand){return Math.sqrt(-2*Math.log(Math.max(1e-10,rand())))*Math.cos(2*Math.PI*rand())}
-function simulatePlayoff(){
- const key=playoffSettings.seasonWeeks+'-'+playoffSettings.slots;if(playoffCache.has(key))return playoffCache.get(key);
- const rand=rand32(20261010+playoffSettings.seasonWeeks*100+playoffSettings.slots),N=4500,left=playoffSettings.seasonWeeks-DB.completedThrough;
- const avgs=teams.map(t=>scoringProfiles[t.id].average),overallSD=stdev(teams.flatMap(t=>scoringProfiles[t.id].scores));
- const rate=teams.map(t=>({mean:.7*scoringProfiles[t.id].average+.3*leagueMean,sd:Math.max(9,.50*scoringProfiles[t.id].sd+.50*overallSD)}));
- const count=teams.map(()=>0),totalWins=teams.map(()=>0),finishRanks=teams.map(()=>0);
- for(let r=0;r<N;r++){
-  const wins=teams.map(t=>t.wins),pf=teams.map(t=>t.pf);
-  for(let w=0;w<left;w++){
-   const scores=rate.map(q=>Math.max(0,q.mean+gaussian(rand)*q.sd));
-   const order=teams.map((_,i)=>i);
-   for(let i=order.length-1;i>0;i--){const j=Math.floor(rand()*(i+1));[order[i],order[j]]=[order[j],order[i]];}
-   for(let i=0;i<order.length;i+=2){const a=order[i],b=order[i+1];if(scores[a]>scores[b])wins[a]++;else if(scores[a]<scores[b])wins[b]++;else{wins[a]+=.5;wins[b]+=.5}}
-   scores.forEach((sc,i)=>pf[i]+=sc);
-  }
-  const order=teams.map((_,i)=>i).sort((a,b)=>wins[b]-wins[a]||pf[b]-pf[a]||a-b);
-  order.forEach((idx,place)=>{if(place<playoffSettings.slots)count[idx]++;totalWins[idx]+=wins[idx];finishRanks[idx]+=place+1;});
- }
- const probs=teams.map((t,i)=>({id:t.id,pct:100*count[i]/N,wins:totalWins[i]/N,rank:finishRanks[i]/N}));
- const result={probs,N};playoffCache.set(key,result);return result;
+function profilePage(){const t=selected(),p=scoringProfiles[t.id];return `${identityBadge(t)}${personalityMap()}${dnaHistoryCard(t)}<div class="card">${section('How this team scores',teamName(t)+' · final scores through Week '+DB.completedThrough)}${profileMini(t)}${weeklyDNA(t)}${momentumStory(t)}<div class="data-note">Scoring profiles use completed weeks only. Recent form is descriptive, not a guarantee about future output.</div></div><div class="card">${section('The league’s scoring personalities','Choose a team to see its full profile')}${dnaLeaderboard()}</div><div class="card">${section('Scoring versus recorded ESPN projections','Historical screenshot projections are not necessarily pregame forecasts')}<div class="perf-hero"><div><span>Difference across ${t.projWeeks||0} recorded weeks</span><strong class="${tone(t.projPct||0)}">${t.projWeeks?sign(t.projPct,1)+'%':'N/A'}</strong></div><div><span>Total points difference</span><strong class="${tone(t.projdelta||0)}">${t.projWeeks?sign(t.projdelta):'N/A'}</strong></div></div>${sparkline(t)}</div>`;}
+
+function personalityMap(){
+ const list=[...teams].sort((a,b)=>b.pf/DB.completedThrough-a.pf/DB.completedThrough),cols={steady:'#167c60',wild:'#3d7be8',underdog:'#cd7182',low:'#d89b42'};
+ const W=780,H=410,L=66,R=39,T=35,B=60,xvals=list.map(t=>scoringProfiles[t.id].average),yvals=list.map(t=>scoringProfiles[t.id].cv*100);
+ const minX=Math.floor((Math.min(...xvals)-8)/10)*10,maxX=Math.ceil((Math.max(...xvals)+8)/10)*10,maxY=Math.max(35,Math.ceil((Math.max(...yvals)+5)/5)*5),midX=leagueMean,midY=20;
+ const x=v=>L+(v-minX)/(maxX-minX)*(W-L-R),y=v=>H-B-v/maxY*(H-T-B);
+ const quadrants=[['Volatile underdogs',L,T,x(midX)-L,y(midY)-T,'#fbeff2'],['High-upside wildcards',x(midX),T,W-R-x(midX),y(midY)-T,'#ecf2fc'],['Steady, lower-output',L,y(midY),x(midX)-L,H-B-y(midY),'#f8f4e9'],['Reliable contenders',x(midX),y(midY),W-R-x(midX),H-B-y(midY),'#ebf6f1']];
+ let g=quadrants.map(q=>`<rect x="${q[1]}" y="${q[2]}" width="${q[3]}" height="${q[4]}" fill="${q[5]}"/>`).join('');
+ for(let i=0;i<=4;i++){let n=minX+(maxX-minX)*i/4,xx=x(n);g+=`<line x1="${xx}" x2="${xx}" y1="${T}" y2="${H-B}" stroke="#d4deea" stroke-width=".7"/><text x="${xx}" y="${H-B+19}" text-anchor="middle" font-size="12" fill="#526782">${fmt(n,0)}</text>`}
+ for(let i=0;i<=4;i++){let n=maxY*i/4,yy=y(n);g+=`<line x1="${L}" x2="${W-R}" y1="${yy}" y2="${yy}" stroke="#d4deea" stroke-width=".7"/><text x="${L-9}" y="${yy+4}" text-anchor="end" font-size="12" fill="#526782">${fmt(n,0)}%</text>`}
+ g+=`<line x1="${x(midX)}" x2="${x(midX)}" y1="${T}" y2="${H-B}" stroke="#869bb0" stroke-dasharray="5 4" stroke-width="1.5"/><line x1="${L}" x2="${W-R}" y1="${y(midY)}" y2="${y(midY)}" stroke="#869bb0" stroke-dasharray="5 4" stroke-width="1.5"/>`;
+ g+=`<text x="${(L+x(midX))/2}" y="${T+20}" text-anchor="middle" font-size="12" font-weight="750" fill="#87445a">Volatile underdogs</text><text x="${(x(midX)+W-R)/2}" y="${T+20}" text-anchor="middle" font-size="12" font-weight="750" fill="#31568e">High-upside wildcards</text><text x="${(L+x(midX))/2}" y="${H-B-14}" text-anchor="middle" font-size="12" font-weight="750" fill="#8c6830">Steady, lower-output</text><text x="${(x(midX)+W-R)/2}" y="${H-B-14}" text-anchor="middle" font-size="12" font-weight="750" fill="#1e7459">Reliable contenders</text>`;
+ list.forEach((t,i)=>{let p=scoringProfiles[t.id],xx=x(p.average),yy=y(p.cv*100),sel=t.id===state.selected;g+=`<g data-select="${t.id}" tabindex="0" role="button" aria-label="Select ${esc(t.name)}" style="cursor:pointer"><circle cx="${xx}" cy="${yy}" r="${sel?17:13}" fill="${sel?'#143c78':'#377dd5'}" stroke="white" stroke-width="${sel?4:2.2}"/><text x="${xx}" y="${yy+4.2}" text-anchor="middle" font-size="11" font-weight="800" fill="white">${i+1}</text><title>${esc(t.name)} · ${fmt(p.average,1)} PF/wk · ${fmt(100*p.cv,1)}% volatility · ${esc(p.category)}</title></g>`;});
+ return `<div class="card personality-map">${section('The Scoring Personality Map','Strong scoring → right · More unpredictable → up · Select a dot or team name')}<svg viewBox="0 0 ${W} ${H}" class="map-svg" role="img" aria-label="Scoring personality map with ten numbered selectable fantasy teams">${g}<text x="${(W+L-R)/2}" y="${H-12}" fill="#344c68" font-size="13" font-weight="700" text-anchor="middle">Average points per week →</text><text transform="translate(15,${(H-B+T)/2}) rotate(-90)" text-anchor="middle" fill="#344c68" font-size="13" font-weight="700">Scoring volatility →</text></svg><div class="maplegend">${list.map((t,i)=>`<button class="map-team ${t.id===state.selected?'selected':''}" data-select="${t.id}"><b>${i+1}</b><span>${teamName(t)}</span><small>${fmt(scoringProfiles[t.id].average,1)} PF · ${fmt(scoringProfiles[t.id].cv*100,1)}% CV</small></button>`).join('')}</div><div class="data-note">Axes split at league average (${fmt(leagueMean,1)} PF) and 20% volatility. Quadrants are broad visual groupings; the Team DNA tag uses its separate seven-rule classification. Early identities are provisional.</div></div>`;
 }
-function playoffCard(){const {probs,N}=simulatePlayoff(),t=selected(),p=probs.find(x=>x.id===t.id),sorted=[...probs].sort((a,b)=>b.pct-a.pct);
- return `<div class="card" id="playoffModel">${section('Playoff race · scenario model','Forward-looking example, not your ESPN league’s official odds')}<div class="explainer"><strong>Assumptions you can change:</strong> Top teams qualify by overall record; ties break on total points; each future week has randomized opponents. Future team points are simulated from Weeks 1–4, shrunk toward the league average. We do not yet have your actual remaining schedule or playoff rules. Results are <strong>illustrative</strong>, not verified playoff probabilities.</div><div class="model-controls"><label>REGULAR-SEASON END<select id="simWeeks" aria-label="Total regular season weeks">${[12,13,14,15].map(w=>`<option value="${w}" ${playoffSettings.seasonWeeks===w?'selected':''}>Week ${w}</option>`).join('')}</select></label><label>PLAYOFF SPOTS<select id="simSlots" aria-label="Number of playoff qualifiers">${[2,4,6,8].map(v=>`<option value="${v}" ${playoffSettings.slots===v?'selected':''}>${v} teams</option>`).join('')}</select></label></div><div class="model-headline"><strong>${fmt(p.pct,1)}%</strong><span>Illustrative chance for <b>${teamName(t)}</b> to finish in the top ${playoffSettings.slots}, across ${fmt(N,0)} random-season simulations.</span></div><div class="probabilities">${sorted.map(q=>{let z=byId[q.id];return `<div class="prob-row" data-select="${q.id}" style="cursor:pointer"><strong>${teamName(z)}</strong><div class="prob-track"><div style="width:${q.pct}%"></div></div><span>${fmt(q.pct,1)}%</span></div>`}).join('')}</div><p class="data-note">Model choices are <strong>examples</strong> until your league’s real playoff format and remaining matchups are supplied. Four observed scores per team give wide uncertainty; these values should not guide trades or lineup decisions.</p></div>`;
+function dnaHistoryCard(t){
+ const history=(DB.dnaHistory||[]).filter(h=>h.throughWeek>=4),recent=(DB.recentDna||[]).find(r=>r.id===t.id),last=history.at(-1);
+ if(!history.length)return '';
+ const latest=last.teams.find(x=>x.id===t.id);let streak=0;for(let i=history.length-1;i>=0;i--){let q=history[i].teams.find(x=>x.id===t.id);if(q?.category===latest?.category)streak++;else break;}
+ const phase=DB.completedThrough<=5?'Provisional':DB.completedThrough<=9?'Emerging':'More established';
+ const confirmed=streak>=3?'This category has appeared in three consecutive updates.':'Identity change is not yet sustained; three consecutive weekly updates are required.';
+ return `<div class="card dna-history">${section('How is this team changing?','Weekly season-to-date DNA snapshots; recent scoring is assessed separately')}<div class="history-summary"><div><small>Season DNA</small><strong>${esc(scoringProfiles[t.id].category)}</strong><span>${phase} · ${DB.completedThrough} weeks</span></div><div><small>Recent four-week DNA</small><strong>${recent?esc(recent.category):'Not yet available'}</strong><span>${recent?'W'+recent.weeks[0]+'–W'+recent.weeks[1]:'Available once seven weeks are complete'}</span></div><div><small>Current momentum</small><strong>${esc(scoringProfiles[t.id].momentum)}</strong><span>${sign(scoringProfiles[t.id].shift,1)} PF per week</span></div></div><div class="history-track">${history.map(h=>{let q=h.teams.find(z=>z.id===t.id);return `<div class="history-item"><span>W${h.throughWeek}</span><strong>${esc(q.category)}</strong><small>${fmt(q.cvPct,1)}% CV</small></div>`}).join('')}</div><p class="data-note">${confirmed} Season DNA uses all completed weeks; recent DNA uses the last four once enough non-overlapping history exists. A recent profile is descriptive, not a forecast.</p></div>`;
 }
-const titles={overview:['League overview','Who won, who got the helpful matchups, and who scored above projections.'],luck:['Who got lucky?',"Who is ahead or behind thanks to the weekly schedule?"],performance:['Team DNA & scoring','Which teams have a steady floor, explosive ceiling, or changing momentum?'],divisions:['What if the schedule changed?','Past schedule reshuffles plus an assumption-driven playoff race scenario.'],method:['How it works','Simple explanations of the statistics used throughout this report.']};
+const titles={overview:['League overview','Who won, who got the helpful matchups, and who scored above projections.'],luck:['Who got lucky?',"Who is ahead or behind thanks to the weekly schedule?"],performance:['Team DNA & scoring','Which teams have a steady floor, explosive ceiling, or changing momentum?'],divisions:['What if the schedule changed?','Retrospective weekly schedule reshuffles. Playoff forecasting is deferred.'],method:['How it works','Simple explanations of the statistics used throughout this report.']};
 const functions={overview,luck,performance:perf,divisions,method};
-function render(){document.getElementById('view').innerHTML=functions[state.tab]();document.getElementById('pageTitle').textContent=titles[state.tab][0];document.getElementById('intro').textContent=titles[state.tab][1];document.querySelectorAll('[data-tab]').forEach(el=>el.classList.toggle('active',el.dataset.tab===state.tab));document.getElementById('teamSelect').value=String(state.selected);const mobile=document.getElementById('mobileSection');if(mobile)mobile.value=state.tab;}
+function render(){document.getElementById('view').innerHTML=functions[state.tab]();document.getElementById('pageTitle').textContent=titles[state.tab][0];document.getElementById('intro').textContent=titles[state.tab][1];document.querySelectorAll('[data-tab]').forEach(el=>el.classList.toggle('active',el.dataset.tab===state.tab));document.getElementById('teamSelect').value=String(state.selected);document.getElementById('weekStatus').textContent=`Weeks 1–${DB.completedThrough} · Final`;const mobile=document.getElementById('mobileSection');if(mobile)mobile.value=state.tab;}
 function init(){document.getElementById('teamSelect').innerHTML=teams.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('');document.getElementById('mobileNav').innerHTML=`<label for="mobileSection">EXPLORE</label><select id="mobileSection" aria-label="Dashboard section">${navTabs.map(([id,name])=>`<option value="${id}">${name}</option>`).join('')}</select>`;document.getElementById('mobileSection').addEventListener('change',e=>{state.tab=e.target.value;render();window.scrollTo(0,0)});render()}
 document.addEventListener('click',e=>{let btn=e.target.closest('[data-tab]');if(btn){state.tab=btn.dataset.tab;render();window.scrollTo({top:0,behavior:'instant'});return;}btn=e.target.closest('[data-select]');if(btn){state.selected=Number(btn.dataset.select);if(btn.dataset.jump)state.tab=btn.dataset.jump;render();if(btn.dataset.jump)window.scrollTo(0,0);return;}});
 document.getElementById('teamSelect').addEventListener('change',e=>{state.selected=Number(e.target.value);render();});
 document.addEventListener('change',async e=>{
- if(e.target.id==='simWeeks'){playoffSettings.seasonWeeks=Number(e.target.value);render();}
- if(e.target.id==='simSlots'){playoffSettings.slots=Number(e.target.value);render();}
+
 
 });
 function save(name,txt,mime='text/csv'){let a=document.createElement('a'),url=URL.createObjectURL(new Blob([txt],{type:mime+';charset=utf-8'}));a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000)}
-document.getElementById('csvBtn').addEventListener('click',()=>{let cols=['team','division','actual_wins','losses','expected_wins','luck_wins','luck_percentage_points','standings_luck_percentile','points_for','points_against','projection_total','projection_difference','projection_difference_pct','scoring_identity','momentum','weekly_mean','weekly_sd','weekly_floor','weekly_ceiling','recent_two_vs_first_two_mean_change'];let vals=teams.map(t=>[t.name,t.division,t.wins,t.losses,t.xw,t.luck,t.luckpp,t.rankLuckPct,t.pf,t.pa,t.proj,t.projdelta,t.projPct,scoringProfiles[t.id].category,scoringProfiles[t.id].momentum,scoringProfiles[t.id].average,scoringProfiles[t.id].sd,scoringProfiles[t.id].low,scoringProfiles[t.id].high,scoringProfiles[t.id].shift]);const cell=x=>'"'+String(x).replace(/"/g,'""')+'"';save('fantasy_2k_luck_leaderboard_weeks_1_to_4.csv',[cols,...vals].map(row=>row.map(cell).join(',')).join('\r\n'))});
-init();
+document.getElementById('csvBtn').addEventListener('click',()=>{let cols=['team','division','actual_wins','losses','expected_wins','luck_wins','luck_percentage_points','standings_luck_percentile','points_for','points_against','projection_total','projection_difference','projection_difference_pct','scoring_identity','momentum','weekly_mean','weekly_sd','weekly_floor','weekly_ceiling','recent_vs_prior_mean_change'];let vals=teams.map(t=>[t.name,t.division,t.wins,t.losses,t.xw,t.luck,t.luckpp,t.rankLuckPct,t.pf,t.pa,t.proj,t.projdelta,t.projPct,scoringProfiles[t.id].category,scoringProfiles[t.id].momentum,scoringProfiles[t.id].average,scoringProfiles[t.id].sd,scoringProfiles[t.id].low,scoringProfiles[t.id].high,scoringProfiles[t.id].shift]);const cell=x=>'"'+String(x).replace(/"/g,'""')+'"';save(`fantasy_2k_report_through_week_${DB.completedThrough}.csv`,[cols,...vals].map(row=>row.map(cell).join(',')).join('\r\n'))});
+async function loadData(){
+ const status=document.getElementById('sourceStatus');
+ try{
+  const resp=await fetch('./data/league.json?v='+Date.now(),{cache:'no-store'});
+  if(!resp.ok)throw new Error('No approved published dataset');
+  const fresh=await resp.json();
+  if(!fresh||fresh.completedThrough<4||!Array.isArray(fresh.teams)||fresh.teams.length!==10||!fresh.teams.every(t=>t.weeks.length===fresh.completedThrough))throw new Error('Public data validation failed');
+  const ids=fresh.teams.map(t=>t.id);if(new Set(ids).size!==10)throw new Error('Duplicate team IDs');
+  DB=fresh;teams=DB.teams;byId=Object.fromEntries(teams.map(t=>[t.id,t]));leagueMean=mean(teams.map(t=>t.pf/DB.completedThrough));scoringProfiles=buildScoringProfiles();
+  status.textContent=`Validated ESPN data · through Week ${DB.completedThrough}`;document.getElementById('sideStatus').innerHTML=`<span class="dot"></span>${10*DB.completedThrough} finalized team-weeks<br>${fmt(DB.simulationRuns,0)} schedule simulations<br>Approved data file loaded`;
+  document.getElementById('footerStatus').textContent=`Fantasy 2K Infinity · Validated ESPN data · ${DB.generated||'Last approved refresh'}`;
+ }catch(error){
+  status.textContent=`Validated local fallback · through Week ${DB.completedThrough}`;document.getElementById('sideStatus').innerHTML=`<span class="dot"></span>${10*DB.completedThrough} finalized team-weeks<br>${fmt(DB.simulationRuns,0)} schedule simulations<br>Showing embedded snapshot`;
+  document.getElementById('footerStatus').textContent='Fantasy 2K Infinity · Showing last embedded validated snapshot · ESPN refresh not loaded';
+ }
+ init();
+}
+document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-select][role="button"]')){e.preventDefault();state.selected=Number(e.target.dataset.select);render();}});
+loadData();
 })();
 </script></body></html>
