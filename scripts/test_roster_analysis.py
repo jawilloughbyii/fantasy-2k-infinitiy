@@ -37,6 +37,20 @@ class RosterCases(unittest.TestCase):
             {'seasonId':2025,'scoringPeriodId':1,'statSourceId':0,'statSplitTypeId':1,'appliedTotal':3}]}}}
         self.assertEqual(r.clean_player(row,1)['points'],10)
 
+    def test_explicit_2026_actual_takes_precedence_over_untagged_duplicate(self):
+        row={'playerPoolEntry':{'id':4249087,'player':{'defaultPositionId':2,'stats':[
+            {'scoringPeriodId':1,'statSourceId':0,'statSplitTypeId':1,'appliedTotal':7},
+            {'seasonId':2026,'scoringPeriodId':1,'statSourceId':0,'statSplitTypeId':1,'appliedTotal':10},
+            {'seasonId':2025,'scoringPeriodId':1,'statSourceId':0,'statSplitTypeId':1,'appliedTotal':3}]}}}
+        self.assertEqual(r.clean_player(row,1)['points'],10)
+
+    def test_conflicting_untagged_actuals_still_rejected(self):
+        row={'playerPoolEntry':{'id':4249087,'player':{'defaultPositionId':2,'stats':[
+            {'scoringPeriodId':1,'statSourceId':0,'statSplitTypeId':1,'appliedTotal':7},
+            {'scoringPeriodId':1,'statSourceId':0,'statSplitTypeId':1,'appliedTotal':10}]}}}
+        with self.assertRaisesRegex(ValueError,'Ambiguous actual weekly stats'):
+            r.clean_player(row,1)
+
     def test_conflicting_same_season_actuals_still_rejected(self):
         row={'playerPoolEntry':{'id':4249087,'player':{'defaultPositionId':2,'stats':[
             {'seasonId':2026,'scoringPeriodId':1,'statSourceId':0,'statSplitTypeId':1,'appliedTotal':10},
