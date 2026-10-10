@@ -884,7 +884,7 @@
       "projWeeks": 4
     }
   ],
-  "generated": "2026-10-10T17:59:24.048222+00:00",
+  "generated": "2026-10-10T18:29:44.877533+00:00",
   "methodNotes": [
     "Private ESPN backfill reconciled against 40 known scores and opponents for Weeks 1–4.",
     "Only completed periods before ESPN's current matchup period enter scoring calculations.",
