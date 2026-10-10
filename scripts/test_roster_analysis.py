@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Synthetic regression suite; no credentials and no fabricated public league results."""
 import json, sys, unittest
+from unittest.mock import patch
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).parent))
 import roster_analysis as r
@@ -68,6 +69,21 @@ class RosterCases(unittest.TestCase):
         copy={k:dict(v) for k,v in self.pool.items()};cut=self.nth('RB',20)['points'];copy[self.nth('RB',21)['id']]['points']=cut
         sets,_=r.qualified_sets(copy)
         self.assertIn(self.nth('RB',21)['id'],sets['RB'])
+    def test_sanitized_approved_dataset_reaches_retrieval(self):
+        league=json.loads((Path(__file__).parents[1]/'data/league.json').read_text())
+        mapping=json.loads((Path(__file__).parents[1]/'reference/team_id_map.json').read_text())
+        self.assertNotIn('leagueId',league)
+        self.assertNotIn('season',league)
+        with patch.object(r,'fetch_week',side_effect=RuntimeError('retrieval reached')) as fetch:
+            with self.assertRaisesRegex(RuntimeError,'retrieval reached'):
+                r.build(league,mapping,[1])
+            fetch.assert_called_once_with(1)
+    def test_unapproved_dataset_source_rejected(self):
+        league=json.loads((Path(__file__).parents[1]/'data/league.json').read_text())
+        mapping=json.loads((Path(__file__).parents[1]/'reference/team_id_map.json').read_text())
+        league['source']='unknown'
+        with self.assertRaisesRegex(ValueError,'Wrong approved league dataset'):
+            r.build(league,mapping,[1])
     def test_backwards_and_partial_roster_rejected(self):
         league=json.loads((Path(__file__).parents[1]/'data/league.json').read_text());mapping=json.loads((Path(__file__).parents[1]/'reference/team_id_map.json').read_text())
         with self.assertRaises(ValueError):r.build(league,mapping,[league['completedThrough']+1],fixture_dir='unused')
