@@ -90,7 +90,7 @@ def fetch_week(week):
     # No current-team status filter: historical waiver movement must not affect ranking.
     pool=[];seen=set()
     for offset in range(0,MAX_POOL,PAGE_SIZE):
-        filt={'players':{'limit':PAGE_SIZE,'offset':offset,'filterSlotIds':{'value':[0,2,4,6,16,17]},'sortPercOwned':{'sortPriority':1,'sortAsc':False},'filterStatsForTopScoringPeriodIds':{'value':week,'additionalValue':[f'00{YEAR}']}}}
+        filt={'players':{'limit':PAGE_SIZE,'offset':offset,'filterSlotIds':{'value':[0,2,4,6,16,17]},'sortPercOwned':{'sortPriority':1,'sortAsc':False},'filterStatsForTopScoringPeriodIds':{'value':18,'additionalValue':[f'00{YEAR}']}}}
         blob=_get_json([('view','kona_player_info'),('scoringPeriodId',week)],filt)
         batch=blob.get('players')
         if not isinstance(batch,list) or (offset==0 and not batch):raise ValueError(f'Week {week}: missing complete ESPN player pool')
