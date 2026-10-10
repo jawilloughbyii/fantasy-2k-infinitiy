@@ -8,6 +8,7 @@ on:
       - '.github/workflows/preview-roster-analysis.yml'
       - 'scripts/roster_analysis.py'
       - 'scripts/test_roster_analysis.py'
+      - 'scripts/attach_roster_analysis.py'
 
 permissions:
   contents: read
