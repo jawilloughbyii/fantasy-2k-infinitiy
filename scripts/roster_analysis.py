@@ -47,7 +47,8 @@ def score_stat(p,week):
         pid=data.get('id',p.get('playerId',p.get('id','unknown')))
         details=[{'period':s.get('scoringPeriodId'),'source':s.get('statSourceId'),
                   'type':s.get('statTypeId'),'split':s.get('statSplitTypeId'),
-                  'points':s.get('appliedTotal')}
+                  'points':s.get('appliedTotal'), 'seasonId':s.get('seasonId'),
+                  'keys':sorted(s.keys())}
                  for s in stats if str(s.get('scoringPeriodId'))==str(week)
                  and str(s.get('statSourceId',s.get('statTypeId',-1)))=='0'
                  and (s.get('statSplitTypeId') is None or str(s.get('statSplitTypeId'))=='1')
