@@ -6,7 +6,11 @@ from pathlib import Path
 
 
 def attach(data,rosters):
-    if (data.get('leagueId'),data.get('season'),data.get('completedThrough')) != (rosters.get('leagueId'),rosters.get('season'),rosters.get('completedThrough')):
+    # The approved public baseline intentionally omits private ESPN league/season identifiers.
+    if (data.get('title')!='Fantasy 2K Infinity' or
+        data.get('source')!='ESPN authenticated, baseline reconciled' or
+        rosters.get('leagueId')!=418244680 or rosters.get('season')!=2026 or
+        data.get('completedThrough')!=rosters.get('completedThrough')):
         raise ValueError('Roster analysis does not match approved league/season/week')
     weeks=rosters.get('weeks') or []
     if [x['week'] for x in weeks]!=list(range(1,data['completedThrough']+1)):raise ValueError('Roster analysis is missing approved completed weeks')
