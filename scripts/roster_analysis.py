@@ -73,7 +73,7 @@ def _get_json(params,filters=None):
     req=urllib.request.Request(url,headers=headers)
     try:
         with urllib.request.urlopen(req,timeout=45) as response:return json.load(response)
-    except urllib.error.HTTPError as e:raise ValueError(f'ESPN HTTP {e.code} during roster retrieval') from None
+    except urllib.error.HTTPError as e:\n        view=','.join(str(v) for k,v in params if k=='view')\n        week=next((v for k,v in params if k=='scoringPeriodId'),'unspecified')\n        stage='weekly player pool' if 'kona_player_info' in view else 'historical box score'\n        raise ValueError(f'ESPN HTTP {e.code} retrieving {stage} (week {week}, view {view}); URL, cookies and response body omitted') from None
     except urllib.error.URLError:raise ValueError('ESPN unreachable during roster retrieval') from None
 
 
