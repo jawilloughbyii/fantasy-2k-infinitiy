@@ -1,0 +1,1175 @@
+{
+  "title": "Fantasy 2K Infinity",
+  "completedThrough": 4,
+  "simulationRuns": 100000,
+  "teams": [
+    {
+      "id": 1,
+      "name": "Aubreys 3rd Leg",
+      "division": "House Atreides",
+      "weeks": [
+        {
+          "week": 1,
+          "pf": 93.36,
+          "pa": 184.5,
+          "opp": 8,
+          "proj": 125.29,
+          "win": 0,
+          "xw": 0.22222222,
+          "weekLuck": -0.22222222,
+          "delta": -31.93,
+          "rank": 8
+        },
+        {
+          "week": 2,
+          "pf": 131.44,
+          "pa": 120.8,
+          "opp": 9,
+          "proj": 123.82,
+          "win": 1,
+          "xw": 0.77777778,
+          "weekLuck": 0.22222222,
+          "delta": 7.62,
+          "rank": 3
+        },
+        {
+          "week": 3,
+          "pf": 117.06,
+          "pa": 98.58,
+          "opp": 5,
+          "proj": 124.32,
+          "win": 1,
+          "xw": 0.44444444,
+          "weekLuck": 0.55555556,
+          "delta": -7.26,
+          "rank": 6
+        },
+        {
+          "week": 4,
+          "pf": 168.88,
+          "pa": 85.92,
+          "opp": 2,
+          "proj": 117.66,
+          "win": 1,
+          "xw": 1.0,
+          "weekLuck": 0.0,
+          "delta": 51.22,
+          "rank": 1
+        }
+      ],
+      "wins": 3,
+      "losses": 1,
+      "divrank": 1,
+      "pf": 510.74,
+      "pa": 489.8,
+      "proj": 491.09,
+      "pd": 20.94,
+      "projdelta": 19.65,
+      "projPct": 4.001,
+      "xw": 2.44444444,
+      "luck": 0.55555556,
+      "luckpp": 13.889,
+      "winsAllPlay": 21.99999996,
+      "simWinMean": 2.441,
+      "simRankMean": 1.554,
+      "winDist": [
+        0.0,
+        9.623,
+        44.108,
+        38.788,
+        7.481
+      ],
+      "rankDist": [
+        63.022,
+        24.365,
+        7.619,
+        4.164,
+        0.83
+      ],
+      "rankLuckPct": 68.5,
+      "winLuckPct": 73.1,
+      "simTop2Pct": 87.4,
+      "projWeeks": 4
+    },
+    {
+      "id": 2,
+      "name": "Jaxon and the Giant Jazz",
+      "division": "House Atreides",
+      "weeks": [
+        {
+          "week": 1,
+          "pf": 126.22,
+          "pa": 142.2,
+          "opp": 7,
+          "proj": 130.43,
+          "win": 0,
+          "xw": 0.33333333,
+          "weekLuck": -0.33333333,
+          "delta": -4.21,
+          "rank": 7
+        },
+        {
+          "week": 2,
+          "pf": 160.66,
+          "pa": 95.72,
+          "opp": 10,
+          "proj": 130.9,
+          "win": 1,
+          "xw": 1.0,
+          "weekLuck": 0.0,
+          "delta": 29.76,
+          "rank": 1
+        },
+        {
+          "week": 3,
+          "pf": 160.48,
+          "pa": 123.74,
+          "opp": 4,
+          "proj": 137.69,
+          "win": 1,
+          "xw": 1.0,
+          "weekLuck": 0.0,
+          "delta": 22.79,
+          "rank": 1
+        },
+        {
+          "week": 4,
+          "pf": 85.92,
+          "pa": 168.88,
+          "opp": 1,
+          "proj": 137.39,
+          "win": 0,
+          "xw": 0.11111111,
+          "weekLuck": -0.11111111,
+          "delta": -51.47,
+          "rank": 9
+        }
+      ],
+      "wins": 2,
+      "losses": 2,
+      "divrank": 2,
+      "pf": 533.28,
+      "pa": 530.54,
+      "proj": 536.41,
+      "pd": 2.74,
+      "projdelta": -3.13,
+      "projPct": -0.584,
+      "xw": 2.44444444,
+      "luck": -0.44444444,
+      "luckpp": -11.111,
+      "winsAllPlay": 21.99999996,
+      "simWinMean": 2.445,
+      "simRankMean": 1.453,
+      "winDist": [
+        0.0,
+        0.0,
+        59.156,
+        37.183,
+        3.661
+      ],
+      "rankDist": [
+        60.805,
+        33.317,
+        5.7,
+        0.178,
+        0.0
+      ],
+      "rankLuckPct": 22.5,
+      "winLuckPct": 29.6,
+      "simTop2Pct": 94.1,
+      "projWeeks": 4
+    },
+    {
+      "id": 3,
+      "name": "Israeli Nutonyaboob",
+      "division": "House Atreides",
+      "weeks": [
+        {
+          "week": 1,
+          "pf": 86.82,
+          "pa": 127.76,
+          "opp": 6,
+          "proj": 121.6,
+          "win": 0,
+          "xw": 0.11111111,
+          "weekLuck": -0.11111111,
+          "delta": -34.78,
+          "rank": 9
+        },
+        {
+          "week": 2,
+          "pf": 78.22,
+          "pa": 151.56,
+          "opp": 7,
+          "proj": 119.54,
+          "win": 0,
+          "xw": 0.0,
+          "weekLuck": 0.0,
+          "delta": -41.32,
+          "rank": 10
+        },
+        {
+          "week": 3,
+          "pf": 134.54,
+          "pa": 102.22,
+          "opp": 10,
+          "proj": 118.12,
+          "win": 1,
+          "xw": 0.77777778,
+          "weekLuck": 0.22222222,
+          "delta": 16.42,
+          "rank": 3
+        },
+        {
+          "week": 4,
+          "pf": 131.96,
+          "pa": 101.04,
+          "opp": 4,
+          "proj": 121.11,
+          "win": 1,
+          "xw": 0.55555556,
+          "weekLuck": 0.44444444,
+          "delta": 10.85,
+          "rank": 5
+        }
+      ],
+      "wins": 2,
+      "losses": 2,
+      "divrank": 2,
+      "pf": 431.54,
+      "pa": 482.58,
+      "proj": 480.37,
+      "pd": -51.04,
+      "projdelta": -48.83,
+      "projPct": -10.165,
+      "xw": 1.44444445,
+      "luck": 0.55555555,
+      "luckpp": 13.889,
+      "winsAllPlay": 13.000000049999999,
+      "simWinMean": 1.443,
+      "simRankMean": 2.956,
+      "winDist": [
+        8.756,
+        42.912,
+        43.608,
+        4.724,
+        0.0
+      ],
+      "rankDist": [
+        16.324,
+        23.539,
+        21.948,
+        24.574,
+        13.615
+      ],
+      "rankLuckPct": 71.9,
+      "winLuckPct": 73.5,
+      "simTop2Pct": 39.9,
+      "projWeeks": 4
+    },
+    {
+      "id": 4,
+      "name": "Golden Ponies",
+      "division": "House Atreides",
+      "weeks": [
+        {
+          "week": 1,
+          "pf": 86.06,
+          "pa": 143.76,
+          "opp": 9,
+          "proj": 116.4,
+          "win": 0,
+          "xw": 0.0,
+          "weekLuck": 0.0,
+          "delta": -30.34,
+          "rank": 10
+        },
+        {
+          "week": 2,
+          "pf": 117.88,
+          "pa": 88.2,
+          "opp": 5,
+          "proj": 118.11,
+          "win": 1,
+          "xw": 0.44444444,
+          "weekLuck": 0.55555556,
+          "delta": -0.23,
+          "rank": 6
+        },
+        {
+          "week": 3,
+          "pf": 123.74,
+          "pa": 160.48,
+          "opp": 2,
+          "proj": 123.61,
+          "win": 0,
+          "xw": 0.66666667,
+          "weekLuck": -0.66666667,
+          "delta": 0.13,
+          "rank": 4
+        },
+        {
+          "week": 4,
+          "pf": 101.04,
+          "pa": 131.96,
+          "opp": 3,
+          "proj": 125.24,
+          "win": 0,
+          "xw": 0.33333333,
+          "weekLuck": -0.33333333,
+          "delta": -24.2,
+          "rank": 7
+        }
+      ],
+      "wins": 1,
+      "losses": 3,
+      "divrank": 4,
+      "pf": 428.72,
+      "pa": 524.4,
+      "proj": 483.36,
+      "pd": -95.68,
+      "projdelta": -54.64,
+      "projPct": -11.304,
+      "xw": 1.44444444,
+      "luck": -0.44444444,
+      "luckpp": -11.111,
+      "winsAllPlay": 12.99999996,
+      "simWinMean": 1.45,
+      "simRankMean": 2.957,
+      "winDist": [
+        12.22,
+        40.781,
+        36.808,
+        10.191,
+        0.0
+      ],
+      "rankDist": [
+        19.744,
+        21.156,
+        18.878,
+        24.064,
+        16.158
+      ],
+      "rankLuckPct": 28.2,
+      "winLuckPct": 32.6,
+      "simTop2Pct": 40.9,
+      "projWeeks": 4
+    },
+    {
+      "id": 5,
+      "name": "Quattro Padres",
+      "division": "House Atreides",
+      "weeks": [
+        {
+          "week": 1,
+          "pf": 131.56,
+          "pa": 147.36,
+          "opp": 10,
+          "proj": 122.94,
+          "win": 0,
+          "xw": 0.55555556,
+          "weekLuck": -0.55555556,
+          "delta": 8.62,
+          "rank": 5
+        },
+        {
+          "week": 2,
+          "pf": 88.2,
+          "pa": 117.88,
+          "opp": 4,
+          "proj": 121.51,
+          "win": 0,
+          "xw": 0.11111111,
+          "weekLuck": -0.11111111,
+          "delta": -33.31,
+          "rank": 9
+        },
+        {
+          "week": 3,
+          "pf": 98.58,
+          "pa": 117.06,
+          "opp": 1,
+          "proj": 123.02,
+          "win": 0,
+          "xw": 0.11111111,
+          "weekLuck": -0.11111111,
+          "delta": -24.44,
+          "rank": 9
+        },
+        {
+          "week": 4,
+          "pf": 110.52,
+          "pa": 164.98,
+          "opp": 8,
+          "proj": 129.26,
+          "win": 0,
+          "xw": 0.44444444,
+          "weekLuck": -0.44444444,
+          "delta": -18.74,
+          "rank": 6
+        }
+      ],
+      "wins": 0,
+      "losses": 4,
+      "divrank": 5,
+      "pf": 428.86,
+      "pa": 547.28,
+      "proj": 496.73,
+      "pd": -118.42,
+      "projdelta": -67.87,
+      "projPct": -13.663,
+      "xw": 1.22222222,
+      "luck": -1.22222222,
+      "luckpp": -30.556,
+      "winsAllPlay": 10.99999998,
+      "simWinMean": 1.224,
+      "simRankMean": 3.314,
+      "winDist": [
+        19.485,
+        44.746,
+        29.94,
+        5.514,
+        0.315
+      ],
+      "rankDist": [
+        14.385,
+        16.639,
+        16.947,
+        27.293,
+        24.736
+      ],
+      "rankLuckPct": 12.4,
+      "winLuckPct": 9.7,
+      "simTop2Pct": 31.0,
+      "projWeeks": 4
+    },
+    {
+      "id": 6,
+      "name": "The Domestic House Cats",
+      "division": "House Harkonnen",
+      "weeks": [
+        {
+          "week": 1,
+          "pf": 127.76,
+          "pa": 86.82,
+          "opp": 3,
+          "proj": 120.0,
+          "win": 1,
+          "xw": 0.44444444,
+          "weekLuck": 0.55555556,
+          "delta": 7.76,
+          "rank": 6
+        },
+        {
+          "week": 2,
+          "pf": 118.22,
+          "pa": 105.36,
+          "opp": 8,
+          "proj": 130.61,
+          "win": 1,
+          "xw": 0.55555556,
+          "weekLuck": 0.44444444,
+          "delta": -12.39,
+          "rank": 5
+        },
+        {
+          "week": 3,
+          "pf": 141.06,
+          "pa": 84.34,
+          "opp": 7,
+          "proj": 122.53,
+          "win": 1,
+          "xw": 0.88888889,
+          "weekLuck": 0.11111111,
+          "delta": 18.53,
+          "rank": 2
+        },
+        {
+          "week": 4,
+          "pf": 153.02,
+          "pa": 144.98,
+          "opp": 9,
+          "proj": 125.18,
+          "win": 1,
+          "xw": 0.77777778,
+          "weekLuck": 0.22222222,
+          "delta": 27.84,
+          "rank": 3
+        }
+      ],
+      "wins": 4,
+      "losses": 0,
+      "divrank": 1,
+      "pf": 540.06,
+      "pa": 421.5,
+      "proj": 498.32,
+      "pd": 118.56,
+      "projdelta": 41.74,
+      "projPct": 8.376,
+      "xw": 2.66666667,
+      "luck": 1.33333333,
+      "luckpp": 33.333,
+      "winsAllPlay": 24.00000003,
+      "simWinMean": 2.672,
+      "simRankMean": 1.826,
+      "winDist": [
+        0.597,
+        8.16,
+        31.931,
+        42.099,
+        17.213
+      ],
+      "rankDist": [
+        52.014,
+        25.008,
+        14.108,
+        6.077,
+        2.793
+      ],
+      "rankLuckPct": 74.0,
+      "winLuckPct": 91.4,
+      "simTop2Pct": 77.0,
+      "projWeeks": 4
+    },
+    {
+      "id": 7,
+      "name": "Project Haily Mary",
+      "division": "House Harkonnen",
+      "weeks": [
+        {
+          "week": 1,
+          "pf": 142.2,
+          "pa": 126.22,
+          "opp": 2,
+          "proj": 123.65,
+          "win": 1,
+          "xw": 0.66666667,
+          "weekLuck": 0.33333333,
+          "delta": 18.55,
+          "rank": 4
+        },
+        {
+          "week": 2,
+          "pf": 151.56,
+          "pa": 78.22,
+          "opp": 3,
+          "proj": 126.76,
+          "win": 1,
+          "xw": 0.88888889,
+          "weekLuck": 0.11111111,
+          "delta": 24.8,
+          "rank": 2
+        },
+        {
+          "week": 3,
+          "pf": 84.34,
+          "pa": 141.06,
+          "opp": 6,
+          "proj": 118.34,
+          "win": 0,
+          "xw": 0.0,
+          "weekLuck": 0.0,
+          "delta": -34.0,
+          "rank": 10
+        },
+        {
+          "week": 4,
+          "pf": 91.9,
+          "pa": 61.82,
+          "opp": 10,
+          "proj": 108.81,
+          "win": 1,
+          "xw": 0.22222222,
+          "weekLuck": 0.77777778,
+          "delta": -16.91,
+          "rank": 8
+        }
+      ],
+      "wins": 3,
+      "losses": 1,
+      "divrank": 2,
+      "pf": 470.0,
+      "pa": 407.32,
+      "proj": 477.56,
+      "pd": 62.68,
+      "projdelta": -7.56,
+      "projPct": -1.583,
+      "xw": 1.77777778,
+      "luck": 1.22222222,
+      "luckpp": 30.556,
+      "winsAllPlay": 16.00000002,
+      "simWinMean": 1.776,
+      "simRankMean": 3.02,
+      "winDist": [
+        2.849,
+        29.683,
+        54.472,
+        12.996,
+        0.0
+      ],
+      "rankDist": [
+        11.219,
+        23.18,
+        29.346,
+        24.848,
+        11.407
+      ],
+      "rankLuckPct": 77.2,
+      "winLuckPct": 93.5,
+      "simTop2Pct": 34.4,
+      "projWeeks": 4
+    },
+    {
+      "id": 8,
+      "name": "General's Dorm Room",
+      "division": "House Harkonnen",
+      "weeks": [
+        {
+          "week": 1,
+          "pf": 184.5,
+          "pa": 93.36,
+          "opp": 1,
+          "proj": 120.03,
+          "win": 1,
+          "xw": 1.0,
+          "weekLuck": 0.0,
+          "delta": 64.47,
+          "rank": 1
+        },
+        {
+          "week": 2,
+          "pf": 105.36,
+          "pa": 118.22,
+          "opp": 6,
+          "proj": 124.43,
+          "win": 0,
+          "xw": 0.33333333,
+          "weekLuck": -0.33333333,
+          "delta": -19.07,
+          "rank": 7
+        },
+        {
+          "week": 3,
+          "pf": 102.88,
+          "pa": 119.34,
+          "opp": 9,
+          "proj": 126.95,
+          "win": 0,
+          "xw": 0.33333333,
+          "weekLuck": -0.33333333,
+          "delta": -24.07,
+          "rank": 7
+        },
+        {
+          "week": 4,
+          "pf": 164.98,
+          "pa": 110.52,
+          "opp": 5,
+          "proj": 132.9,
+          "win": 1,
+          "xw": 0.88888889,
+          "weekLuck": 0.11111111,
+          "delta": 32.08,
+          "rank": 2
+        }
+      ],
+      "wins": 2,
+      "losses": 2,
+      "divrank": 3,
+      "pf": 557.72,
+      "pa": 441.44,
+      "proj": 504.31,
+      "pd": 116.28,
+      "projdelta": 53.41,
+      "projPct": 10.591,
+      "xw": 2.55555555,
+      "luck": -0.55555555,
+      "luckpp": -13.889,
+      "winsAllPlay": 22.99999995,
+      "simWinMean": 2.553,
+      "simRankMean": 1.934,
+      "winDist": [
+        0.0,
+        4.943,
+        44.682,
+        40.538,
+        9.837
+      ],
+      "rankDist": [
+        41.356,
+        31.731,
+        20.534,
+        4.943,
+        1.436
+      ],
+      "rankLuckPct": 16.6,
+      "winLuckPct": 27.3,
+      "simTop2Pct": 73.1,
+      "projWeeks": 4
+    },
+    {
+      "id": 9,
+      "name": "Comepig",
+      "division": "House Harkonnen",
+      "weeks": [
+        {
+          "week": 1,
+          "pf": 143.76,
+          "pa": 86.06,
+          "opp": 4,
+          "proj": 123.25,
+          "win": 1,
+          "xw": 0.77777778,
+          "weekLuck": 0.22222222,
+          "delta": 20.51,
+          "rank": 3
+        },
+        {
+          "week": 2,
+          "pf": 120.8,
+          "pa": 131.44,
+          "opp": 1,
+          "proj": 109.72,
+          "win": 0,
+          "xw": 0.66666667,
+          "weekLuck": -0.66666667,
+          "delta": 11.08,
+          "rank": 4
+        },
+        {
+          "week": 3,
+          "pf": 119.34,
+          "pa": 102.88,
+          "opp": 8,
+          "proj": 125.04,
+          "win": 1,
+          "xw": 0.55555556,
+          "weekLuck": 0.44444444,
+          "delta": -5.7,
+          "rank": 5
+        },
+        {
+          "week": 4,
+          "pf": 144.98,
+          "pa": 153.02,
+          "opp": 6,
+          "proj": 137.65,
+          "win": 0,
+          "xw": 0.66666667,
+          "weekLuck": -0.66666667,
+          "delta": 7.33,
+          "rank": 4
+        }
+      ],
+      "wins": 2,
+      "losses": 2,
+      "divrank": 3,
+      "pf": 528.88,
+      "pa": 473.4,
+      "proj": 495.66,
+      "pd": 55.48,
+      "projdelta": 33.22,
+      "projPct": 6.702,
+      "xw": 2.66666668,
+      "luck": -0.66666668,
+      "luckpp": -16.667,
+      "winsAllPlay": 24.00000012,
+      "simWinMean": 2.665,
+      "simRankMean": 1.864,
+      "winDist": [
+        1.073,
+        9.703,
+        30.033,
+        40.008,
+        19.183
+      ],
+      "rankDist": [
+        52.74,
+        22.93,
+        13.538,
+        6.727,
+        4.065
+      ],
+      "rankLuckPct": 17.6,
+      "winLuckPct": 25.8,
+      "simTop2Pct": 75.7,
+      "projWeeks": 4
+    },
+    {
+      "id": 10,
+      "name": "Got Rice?",
+      "division": "House Harkonnen",
+      "weeks": [
+        {
+          "week": 1,
+          "pf": 147.36,
+          "pa": 131.56,
+          "opp": 5,
+          "proj": 116.5,
+          "win": 1,
+          "xw": 0.88888889,
+          "weekLuck": 0.11111111,
+          "delta": 30.86,
+          "rank": 2
+        },
+        {
+          "week": 2,
+          "pf": 95.72,
+          "pa": 160.66,
+          "opp": 2,
+          "proj": 127.12,
+          "win": 0,
+          "xw": 0.22222222,
+          "weekLuck": -0.22222222,
+          "delta": -31.4,
+          "rank": 8
+        },
+        {
+          "week": 3,
+          "pf": 102.22,
+          "pa": 134.54,
+          "opp": 3,
+          "proj": 124.47,
+          "win": 0,
+          "xw": 0.22222222,
+          "weekLuck": -0.22222222,
+          "delta": -22.25,
+          "rank": 8
+        },
+        {
+          "week": 4,
+          "pf": 61.82,
+          "pa": 91.9,
+          "opp": 7,
+          "proj": 109.57,
+          "win": 0,
+          "xw": 0.0,
+          "weekLuck": 0.0,
+          "delta": -47.75,
+          "rank": 10
+        }
+      ],
+      "wins": 1,
+      "losses": 3,
+      "divrank": 5,
+      "pf": 407.12,
+      "pa": 518.66,
+      "proj": 477.66,
+      "pd": -111.54,
+      "projdelta": -70.54,
+      "projPct": -14.768,
+      "xw": 1.33333333,
+      "luck": -0.33333333,
+      "luckpp": -8.333,
+      "winsAllPlay": 11.999999970000001,
+      "simWinMean": 1.331,
+      "simRankMean": 3.785,
+      "winDist": [
+        6.828,
+        57.566,
+        31.294,
+        4.312,
+        0.0
+      ],
+      "rankDist": [
+        5.065,
+        12.57,
+        17.127,
+        29.303,
+        35.935
+      ],
+      "rankLuckPct": 18.0,
+      "winLuckPct": 35.6,
+      "simTop2Pct": 17.6,
+      "projWeeks": 4
+    }
+  ],
+  "generated": "2026-10-10T17:59:24.048222+00:00",
+  "methodNotes": [
+    "Private ESPN backfill reconciled against 40 known scores and opponents for Weeks 1–4.",
+    "Only completed periods before ESPN's current matchup period enter scoring calculations.",
+    "Original Weeks 1–4 displayed projection values are not verified pregame snapshots. Missing future projections remain blank.",
+    "No player data, manager names, ESPN authentication credentials or playoff odds are published."
+  ],
+  "source": "ESPN authenticated, baseline reconciled",
+  "projectionCoverage": {
+    "kind": "historical ESPN screenshot displayed values",
+    "throughWeek": 4,
+    "notice": "Screenshots may contain in-game projections; no future projections fabricated."
+  },
+  "weeklyLeagueAverage": [
+    126.96,
+    116.81,
+    118.42,
+    121.5
+  ],
+  "leagueAveragePf": 120.92,
+  "leagueMedianPf": 120.07,
+  "dnaHistory": [
+    {
+      "throughWeek": 1,
+      "status": "provisional",
+      "teams": [
+        {
+          "id": 1,
+          "category": "Not enough weeks",
+          "averagePf": 93.36,
+          "cvPct": 0.0
+        },
+        {
+          "id": 2,
+          "category": "Not enough weeks",
+          "averagePf": 126.22,
+          "cvPct": 0.0
+        },
+        {
+          "id": 3,
+          "category": "Not enough weeks",
+          "averagePf": 86.82,
+          "cvPct": 0.0
+        },
+        {
+          "id": 4,
+          "category": "Not enough weeks",
+          "averagePf": 86.06,
+          "cvPct": 0.0
+        },
+        {
+          "id": 5,
+          "category": "Not enough weeks",
+          "averagePf": 131.56,
+          "cvPct": 0.0
+        },
+        {
+          "id": 6,
+          "category": "Not enough weeks",
+          "averagePf": 127.76,
+          "cvPct": 0.0
+        },
+        {
+          "id": 7,
+          "category": "Not enough weeks",
+          "averagePf": 142.2,
+          "cvPct": 0.0
+        },
+        {
+          "id": 8,
+          "category": "Not enough weeks",
+          "averagePf": 184.5,
+          "cvPct": 0.0
+        },
+        {
+          "id": 9,
+          "category": "Not enough weeks",
+          "averagePf": 143.76,
+          "cvPct": 0.0
+        },
+        {
+          "id": 10,
+          "category": "Not enough weeks",
+          "averagePf": 147.36,
+          "cvPct": 0.0
+        }
+      ]
+    },
+    {
+      "throughWeek": 2,
+      "status": "provisional",
+      "teams": [
+        {
+          "id": 1,
+          "category": "Not enough weeks",
+          "averagePf": 112.4,
+          "cvPct": 16.94
+        },
+        {
+          "id": 2,
+          "category": "Not enough weeks",
+          "averagePf": 143.44,
+          "cvPct": 12.01
+        },
+        {
+          "id": 3,
+          "category": "Not enough weeks",
+          "averagePf": 82.52,
+          "cvPct": 5.21
+        },
+        {
+          "id": 4,
+          "category": "Not enough weeks",
+          "averagePf": 101.97,
+          "cvPct": 15.6
+        },
+        {
+          "id": 5,
+          "category": "Not enough weeks",
+          "averagePf": 109.88,
+          "cvPct": 19.73
+        },
+        {
+          "id": 6,
+          "category": "Not enough weeks",
+          "averagePf": 122.99,
+          "cvPct": 3.88
+        },
+        {
+          "id": 7,
+          "category": "Not enough weeks",
+          "averagePf": 146.88,
+          "cvPct": 3.19
+        },
+        {
+          "id": 8,
+          "category": "Not enough weeks",
+          "averagePf": 144.93,
+          "cvPct": 27.3
+        },
+        {
+          "id": 9,
+          "category": "Not enough weeks",
+          "averagePf": 132.28,
+          "cvPct": 8.68
+        },
+        {
+          "id": 10,
+          "category": "Not enough weeks",
+          "averagePf": 121.54,
+          "cvPct": 21.24
+        }
+      ]
+    },
+    {
+      "throughWeek": 3,
+      "status": "provisional",
+      "teams": [
+        {
+          "id": 1,
+          "category": "Not enough weeks",
+          "averagePf": 113.95,
+          "cvPct": 13.78
+        },
+        {
+          "id": 2,
+          "category": "Not enough weeks",
+          "averagePf": 149.12,
+          "cvPct": 10.86
+        },
+        {
+          "id": 3,
+          "category": "Not enough weeks",
+          "averagePf": 99.86,
+          "cvPct": 24.81
+        },
+        {
+          "id": 4,
+          "category": "Not enough weeks",
+          "averagePf": 109.23,
+          "cvPct": 15.16
+        },
+        {
+          "id": 5,
+          "category": "Not enough weeks",
+          "averagePf": 106.11,
+          "cvPct": 17.42
+        },
+        {
+          "id": 6,
+          "category": "Not enough weeks",
+          "averagePf": 129.01,
+          "cvPct": 7.26
+        },
+        {
+          "id": 7,
+          "category": "Not enough weeks",
+          "averagePf": 126.03,
+          "cvPct": 23.59
+        },
+        {
+          "id": 8,
+          "category": "Not enough weeks",
+          "averagePf": 130.91,
+          "cvPct": 28.95
+        },
+        {
+          "id": 9,
+          "category": "Not enough weeks",
+          "averagePf": 127.97,
+          "cvPct": 8.74
+        },
+        {
+          "id": 10,
+          "category": "Not enough weeks",
+          "averagePf": 115.1,
+          "cvPct": 19.95
+        }
+      ]
+    },
+    {
+      "throughWeek": 4,
+      "status": "provisional",
+      "teams": [
+        {
+          "id": 1,
+          "category": "Balanced, with swings",
+          "averagePf": 127.69,
+          "cvPct": 21.46
+        },
+        {
+          "id": 2,
+          "category": "High-upside contender",
+          "averagePf": 133.32,
+          "cvPct": 23.06
+        },
+        {
+          "id": 3,
+          "category": "High ceiling, low floor",
+          "averagePf": 107.88,
+          "cvPct": 23.69
+        },
+        {
+          "id": 4,
+          "category": "Inconsistent underdog",
+          "averagePf": 107.18,
+          "cvPct": 13.78
+        },
+        {
+          "id": 5,
+          "category": "Inconsistent underdog",
+          "averagePf": 107.22,
+          "cvPct": 15.04
+        },
+        {
+          "id": 6,
+          "category": "Reliable contender",
+          "averagePf": 135.02,
+          "cvPct": 9.77
+        },
+        {
+          "id": 7,
+          "category": "High ceiling, low floor",
+          "averagePf": 117.5,
+          "cvPct": 25.26
+        },
+        {
+          "id": 8,
+          "category": "High ceiling, low floor",
+          "averagePf": 139.43,
+          "cvPct": 25.81
+        },
+        {
+          "id": 9,
+          "category": "Reliable contender",
+          "averagePf": 132.22,
+          "cvPct": 9.2
+        },
+        {
+          "id": 10,
+          "category": "High ceiling, low floor",
+          "averagePf": 101.78,
+          "cvPct": 29.93
+        }
+      ]
+    }
+  ],
+  "recentDna": []
+}
