@@ -31,6 +31,19 @@ class RosterCases(unittest.TestCase):
         self.assertTrue(all(pid not in self.sets[p] for p in ('RB','WR','TE') for pid in flex))
     def test_top20_rb_qualifies_even_in_flex(self):self.assertTrue(r.qualifies(self.nth('RB',12),'FLEX',self.sets))
     def test_rb21_does_not_qualify_rb_slot(self):self.assertFalse(r.qualifies(self.nth('RB',21),'RB',self.sets))
+    def test_cross_season_same_week_uses_target_year(self):
+        row={'playerPoolEntry':{'id':4249087,'player':{'defaultPositionId':2,'stats':[
+            {'seasonId':2026,'scoringPeriodId':1,'statSourceId':0,'statSplitTypeId':1,'appliedTotal':10},
+            {'seasonId':2025,'scoringPeriodId':1,'statSourceId':0,'statSplitTypeId':1,'appliedTotal':3}]}}}
+        self.assertEqual(r.clean_player(row,1)['points'],10)
+
+    def test_conflicting_same_season_actuals_still_rejected(self):
+        row={'playerPoolEntry':{'id':4249087,'player':{'defaultPositionId':2,'stats':[
+            {'seasonId':2026,'scoringPeriodId':1,'statSourceId':0,'statSplitTypeId':1,'appliedTotal':10},
+            {'seasonId':2026,'scoringPeriodId':1,'statSourceId':0,'statSplitTypeId':1,'appliedTotal':3}]}}}
+        with self.assertRaisesRegex(ValueError,'Ambiguous actual weekly stats'):
+            r.clean_player(row,1)
+
     def test_negative_defense_scores_supported(self):
         row={'playerPoolEntry':{'id':8,'player':{'defaultPositionId':16,'fullName':'Defense','stats':[{'scoringPeriodId':1,'statSourceId':0,'statSplitTypeId':1,'appliedTotal':-4}]}},'lineupSlotId':16}
         self.assertEqual(r.clean_player(row,1)['points'],-4)
