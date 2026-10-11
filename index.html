@@ -462,6 +462,21 @@
 .history-table td,.history-table th{padding:10px 8px}
 .history-note{font-size:11px;line-height:1.65;color:#6d8199}
 @media(max-width:550px){.view-switch button{flex:1 1 80px;padding:10px 5px;font-size:11px}.history-table td,.history-table th{font-size:10px;padding:9px 4px}}
+
+/* Compact comparative DNA: current and past tendencies at a glance. Detailed metrics are on demand. */
+.identity-strip{display:block;padding:15px 17px;min-width:0}
+.identity-duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:11px}
+.identity-era{min-width:0;background:#f8fbff;border:1px solid #e2eaf3;border-radius:10px;padding:11px 13px}
+.identity-era>span{display:block;color:#667f99;font-size:10px;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
+.identity-era>strong{display:block;color:#203956;font-size:19px;font-weight:850;letter-spacing:-.025em;margin:5px 0;line-height:1.25;overflow-wrap:anywhere}
+.identity-era>small{display:block;color:#6b8098;font-size:11px;line-height:1.4}
+.identity-brief{display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap;color:#4c6783;font-size:11px;line-height:1.5;margin:11px 0 0}
+.identity-brief .tag-soft{padding:4px 9px}
+.identity-details{margin-top:11px;background:#fff}
+.identity-details>summary{padding:11px 0}
+.identity-details .histdna-grid{margin:6px 0 13px}
+.identity-details .histdna-stat{background:#f8fbff;padding:10px}
+@media(max-width:600px){.identity-strip{padding:12px}.identity-duo{gap:7px}.identity-era{padding:9px}.identity-era>span{font-size:9px}.identity-era>strong{font-size:16px}.identity-era>small{font-size:10px}.identity-brief{font-size:10px}}
 </style></head>
 <body>
 <div class="shell"><aside class="side"><div class="brand"><div class="mark">2K</div><div><strong>FANTASY 2K<br>INFINITY</strong><small>LEAGUE REPORT</small></div></div><div class="navcat">WORKSPACE</div>
@@ -611,7 +626,7 @@ function buildScoringProfiles(){return Object.fromEntries(teams.map(t=>{
  const definition=`Averages ${fmt(average,1)} points per week with ${fmt(cv*100,1)}% relative weekly volatility.`;
  return [t.id,{scores,average,sd,low,high,spread,cv,category,definition,old,recent,shift,relShift,momentum,trendClass,window}];
 }));}
-function identityBadge(t){const p=scoringProfiles[t.id];return `<section class="identity-strip" aria-label="Current and historical scoring identity"><div class="identity-current"><div class="identity-copy"><div class="identity-kicker">SCORING IDENTITY</div><div class="identity-label">${esc(p.category)}</div><div class="identity-sub">${esc(p.definition)}</div></div><div class="identity-side">${p.momentum?`<span class="tag-soft ${p.trendClass}">${esc(p.momentum)} · ${sign(p.shift,1)} PF/wk</span>`:''}<span class="tag-soft">${fmt(p.average,1)} PF/wk</span></div></div>${historicalFranchiseDNA(t)}</section>`;}
+function identityBadge(t){return historicalFranchiseDNA(t);}
 
 function profileMini(t){let p=scoringProfiles[t.id];return `<div class="dna-cards"><div class="dna-mini"><span>Average</span><strong>${fmt(p.average,1)}</strong><small>points / week</small></div><div class="dna-mini"><span>Floor</span><strong>${fmt(p.low,1)}</strong><small>lowest final score</small></div><div class="dna-mini"><span>Ceiling</span><strong>${fmt(p.high,1)}</strong><small>highest final score</small></div><div class="dna-mini"><span>Volatility</span><strong>${fmt(p.sd,1)}</strong><small>standard deviation · lower is steadier</small></div></div>`}
 function weeklyDNA(t){
@@ -677,7 +692,7 @@ function historicalFranchiseDNA(t){
   const league=mean(season.teams.flatMap(x=>x.scores)),matches=season.teams.filter(x=>HISTORY.season_to_franchise[String(season.year)]?.[String(x.espn_team_id)]===franchise);
   return matches.map(x=>{const average=mean(x.scores),cv=stdev(x.scores)/average,relative=average/league-1;return {year:season.year,name:x.name,average,relative,cv,category:scoringQuadrant(average,cv,league)};});
  });
- if(!all.length)return `<div class='identity-historical'><div class='histdna-eyebrow'>HISTORICAL DNA</div><p class='note'>No verified completed seasons for this franchise.</p></div>`;
+ if(!all.length){const p=scoringProfiles[t.id];return `<section class="identity-strip" aria-label="Current and historical scoring identity"><div class="identity-kicker">SCORING IDENTITY</div><div class="identity-duo"><div class="identity-era"><span>CURRENTLY · ${METRICS.season}</span><strong>${esc(p.category)}</strong><small>${fmt(p.average,1)} PF/wk · ${fmt(p.cv*100,1)}% CV</small></div><div class="identity-era"><span>HISTORICALLY</span><strong>Not yet verified</strong><small>No completed seasons for this franchise</small></div></div></section>`;}
  const recent=all.slice(0,cfg.maxCompletedSeasons),base=cfg.completedSeasonWeights.slice(0,recent.length),weightSum=base.reduce((s,w)=>s+w,0);
  const weighted=recent.map((x,i)=>({...x,weight:base[i]/weightSum}));
  const relative=weighted.reduce((s,x)=>s+x.relative*x.weight,0),cv=weighted.reduce((s,x)=>s+x.cv*x.weight,0);
@@ -690,12 +705,22 @@ function historicalFranchiseDNA(t){
  const signedPercent=x=>(x>=0?'+':'')+fmt(x*100,1)+'%';
  const weights=weighted.map(x=>x.year+' '+fmt(x.weight*100,1)+'%').join(' · ');
  const rows=weighted.map(x=>`<tr><td><strong>${x.year}</strong><div class='tiny'>${esc(x.name)}</div></td><td>${signedPercent(x.relative)}</td><td>${fmt(x.cv*100,1)}%</td><td>${esc(x.category)}</td><td class='num'>${fmt(x.weight*100,1)}%</td></tr>`).join('');
- return `<div class='identity-historical' aria-label='Historical franchise scoring identity'><div class='histdna-heading'><div><div class='histdna-eyebrow'>HISTORICAL DNA <span class='histdna-caption'>· Franchise fingerprint · completed seasons only</span></div><h3>${esc(category)}</h3><p>${recent.length} verified completed ${recent.length===1?'season':'seasons'} · rolling league-adjusted tendency across separate drafts</p></div><span class='histdna-pill'>${recent.length===1?'Limited evidence':'Recency weighted'}</span></div>
- <div class='histdna-grid'><div class='histdna-stat'><small>Typical scoring strength</small><strong>${signedPercent(relative)}</strong><span>PF per week versus the same-season league average</span></div><div class='histdna-stat'><small>Typical weekly volatility</small><strong>${fmt(cv*100,1)}%</strong><span>Recency-weighted season CV; lower means steadier</span></div><div class='histdna-stat'><small>Historical consistency</small><strong>${largest}/${all.length}</strong><span>${esc(tendency)} · all verified completed seasons, equally counted</span></div></div>
- <div class='histdna-current'><strong>Current 2026 DNA: ${esc(now)}.</strong> ${esc(comparison)} Current scoring is separate and provisional through Week ${DB.completedThrough}.</div>
- <details class='deep-dive' style='margin-top:14px'><summary>View season-by-season fingerprint, weights and lifetime baseline</summary><div class='sectionhead' style='margin:18px 0 7px'><div><h4 class='sectiontitle'>Season-by-season fingerprint</h4><div class='sublabel'>Latest completed seasons; each scored relative to its own league environment.</div></div></div>
- <div class='tablewrap'><table class='histdna-table'><thead><tr><th>Season</th><th>PF vs league</th><th>CV</th><th>Observed DNA</th><th class='num'>Weight</th></tr></thead><tbody>${rows}</tbody></table></div>
- <p class='histdna-foot'>Rolling weights: ${esc(weights)}. All-time equal-weight baseline (${all.length} ${all.length===1?'season':'seasons'}): ${signedPercent(lifetimeRel)} PF vs league and ${fmt(lifetimeCV*100,1)}% average CV. Regular season Weeks 1–14 only; championships are tracked separately. ${all.length<3?'Short franchise history limits confidence in a persistent tendency.':''}</p></details></div>`;
+ const p=scoringProfiles[t.id];
+ const historyYears=recent.map(x=>x.year).sort((a,b)=>a-b),seasonsLabel=historyYears.length===1?String(historyYears[0]):historyYears[0]+'–'+historyYears.at(-1);
+ const alignment=now===category?'Matches its recency-weighted franchise tendency.':'Differs from its recency-weighted franchise tendency.';
+ return `<section class="identity-strip" aria-label="Current and historical scoring identity">
+ <div class="identity-kicker">SCORING IDENTITY</div>
+ <div class="identity-duo">
+  <div class="identity-era"><span>CURRENTLY · ${METRICS.season}</span><strong>${esc(now)}</strong><small>${fmt(p.average,1)} PF/wk · ${fmt(p.cv*100,1)}% CV</small></div>
+  <div class="identity-era"><span>HISTORICALLY · ${esc(seasonsLabel)}</span><strong>${esc(category)}</strong><small>${recent.length} completed ${recent.length===1?'season':'seasons'} · recency weighted</small></div>
+ </div>
+ <div class="identity-brief"><span>${esc(alignment)}</span>${p.momentum?`<span class="tag-soft ${p.trendClass}">${esc(p.momentum)} · ${sign(p.shift,1)} PF/wk</span>`:''}</div>
+ <details class="deep-dive identity-details"><summary>Historical metrics & season-by-season details</summary>
+  <div class="histdna-grid"><div class="histdna-stat"><small>Typical scoring strength</small><strong>${signedPercent(relative)}</strong><span>PF per week versus the same-season league average</span></div><div class="histdna-stat"><small>Typical weekly volatility</small><strong>${fmt(cv*100,1)}%</strong><span>Recency-weighted season CV; lower means steadier</span></div><div class="histdna-stat"><small>Historical consistency</small><strong>${largest}/${all.length}</strong><span>${esc(tendency)} · all verified completed seasons, equally counted</span></div></div>
+  <div class="sectionhead" style="margin:12px 0 7px"><div><h4 class="sectiontitle">Season-by-season fingerprint</h4><div class="sublabel">Each completed season compared with its own league average.</div></div></div>
+  <div class="tablewrap"><table class="histdna-table"><thead><tr><th>Season</th><th>PF vs league</th><th>CV</th><th>Observed DNA</th><th class="num">Weight</th></tr></thead><tbody>${rows}</tbody></table></div>
+  <p class="histdna-foot">Rolling weights: ${esc(weights)}. All-time equal-weight baseline (${all.length} ${all.length===1?'season':'seasons'}): ${signedPercent(lifetimeRel)} PF vs league and ${fmt(lifetimeCV*100,1)}% average CV. Historical regular-season Weeks 1–14 only; ${METRICS.season} is separate and provisional through Week ${DB.completedThrough}. Championships are tracked separately. ${all.length<3?'Short franchise history limits confidence in a persistent tendency.':''}</p>
+ </details></section>`;
 }
 function profilePage(){
  const t=selected();
