@@ -71,7 +71,29 @@ async function main(){
  for(let i=0;i<8;i++)await Promise.resolve();
  let view=node('view').innerHTML;
  assert.ok(view.includes('League standings & scoring rank'));
- assert.ok(view.includes('power-mobile-item') && view.includes('power-mobile-stats'),'Standings must provide complete mobile cards');
+ assert.ok(view.includes('power-desktop') && view.includes('power-table'),'Desktop must use compact data table');
+ assert.ok(view.includes('power-mobile-item') && view.includes('power-mobile-toggle'),'Mobile must use compact expandable rows');
+ assert.ok(view.includes('<th>Team DNA</th>') && view.includes('Volatility (CV)') && view.includes('<th class="num">CV</th>'),'Both layouts need DNA and CV');
+ assert.ok(view.includes('Steady, lower-output') && view.includes('Reliable contenders'),'Use canonical four-quadrant DNA labels');
+ assert.equal((view.match(/<tr class="[^"]*" data-select="/g)||[]).length,10,'Desktop must show ten teams');
+ assert.equal((view.match(/class="power-mobile-item /g)||[]).length,10,'Mobile must show ten teams');
+ assert.equal((view.match(/class="power-mobile-detail"/g)||[]).length,0,'Mobile details should start collapsed');
+ assert.ok(!view.includes('mini-spark'),'Large sparkline grid must be removed from standings');
+ assert.ok(view.includes('All-play') && view.includes('Extra wins') && view.includes('Form'),'Desktop must retain competitive metrics');
+ events.click({target:{closest(selector){return selector==='[data-expand-standing]'?{dataset:{expandStanding:'6'}}:null}}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('id="standing-detail-6"') && view.includes('View The Domestic House Cats'),'House Cats expansion shows the detail action');
+ assert.ok(view.includes('9.8%') && view.includes('Reliable contenders') && view.includes('24–12'),'Expanded mobile row shows CV, DNA and all-play');
+ assert.equal((view.match(/class="power-mobile-detail"/g)||[]).length,1,'Only one expanded mobile row at a time');
+ events.click({target:{closest(selector){return selector==='[data-expand-standing]'?{dataset:{expandStanding:'6'}}:null}}});
+ view=node('view').innerHTML;
+ assert.equal((view.match(/class="power-mobile-detail"/g)||[]).length,0,'Clicking expanded mobile row collapses it');
+ events.click({target:{closest(selector){return selector==='[data-select]'?{dataset:{select:'6'}}:null}}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('4–0') && view.includes('Your bench'),'Mobile detail View Team updates selected-team profile');
+ // Return to the default selected team for the remaining regression checks.
+ node('teamSelect').listeners.change({target:{value:'3'}});
+ view=node('view').innerHTML;
  assert.ok(view.includes('League avg PF') && view.includes('League form'),'Standings require a league benchmark');
  assert.ok(view.includes('23–13') && !view.includes('23.0–13.0'),'All-play must suppress unnecessary decimals');
  assert.ok(view.includes('+50.7') && view.includes('League form'),'Early raw trend must be available at Week 4');
@@ -80,8 +102,7 @@ async function main(){
  assert.ok(view.includes('roster-action') && view.includes('Roster ceiling'),'Overview must lead with usable lineup data');
  assert.ok(!view.includes('Week 4 talking points') && !html.includes('function weekHeadlines(){'),'Talking points must be removed');
  assert.ok(!view.includes('Avg extra wins'),'Zero-sum extra-wins average is not useful');
- assert.ok(view.includes('Cumulative wins') && view.includes('Cumulative fantasy points') && view.includes('Cumulative all-play wins') && view.includes('Cumulative extra wins') && view.includes('Weekly PF (form)'),'All five standings metrics need trends');
- assert.ok((view.match(/class="mini-spark /g)||[]).length>=50,'Ten teams times five metrics must show in desktop and mobile');
+ assert.ok(view.includes('Latest') && view.includes('Extra wins'),'League context remains alongside standings');
  assert.ok(!view.includes('Points vs ESPN'));
  assert.equal(node('weekStatus').textContent,'Early season · 4 weeks');
  function tab(tab){
@@ -105,6 +126,6 @@ async function main(){
  assert.ok(!view.includes('Bad beats'));
  view=tab('divisions');
  assert.ok(view.includes('darkest = 1st') && !view.includes('out of 100'),'What-if must not display competing fortune score');
- console.log('Dashboard regression checks passed: paired snapshots, 40 rosters, league benchmarks, mobile standings, early trend, all-play formatting and active pages.');
+ console.log('Dashboard regression checks passed: paired snapshots, 40 rosters, compact desktop table, mobile expand/collapse and selection, DNA, CV, benchmarks and active pages.');
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});
