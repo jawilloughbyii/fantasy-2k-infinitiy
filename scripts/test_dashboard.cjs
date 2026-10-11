@@ -71,6 +71,12 @@ async function main(){
  for(let i=0;i<8;i++)await Promise.resolve();
  let view=node('view').innerHTML;
  assert.ok(view.includes('League standings & scoring rank'));
+ assert.ok(view.includes('power-mobile-item') && view.includes('power-mobile-stats'),'Standings must provide complete mobile cards');
+ assert.ok(view.includes('League avg PF') && view.includes('League trend'),'Standings require a league benchmark');
+ assert.ok(view.includes('23–13') && !view.includes('23.0–13.0'),'All-play must suppress unnecessary decimals');
+ assert.ok(view.includes('+50.7') && view.includes('League trend'),'Early raw trend must be available at Week 4');
+ assert.ok(view.includes('League 45.2%') && view.includes('League 62.3%') && view.includes('League 72.6%'),'All three roster percentages require league comparisons');
+ assert.ok(view.includes('most missed'),'Bench opportunity needs league rank context');
  assert.ok(view.includes('roster-action') && view.includes('Roster ceiling'),'Overview must lead with usable lineup data');
  assert.ok(view.includes('W4 · BIGGEST SCHEDULE BOOST') && view.includes('extra wins in Week 4'));
  assert.ok(!view.includes('Points vs ESPN'));
@@ -84,7 +90,7 @@ async function main(){
  assert.ok(!view.includes('Inconsistent underdog'));
  assert.ok(!view.includes('Scoring versus recorded ESPN projections'));
  assert.ok(!view.includes('Season versus recent scoring identity'),'Four-week recent DNA must be gated');
- assert.ok(!view.includes('Six-week momentum'),'Four-week momentum must be gated');
+ assert.ok(view.includes('Recent scoring trend') && view.includes('+50.7 PF/week'),'Four-week momentum must compare latest two against prior two');
  assert.ok(!view.includes('Last 3 weeks'),'Trailing lineup average must be gated');
  assert.ok(view.includes('/ 8 quality points') && view.includes('K/DST half-weighted'));
  node('teamSelect').listeners.change({target:{value:'4'}});
@@ -96,6 +102,6 @@ async function main(){
  assert.ok(!view.includes('Bad beats'));
  view=tab('divisions');
  assert.ok(view.includes('darkest = 1st') && !view.includes('out of 100'),'What-if must not display competing fortune score');
- console.log('Dashboard regression checks passed: paired snapshots, 40 rosters, canonical quadrants, timing gates, luck windows and active pages.');
+ console.log('Dashboard regression checks passed: paired snapshots, 40 rosters, league benchmarks, mobile standings, early trend, all-play formatting and active pages.');
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});
