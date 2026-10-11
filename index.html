@@ -271,6 +271,21 @@
 /* Finalized lineup quality: compact, responsive; no new navigation tab. */
 .lineup-quality{display:grid;gap:14px}
 .lineup-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.lineup-ceiling{padding:15px;border:1px solid #dbe6f3;background:#f8fbff;border-radius:12px;display:grid;gap:12px}
+.lineup-ceiling-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.lineup-ceiling-head strong{font-size:13px;color:#264464}
+.lineup-compare{display:grid;gap:9px}
+.lineup-compare-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 10px}
+.lineup-compare-row span{font-size:11px;font-weight:700;color:#526b89}
+.lineup-compare-row strong{font-size:14px;color:#264464}
+.lineup-track{grid-column:1/-1;height:9px;background:#e6edf6;overflow:hidden;border-radius:99px}
+.lineup-fill{height:100%;border-radius:99px;background:#3978d9}
+.lineup-fill.ceiling{background:#79a4d5}
+.lineup-ceiling-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.lineup-ceiling-stats>div{min-width:0;padding:10px;border-radius:9px;background:white;border:1px solid #e2eaf5}
+.lineup-ceiling-stats b{font-size:21px;color:#244b77;display:block}
+.lineup-ceiling-stats span{display:block;font-size:11px;color:#657c98}
+.lineup-ceiling-note{font-size:11px;color:#667d98;line-height:1.5;margin:0}
 .lineup-kpi{background:#f7faff;border:1px solid #e1e9f5;border-radius:12px;padding:13px;min-width:0}
 .lineup-kpi span{display:block;color:#6e8099;font-size:10px;font-weight:780;letter-spacing:.04em;text-transform:uppercase}
 .lineup-kpi strong{display:block;color:#223f60;font-size:23px;letter-spacing:-.04em;margin:4px 0}
@@ -484,6 +499,9 @@ function lineupQualityCard(t){
  const total=records.reduce((sum,x)=>sum+x.weightedHits,0),possible=records.length*8;
  const recent=records.slice(-3),latest=records.at(-1);
  const miss=records.reduce((sum,x)=>sum+x.missedWeighted,0);
+ const maxTotal=records.reduce((sum,x)=>sum+x.weightedMax,0);
+ const capturePct=maxTotal>0?100*total/maxTotal:null,ceilingPct=100*maxTotal/possible;
+ const shortfallPct=100*(possible-maxTotal)/possible,unrealized=maxTotal-total;
  const recentPct=100*recent.reduce((sum,x)=>sum+x.weightedHits,0)/(8*recent.length);
  const slotMarkup=(latest.slots||[]).map(x=>`<div class="lineup-slot ${x.worthy?'worthy':''}" title="${esc(x.player)} · ${fmt(x.points,2)} final PF"><b>${esc(x.slot)} · ${x.worthy?'QUALIFIED':'MISSED'}</b><span>${esc(x.player)}</span><small>${fmt(x.points,1)} pts</small></div>`).join('');
  const opportunities=(latest.benchOpportunities||[]).length?latest.benchOpportunities.map(x=>`${esc(x.player)} (${esc(x.position)}, ${fmt(x.points,1)} pts)`).join(' · '):'None that improve qualification this week';
@@ -492,9 +510,17 @@ function lineupQualityCard(t){
  <div class="lineup-kpi"><span>Latest week</span><strong>${fmt(latest.swrPct,1)}%</strong><small>${latest.qualifiedStarters} of 9 players qualified · W${latest.week}</small></div>
  <div class="lineup-kpi"><span>Last ${recent.length} weeks</span><strong>${fmt(recentPct,1)}%</strong><small>Weighted recent qualification rate</small></div>
  <div class="lineup-kpi"><span>Bench opportunity left</span><strong>${fmt(miss,1)}</strong><small>Weighted starter-worthy slots missed season-to-date</small></div></div>
- <div><strong style="font-size:13px;color:#264464">Weekly lineup quality</strong><div class="lineup-weekly">${records.map(x=>`<div class="lineup-week"><span>Week ${x.week}</span><strong>${fmt(x.swrPct,1)}%</strong><small>${fmt(x.weightedHits,1)} / 8 · Bench ${fmt(x.missedWeighted,1)}</small></div>`).join('')}</div></div>
+ <div class="lineup-ceiling"><div class="lineup-ceiling-head"><strong>How much could this roster actually deliver?</strong><small class="lineup-method">Best legal lineup from starters + bench · IR excluded</small></div>
+ <div class="lineup-compare">
+ <div class="lineup-compare-row"><span>Actual starter-worthy</span><strong>${fmt(100*total/possible,1)}%</strong><div class="lineup-track"><div class="lineup-fill" style="width:${100*total/possible}%"></div></div></div>
+ <div class="lineup-compare-row"><span>Roster ceiling</span><strong>${fmt(ceilingPct,1)}%</strong><div class="lineup-track"><div class="lineup-fill ceiling" style="width:${ceilingPct}%"></div></div></div>
+ </div><div class="lineup-ceiling-stats">
+ <div><b>${capturePct===null?'N/A':fmt(capturePct,1)+'%'}</b><span>Available ceiling captured · ${fmt(total,1)} of ${fmt(maxTotal,1)} weighted points</span></div>
+ <div><b>${fmt(shortfallPct,1)}%</b><span>Unavoidable shortfall · ${fmt(possible-maxTotal,1)} of ${possible} weighted points</span></div>
+ </div><p class="lineup-ceiling-note">${unrealized<.001?'No unrealized lineup quality: this team extracted its full available roster ceiling.':fmt(unrealized,1)+' weighted points of available quality went unrealized ('+fmt(miss,1)+' from bench substitutions and '+fmt(unrealized-miss,1)+' from rearranging starters).'} A low roster ceiling means the bench could not supply the missing NFL-wide qualifying performances.</p></div>
+ <div><strong style="font-size:13px;color:#264464">Weekly lineup quality</strong><div class="lineup-weekly">${records.map(x=>`<div class="lineup-week"><span>Week ${x.week}</span><strong>${fmt(x.swrPct,1)}%</strong><small>Ceiling ${fmt(100*x.weightedMax/8,1)}% · Captured ${x.weightedMax?fmt(100*x.weightedHits/x.weightedMax,1)+'%':'N/A'} · Bench ${fmt(x.missedWeighted,1)}</small></div>`).join('')}</div></div>
  <details><summary>Latest finalized starting lineup · Week ${latest.week}</summary><div class="lineup-slots" style="margin:12px 0">${slotMarkup}</div><div class="lineup-method"><strong>Bench upgrades:</strong> ${opportunities}. A separate ${fmt(latest.reassignmentWeighted,1)} weighted points could be gained by legally rearranging existing starters (not attributed to the bench).</div><div class="lineup-method">Week ${latest.week} cutoff: QB ≥ ${fmt(latest.cutoffs.QB,1)}, RB ≥ ${fmt(latest.cutoffs.RB,1)}, WR ≥ ${fmt(latest.cutoffs.WR,1)}, TE ≥ ${fmt(latest.cutoffs.TE,1)}, FLEX residual ≥ ${fmt(latest.cutoffs.FLEX,1)}, K ≥ ${fmt(latest.cutoffs.K,1)}, DST ≥ ${fmt(latest.cutoffs.DST,1)}. Exact cutoff ties qualify.</div></details>
- <p class="lineup-method">A starter is worthy if their final points meet the weekly NFL-wide qualification cutoff for their actual slot. FLEX recognizes positional qualifiers plus the 10 best remaining RB/WR/TE players. Bench opportunities count only legal upgrades after optimizing the existing starters first. This measures outcomes in hindsight, not pregame decision quality. K and DST are half-weighted.</p></div>`;
+ <p class="lineup-method">A starter is worthy if their final points meet the weekly NFL-wide qualification cutoff for their actual slot. FLEX recognizes positional qualifiers plus the 10 best remaining RB/WR/TE players. Bench opportunities count only legal upgrades after optimizing the existing starters first. Roster ceiling is the maximum legal weighted score from actual starters and bench (IR excluded). Ceiling captured is actual divided by that maximum; unavoidable shortfall is the portion of eight weighted points the roster could not supply even with perfect hindsight. This measures outcomes in hindsight, not pregame decision quality. K and DST are half-weighted.</p></div>`;
 }
 
 function profilePage(){const t=selected(),p=scoringProfiles[t.id];return `${identityBadge(t)}${personalityMap()}${dnaHistoryCard(t)}<div class="card">${section('How this team scores',teamName(t)+' · final scores through Week '+DB.completedThrough)}${profileMini(t)}${weeklyDNA(t)}${momentumStory(t)}<div class="data-note">Scoring profiles use completed weeks only. Recent form is descriptive, not a guarantee about future output.</div></div>${lineupQualityCard(t)}<div class="card">${section('The league’s scoring personalities','Choose a team to see its full profile')}${dnaLeaderboard()}</div><div class="card">${section('Scoring versus recorded ESPN projections','W1–W4 screenshots may differ from scheduled pre-week captures')}<div class="perf-hero"><div><span>Difference across ${t.projWeeks||0} recorded weeks</span><strong class="${tone(t.projPct||0)}">${t.projWeeks?sign(t.projPct,1)+'%':'N/A'}</strong></div><div><span>Total points difference</span><strong class="${tone(t.projdelta||0)}">${t.projWeeks?sign(t.projdelta):'N/A'}</strong></div></div>${sparkline(t)}</div>`;}
