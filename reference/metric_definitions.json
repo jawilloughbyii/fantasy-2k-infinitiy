@@ -25,7 +25,9 @@
     }
   },
   "momentum": {
-    "minimumWeeks": 6,
+    "minimumWeeks": 4,
+    "earlyWindow": 2,
+    "fullWindowMinimumWeeks": 6,
     "window": 3,
     "heatingPct": 12,
     "coolingPct": -12
