@@ -184,7 +184,8 @@
 }
 
 /* Fantasy 2K season DNA and responsible advanced analytics */
-.identity-strip{margin:0 0 18px;padding:14px 17px;border-radius:13px;background:#fff;border:1px solid #dfebf4;display:flex;align-items:flex-start;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.identity-strip{margin:0 0 18px;padding:14px 17px;border-radius:13px;background:#fff;border:1px solid #dfebf4;display:block;min-width:0}
+.identity-current{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;flex-wrap:wrap}
 .identity-copy{min-width:0;flex:1 1 290px}.identity-kicker{font-size:10px;color:#6b819a;letter-spacing:.09em;text-transform:uppercase;font-weight:850}
 .identity-label{font-size:20px;color:#203956;letter-spacing:-.03em;font-weight:850;margin:4px 0}
 .identity-sub{font-size:12px;color:#627890;line-height:1.6}
@@ -431,6 +432,16 @@
 .histdna-pills{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
 .histdna-pill{display:inline-block;border:1px solid #dbe4f0;border-radius:99px;padding:4px 8px;background:#fff;color:#4d6581;font-size:10px;font-weight:700}
 .histdna-foot{margin-top:11px;color:#71859e;font-size:11px;line-height:1.6}
+.identity-historical{border-top:1px solid #e3ebf3;margin-top:16px;padding-top:16px;min-width:0}
+.identity-historical .histdna-heading h3{margin-top:5px}
+.identity-historical .histdna-caption{font-weight:650;letter-spacing:0;text-transform:none;font-size:10px}
+.identity-historical .histdna-grid{margin:12px 0}
+.identity-historical .histdna-stat{padding:10px 12px;background:#f8fbff}
+.identity-historical .histdna-stat strong{font-size:20px}
+.identity-historical .histdna-current{padding:10px 12px}
+.identity-historical .deep-dive{margin-top:12px}
+@media(max-width:600px){.identity-historical{margin-top:13px;padding-top:13px}.identity-historical .histdna-grid{gap:7px}.identity-historical .histdna-stat{padding:9px}.identity-historical .histdna-stat strong{font-size:18px}}
+
 @media(max-width:600px){.histdna-grid{grid-template-columns:1fr 1fr}.histdna-grid .histdna-stat:last-child{grid-column:1/-1}.histdna-stat strong{font-size:21px}.histdna-table td,.histdna-table th{padding:8px 4px;font-size:10px}}
 /* Three-destination experience: native segmented views and quiet on-demand detail */
 .view-switch{display:flex;flex-wrap:wrap;gap:7px;padding:6px;border:1px solid #e2e9f3;border-radius:12px;background:#eef3fa}
@@ -600,7 +611,7 @@ function buildScoringProfiles(){return Object.fromEntries(teams.map(t=>{
  const definition=`Averages ${fmt(average,1)} points per week with ${fmt(cv*100,1)}% relative weekly volatility.`;
  return [t.id,{scores,average,sd,low,high,spread,cv,category,definition,old,recent,shift,relShift,momentum,trendClass,window}];
 }));}
-function identityBadge(t){const p=scoringProfiles[t.id];return `<div class="identity-strip"><div class="identity-copy"><div class="identity-kicker">SCORING IDENTITY</div><div class="identity-label">${esc(p.category)}</div><div class="identity-sub">${esc(p.definition)}</div></div><div class="identity-side">${p.momentum?`<span class="tag-soft ${p.trendClass}">${esc(p.momentum)} · ${sign(p.shift,1)} PF/wk</span>`:''}<span class="tag-soft">${fmt(p.average,1)} PF/wk</span></div></div>`;}
+function identityBadge(t){const p=scoringProfiles[t.id];return `<section class="identity-strip" aria-label="Current and historical scoring identity"><div class="identity-current"><div class="identity-copy"><div class="identity-kicker">SCORING IDENTITY</div><div class="identity-label">${esc(p.category)}</div><div class="identity-sub">${esc(p.definition)}</div></div><div class="identity-side">${p.momentum?`<span class="tag-soft ${p.trendClass}">${esc(p.momentum)} · ${sign(p.shift,1)} PF/wk</span>`:''}<span class="tag-soft">${fmt(p.average,1)} PF/wk</span></div></div>${historicalFranchiseDNA(t)}</section>`;}
 
 function profileMini(t){let p=scoringProfiles[t.id];return `<div class="dna-cards"><div class="dna-mini"><span>Average</span><strong>${fmt(p.average,1)}</strong><small>points / week</small></div><div class="dna-mini"><span>Floor</span><strong>${fmt(p.low,1)}</strong><small>lowest final score</small></div><div class="dna-mini"><span>Ceiling</span><strong>${fmt(p.high,1)}</strong><small>highest final score</small></div><div class="dna-mini"><span>Volatility</span><strong>${fmt(p.sd,1)}</strong><small>standard deviation · lower is steadier</small></div></div>`}
 function weeklyDNA(t){
@@ -666,7 +677,7 @@ function historicalFranchiseDNA(t){
   const league=mean(season.teams.flatMap(x=>x.scores)),matches=season.teams.filter(x=>HISTORY.season_to_franchise[String(season.year)]?.[String(x.espn_team_id)]===franchise);
   return matches.map(x=>{const average=mean(x.scores),cv=stdev(x.scores)/average,relative=average/league-1;return {year:season.year,name:x.name,average,relative,cv,category:scoringQuadrant(average,cv,league)};});
  });
- if(!all.length)return `<div class='card histdna'><div class='histdna-eyebrow'>Historical franchise fingerprint</div><p class='note'>No verified completed seasons for this franchise.</p></div>`;
+ if(!all.length)return `<div class='identity-historical'><div class='histdna-eyebrow'>HISTORICAL DNA</div><p class='note'>No verified completed seasons for this franchise.</p></div>`;
  const recent=all.slice(0,cfg.maxCompletedSeasons),base=cfg.completedSeasonWeights.slice(0,recent.length),weightSum=base.reduce((s,w)=>s+w,0);
  const weighted=recent.map((x,i)=>({...x,weight:base[i]/weightSum}));
  const relative=weighted.reduce((s,x)=>s+x.relative*x.weight,0),cv=weighted.reduce((s,x)=>s+x.cv*x.weight,0);
@@ -679,7 +690,7 @@ function historicalFranchiseDNA(t){
  const signedPercent=x=>(x>=0?'+':'')+fmt(x*100,1)+'%';
  const weights=weighted.map(x=>x.year+' '+fmt(x.weight*100,1)+'%').join(' · ');
  const rows=weighted.map(x=>`<tr><td><strong>${x.year}</strong><div class='tiny'>${esc(x.name)}</div></td><td>${signedPercent(x.relative)}</td><td>${fmt(x.cv*100,1)}%</td><td>${esc(x.category)}</td><td class='num'>${fmt(x.weight*100,1)}%</td></tr>`).join('');
- return `<div class='card histdna' aria-label='Historical franchise scoring identity'><div class='histdna-heading'><div><div class='histdna-eyebrow'>Franchise fingerprint · completed seasons only</div><h3>${esc(category)}</h3><p>${teamName(t)} · ${recent.length} recent verified ${recent.length===1?'season':'seasons'} · rolling league-adjusted identity</p></div><span class='histdna-pill'>${recent.length===1?'Limited evidence':'Recency weighted'}</span></div>
+ return `<div class='identity-historical' aria-label='Historical franchise scoring identity'><div class='histdna-heading'><div><div class='histdna-eyebrow'>HISTORICAL DNA <span class='histdna-caption'>· Franchise fingerprint · completed seasons only</span></div><h3>${esc(category)}</h3><p>${recent.length} verified completed ${recent.length===1?'season':'seasons'} · rolling league-adjusted tendency across separate drafts</p></div><span class='histdna-pill'>${recent.length===1?'Limited evidence':'Recency weighted'}</span></div>
  <div class='histdna-grid'><div class='histdna-stat'><small>Typical scoring strength</small><strong>${signedPercent(relative)}</strong><span>PF per week versus the same-season league average</span></div><div class='histdna-stat'><small>Typical weekly volatility</small><strong>${fmt(cv*100,1)}%</strong><span>Recency-weighted season CV; lower means steadier</span></div><div class='histdna-stat'><small>Historical consistency</small><strong>${largest}/${all.length}</strong><span>${esc(tendency)} · all verified completed seasons, equally counted</span></div></div>
  <div class='histdna-current'><strong>Current 2026 DNA: ${esc(now)}.</strong> ${esc(comparison)} Current scoring is separate and provisional through Week ${DB.completedThrough}.</div>
  <details class='deep-dive' style='margin-top:14px'><summary>View season-by-season fingerprint, weights and lifetime baseline</summary><div class='sectionhead' style='margin:18px 0 7px'><div><h4 class='sectiontitle'>Season-by-season fingerprint</h4><div class='sublabel'>Latest completed seasons; each scored relative to its own league environment.</div></div></div>
@@ -688,7 +699,7 @@ function historicalFranchiseDNA(t){
 }
 function profilePage(){
  const t=selected();
- return `${identityBadge(t)}${personalityMap()}${historicalFranchiseDNA(t)}<details class="deep-dive"><summary>Current-season scoring trajectory · weekly scores and momentum</summary><div class="card">${section('How this team scores',teamName(t)+' · final scores through Week '+DB.completedThrough)}${profileMini(t)}${weeklyDNA(t)}${momentumStory(t)}</div>${dnaHistoryCard(t)}</details><details class="deep-dive"><summary>Explore every franchise's current DNA</summary>${dnaLeaderboard()}</details>`;
+ return `${identityBadge(t)}${personalityMap()}<details class="deep-dive"><summary>Current-season scoring trajectory · weekly scores and momentum</summary><div class="card">${section('How this team scores',teamName(t)+' · final scores through Week '+DB.completedThrough)}${profileMini(t)}${weeklyDNA(t)}${momentumStory(t)}</div>${dnaHistoryCard(t)}</details><details class="deep-dive"><summary>Explore every franchise's current DNA</summary>${dnaLeaderboard()}</details>`;
 }
 function personalityMap(){
  const list=[...teams].sort((a,b)=>b.pf/DB.completedThrough-a.pf/DB.completedThrough);
