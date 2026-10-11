@@ -1,0 +1,40 @@
+name: Discover historical ESPN seasons (private, read only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_year:
+        description: Oldest season to inspect
+        required: true
+        default: '2010'
+      end_year:
+        description: Newest historical season to inspect
+        required: true
+        default: '2025'
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch historical season coverage without publishing
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+          START_YEAR: ${{ inputs.start_year }}
+          END_YEAR: ${{ inputs.end_year }}
+        run: python scripts/discover_historical_seasons.py --start-year "$START_YEAR" --end-year "$END_YEAR" --output-dir output/historical-discovery
+      - name: Upload private sanitized research artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: historical-espn-discovery
+          path: output/historical-discovery/*.json
+          if-no-files-found: warn
+          retention-days: 7
