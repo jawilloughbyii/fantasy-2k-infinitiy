@@ -159,7 +159,7 @@ async function main(){
  assert.ok(view.includes('Rebuilt Golden Ponies'),'2025 scoring leader visible');
  assert.ok(view.includes('General&#39;s Dorm Room')&&view.includes('League champion: 2025'));
  assert.ok(view.includes('not official standings or playoff seeding'),'Do not mislabel PF ranking');
- assert.equal((view.match(/<tbody><tr>[\\s\\S]*?<\\/tbody>/)||[])[0]?.match(/<tr>/g)?.length,10,'Yearbook ranks exactly ten verified teams');
+ assert.equal((view.split('<tbody>')[1].split('</tbody>')[0].match(/<tr>/g)||[]).length,10,'Yearbook ranks exactly ten verified teams');
  events.change({target:{id:'historyYear',value:'2023'}});
  view=node('view').innerHTML;
  assert.ok(view.includes('2023 Yearbook')&&view.includes('Team Figueroa'),'Legacy franchise remains in league yearbook');
