@@ -73,7 +73,7 @@ async function main(){
  assert.ok(view.includes('League standings & scoring rank'));
  assert.ok(view.includes('power-desktop') && view.includes('power-table'),'Desktop must use compact data table');
  assert.ok(view.includes('power-mobile-item') && view.includes('power-mobile-toggle'),'Mobile must use compact expandable rows');
- assert.ok(view.includes('<th>Team DNA</th>') && view.includes('Volatility (CV)') && view.includes('<th class="num">CV</th>'),'Both layouts need DNA and CV');
+ assert.ok(view.includes('<th>Team DNA</th>') && view.includes('<th class="num">CV</th>'),'Desktop table needs DNA and CV columns');
  assert.ok(view.includes('Steady, lower-output') && view.includes('Reliable contenders'),'Use canonical four-quadrant DNA labels');
  assert.equal((view.match(/<tr class="[^"]*" data-select="/g)||[]).length,10,'Desktop must show ten teams');
  assert.equal((view.match(/class="power-mobile-item /g)||[]).length,10,'Mobile must show ten teams');
@@ -83,6 +83,7 @@ async function main(){
  events.click({target:{closest(selector){return selector==='[data-expand-standing]'?{dataset:{expandStanding:'6'}}:null}}});
  view=node('view').innerHTML;
  assert.ok(view.includes('id="standing-detail-6"') && view.includes('View The Domestic House Cats'),'House Cats expansion shows the detail action');
+ assert.ok(view.includes('Volatility (CV)') && view.includes('All-play') && view.includes('Form · PF/week'),'Expanded mobile row exposes hidden fields');
  assert.ok(view.includes('9.8%') && view.includes('Reliable contenders') && view.includes('24–12'),'Expanded mobile row shows CV, DNA and all-play');
  assert.equal((view.match(/class="power-mobile-detail"/g)||[]).length,1,'Only one expanded mobile row at a time');
  events.click({target:{closest(selector){return selector==='[data-expand-standing]'?{dataset:{expandStanding:'6'}}:null}}});
