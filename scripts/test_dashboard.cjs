@@ -72,9 +72,9 @@ async function main(){
  let view=node('view').innerHTML;
  assert.ok(view.includes('League standings & scoring rank'));
  assert.ok(view.includes('power-mobile-item') && view.includes('power-mobile-stats'),'Standings must provide complete mobile cards');
- assert.ok(view.includes('League avg PF') && view.includes('League trend'),'Standings require a league benchmark');
+ assert.ok(view.includes('League avg PF') && view.includes('League form'),'Standings require a league benchmark');
  assert.ok(view.includes('23–13') && !view.includes('23.0–13.0'),'All-play must suppress unnecessary decimals');
- assert.ok(view.includes('+50.7') && view.includes('League trend'),'Early raw trend must be available at Week 4');
+ assert.ok(view.includes('+50.7') && view.includes('League form'),'Early raw trend must be available at Week 4');
  assert.ok(view.includes('League 45.2%') && view.includes('League 62.3%') && view.includes('League 72.6%'),'All three roster percentages require league comparisons');
  assert.ok(view.includes('most missed'),'Bench opportunity needs league rank context');
  assert.ok(view.includes('roster-action') && view.includes('Roster ceiling'),'Overview must lead with usable lineup data');
