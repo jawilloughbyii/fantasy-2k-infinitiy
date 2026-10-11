@@ -4,7 +4,7 @@ A read-only, mobile-friendly fantasy football league report for the 2026 season.
 
 ## Dashboard sections
 
-- **Overview:** scoring-ranked standings with actual record, PF, all-play record, extra wins and (once eligible) trend; week-scoped talking points; selected-team legal lineup opportunities.
+- **Overview:** scoring-ranked standings with actual record, PF, all-play record, extra wins and (once eligible) trend; per-metric standings trend lines; selected-team legal lineup opportunities.
 - **Team DNA & scoring:** one consistent four-quadrant Scoring Personality Map plus finalized weekly Starter-Worthy Rate and legal roster ceiling. A recent four-week DNA comparison appears starting at **seven** completed weeks. Scoring trend appears after **four** weeks (latest two versus preceding two), switching at Week 6 to latest three versus preceding three.
 - **Who got lucky?:** **extra wins** is the only season schedule-luck headline: actual wins minus expected wins against all nine teams every completed week. Half credit for ties.
 - **What if?:** historical schedule reshuffles and division finish distributions, as context rather than a second luck score.
