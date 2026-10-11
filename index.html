@@ -432,15 +432,31 @@
 .histdna-pill{display:inline-block;border:1px solid #dbe4f0;border-radius:99px;padding:4px 8px;background:#fff;color:#4d6581;font-size:10px;font-weight:700}
 .histdna-foot{margin-top:11px;color:#71859e;font-size:11px;line-height:1.6}
 @media(max-width:600px){.histdna-grid{grid-template-columns:1fr 1fr}.histdna-grid .histdna-stat:last-child{grid-column:1/-1}.histdna-stat strong{font-size:21px}.histdna-table td,.histdna-table th{padding:8px 4px;font-size:10px}}
+/* Three-destination experience: native segmented views and quiet on-demand detail */
+.view-switch{display:flex;flex-wrap:wrap;gap:7px;padding:6px;border:1px solid #e2e9f3;border-radius:12px;background:#eef3fa}
+.view-switch button{flex:1 1 115px;background:transparent;border:0;border-radius:8px;padding:11px 15px;font-size:12px;font-weight:800;color:#60758d}
+.view-switch button.active{background:#fff;color:#1b4d8c;box-shadow:0 2px 9px rgba(22,55,101,.09)}
+.view-switch button:focus-visible{outline:3px solid #65a7ff}
+.deep-dive{border:1px solid #e1e8f2;border-radius:12px;background:white;min-width:0;padding:0 16px}
+.deep-dive>summary{padding:15px 0;cursor:pointer;color:#365779;font-size:12px;font-weight:800}
+.deep-dive[open]{padding-bottom:16px}
+.deep-dive>summary:hover{color:#1b4d8c}
+.overview-luck .rankline{max-width:860px}
+.overview-luck .rankline:last-child{margin-bottom:0}
+.history-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px}
+.history-card{border:1px solid #e2eaf4;border-radius:11px;padding:16px;min-width:0;background:#fff}
+.history-card small{display:block;color:#6c8199;font-size:10px;letter-spacing:.07em;text-transform:uppercase;font-weight:800}
+.history-card strong{display:block;margin:5px 0;font-size:16px}
+.history-table{white-space:normal}.history-table .tiny{max-width:250px;overflow-wrap:anywhere}
+.history-table td,.history-table th{padding:10px 8px}
+.history-note{font-size:11px;line-height:1.65;color:#6d8199}
+@media(max-width:550px){.view-switch button{flex:1 1 80px;padding:10px 5px;font-size:11px}.history-table td,.history-table th{font-size:10px;padding:9px 4px}}
 </style></head>
 <body>
 <div class="shell"><aside class="side"><div class="brand"><div class="mark">2K</div><div><strong>FANTASY 2K<br>INFINITY</strong><small>LEAGUE REPORT</small></div></div><div class="navcat">WORKSPACE</div>
 <button class="navbtn active" data-tab="overview"><span class="navico">◫</span><span class="text">Overview</span></button>
-<button class="navbtn" data-tab="performance"><span class="navico">↗</span><span class="text">Team DNA & scoring</span></button>
-<button class="navbtn" data-tab="cards"><span class="navico">▤</span><span class="text">Team Cards</span></button>
-<button class="navbtn" data-tab="luck"><span class="navico">≋</span><span class="text">Who got lucky?</span></button>
-<button class="navbtn" data-tab="divisions"><span class="navico">▥</span><span class="text">What if?</span></button>
-<div class="navcat" style="margin-top:20px">REFERENCE</div><button class="navbtn" data-tab="method"><span class="navico">ⓘ</span><span class="text">How it works</span></button>
+<button class="navbtn" data-tab="teams"><span class="navico">◉</span><span class="text">Teams</span></button>
+<button class="navbtn" data-tab="history"><span class="navico">🏆</span><span class="text">History</span></button>
 <div class="sidefoot" id="sideStatus"><span class="dot"></span>40 finalized team-weeks<br>100,000 past-schedule simulations<br>Validated fallback available</div></aside>
 <nav class="mobile-nav" id="mobileNav"></nav>
 <main class="main"><div class="topline"><div><div class="eyebrow">2026 · League report</div><h1 id="pageTitle">League overview</h1></div><div class="topright"><span class="tag"><span id="weekStatus">Weeks 1–4 · Final</span></span></div></div>
@@ -459,8 +475,8 @@ const HISTORY=JSON.parse(document.getElementById('championships').textContent);
 const HISTORICAL_SCORES=JSON.parse(document.getElementById('historicalscores').textContent);
 const TITLES_BY_FRANCHISE=HISTORY.champions.filter(x=>x.status==='confirmed').reduce((out,x)=>{(out[x.franchise_id]??=[]).push(x.season);return out;},{});
 const RANK_COLORS=METRICS.rankColors;
-const navTabs=[['overview','Overview'],['performance','Team DNA & scoring'],['cards','Team Cards'],['luck','Who got lucky?'],['divisions','What if?'],['method','How it works']];
-let state={tab:'overview',selected:3,expandedStanding:null,division:'All',sort:'luck',weekRange:'latest',quadrant:'all'};
+const navTabs=[['overview','Overview'],['teams','Teams'],['history','History']];
+let state={tab:'overview',teamView:'card',historyView:'yearbook',historyYear:2025,selected:3,expandedStanding:null,division:'All',sort:'luck',weekRange:'latest',quadrant:'all'};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=(n,k=2)=>Number(n).toLocaleString('en-US',{minimumFractionDigits:k,maximumFractionDigits:k});
 const sign=(n,k=2)=> (n>0?'+':'')+fmt(n,k);
