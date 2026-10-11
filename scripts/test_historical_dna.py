@@ -65,7 +65,8 @@ class TestHistoricalDna(unittest.TestCase):
         self.assertEqual([r[0] for r in records(current)],[2025,2024])
         self.assertEqual([r[0] for r in records(old)],[2023])
         w,relative,cv=fingerprint(current)
-        self.assertEqual(w,[.625,.375])
+        self.assertAlmostEqual(w[0],.625,places=10)
+        self.assertAlmostEqual(w[1],.375,places=10)
         self.assertAlmostEqual(relative,.011,places=3)
         self.assertAlmostEqual(cv,.215,places=3)
     def test_all_current_franchises_have_only_verified_history(self):
