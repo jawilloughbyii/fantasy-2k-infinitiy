@@ -122,7 +122,7 @@ async function main(){
  assert.ok(!view.includes('0–0 · placeholder'),'No invented score or placeholders');
  events.click({target:{closest(selector){return selector==='[data-card-step]'?{dataset:{cardStep:'1'}}:null}}});
  view=node('view').innerHTML;
- assert.ok(view.includes('Golden Ponies') && view.includes('PF RANK #'),'Card next/previous control follows points-scored order');
+ assert.ok(view.includes('Quattro Padres') && view.includes('PF RANK #'),'Card next/previous control follows points-scored order');
  node('teamSelect').listeners.change({target:{value:'3'}});
  view=node('view').innerHTML;
  assert.ok(view.includes('Israeli Nutonyaboob'),'Shared selected-team dropdown also selects report card');
