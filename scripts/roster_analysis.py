@@ -20,8 +20,14 @@ SLOTS = {'QB':0, 'RB':2, 'WR':4, 'TE':6, 'FLEX':23, 'K':17, 'DST':16}
 SLOT_TO_POSITION = {v:k for k,v in SLOTS.items()}
 POSITION_ID = {1:'QB', 2:'RB', 3:'WR', 4:'TE', 5:'K', 16:'DST'}
 REQUIRED = {'QB':1,'RB':2,'WR':2,'TE':1,'FLEX':1,'K':1,'DST':1}
-BASE = {'QB':10,'RB':20,'WR':20,'TE':10,'K':10,'DST':10}
-WEIGHT = {'QB':2,'RB':2,'WR':2,'TE':2,'FLEX':2,'K':1,'DST':1} # integer half-units; total 16
+METRICS=json.loads((Path(__file__).resolve().parents[1]/'reference'/'metric_definitions.json').read_text(encoding='utf8'))
+BASE={p:int(n) for p,n in METRICS['lineup']['positionCutoffs'].items()}
+FLEX_EXTRA=int(METRICS['lineup']['flexAdditional'])
+POSSIBLE=float(METRICS['lineup']['weightedPossible'])
+SKILL_UNITS=round(2*METRICS['lineup']['skillWeight'])
+K_UNITS=round(2*METRICS['lineup']['kickerWeight'])
+DST_UNITS=round(2*METRICS['lineup']['dstWeight'])
+WEIGHT={'QB':SKILL_UNITS,'RB':SKILL_UNITS,'WR':SKILL_UNITS,'TE':SKILL_UNITS,'FLEX':SKILL_UNITS,'K':K_UNITS,'DST':DST_UNITS} # integer half-units
 BENCH, IR = 20, 21
 PAGE_SIZE, MAX_POOL = 500, 5000
 BASE_URL=f'https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/{YEAR}/segments/0/leagues/{LEAGUE_ID}'
@@ -204,8 +210,8 @@ def qualified_sets(universe):
         cutoffs[pos]=round(threshold,2)
     remaining=sorted((p for p in universe.values() if p['pos'] in ('RB','WR','TE')
                      and p['id'] not in qualified[p['pos']]),key=lambda p:(-p['points'],p['id']))
-    if len(remaining)<10 or remaining[9]['points']<=0:raise ValueError('Incomplete FLEX scoring pool')
-    flex_threshold=remaining[9]['points']
+    if len(remaining)<FLEX_EXTRA or remaining[FLEX_EXTRA-1]['points']<=0:raise ValueError('Incomplete FLEX scoring pool')
+    flex_threshold=remaining[FLEX_EXTRA-1]['points']
     qualified['FLEX']={p['id'] for p in remaining if p['points']>=flex_threshold}
     cutoffs['FLEX']=round(flex_threshold,2)
     return qualified,cutoffs
@@ -252,7 +258,7 @@ def analyze_week(observed,universe,week,espn_to_canonical):
         bench_qualified=[p for p in roster if p['slot']==BENCH and (p['id'] in sets[p['pos']] or (p['pos'] in ('RB','WR','TE') and p['id'] in sets['FLEX']))]
         chosen_bench=[p for p in bench_qualified if p['id'] in set(v for v in allocation.values() if v is not None)] if best>starter_best else []
         output.append({'teamId':espn_to_canonical[espn_id],'week':week,'weightedHits':current/2,'weightedMax':best/2,
-            'weightedPossible':8,'swrPct':round(100*current/16,2),'qualifiedStarters':len(hits),'totalStarters':9,
+            'weightedPossible':POSSIBLE,'swrPct':round(100*current/(2*POSSIBLE),2),'qualifiedStarters':len(hits),'totalStarters':9,
             'missedWeighted':(best-starter_best)/2,'reassignmentWeighted':(starter_best-current)/2,
             'totalOpportunityWeighted':(best-current)/2,'benchQualifiedCount':len(bench_qualified),
             'potentiallyUsefulBenchCount':len(chosen_bench),
