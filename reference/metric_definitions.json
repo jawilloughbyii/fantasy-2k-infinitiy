@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "season": 2026,
+  "leagueId": 418244680,
+  "scoring": {
+    "quadrantCvBoundary": 0.2,
+    "quadrants": [
+      "Volatile underdogs",
+      "High-upside wildcards",
+      "Steady, lower-output",
+      "Reliable contenders"
+    ],
+    "minimumWeeks": 4,
+    "shortNames": {
+      "1": "Aubrey",
+      "2": "Jaxon",
+      "3": "Nutony",
+      "4": "Ponies",
+      "5": "Padres",
+      "6": "Cats",
+      "7": "Haily",
+      "8": "Dorm",
+      "9": "Comepig",
+      "10": "Rice"
+    }
+  },
+  "momentum": {
+    "minimumWeeks": 6,
+    "window": 3,
+    "heatingPct": 12,
+    "coolingPct": -12
+  },
+  "recentDna": {
+    "minimumWeeks": 7,
+    "window": 4
+  },
+  "projection": {
+    "minimumVerifiedWeeks": 3,
+    "verifiedSource": "scheduled snapshot",
+    "verifiedFlag": "pregameVerified"
+  },
+  "lineup": {
+    "weightedPossible": 8,
+    "skillWeight": 1,
+    "kickerWeight": 0.5,
+    "dstWeight": 0.5,
+    "positionCutoffs": {
+      "QB": 10,
+      "RB": 20,
+      "WR": 20,
+      "TE": 10,
+      "K": 10,
+      "DST": 10
+    },
+    "flexAdditional": 10
+  },
+  "luck": {
+    "denominator": "other teams per week",
+    "tieCredit": 0.5,
+    "headline": "Extra wins",
+    "description": "Actual matchup wins minus expected all-play wins. A positive number means the schedule helped."
+  },
+  "rankColors": [
+    "#174d86",
+    "#3973b3",
+    "#6396c8",
+    "#94b9da",
+    "#c7dbea"
+  ]
+}

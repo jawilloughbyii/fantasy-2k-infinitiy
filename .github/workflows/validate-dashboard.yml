@@ -1,0 +1,44 @@
+name: Validate dashboard metrics and UI
+
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'data/league.json'
+      - 'reference/metric_definitions.json'
+      - 'scripts/build_site_data.py'
+      - 'scripts/sync_site_snapshot.py'
+      - 'scripts/test_dashboard.cjs'
+      - 'scripts/test_pipeline.py'
+      - 'scripts/test_roster_analysis.py'
+      - 'README.md'
+      - '.github/workflows/validate-dashboard.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'data/league.json'
+      - 'reference/metric_definitions.json'
+      - 'scripts/**'
+      - '.github/workflows/validate-dashboard.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify processed ESPN data pipeline
+        run: python scripts/test_pipeline.py
+      - name: Verify legal roster optimization
+        run: python scripts/test_roster_analysis.py
+      - name: Verify approved snapshots and active dashboard pages
+        run: node scripts/test_dashboard.cjs

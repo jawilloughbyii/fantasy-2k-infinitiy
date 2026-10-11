@@ -7,6 +7,9 @@ import json
 import pathlib
 import re
 
+DEFINITIONS=pathlib.Path(__file__).resolve().parents[1]/'reference'/'metric_definitions.json'
+METRIC_PATTERN=re.compile(r'(<script id="metricdefs" type="application/json">)(.*?)(</script>)',re.S)
+
 PATTERN=re.compile(r'(<script id="fantasydata" type="application/json">)(.*?)(</script>)',re.S)
 
 def safe_json(data):
@@ -20,7 +23,11 @@ def sync(html,data):
     if int(data['completedThrough'])<int(old['completedThrough']):raise ValueError('Refusing backward fallback snapshot')
     for word in ('espn_s2','espn_swid','owner_name','manager_name','session_cookie'):
         if word in json.dumps(data).lower():raise ValueError('Potential sensitive field found in public data')
-    return html[:match.start(2)]+safe_json(data)+html[match.end(2):]
+    updated=html[:match.start(2)]+safe_json(data)+html[match.end(2):]
+    metrics=json.loads(DEFINITIONS.read_text(encoding='utf8'))
+    m=METRIC_PATTERN.search(updated)
+    if not m:raise ValueError('Missing shared metric definitions in HTML')
+    return updated[:m.start(2)]+safe_json(metrics)+updated[m.end(2):]
 
 def main():
     a=argparse.ArgumentParser();a.add_argument('--html',default='index.html');a.add_argument('--data',required=True);a.add_argument('--output',required=True);args=a.parse_args()

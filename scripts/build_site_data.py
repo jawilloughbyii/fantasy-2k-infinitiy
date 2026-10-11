@@ -27,27 +27,28 @@ def embed(html):
     if not m: raise ValueError('index.html is missing the original validated fallback')
     return json.loads(m.group(1))
 
+METRICS=load(ROOT/'reference/metric_definitions.json')
+
 def mean(x): return sum(x)/len(x)
 def normalize(s): return re.sub('[^a-z0-9]','',s.lower())
 def rounding(x): return round(x+0.,8)
 
 def classification(scores, league_mean):
-    average=mean(scores); sd=stats.pstdev(scores) if len(scores)>1 else 0
+    """Use the identical four quadrants as the frontend map and shared definitions."""
+    average=mean(scores)
+    sd=stats.pstdev(scores) if len(scores)>1 else 0
     cv=sd/average if average>0 else 0
-    if cv>=.235 and max(scores)>=1.10*league_mean: return 'High ceiling, low floor'
-    if cv>=.235: return 'Boom-or-bust'
-    if cv<=.135 and average>=1.04*league_mean: return 'Reliable contender'
-    if cv<=.135: return 'Steady scorer'
-    if average>=1.08*league_mean: return 'High-upside contender'
-    if average<=.92*league_mean: return 'Inconsistent underdog'
-    return 'Balanced, with swings'
+    high=cv>METRICS['scoring']['quadrantCvBoundary']
+    right=average>=league_mean
+    return METRICS['scoring']['quadrants'][(1 if right else 0)+(0 if high else 2)]
+
 
 def simulate(teams, n=20000):
     """Historical weekly score-preserving random valid perfect matchings."""
     rnd=random.Random(20261009); weeks=len(teams[0]['weeks']); by_id={t['id']:t for t in teams}; ids=list(by_id)
     old_divs=sorted({t['division'] for t in teams}); groups={d:[t for t in teams if t['division']==d] for d in old_divs}
-    count_wins={id:[0]*(weeks+1) for id in ids}; win_better={id:0.0 for id in ids}
-    rank_counts={id:[0]*len(groups[by_id[id]['division']]) for id in ids}; rank_sum={id:0 for id in ids}; win_sum={id:0 for id in ids}; rank_better={id:0.0 for id in ids}
+    count_wins={id:[0]*(weeks+1) for id in ids}
+    rank_counts={id:[0]*len(groups[by_id[id]['division']]) for id in ids}; rank_sum={id:0 for id in ids}; win_sum={id:0 for id in ids}
     total=weeks*n
     for _ in range(n):
         wins={id:0 for id in ids}
@@ -59,20 +60,16 @@ def simulate(teams, n=20000):
                 elif bp>ap:wins[b]+=1
                 else:wins[a]+=.5;wins[b]+=.5
         for t in teams:
-            id=t['id'];wa=wins[id];actual=t['wins'];win_sum[id]+=wa
+            id=t['id'];wa=wins[id];win_sum[id]+=wa
             ix=min(weeks,int(wa));count_wins[id][ix]+=1
-            win_better[id]+=(1.0 if wa<actual else .5 if wa==actual else 0.0)
         for group in groups.values():
             for t in group:
                 id=t['id'];place=1+sum(wins[o['id']]>wins[id] for o in group)
                 rank_counts[id][place-1]+=1;rank_sum[id]+=place
-                actual=t['divrank'];rank_better[id]+=(1.0 if place>actual else .5 if place==actual else 0.0)
     for t in teams:
         id=t['id'];t['simWinMean']=round(win_sum[id]/n,3);t['simRankMean']=round(rank_sum[id]/n,3)
         t['rankDist']=[round(100*x/n,3) for x in rank_counts[id]]
         t['winDist']=[round(100*x/n,3) for x in count_wins[id]]
-        t['winLuckPct']=round(100*win_better[id]/n,1)
-        t['rankLuckPct']=round(100*rank_better[id]/n,1)
         t['simTop2Pct']=round(100*(rank_counts[id][0]+rank_counts[id][1])/n,1)
     return n
 
@@ -115,11 +112,14 @@ def build(report,base):
             if m.get('winner') not in (None,predicted):raise ValueError(f'Week {w}: inconsistent winner')
     result=copy.deepcopy(base)
     result.pop('week5',None)  # old in-progress screenshot must not persist
+    result.pop('rosterAnalysis',None)  # historical roster analysis requires a separate completed-week validation
     result['completedThrough']=latest
     result['source']='ESPN authenticated, baseline reconciled'
     result['generated']=report.get('generated_at_utc') or dt.datetime.now(dt.timezone.utc).isoformat()
-    result['projectionCoverage']={'kind':'historical ESPN screenshot displayed values','throughWeek':baseline_max,'notice':'Screenshots may contain in-game projections; no future projections fabricated.'}
-    for t in result['teams']:t['weeks']=[]
+    result['projectionCoverage']={'kind':'historical ESPN screenshot displayed values','throughWeek':baseline_max,'notice':'Historical displayed values are not verified pregame and must not be used in headline comparisons.'}
+    for t in result['teams']:
+        t['weeks']=[]
+        for legacy in ('rankLuckPct','winLuckPct','luckpp'):t.pop(legacy,None)
     indexed={t['id']:t for t in result['teams']}; week_points={}
     base_week={(t['id'],w['week']):w for t in base['teams'] for w in t['weeks']}
     for w in range(1,latest+1):
@@ -138,12 +138,12 @@ def build(report,base):
                     'win':1 if pf>pa else 0,'xw':None,'weekLuck':None,'delta':round(pf-proj,2) if proj is not None else None,'rank':None})
         sorted_week=sorted(week_points[w].values(),reverse=True)
         for t in result['teams']:
-            row=t['weeks'][-1];pf=row['pf'];beats=sum(pf>p for id,p in week_points[w].items() if id!=t['id']);ties=sum(pf==p for id,p in week_points[w].items() if id!=t['id']);xw=(beats+.5*ties)/9
+            row=t['weeks'][-1];pf=row['pf'];beats=sum(pf>p for id,p in week_points[w].items() if id!=t['id']);ties=sum(pf==p for id,p in week_points[w].items() if id!=t['id']);xw=(beats+METRICS['luck']['tieCredit']*ties)/(len(result['teams'])-1)
             row['xw']=rounding(xw);row['weekLuck']=rounding(row['win']-xw);row['rank']=1+sum(p>pf for p in week_points[w].values())
     for t in result['teams']:
         rows=t['weeks'];wins=sum(x['win'] for x in rows); losses=len(rows)-wins
         t['wins']=wins;t['losses']=losses;t['pf']=round(sum(x['pf'] for x in rows),2);t['pa']=round(sum(x['pa'] for x in rows),2);t['pd']=round(t['pf']-t['pa'],2)
-        t['xw']=rounding(sum(x['xw'] for x in rows));t['luck']=rounding(wins-t['xw']);t['luckpp']=round(100*t['luck']/len(rows),3);t['winsAllPlay']=sum(9*x['xw'] for x in rows)
+        t['xw']=rounding(sum(x['xw'] for x in rows));t['luck']=rounding(wins-t['xw']);t['winsAllPlay']=sum(9*x['xw'] for x in rows)
         projrows=[x for x in rows if x['proj'] is not None];t['projWeeks']=len(projrows)
         t['proj']=round(sum(x['proj'] for x in projrows),2);t['projdelta']=round(sum(x['pf']-x['proj'] for x in projrows),2)
         t['projPct']=round(100*t['projdelta']/t['proj'],3) if t['proj'] else None
@@ -160,23 +160,23 @@ def build(report,base):
     result['leagueMedianPf']=round(stats.median([p for x in week_points.values() for p in x.values()]),2)
     result['dnaHistory']=[]
     for w in range(1,latest+1):
-        avg=mean(week_avg[:w]);entry={'throughWeek':w,'status':'provisional' if w<=5 else 'emerging' if w<=9 else 'established','teams':[]}
+        avg=mean(week_avg[:w]);entry={'throughWeek':w,'status':'observed','teams':[]}
         for t in result['teams']:
             scores=[r['pf'] for r in t['weeks'][:w]]
-            entry['teams'].append({'id':t['id'],'category':classification(scores,avg) if w>=4 else 'Not enough weeks','averagePf':round(mean(scores),2),
+            entry['teams'].append({'id':t['id'],'category':classification(scores,avg) if w>=METRICS['scoring']['minimumWeeks'] else 'Not enough weeks','averagePf':round(mean(scores),2),
              'cvPct':round((stats.pstdev(scores)/mean(scores))*100,2) if mean(scores)>0 else 0.0})
         result['dnaHistory'].append(entry)
     result['recentDna']=[]
-    if latest>=7:
-        recent_week_avg=mean(week_avg[-4:]);earliest_recent=latest-3
+    if latest>=METRICS['recentDna']['minimumWeeks']:
+        recent_window=METRICS['recentDna']['window'];recent_week_avg=mean(week_avg[-recent_window:]);earliest_recent=latest-recent_window+1
         for t in result['teams']:
-            scores=[r['pf'] for r in t['weeks'][-4:]]
+            scores=[r['pf'] for r in t['weeks'][-recent_window:]]
             result['recentDna'].append({'id':t['id'],'weeks':[earliest_recent,latest],
              'category':classification(scores,recent_week_avg),'cvPct':round(100*stats.pstdev(scores)/mean(scores),2) if mean(scores)>0 else 0.0})
     result['methodNotes']=["Private ESPN backfill reconciled against 40 known scores and opponents for Weeks 1–4.",
      "Only completed periods before ESPN's current matchup period enter scoring calculations.",
      "Original Weeks 1–4 displayed projection values are not verified pregame snapshots. Missing future projections remain blank.",
-     "No player data, manager names, ESPN authentication credentials or playoff odds are published."]
+     "Manager names and ESPN authentication credentials are never published. Validated finalized roster metrics are published separately."]
     if len(result['teams'])!=10 or any(len(t['weeks'])!=latest for t in result['teams']):raise ValueError('Output completeness check failed')
     assert round(sum(t['pf'] for t in result['teams']),2)==round(sum(t['pa'] for t in result['teams']),2)
     return result
