@@ -9,6 +9,9 @@ const ROOT=path.resolve(__dirname,'..');
 const html=fs.readFileSync(path.join(ROOT,'index.html'),'utf8');
 const data=JSON.parse(fs.readFileSync(path.join(ROOT,'data/league.json'),'utf8'));
 const definitions=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/metric_definitions.json'),'utf8'));
+const continuity=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/franchise_continuity.json'),'utf8'));
+const espnMapping=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/team_id_map.json'),'utf8'));
+const championshipHistory=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/championship_history.json'),'utf8'));
 function embedded(id){
  const begin='<script id="'+id+'" type="application/json">';
  const a=html.indexOf(begin),b=html.indexOf('</script>',a+begin.length);
@@ -17,6 +20,16 @@ function embedded(id){
 }
 assert.deepStrictEqual(embedded('fantasydata'),data,'External JSON and embedded fallback must match');
 assert.deepStrictEqual(embedded('metricdefs'),definitions,'HTML definitions must come from one canonical file');
+const historyEmbedded={
+ league_id:championshipHistory.league_id,
+ season_to_franchise:continuity.season_to_franchise,
+ dashboard_to_espn:espnMapping.baseline_to_espn,
+ champions:championshipHistory.champions
+};
+assert.deepStrictEqual(embedded('championships'),historyEmbedded,'Embedded champion metadata must match the verified reference files');
+assert.deepStrictEqual(championshipHistory.champions.map(x=>[x.season,x.espn_team_id,x.franchise_id]),[
+ [2023,7,'franchise-07'],[2024,10,'franchise-10'],[2025,1,'franchise-01']
+]);
 assert.equal(data.teams.length,10);
 assert.equal(data.completedThrough,4);
 assert.equal(data.rosterAnalysis.weeks.length,4);
@@ -60,17 +73,35 @@ function node(id){
  return elements.get(id);
 }
 const doc={
- getElementById(id){const el=node(id);if(id==='fantasydata')el.textContent=JSON.stringify(data);if(id==='metricdefs')el.textContent=JSON.stringify(definitions);return el;},querySelectorAll:()=>[],
+ getElementById(id){const el=node(id);if(id==='fantasydata')el.textContent=JSON.stringify(data);if(id==='metricdefs')el.textContent=JSON.stringify(definitions);if(id==='championships')el.textContent=JSON.stringify(historyEmbedded);return el;},querySelectorAll:()=>[],
  addEventListener(name,handler){events[name]=handler}
 };
 const fetch=async()=>({ok:true,json:async()=>data});
 const script=html.match(/<script>\s*([\s\S]*?)<\/script>/);
 assert.ok(script,'Dashboard JavaScript missing');
-vm.runInNewContext(script[1],{document:doc,window:{scrollTo(){}},fetch,console}, {timeout:5000});
+const instrumented=script[1].replace(/\}\)\(\);\s*$/,'globalThis.__championshipTest={franchiseFor,championshipYears,teamName};})();');
+assert.notEqual(instrumented,script[1],'Champion renderer test hook could not be installed');
+const sandbox={document:doc,window:{scrollTo(){}},fetch,console};
+vm.runInNewContext(instrumented,sandbox,{timeout:5000});
+const names=sandbox.__championshipTest;
+assert.ok(names.teamName({espn_team_id:7,name:'The Load Warriors'},2023).includes('League champion: 2023'),'Historic 2023 winning alias gets trophy');
+assert.ok(names.teamName({espn_team_id:10,name:'Mike Oxlong'},2024).includes('League champion: 2024'),'Historic 2024 winning alias gets trophy');
+assert.ok(names.teamName({espn_team_id:1,name:"General's Dorm Room"},2025).includes('League champion: 2025'),'Historic 2025 winning alias gets trophy');
+assert.ok(!names.teamName({espn_team_id:6,name:'Team Figueroa'},2023).includes('champion-trophy'),'Legacy slot 6 never inherits current franchise record');
+assert.ok(!names.teamName({espn_team_id:3,name:'Quattro Padres'},2025).includes('champion-trophy'),'No unverified Quattro title');
+assert.ok(!names.teamName({espn_team_id:7,name:'The Load Warriors'},2022).includes('champion-trophy'),'Unmapped years must never inherit a title');
 async function main(){
  for(let i=0;i<8;i++)await Promise.resolve();
  let view=node('view').innerHTML;
  assert.ok(view.includes('League standings & scoring rank'));
+ const champions=[['The Domestic House Cats','2024'],['Project Haily Mary','2023'],["General&#39;s Dorm Room",'2025']];
+for(const [name,year] of champions){
+ assert.ok(view.includes(name+'<span class="champion-trophy"'),'Standings must trophy-mark '+name);
+ assert.ok(view.includes('League champion: '+year),'Standings must identify the title year '+year);
+}
+assert.ok(!view.includes('Quattro Padres<span class="champion-trophy"'),'Unverified champions cannot get badges');
+for(const id of [6,7,8])assert.ok(node('teamSelect').innerHTML.includes('value="'+id+'">'),'Selector must contain all champions');
+assert.ok((node('teamSelect').innerHTML.match(/🏆/g)||[]).length===3,'Selector should mark only three verified champion franchises');
  assert.ok(view.includes('power-desktop') && view.includes('power-table'),'Desktop must use compact data table');
  assert.ok(view.includes('power-mobile-item') && view.includes('power-mobile-toggle'),'Mobile must use compact expandable rows');
  assert.ok(view.includes('<th>Team DNA</th>') && view.includes('<th class="num">CV</th>'),'Desktop table needs DNA and CV columns');
@@ -111,6 +142,12 @@ async function main(){
   return node('view').innerHTML;
  }
  view=tab('cards');
+ for(const [id,year] of [[6,2024],[7,2023],[8,2025]]){
+  node('teamSelect').listeners.change({target:{value:String(id)}});
+  assert.ok(node('view').innerHTML.includes('League champion: '+year),'Report card champion marker '+year);
+ }
+ node('teamSelect').listeners.change({target:{value:'3'}});
+ view=node('view').innerHTML;
  assert.ok(view.includes('tc-report') && view.includes('tc-primary-grid') && view.includes('tc-stats') && view.includes('tc-trends'),'Team Cards should have screenshot-ready report structure');
  assert.ok(view.includes('TEAM DNA') && view.includes('EXTRA WINS') && view.includes('STARTER-WORTHY'),'Team Card headline metrics missing');
  assert.ok(view.includes('viewBox="0 0 24 24"') && view.includes('<circle cx="9.15"'),'Use minimalist SVG icons including the four-leaf clover');
@@ -127,6 +164,7 @@ async function main(){
  view=node('view').innerHTML;
  assert.ok(view.includes('Israeli Nutonyaboob'),'Shared selected-team dropdown also selects report card');
  view=tab('performance');
+ assert.equal((view.match(/<tspan dx="3" font-size="11">🏆<\/tspan>/g)||[]).length,3,'All three winning franchises get map trophies');
  assert.ok(view.includes('Volatile underdogs'),'Default selected team uses canonical quadrant');
  assert.ok(!view.includes('Inconsistent underdog'));
  assert.ok(!view.includes('Scoring versus recorded ESPN projections'));
@@ -139,9 +177,11 @@ async function main(){
  node('teamSelect').listeners.change({target:{value:'5'}});
  assert.ok(node('view').innerHTML.includes('Steady, lower-output'),'Quattro Padres map/identity must agree');
  view=tab('luck');
+ for(const year of [2023,2024,2025])assert.ok(view.includes('League champion: '+year),'Luck rankings preserve trophies');
  assert.ok(view.includes('Extra wins are the headline.'));
  assert.ok(!view.includes('Bad beats'));
  view=tab('divisions');
+ for(const year of [2023,2024,2025])assert.ok(view.includes('League champion: '+year),'What If standings preserve trophies');
  assert.ok(view.includes('darkest = 1st') && !view.includes('out of 100'),'What-if must not display competing fortune score');
  console.log('Dashboard regression checks passed: paired snapshots, 40 rosters, compact desktop table, mobile expand/collapse and selection, DNA, CV, benchmarks and active pages.');
 }

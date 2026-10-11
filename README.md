@@ -15,6 +15,10 @@ League context in the Overview compares every team against all ten approved team
 
 Definitions shared by the Python builder and the browser live in [reference/metric_definitions.json](reference/metric_definitions.json). `scripts/sync_site_snapshot.py` embeds both approved data and those definitions in the HTML fallback. Change definitions there rather than creating independent UI categories.
 
+## Verified championship markers
+
+Every displayed team name uses the same franchise-keyed championship marker, including Overview standings, matchup opponents, Team Cards, Team DNA (including map labels), Who got lucky?, What if?, and the team selector. The marker is one trophy per confirmed title-winning franchise (with year(s) in the accessible label and a count for multiple titles), not a judgment about current-year performance. Currently verified: 2023 The Load Warriors (now Project Haily Mary), 2024 Mike Oxlong (now The Domestic House Cats), and 2025 General's Dorm Room. Quattro Padres has no verified title in the available records and gets no marker. Historical aliases resolve using the explicit season + ESPN ID map in `reference/franchise_continuity.json`, not by name. The published 2026 `data/league.json` model is unchanged; the HTML's public owner-free metadata is synchronized from `reference/championship_history.json`, `reference/franchise_continuity.json`, and `reference/team_id_map.json` by `scripts/sync_site_snapshot.py`. No History tab has been added yet.
+
 ## Roster-quality definitions
 
 **Actual Starter-Worthy Rate (SWR)** counts NFL-wide weekly position qualifiers in the actual finalized starting lineup. Qualifying cutoffs: QB 10, RB 20, WR 20, TE 10, top ten additional FLEX-eligible RB/WR/TE after positional qualifiers, kicker 10 and DST 10; ties count. Seven skill slots count one point each; K/DST count half each; eight weighted points maximum.
