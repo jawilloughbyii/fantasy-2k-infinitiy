@@ -43,7 +43,16 @@
     "weightedPossible": 8,
     "skillWeight": 1,
     "kickerWeight": 0.5,
-    "dstWeight": 0.5
+    "dstWeight": 0.5,
+    "positionCutoffs": {
+      "QB": 10,
+      "RB": 20,
+      "WR": 20,
+      "TE": 10,
+      "K": 10,
+      "DST": 10
+    },
+    "flexAdditional": 10
   },
   "luck": {
     "denominator": "other teams per week",
