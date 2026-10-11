@@ -1,0 +1,32 @@
+name: Validate historical franchise continuity
+
+on:
+  pull_request:
+    paths:
+      - 'reference/franchise_continuity.json'
+      - 'reference/team_id_map.json'
+      - 'scripts/franchise_identity.py'
+      - 'scripts/test_franchise_identity.py'
+      - '.github/workflows/validate-franchise-continuity.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'reference/franchise_continuity.json'
+      - 'reference/team_id_map.json'
+      - 'scripts/franchise_identity.py'
+      - 'scripts/test_franchise_identity.py'
+      - '.github/workflows/validate-franchise-continuity.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify-franchise-boundaries:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test explicit continuity and verified ownership boundary
+        run: python scripts/test_franchise_identity.py
