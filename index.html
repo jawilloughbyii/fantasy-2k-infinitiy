@@ -282,6 +282,17 @@
 .power-table .team-cell{white-space:normal;min-width:140px;font-weight:800}
 .power-table .quiet{color:#6f839a;font-size:10px}
 .power-mobile{display:none}
+.standing-metric{display:flex;flex-direction:column;align-items:flex-end;gap:3px;min-width:68px}
+.standing-metric .mini-spark{width:74px;height:23px;display:block;overflow:visible}
+.standing-metric .mini-spark polyline{fill:none;stroke:#3978dc;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.standing-metric .mini-spark circle{fill:#3978dc}
+.standing-metric .mini-spark .reference{stroke:#cbd5e1;stroke-width:1;stroke-dasharray:2 3}
+.standing-metric .mini-spark.luck-line polyline{stroke:#526f9d}
+.standing-metric .mini-spark.luck-line circle{fill:#526f9d}
+.power-mobile-stats .standing-metric{align-items:flex-start}
+.power-mobile-stats .mini-spark{width:100%;max-width:120px;height:26px}
+.power-desktop .power-table{min-width:810px}
+
 .standings-baseline{display:flex;flex-wrap:wrap;gap:7px 18px;margin:12px 0;color:#607690;font-size:11px;line-height:1.5}
 .standings-baseline b{color:#264768}
 .roster-action-metrics small{display:block;margin-top:7px;padding-top:7px;border-top:1px solid #edf2f8;font-size:10px;color:#607b98;line-height:1.4}
@@ -390,23 +401,32 @@ function teamHero(t){const p=scoringProfiles[t.id];return `<div class="selhero r
 function teamVerdict(t){const l=Math.abs(t.luck);const phrase=t.luck>.075?`The schedule has helped: ${t.wins} wins versus ${fmt(t.xw)} expected (${fmt(l)} extra wins).`:t.luck<-.075?`This team has faced a tougher draw: ${t.wins} wins versus ${fmt(t.xw)} expected (${fmt(l)} fewer wins).`:`The schedule has been near neutral: ${t.wins} actual wins versus ${fmt(t.xw)} expected.`;return `<div class="verdict"><div class="verdict-kicker">SCHEDULE IMPACT</div><div class="verdict-body">${phrase}</div></div>`;}
 
 function insight(t){return `<div class="infocard"><strong>How to read this</strong><div>${t.wins} wins on the actual schedule, versus ${fmt(t.xw)} expected when comparing weekly scores against all nine other teams. This is about opponents, not draft or lineup choices.</div></div>`}
-function weekHeadlines(){
- const w=DB.completedThrough,latest=teams.map(t=>({t,r:t.weeks[w-1]})),sorted=[...latest].sort((a,b)=>b.r.weekLuck-a.r.weekLuck),scorer=[...latest].sort((a,b)=>b.r.pf-a.r.pf)[0];
- const items=[{label:`W${w} · BIGGEST SCHEDULE BOOST`,t:sorted[0].t,amount:sign(sorted[0].r.weekLuck),detail:`extra wins in Week ${w}`,to:'luck'},
- {label:`W${w} · TOUGHEST DRAW`,t:sorted.at(-1).t,amount:sign(sorted.at(-1).r.weekLuck),detail:`extra wins in Week ${w}`,to:'luck'},
- {label:`W${w} · HIGHEST SCORER`,t:scorer.t,amount:fmt(scorer.r.pf,1),detail:`fantasy points in Week ${w}`,to:'performance'}];
- return `<div class="weekly-headline"><div class="weekly-title"><h3 class="sectiontitle">Week ${w} talking points</h3><div class="sublabel">These are single-week results; standings and the luck table are season totals.</div></div><div class="headlinegrid">${items.map(q=>`<button class="headline-item" data-select="${q.t.id}" data-jump="${q.to}"><span class="headline-label">${q.label}</span><strong>${teamName(q.t)}</strong><span class="headline-stat">${q.amount} <small>${q.detail}</small></span></button>`).join('')}</div></div>`;
+function standingSeries(t){
+ let wins=0,pf=0,allPlay=0,luck=0;
+ const record=[],points=[],all=[],extra=[],weeklyPf=[];
+ for(const w of t.weeks){wins+=w.win;pf+=w.pf;allPlay+=9*w.xw;luck+=w.weekLuck;record.push(wins);points.push(pf);all.push(allPlay);extra.push(luck);weeklyPf.push(w.pf);}
+ return {record,points,all,extra,weeklyPf};
+}
+function miniSpark(values,label,mode='cumulative'){
+ const v=values.map(Number),w=80,h=26,left=3,right=3,top=3,bottom=3;
+ const low=Math.min(...v,mode==='luck'?0:Infinity),high=Math.max(...v,mode==='luck'?0:-Infinity);
+ const pad=Math.max((high-low)*.16,mode==='luck'?.15:1),lo=low-pad,hi=high+pad;
+ const x=i=>left+i*(w-left-right)/Math.max(1,v.length-1),y=n=>top+(hi-n)/(hi-lo)*(h-top-bottom);
+ const pts=v.map((n,i)=>[x(i),y(n)]),path=pts.map(p=>p.join(',')).join(' ');
+ const baseline=mode==='luck'?`<line class="reference" x1="${left}" x2="${w-right}" y1="${y(0)}" y2="${y(0)}"/>`:'';
+ const description=`${label}, weeks 1–${v.length}: ${v.map(n=>fmt(n,2)).join(', ')}`;
+ return `<svg class="mini-spark ${mode==='luck'?'luck-line':''}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(description)}"><title>${esc(description)}</title>${baseline}<polyline points="${path}"/><circle cx="${pts.at(-1)[0]}" cy="${pts.at(-1)[1]}" r="2.5"/></svg>`;
 }
 function powerStandings(){
  const ordered=[...teams].sort((a,b)=>b.pf-a.pf||b.wins-a.wins),games=9*DB.completedThrough;
- const n=scoringProfiles[ordered[0].id].window;
- const leagueTrend=mean(teams.map(t=>scoringProfiles[t.id].shift??0));
- const baseline=`<div class="standings-baseline"><span>League avg PF <b>${fmt(mean(teams.map(t=>t.pf)),1)}</b></span><span>Avg all-play <b>${compactWins(games/2)}–${compactWins(games/2)}</b></span><span>Avg extra wins <b>${sign(mean(teams.map(t=>t.luck)),2)}</b></span><span>League trend <b>${n?sign(leagueTrend,1)+' PF/wk':'—'}</b></span></div>`;
- const stats=t=>{const p=scoringProfiles[t.id];return {record:`${t.wins}–${t.losses}`,pf:fmt(t.pf,1),allplay:`${compactWins(t.winsAllPlay)}–${compactWins(games-t.winsAllPlay)}`,luck:sign(t.luck,2),trend:p.momentum?sign(p.shift,1):'—',relative:p.momentum?sign(p.shift-leagueTrend,1):null};};
- return `<div class="card"><div class="league-heading"><div><h2>League standings & scoring rank</h2><p>Ranked by total PF · select a team to see its roster analysis</p></div></div>${baseline}
- <div class="tablewrap power-desktop"><table class="power-table"><thead><tr><th>#</th><th>Team</th><th class="num">Record</th><th class="num">PF</th><th class="num">All-play</th><th class="num">Extra wins</th><th class="num">Trend</th></tr></thead><tbody>${ordered.map((t,i)=>{const z=stats(t);return `<tr class="${state.selected===t.id?'selected':''}" data-select="${t.id}" tabindex="0" aria-label="Select ${esc(t.name)}"><td>${i+1}</td><td class="team-cell">${teamName(t)}</td><td class="num">${z.record}</td><td class="num">${z.pf}</td><td class="num">${z.allplay}</td><td class="num ${tone(t.luck)}">${z.luck}</td><td class="num" title="Change vs league ${z.relative??'—'} PF/week">${z.trend}${z.trend==='—'?'':' PF/wk'}</td></tr>`;}).join('')}</tbody></table></div>
- <div class="power-mobile" aria-label="Mobile league scoring standings">${ordered.map((t,i)=>{const z=stats(t);return `<div class="power-mobile-item ${state.selected===t.id?'selected':''}" data-select="${t.id}" role="button" tabindex="0" aria-label="Select ${esc(t.name)}"><div class="power-mobile-head"><span class="power-mobile-name"><span class="power-mobile-number">#${i+1}</span>${teamName(t)}</span><span class="power-mobile-record">${z.record}</span></div><div class="power-mobile-stats"><div><small>Points for</small><strong>${z.pf}</strong></div><div><small>All-play</small><strong>${z.allplay}</strong></div><div><small>Extra wins</small><strong class="${tone(t.luck)}">${z.luck}</strong></div><div><small>Trend · PF/week</small><strong>${z.trend}</strong></div></div></div>`;}).join('')}</div>
- <p class="data-note">All-play: your weekly result versus all nine other teams; only exact ties create a half-win. Trend: latest ${n||2} vs previous ${n||2} weeks (PF/week); the league baseline uses the same window. Scoring rank is not a forecast.</p></div>`;
+ const n=scoringProfiles[ordered[0].id].window,leagueTrend=mean(teams.map(t=>scoringProfiles[t.id].shift??0));
+ const baseline=`<div class="standings-baseline"><span>League avg PF <b>${fmt(mean(teams.map(t=>t.pf)),1)}</b></span><span>Avg all-play <b>${compactWins(games/2)}–${compactWins(games/2)}</b></span><span>League form <b>${n?sign(leagueTrend,1)+' PF/wk':'—'}</b></span></div>`;
+ const stats=t=>{const p=scoringProfiles[t.id],v=standingSeries(t);return {record:`${t.wins}–${t.losses}`,pf:fmt(t.pf,1),allplay:`${compactWins(t.winsAllPlay)}–${compactWins(games-t.winsAllPlay)}`,luck:sign(t.luck,2),trend:p.momentum?sign(p.shift,1):'—',relative:p.momentum?sign(p.shift-leagueTrend,1):null,series:v};};
+ const metric=(value,values,label,mode='cumulative',klass='')=>`<div class="standing-metric"><strong class="${klass}">${value}</strong>${miniSpark(values,label,mode)}</div>`;
+ return `<div class="card"><div class="league-heading"><div><h2>League standings & scoring rank</h2><p>Ranked by total points for · select any team</p></div></div>${baseline}
+ <div class="tablewrap power-desktop"><table class="power-table"><thead><tr><th>#</th><th>Team</th><th class="num">Record</th><th class="num">PF</th><th class="num">All-play</th><th class="num">Extra wins</th><th class="num">Trend</th></tr></thead><tbody>${ordered.map((t,i)=>{const z=stats(t);return `<tr class="${state.selected===t.id?'selected':''}" data-select="${t.id}" tabindex="0" aria-label="Select ${esc(t.name)}"><td>${i+1}</td><td class="team-cell">${teamName(t)}</td><td class="num">${metric(z.record,z.series.record,'Cumulative wins')}</td><td class="num">${metric(z.pf,z.series.points,'Cumulative fantasy points')}</td><td class="num">${metric(z.allplay,z.series.all,'Cumulative all-play wins')}</td><td class="num">${metric(z.luck,z.series.extra,'Cumulative extra wins','luck',tone(t.luck))}</td><td class="num" title="Change vs league ${z.relative??'—'} PF/week">${metric(z.trend==='—'?'—':z.trend+' PF/wk',z.series.weeklyPf,'Weekly PF (form)')}</td></tr>`;}).join('')}</tbody></table></div>
+ <div class="power-mobile" aria-label="Mobile league scoring standings">${ordered.map((t,i)=>{const z=stats(t);return `<div class="power-mobile-item ${state.selected===t.id?'selected':''}" data-select="${t.id}" role="button" tabindex="0" aria-label="Select ${esc(t.name)}"><div class="power-mobile-head"><span class="power-mobile-name"><span class="power-mobile-number">#${i+1}</span>${teamName(t)}</span><span class="power-mobile-record">${z.record}</span></div><div class="power-mobile-stats"><div><small>Record · cumulative wins</small>${metric(z.record,z.series.record,'Cumulative wins')}</div><div><small>PF · cumulative</small>${metric(z.pf,z.series.points,'Cumulative fantasy points')}</div><div><small>All-play · cumulative wins</small>${metric(z.allplay,z.series.all,'Cumulative all-play wins')}</div><div><small>Extra wins · cumulative</small>${metric(z.luck,z.series.extra,'Cumulative extra wins','luck',tone(t.luck))}</div><div><small>Trend · PF/week</small>${metric(z.trend,z.series.weeklyPf,'Weekly PF (form)')}</div></div></div>`;}).join('')}</div>
+ <p class="data-note">Lines trace Weeks 1–${DB.completedThrough}. Record, PF, all-play and extra wins are cumulative; Trend's line shows individual weekly scores, while its number compares the latest ${n||2} weeks against the preceding ${n||2} (PF/week). All-play only uses .5 for actual score ties.</p></div>`;
 }
 function rosterLeagueComparison(){
  const ra=DB.rosterAnalysis;
@@ -433,7 +453,7 @@ function lineupOverviewCard(t){
 }
 function overview(){
  let t=selected();
- return `${powerStandings()}${weekHeadlines()}${teamHero(t)}${lineupOverviewCard(t)}<div class="kpis overview-kpis">${kpi('Points for',fmt(t.pf,1),`${fmt(t.pf/DB.completedThrough,1)} PF/week · league ${fmt(mean(teams.map(x=>x.pf/DB.completedThrough)),1)} · rank #${leagueRank(t.pf,teams.map(x=>x.pf))}/10`)}${kpi('Extra wins',sign(t.luck),`${t.wins} actual · ${fmt(t.xw)} expected · league avg ${sign(mean(teams.map(x=>x.luck)),2)}`,tone(t.luck))}${kpi('All-play record',`${compactWins(t.winsAllPlay)}–${compactWins(9*DB.completedThrough-t.winsAllPlay)}`,`League avg ${compactWins(9*DB.completedThrough/2)}–${compactWins(9*DB.completedThrough/2)} · against nine rivals weekly`)}</div>${teamVerdict(t)}`;
+ return `${powerStandings()}${teamHero(t)}${lineupOverviewCard(t)}<div class="kpis overview-kpis">${kpi('Points for',fmt(t.pf,1),`${fmt(t.pf/DB.completedThrough,1)} PF/week · league ${fmt(mean(teams.map(x=>x.pf/DB.completedThrough)),1)} · rank #${leagueRank(t.pf,teams.map(x=>x.pf))}/10`)}${kpi('Extra wins',sign(t.luck),`${t.wins} actual · ${fmt(t.xw)} expected · league-neutral baseline 0`,tone(t.luck))}${kpi('All-play record',`${compactWins(t.winsAllPlay)}–${compactWins(9*DB.completedThrough-t.winsAllPlay)}`,`League avg ${compactWins(9*DB.completedThrough/2)}–${compactWins(9*DB.completedThrough/2)} · against nine rivals weekly`)}</div>${teamVerdict(t)}`;
 }
 function luck(){
  const t=selected();
