@@ -432,15 +432,31 @@
 .histdna-pill{display:inline-block;border:1px solid #dbe4f0;border-radius:99px;padding:4px 8px;background:#fff;color:#4d6581;font-size:10px;font-weight:700}
 .histdna-foot{margin-top:11px;color:#71859e;font-size:11px;line-height:1.6}
 @media(max-width:600px){.histdna-grid{grid-template-columns:1fr 1fr}.histdna-grid .histdna-stat:last-child{grid-column:1/-1}.histdna-stat strong{font-size:21px}.histdna-table td,.histdna-table th{padding:8px 4px;font-size:10px}}
+/* Three-destination experience: native segmented views and quiet on-demand detail */
+.view-switch{display:flex;flex-wrap:wrap;gap:7px;padding:6px;border:1px solid #e2e9f3;border-radius:12px;background:#eef3fa}
+.view-switch button{flex:1 1 115px;background:transparent;border:0;border-radius:8px;padding:11px 15px;font-size:12px;font-weight:800;color:#60758d}
+.view-switch button.active{background:#fff;color:#1b4d8c;box-shadow:0 2px 9px rgba(22,55,101,.09)}
+.view-switch button:focus-visible{outline:3px solid #65a7ff}
+.deep-dive{border:1px solid #e1e8f2;border-radius:12px;background:white;min-width:0;padding:0 16px}
+.deep-dive>summary{padding:15px 0;cursor:pointer;color:#365779;font-size:12px;font-weight:800}
+.deep-dive[open]{padding-bottom:16px}
+.deep-dive>summary:hover{color:#1b4d8c}
+.overview-luck .rankline{max-width:860px}
+.overview-luck .rankline:last-child{margin-bottom:0}
+.history-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px}
+.history-card{border:1px solid #e2eaf4;border-radius:11px;padding:16px;min-width:0;background:#fff}
+.history-card small{display:block;color:#6c8199;font-size:10px;letter-spacing:.07em;text-transform:uppercase;font-weight:800}
+.history-card strong{display:block;margin:5px 0;font-size:16px}
+.history-table{white-space:normal}.history-table .tiny{max-width:250px;overflow-wrap:anywhere}
+.history-table td,.history-table th{padding:10px 8px}
+.history-note{font-size:11px;line-height:1.65;color:#6d8199}
+@media(max-width:550px){.view-switch button{flex:1 1 80px;padding:10px 5px;font-size:11px}.history-table td,.history-table th{font-size:10px;padding:9px 4px}}
 </style></head>
 <body>
 <div class="shell"><aside class="side"><div class="brand"><div class="mark">2K</div><div><strong>FANTASY 2K<br>INFINITY</strong><small>LEAGUE REPORT</small></div></div><div class="navcat">WORKSPACE</div>
 <button class="navbtn active" data-tab="overview"><span class="navico">◫</span><span class="text">Overview</span></button>
-<button class="navbtn" data-tab="performance"><span class="navico">↗</span><span class="text">Team DNA & scoring</span></button>
-<button class="navbtn" data-tab="cards"><span class="navico">▤</span><span class="text">Team Cards</span></button>
-<button class="navbtn" data-tab="luck"><span class="navico">≋</span><span class="text">Who got lucky?</span></button>
-<button class="navbtn" data-tab="divisions"><span class="navico">▥</span><span class="text">What if?</span></button>
-<div class="navcat" style="margin-top:20px">REFERENCE</div><button class="navbtn" data-tab="method"><span class="navico">ⓘ</span><span class="text">How it works</span></button>
+<button class="navbtn" data-tab="teams"><span class="navico">◉</span><span class="text">Teams</span></button>
+<button class="navbtn" data-tab="history"><span class="navico">🏆</span><span class="text">History</span></button>
 <div class="sidefoot" id="sideStatus"><span class="dot"></span>40 finalized team-weeks<br>100,000 past-schedule simulations<br>Validated fallback available</div></aside>
 <nav class="mobile-nav" id="mobileNav"></nav>
 <main class="main"><div class="topline"><div><div class="eyebrow">2026 · League report</div><h1 id="pageTitle">League overview</h1></div><div class="topright"><span class="tag"><span id="weekStatus">Weeks 1–4 · Final</span></span></div></div>
@@ -459,8 +475,8 @@ const HISTORY=JSON.parse(document.getElementById('championships').textContent);
 const HISTORICAL_SCORES=JSON.parse(document.getElementById('historicalscores').textContent);
 const TITLES_BY_FRANCHISE=HISTORY.champions.filter(x=>x.status==='confirmed').reduce((out,x)=>{(out[x.franchise_id]??=[]).push(x.season);return out;},{});
 const RANK_COLORS=METRICS.rankColors;
-const navTabs=[['overview','Overview'],['performance','Team DNA & scoring'],['cards','Team Cards'],['luck','Who got lucky?'],['divisions','What if?'],['method','How it works']];
-let state={tab:'overview',selected:3,expandedStanding:null,division:'All',sort:'luck',weekRange:'latest',quadrant:'all'};
+const navTabs=[['overview','Overview'],['teams','Teams'],['history','History']];
+let state={tab:'overview',teamView:'card',historyView:'yearbook',historyYear:2025,selected:3,expandedStanding:null,division:'All',sort:'luck',weekRange:'latest',quadrant:'all'};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=(n,k=2)=>Number(n).toLocaleString('en-US',{minimumFractionDigits:k,maximumFractionDigits:k});
 const sign=(n,k=2)=> (n>0?'+':'')+fmt(n,k);
@@ -532,8 +548,7 @@ function lineupOverviewCard(t){
  <button class="action" data-tab="performance">See weekly lineup detail →</button></div>`;
 }
 function overview(){
- let t=selected();
- return `${powerStandings()}${teamHero(t)}${lineupOverviewCard(t)}<div class="kpis overview-kpis">${kpi('Points for',fmt(t.pf,1),`${fmt(t.pf/DB.completedThrough,1)} PF/week · league ${fmt(mean(teams.map(x=>x.pf/DB.completedThrough)),1)} · rank #${leagueRank(t.pf,teams.map(x=>x.pf))}/10`)}${kpi('Extra wins',sign(t.luck),`${t.wins} actual · ${fmt(t.xw)} expected · league-neutral baseline 0`,tone(t.luck))}${kpi('All-play record',`${compactWins(t.winsAllPlay)}–${compactWins(9*DB.completedThrough-t.winsAllPlay)}`,`League avg ${compactWins(9*DB.completedThrough/2)}–${compactWins(9*DB.completedThrough/2)} · against nine rivals weekly`)}</div>${teamVerdict(t)}`;
+ return `${powerStandings()}<div class="card overview-luck">${section('Schedule luck · extra wins','Actual wins minus expected all-play wins; select a franchise to see its report card')}${luckRows()}</div><details class="deep-dive"><summary>What if opponents changed? · Explore the original schedule reshuffles</summary>${divisions()}</details><details class="deep-dive"><summary>How the numbers work · Definitions and methodology</summary>${method()}</details>`;
 }
 function luck(){
  const t=selected();
@@ -667,13 +682,13 @@ function historicalFranchiseDNA(t){
  return `<div class='card histdna' aria-label='Historical franchise scoring identity'><div class='histdna-heading'><div><div class='histdna-eyebrow'>Franchise fingerprint · completed seasons only</div><h3>${esc(category)}</h3><p>${teamName(t)} · ${recent.length} recent verified ${recent.length===1?'season':'seasons'} · rolling league-adjusted identity</p></div><span class='histdna-pill'>${recent.length===1?'Limited evidence':'Recency weighted'}</span></div>
  <div class='histdna-grid'><div class='histdna-stat'><small>Typical scoring strength</small><strong>${signedPercent(relative)}</strong><span>PF per week versus the same-season league average</span></div><div class='histdna-stat'><small>Typical weekly volatility</small><strong>${fmt(cv*100,1)}%</strong><span>Recency-weighted season CV; lower means steadier</span></div><div class='histdna-stat'><small>Historical consistency</small><strong>${largest}/${all.length}</strong><span>${esc(tendency)} · all verified completed seasons, equally counted</span></div></div>
  <div class='histdna-current'><strong>Current 2026 DNA: ${esc(now)}.</strong> ${esc(comparison)} Current scoring is separate and provisional through Week ${DB.completedThrough}.</div>
- <div class='sectionhead' style='margin:18px 0 7px'><div><h4 class='sectiontitle'>Season-by-season fingerprint</h4><div class='sublabel'>Latest completed seasons; each scored relative to its own league environment.</div></div></div>
+ <details class='deep-dive' style='margin-top:14px'><summary>View season-by-season fingerprint, weights and lifetime baseline</summary><div class='sectionhead' style='margin:18px 0 7px'><div><h4 class='sectiontitle'>Season-by-season fingerprint</h4><div class='sublabel'>Latest completed seasons; each scored relative to its own league environment.</div></div></div>
  <div class='tablewrap'><table class='histdna-table'><thead><tr><th>Season</th><th>PF vs league</th><th>CV</th><th>Observed DNA</th><th class='num'>Weight</th></tr></thead><tbody>${rows}</tbody></table></div>
- <p class='histdna-foot'>Rolling weights: ${esc(weights)}. All-time equal-weight baseline (${all.length} ${all.length===1?'season':'seasons'}): ${signedPercent(lifetimeRel)} PF vs league and ${fmt(lifetimeCV*100,1)}% average CV. Regular season Weeks 1–14 only; championships are tracked separately. ${all.length<3?'Short franchise history limits confidence in a persistent tendency.':''}</p></div>`;
+ <p class='histdna-foot'>Rolling weights: ${esc(weights)}. All-time equal-weight baseline (${all.length} ${all.length===1?'season':'seasons'}): ${signedPercent(lifetimeRel)} PF vs league and ${fmt(lifetimeCV*100,1)}% average CV. Regular season Weeks 1–14 only; championships are tracked separately. ${all.length<3?'Short franchise history limits confidence in a persistent tendency.':''}</p></details></div>`;
 }
 function profilePage(){
  const t=selected();
- return `${identityBadge(t)}${lineupQualityCard(t)}${personalityMap()}${historicalFranchiseDNA(t)}<div class="card">${section('How this team scores',teamName(t)+' · final scores through Week '+DB.completedThrough)}${profileMini(t)}${weeklyDNA(t)}${momentumStory(t)}</div>${dnaHistoryCard(t)}<div class="card"><details><summary><strong>The league’s four scoring identities</strong> · view all teams</summary>${dnaLeaderboard()}</details></div>${verifiedProjectionCard(t)}`;
+ return `${identityBadge(t)}${personalityMap()}${historicalFranchiseDNA(t)}<details class="deep-dive"><summary>Current-season scoring trajectory · weekly scores and momentum</summary><div class="card">${section('How this team scores',teamName(t)+' · final scores through Week '+DB.completedThrough)}${profileMini(t)}${weeklyDNA(t)}${momentumStory(t)}</div>${dnaHistoryCard(t)}</details><details class="deep-dive"><summary>Explore every franchise's current DNA</summary>${dnaLeaderboard()}</details>`;
 }
 function personalityMap(){
  const list=[...teams].sort((a,b)=>b.pf/DB.completedThrough-a.pf/DB.completedThrough);
@@ -735,28 +750,81 @@ function teamCards(){
  <div class="tc-overline"><span>FANTASY 2K INFINITY</span><span>2026 · WEEKS 1–${n}</span></div>
  <div class="tc-head"><div><h2>${teamName(t)}</h2><p>${esc(t.division.toUpperCase())} · PF RANK #${ix+1}</p><div class="tc-pf"><strong>${fmt(t.pf,1)}</strong><span>TOTAL POINTS</span></div></div><div class="tc-record"><strong>${t.wins}–${t.losses}</strong><span>RECORD</span></div></div>
  <div class="tc-primary-grid">${primary('dna','TEAM DNA',esc(p.category),`CV ${fmt(p.cv*100,1)}%`)}${primary('luck','EXTRA WINS',sign(t.luck,1),t.luck>.075?'Favorable draw':t.luck<-.075?'Tough draw':'Near neutral')}${primary('worthy','STARTER-WORTHY',ready?fmt(mine.swr,0)+'%':'—',ready?'Season SWR':'Awaiting validation')}</div>
- <div class="tc-section-heading"><strong>THE NUMBERS</strong><span>VS LEAGUE AVERAGE</span></div><div class="tc-stats">
+ <div class="tc-section-heading"><strong>FOUR KEY BENCHMARKS</strong><span>VS LEAGUE AVERAGE</span></div><div class="tc-stats">
  ${cardStat('ALL-PLAY',`${compactWins(t.winsAllPlay)}–${compactWins(2*mid-t.winsAllPlay)}`,t.winsAllPlay>mid+.001?`${fmt(t.winsAllPlay-mid,1)} wins above midpoint`:t.winsAllPlay<mid-.001?`${fmt(mid-t.winsAllPlay,1)} wins below midpoint`:'At league midpoint',t.winsAllPlay>mid+.001?'good':t.winsAllPlay<mid-.001?'bad':'neutral',`Midpoint: ${compactWins(mid)}–${compactWins(mid)}`)}
  ${cardStat('AVG PF / WEEK',fmt(t.pf/n,1),pfDiff,pfTone,`League avg: ${fmt(leaguePf,1)}`)}
  ${cardStat('RECENT FORM',formReady?sign(p.relShift,1)+'%':'—',formDiff,formTone,formReady?`League form: ${sign(leagueForm,1)}%`:`Available after ${METRICS.momentum.minimumWeeks} weeks`)}
  ${cardStat('CEILING CAPTURED',ready&&mine.capture!==null?fmt(mine.capture,1)+'%':'—',ready&&mine.capture===null?'No attainable ceiling':captureDiff,ready&&mine.capture===null?'neutral':captureTone,ready?`League avg: ${avgCapture===null?'—':fmt(avgCapture,1)+'%'}`:'Awaiting finalized rosters')}
- ${cardStat('BENCH MISS',ready?fmt(mine.bench,1):'—',benchDiff,benchTone,ready?`League avg: ${fmt(avgBench,1)}/wk`:'Awaiting finalized rosters')}
- ${cardStat('UNAVOIDABLE',ready?fmt(mine.unavoidable,1):'—',unavoidDiff,unavoidTone,ready?`League avg: ${fmt(avgUnavoid,1)}/wk`:'Awaiting finalized rosters')}
  </div><div class="tc-section-heading"><strong>THE TRAJECTORY</strong><span>WEEK BY WEEK</span></div>
  <div class="tc-trends">${trend('SCORING',t.weeks.map(w=>w.pf),`${fmt(t.weeks.at(-1).pf,1)} last wk`,'#38bdf8')}${trend('LINEUP SWR',ready?mine.weekly:null,ready?`${fmt(mine.weekly.at(-1),0)}% last wk`:'Awaiting data','#a78bfa')}${trend('CUMUL. LUCK',luckCumulative,`${sign(t.luck,1)} wins`,'#fbbf24')}</div>
- <div class="tc-insight"><strong>${esc(heading)}</strong><p>${esc(insight)}</p></div><div class="tc-foot"><span>BENCH / UNAVOIDABLE: WEIGHTED QUALITY PER WEEK</span><span>${ix+1} / ${teams.length}</span></div>
+ <div class="tc-insight"><strong>${esc(heading)}</strong><p>${esc(insight)}</p></div><div class="tc-foot"><span>LINEUP DETAILS: TEAMS → LINEUP</span><span>${ix+1} / ${teams.length}</span></div>
  </article><p class="tc-outside-note">Screenshot the dark report card to share. Bench and roster-quality metrics use finalized hindsight, not pregame forecasts or decision grades.</p></div>`;
 }
-const titles={overview:['League overview','Standings, this week’s stories, and what the selected team could control.'],cards:['Team Cards','One compact, screenshot-ready team report card with league benchmarks.'],luck:['Who got lucky?','Extra wins: actual record compared with all-play expectations.'],performance:['Team DNA & scoring','Lineup quality and one consistent four-quadrant scoring identity.'],divisions:['What if the schedule changed?','Retrospective distributions from reshuffling finalized weekly matchups.'],method:['How it works','One set of definitions for scoring, luck and roster quality.']};
-const functions={overview,luck,performance:perf,cards:teamCards,divisions,method};
+
+const viewSwitch=(kind,options,current)=>`<div class="view-switch" role="group" aria-label="Select ${kind==='team'?'team analysis':'historical'} view">${options.map(([value,label])=>`<button type="button" data-${kind}-view="${value}" class="${current===value?'active':''}" aria-pressed="${current===value}">${label}</button>`).join('')}</div>`;
+function teamsPage(){
+ const t=selected();
+ const nav=viewSwitch('team',[['card','Report Card'],['dna','Team DNA'],['lineup','Lineup']],state.teamView);
+ const body=state.teamView==='dna'?profilePage():state.teamView==='lineup'?
+  `${lineupQualityCard(t)}<details class="deep-dive"><summary>Weekly opponent scores and full matchups</summary>${weeklyTable(t)}</details>${verifiedProjectionCard(t)}`:teamCards();
+ return `${nav}${body}`;
+}
+// History never guesses missing records or playoff rules. The available source contains final
+// regular-season team scores, plus separately verified championship franchise identities.
+const historySeason=year=>HISTORICAL_SCORES.seasons.find(s=>s.year===Number(year));
+const historyScoreSummary=s=>{
+ const league=mean(s.teams.flatMap(t=>t.scores));
+ return {league,rows:s.teams.map(t=>{
+  const avg=mean(t.scores),pf=t.scores.reduce((n,v)=>n+v,0),cv=stdev(t.scores)/avg;
+  return {...t,avg,pf,cv,relative:100*(avg/league-1),dna:scoringQuadrant(avg,cv,league)};
+ }).sort((a,b)=>b.pf-a.pf)};
+};
+const historicalTeamName=(t,year)=>teamName({name:t.name,espn_team_id:t.espn_team_id},year);
+function historyYearbook(){
+ const s=historySeason(state.historyYear);if(!s)return '<div class="card empty">No verified season available.</div>';
+ const z=historyScoreSummary(s),title=HISTORY.champions.find(c=>c.season===s.year&&c.status==='confirmed');
+ const champ=title?s.teams.find(t=>t.espn_team_id===title.espn_team_id):null;
+ return `<div class="card"><div class="sectionhead"><div><h3 class="sectiontitle">${s.year} Yearbook</h3><p class="sublabel">Completed regular season · Weeks 1–14 · ten verified teams</p></div><div><label class="fieldlabel" for="historyYear">SEASON</label><select id="historyYear" class="select" aria-label="Select historical season">${HISTORICAL_SCORES.seasons.map(x=>`<option value="${x.year}" ${x.year===s.year?'selected':''}>${x.year}</option>`).join('')}</select></div></div><div class="history-cards"><div class="history-card"><small>Season scoring leader</small><strong>${historicalTeamName(z.rows[0],s.year)}</strong><span class="tiny">${fmt(z.rows[0].pf)} regular-season points</span></div><div class="history-card"><small>League PF per week</small><strong>${fmt(z.league,1)}</strong><span class="tiny">Ten teams · 14 completed weeks</span></div><div class="history-card"><small>Confirmed champion</small><strong>${champ?historicalTeamName(champ,s.year):'Not verified'}</strong><span class="tiny">Separate postseason championship record</span></div></div><div class="sectionhead" style="margin-top:22px"><div><h3 class="sectiontitle">Regular-season scoring order</h3><p class="sublabel">Ranked by PF, not official standings or playoff seeding.</p></div></div><div class="tablewrap"><table class="history-table"><thead><tr><th class="num">#</th><th>Historical team</th><th class="num">PF</th><th class="num">PF/wk</th><th class="num">vs league</th><th>Season DNA</th></tr></thead><tbody>${z.rows.map((t,i)=>`<tr><td class="num">${i+1}</td><td class="tiny">${historicalTeamName(t,s.year)}</td><td class="num">${fmt(t.pf,1)}</td><td class="num">${fmt(t.avg,1)}</td><td class="num">${sign(t.relative,1)}%</td><td>${esc(t.dna)}</td></tr>`).join('')}</tbody></table></div><p class="history-note">This yearbook uses finalized regular-season scoring data. Historical W–L standings and division-based playoff qualification are not in this sanitized scoring source and are not inferred.</p></div>`;
+}
+function historyLegacy(){
+ const t=selected(),fid=franchiseFor(t);
+ const seasons=HISTORICAL_SCORES.seasons.map(s=>({s,z:historyScoreSummary(s)})).map(({s,z})=>({year:s.year,row:z.rows.find(r=>HISTORY.season_to_franchise[String(s.year)]?.[String(r.espn_team_id)]===fid),league:z.league})).filter(x=>x.row).sort((a,b)=>b.year-a.year);
+ const titles=TITLES_BY_FRANCHISE[fid]||[];
+ return `<div class="card"><div class="sectionhead"><div><h3 class="sectiontitle">Franchise Legacy · ${teamName(t)}</h3><p class="sublabel">Historical names are connected only through verified owner continuity; every season is redrafted.</p></div></div><div class="history-cards"><div class="history-card"><small>Verified seasons</small><strong>${seasons.length}</strong><span class="tiny">2023–2025 discovery coverage, where ownership is confirmed</span></div><div class="history-card"><small>Confirmed championships</small><strong>${titles.length}</strong><span class="tiny">${titles.length?titles.join(', '):'No title in the verified archive'}</span></div><div class="history-card"><small>Lifetime PF versus league</small><strong>${seasons.length?sign(mean(seasons.map(x=>100*(x.row.avg/x.league-1))),1)+'%':'—'}</strong><span class="tiny">Equal-weight completed seasons, not the rolling fingerprint</span></div></div><div class="sectionhead" style="margin-top:22px"><div><h3 class="sectiontitle">Across different drafts</h3><p class="sublabel">Each season compared with its own league scoring environment.</p></div></div><div class="tablewrap"><table class="history-table"><thead><tr><th>Season</th><th>Team name then</th><th class="num">PF/wk</th><th class="num">vs league</th><th class="num">CV</th><th>Season DNA</th></tr></thead><tbody>${seasons.map(x=>`<tr><td>${x.year}</td><td class="tiny">${historicalTeamName(x.row,x.year)}</td><td class="num">${fmt(x.row.avg,1)}</td><td class="num">${sign(100*(x.row.avg/x.league-1),1)}%</td><td class="num">${fmt(x.row.cv*100,1)}%</td><td>${esc(x.row.dna)}</td></tr>`).join('')}</tbody></table></div><p class="history-note">The rolling 50/30/20 owner tendency and current-versus-historical identity live in Teams → Team DNA. The former 2023 ESPN slot 6 owner is separate from today's Got Rice? franchise.</p><button class="action" data-tab="teams" data-team-destination="dna">View Franchise Fingerprint →</button></div>`;
+}
+function historyChampions(){
+ return `<div class="card"><div class="sectionhead"><div><h3 class="sectiontitle">Championship Archive</h3><p class="sublabel">Confirmed historical title winners, attached to permanent franchises rather than changing team names.</p></div></div><div class="history-cards">${[...HISTORY.champions].sort((a,b)=>b.season-a.season).map(c=>{const s=historySeason(c.season),old=s?.teams.find(t=>t.espn_team_id===c.espn_team_id),current=teams.find(t=>franchiseFor(t)===c.franchise_id);return `<div class="history-card"><small>${c.season} champion</small><strong>${old?historicalTeamName(old,c.season):esc(c.team_name_at_win)}</strong><span class="tiny">${current?'Current franchise: '+esc(current.name):'Legacy franchise'}</span></div>`;}).join('')}</div><p class="history-note">Titles were reconstructed from ESPN postseason matchup progression and separately confirmed for display. The full bracket and qualification rules remain out of scope pending confirmation; no unverified earlier championships are added.</p></div>`;
+}
+function historyPage(){
+ return viewSwitch('history',[['yearbook','Yearbook'],['legacy','Franchise Legacy'],['titles','Championships']],state.historyView)+(state.historyView==='legacy'?historyLegacy():state.historyView==='titles'?historyChampions():historyYearbook());
+}
+
+const titles={overview:['League overview','Standings, recent form and schedule luck in one view.'],teams:['Teams','One franchise · Report Card, Team DNA and Lineup Quality.'],history:['History','Season yearbooks, owner-linked franchise legacy and verified champions.']};
+const functions={overview,teams:teamsPage,history:historyPage};
 function render(){document.getElementById('view').innerHTML=functions[state.tab]();document.getElementById('pageTitle').textContent=titles[state.tab][0];document.getElementById('intro').textContent=titles[state.tab][1];document.querySelectorAll('[data-tab]').forEach(el=>el.classList.toggle('active',el.dataset.tab===state.tab));document.getElementById('teamSelect').value=String(state.selected);document.getElementById('weekStatus').textContent=DB.completedThrough<7?`Early season · ${DB.completedThrough} weeks`:`Season to date · ${DB.completedThrough} weeks`;const mobile=document.getElementById('mobileSection');if(mobile)mobile.value=state.tab;}
 function init(){document.getElementById('teamSelect').innerHTML=teams.map(t=>`<option value="${t.id}">${teamNameText(t)}</option>`).join('');document.getElementById('mobileNav').innerHTML=`<label for="mobileSection">EXPLORE</label><select id="mobileSection" aria-label="Dashboard section">${navTabs.map(([id,name])=>`<option value="${id}">${name}</option>`).join('')}</select>`;document.getElementById('mobileSection').addEventListener('change',e=>{state.tab=e.target.value;render();window.scrollTo(0,0)});render()}
-document.addEventListener('click',e=>{let step=e.target.closest('[data-card-step]');if(step){const ordered=[...teams].sort((a,b)=>b.pf-a.pf||b.wins-a.wins),i=ordered.findIndex(t=>t.id===state.selected),next=ordered[i+Number(step.dataset.cardStep)];if(next)state.selected=next.id;render();return;}let expanded=e.target.closest('[data-expand-standing]');if(expanded){let id=Number(expanded.dataset.expandStanding);state.expandedStanding=state.expandedStanding===id?null:id;render();return;}let range=e.target.closest('[data-range]');if(range){state.weekRange=range.dataset.range;render();return;}let quadrant=e.target.closest('[data-quadrant]');if(quadrant){state.quadrant=state.quadrant===quadrant.dataset.quadrant?'all':quadrant.dataset.quadrant;render();return;}let btn=e.target.closest('[data-tab]');if(btn){state.tab=btn.dataset.tab;render();window.scrollTo({top:0,behavior:'instant'});return;}btn=e.target.closest('[data-select]');if(btn){state.selected=Number(btn.dataset.select);if(btn.dataset.jump)state.tab=btn.dataset.jump;render();if(btn.dataset.jump)window.scrollTo(0,0);return;}});
+document.addEventListener('click',e=>{
+ let sub=e.target.closest('[data-team-view]');
+ if(sub){state.teamView=sub.dataset.teamView;state.tab='teams';render();return;}
+ sub=e.target.closest('[data-history-view]');
+ if(sub){state.historyView=sub.dataset.historyView;state.tab='history';render();return;}
+ let step=e.target.closest('[data-card-step]');
+ if(step){const ordered=[...teams].sort((a,b)=>b.pf-a.pf||b.wins-a.wins),i=ordered.findIndex(t=>t.id===state.selected),next=ordered[i+Number(step.dataset.cardStep)];if(next)state.selected=next.id;render();return;}
+ let expanded=e.target.closest('[data-expand-standing]');
+ if(expanded){let id=Number(expanded.dataset.expandStanding);state.expandedStanding=state.expandedStanding===id?null:id;render();return;}
+ let range=e.target.closest('[data-range]');
+ if(range){state.weekRange=range.dataset.range;render();return;}
+ let quadrant=e.target.closest('[data-quadrant]');
+ if(quadrant){state.quadrant=state.quadrant===quadrant.dataset.quadrant?'all':quadrant.dataset.quadrant;render();return;}
+ let btn=e.target.closest('[data-tab]');
+ if(btn){state.tab=btn.dataset.tab;if(btn.dataset.teamDestination)state.teamView=btn.dataset.teamDestination;render();window.scrollTo(0,0);return;}
+ btn=e.target.closest('[data-select]');
+ if(btn){state.selected=Number(btn.dataset.select);if(btn.dataset.jump)state.tab=btn.dataset.jump;else if(state.tab==='overview'){state.tab='teams';state.teamView='card';}render();if(state.tab==='teams')window.scrollTo(0,0);return;}
+});
 document.addEventListener('keydown',e=>{if(e.key!=='Enter'&&e.key!==' ')return;const row=e.target.closest('[data-select]');if(row&&row.tagName==='TR'){e.preventDefault();state.selected=Number(row.dataset.select);render();}});
-document.getElementById('teamSelect').addEventListener('change',e=>{state.selected=Number(e.target.value);render();});
-document.addEventListener('change',async e=>{
-
-
+document.getElementById('teamSelect').addEventListener('change',e=>{state.selected=Number(e.target.value);if(state.tab==='overview'){state.tab='teams';state.teamView='card';}render();});
+document.addEventListener('change',e=>{
+ if(e.target.id==='historyYear'){const year=Number(e.target.value);if(HISTORICAL_SCORES.seasons.some(s=>s.year===year)){state.historyYear=year;render();}}
 });
 function validatePublicData(fresh){
  if(!fresh||fresh.completedThrough<4||fresh.completedThrough>18||!Array.isArray(fresh.teams)||fresh.teams.length!==10)throw new Error('Invalid approved data');
