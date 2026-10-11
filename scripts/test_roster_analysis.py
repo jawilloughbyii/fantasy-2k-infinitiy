@@ -128,6 +128,28 @@ class RosterCases(unittest.TestCase):
     def test_backwards_and_partial_roster_rejected(self):
         league=json.loads((Path(__file__).parents[1]/'data/league.json').read_text());mapping=json.loads((Path(__file__).parents[1]/'reference/team_id_map.json').read_text())
         with self.assertRaises(ValueError):r.build(league,mapping,[league['completedThrough']+1],fixture_dir='unused')
+    def test_roster_ceiling_accounts_for_unavoidable_shortfall(self):
+        # Each finalized week has eight possible weighted points.
+        cases=[(3.0,3.0,100.0,62.5,0.0),
+               (3.0,6.0,50.0,25.0,3.0),
+               (6.0,6.0,100.0,25.0,0.0)]
+        for actual,maximum,captured,unavoidable,unrealized in cases:
+            with self.subTest(actual=actual,maximum=maximum):
+                self.assertAlmostEqual(actual/maximum*100,captured)
+                self.assertAlmostEqual((8-maximum)/8*100,unavoidable)
+                self.assertAlmostEqual(maximum-actual,unrealized)
+
+    def test_roster_ceiling_stays_consistent_with_bench_decomposition(self):
+        active=self.lineup()
+        roster=active+[self.nth('RB',14),self.nth('WR',12),self.nth('K',3)]
+        x=r.analyze_week({9:roster},self.pool,1,{9:1})['teams'][0]
+        self.assertLessEqual(x['weightedHits'],x['weightedMax'])
+        self.assertLessEqual(x['weightedMax'],x['weightedPossible'])
+        self.assertAlmostEqual(x['weightedMax']-x['weightedHits'],
+                               x['missedWeighted']+x['reassignmentWeighted'])
+        self.assertAlmostEqual((8-x['weightedMax'])/8*100,0.0)
+        self.assertAlmostEqual(x['weightedHits']/x['weightedMax']*100,68.75)
+
     def test_attach_disallows_partial_set(self):
         league=json.loads((Path(__file__).parents[1]/'data/league.json').read_text())
         roster={'leagueId':418244680,'season':2026,'completedThrough':4,'weeks':[{'week':1,'teams':[]}]}
