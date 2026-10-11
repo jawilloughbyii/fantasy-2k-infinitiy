@@ -60,7 +60,7 @@ function node(id){
  return elements.get(id);
 }
 const doc={
- getElementById:node,querySelectorAll:()=>[],
+ getElementById(id){const el=node(id);if(id==='fantasydata')el.textContent=JSON.stringify(data);if(id==='metricdefs')el.textContent=JSON.stringify(definitions);return el;},querySelectorAll:()=>[],
  addEventListener(name,handler){events[name]=handler}
 };
 const fetch=async()=>({ok:true,json:async()=>data});
