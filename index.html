@@ -706,7 +706,7 @@ function historicalFranchiseDNA(t){
  const weights=weighted.map(x=>x.year+' '+fmt(x.weight*100,1)+'%').join(' · ');
  const rows=weighted.map(x=>`<tr><td><strong>${x.year}</strong><div class='tiny'>${esc(x.name)}</div></td><td>${signedPercent(x.relative)}</td><td>${fmt(x.cv*100,1)}%</td><td>${esc(x.category)}</td><td class='num'>${fmt(x.weight*100,1)}%</td></tr>`).join('');
  const p=scoringProfiles[t.id];
- const seasonsLabel=recent.map(x=>x.year).sort((a,b)=>a-b).join('–');
+ const historyYears=recent.map(x=>x.year).sort((a,b)=>a-b),seasonsLabel=historyYears.length===1?String(historyYears[0]):historyYears[0]+'–'+historyYears.at(-1);
  const alignment=now===category?'Matches its recency-weighted franchise tendency.':'Differs from its recency-weighted franchise tendency.';
  return `<section class="identity-strip" aria-label="Current and historical scoring identity">
  <div class="identity-kicker">SCORING IDENTITY</div>
