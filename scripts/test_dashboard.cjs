@@ -110,6 +110,22 @@ async function main(){
   events.click({target:{closest(selector){return selector==='[data-tab]'?{dataset:{tab}}:null}}});
   return node('view').innerHTML;
  }
+ view=tab('cards');
+ assert.ok(view.includes('tc-report') && view.includes('tc-primary-grid') && view.includes('tc-stats') && view.includes('tc-trends'),'Team Cards should have screenshot-ready report structure');
+ assert.ok(view.includes('TEAM DNA') && view.includes('EXTRA WINS') && view.includes('STARTER-WORTHY'),'Team Card headline metrics missing');
+ assert.ok(view.includes('viewBox="0 0 24 24"') && view.includes('<circle cx="9.15"'),'Use minimalist SVG icons including the four-leaf clover');
+ assert.equal((view.match(/class="tc-stat"/g)||[]).length,6,'Exactly six benchmarked tiles');
+ assert.ok(view.includes('VS LEAGUE AVERAGE') && view.includes('Midpoint: 18–18'),'All-play must use the natural league midpoint');
+ assert.ok(view.includes('League avg:') && view.includes('BENCH MISS') && view.includes('UNAVOIDABLE'),'Lineup opportunity metrics need comparable league per-week benchmarks');
+ assert.ok(view.includes('LINEUP SWR') && view.includes('CUMUL. LUCK'),'Three tiny chart labels required');
+ assert.ok(view.includes('2026 · WEEKS 1–4') && view.includes('Israeli Nutonyaboob'),'Card uses approved selected team and completed weeks');
+ assert.ok(!view.includes('0–0 · placeholder'),'No invented score or placeholders');
+ events.click({target:{closest(selector){return selector==='[data-card-step]'?{dataset:{cardStep:'1'}}:null}}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('Golden Ponies') && view.includes('PF RANK #'),'Card next/previous control follows points-scored order');
+ node('teamSelect').listeners.change({target:{value:'3'}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('Israeli Nutonyaboob'),'Shared selected-team dropdown also selects report card');
  view=tab('performance');
  assert.ok(view.includes('Volatile underdogs'),'Default selected team uses canonical quadrant');
  assert.ok(!view.includes('Inconsistent underdog'));
