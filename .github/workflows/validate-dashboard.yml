@@ -48,3 +48,7 @@ jobs:
         run: python scripts/test_roster_analysis.py
       - name: Verify approved snapshots and active dashboard pages
         run: node scripts/test_dashboard.cjs
+      - name: Verify snapshot synchronization preserves championship metadata
+        run: |
+          python scripts/sync_site_snapshot.py --html index.html --data data/league.json --output /tmp/fantasy-sync-check.html
+          cmp index.html /tmp/fantasy-sync-check.html
