@@ -72,8 +72,6 @@ def simulate(teams, n=20000):
         id=t['id'];t['simWinMean']=round(win_sum[id]/n,3);t['simRankMean']=round(rank_sum[id]/n,3)
         t['rankDist']=[round(100*x/n,3) for x in rank_counts[id]]
         t['winDist']=[round(100*x/n,3) for x in count_wins[id]]
-        t['winLuckPct']=round(100*win_better[id]/n,1)
-        t['rankLuckPct']=round(100*rank_better[id]/n,1)
         t['simTop2Pct']=round(100*(rank_counts[id][0]+rank_counts[id][1])/n,1)
     return n
 
@@ -120,8 +118,10 @@ def build(report,base):
     result['completedThrough']=latest
     result['source']='ESPN authenticated, baseline reconciled'
     result['generated']=report.get('generated_at_utc') or dt.datetime.now(dt.timezone.utc).isoformat()
-    result['projectionCoverage']={'kind':'historical ESPN screenshot displayed values','throughWeek':baseline_max,'notice':'Screenshots may contain in-game projections; no future projections fabricated.'}
-    for t in result['teams']:t['weeks']=[]
+    result['projectionCoverage']={'kind':'historical ESPN screenshot displayed values','throughWeek':baseline_max,'notice':'Historical displayed values are not verified pregame and must not be used in headline comparisons.'}
+    for t in result['teams']:
+        t['weeks']=[]
+        for legacy in ('rankLuckPct','winLuckPct','luckpp'):t.pop(legacy,None)
     indexed={t['id']:t for t in result['teams']}; week_points={}
     base_week={(t['id'],w['week']):w for t in base['teams'] for w in t['weeks']}
     for w in range(1,latest+1):
@@ -145,7 +145,7 @@ def build(report,base):
     for t in result['teams']:
         rows=t['weeks'];wins=sum(x['win'] for x in rows); losses=len(rows)-wins
         t['wins']=wins;t['losses']=losses;t['pf']=round(sum(x['pf'] for x in rows),2);t['pa']=round(sum(x['pa'] for x in rows),2);t['pd']=round(t['pf']-t['pa'],2)
-        t['xw']=rounding(sum(x['xw'] for x in rows));t['luck']=rounding(wins-t['xw']);t['luckpp']=round(100*t['luck']/len(rows),3);t['winsAllPlay']=sum(9*x['xw'] for x in rows)
+        t['xw']=rounding(sum(x['xw'] for x in rows));t['luck']=rounding(wins-t['xw']);t['winsAllPlay']=sum(9*x['xw'] for x in rows)
         projrows=[x for x in rows if x['proj'] is not None];t['projWeeks']=len(projrows)
         t['proj']=round(sum(x['proj'] for x in projrows),2);t['projdelta']=round(sum(x['pf']-x['proj'] for x in projrows),2)
         t['projPct']=round(100*t['projdelta']/t['proj'],3) if t['proj'] else None
