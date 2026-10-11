@@ -4,6 +4,8 @@ import argparse
 import json
 from pathlib import Path
 
+POSSIBLE=json.loads((Path(__file__).resolve().parents[1]/'reference'/'metric_definitions.json').read_text(encoding='utf8'))['lineup']['weightedPossible']
+
 
 def attach(data,rosters):
     # The approved public baseline intentionally omits private ESPN league/season identifiers.
@@ -19,8 +21,8 @@ def attach(data,rosters):
         items=w['teams']
         if len(items)!=10 or {x['teamId'] for x in items}!=known:raise ValueError('Roster analysis does not contain exactly ten approved teams')
         for x in items:
-            if not (0<=x['weightedHits']<=x['weightedMax']<=8 and x['weightedPossible']==8):raise ValueError('Invalid weighted lineup scores')
-            if abs(100*x['weightedHits']/8-x['swrPct'])>.02:raise ValueError('Invalid SWR percent')
+            if not (0<=x['weightedHits']<=x['weightedMax']<=POSSIBLE and x['weightedPossible']==POSSIBLE):raise ValueError('Invalid weighted lineup scores')
+            if abs(100*x['weightedHits']/POSSIBLE-x['swrPct'])>.02:raise ValueError('Invalid SWR percent')
             if abs(x['weightedMax']-x['weightedHits']-x['missedWeighted']-x['reassignmentWeighted'])>.001:raise ValueError('Invalid opportunity decomposition')
             if not 0<=x['qualifiedStarters']<=9:raise ValueError('Invalid starter counts')
     # No raw authenticated ESPN responses or account information are included.
