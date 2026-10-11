@@ -408,19 +408,32 @@ function powerStandings(){
  <div class="power-mobile" aria-label="Mobile league scoring standings">${ordered.map((t,i)=>{const z=stats(t);return `<div class="power-mobile-item ${state.selected===t.id?'selected':''}" data-select="${t.id}" role="button" tabindex="0" aria-label="Select ${esc(t.name)}"><div class="power-mobile-head"><span class="power-mobile-name"><span class="power-mobile-number">#${i+1}</span>${teamName(t)}</span><span class="power-mobile-record">${z.record}</span></div><div class="power-mobile-stats"><div><small>Points for</small><strong>${z.pf}</strong></div><div><small>All-play</small><strong>${z.allplay}</strong></div><div><small>Extra wins</small><strong class="${tone(t.luck)}">${z.luck}</strong></div><div><small>Trend · PF/week</small><strong>${z.trend}</strong></div></div></div>`;}).join('')}</div>
  <p class="data-note">All-play: your weekly result versus all nine other teams; only exact ties create a half-win. Trend: latest ${n||2} vs previous ${n||2} weeks (PF/week); the league baseline uses the same window. Scoring rank is not a forecast.</p></div>`;
 }
-function lineupOverviewCard(t){
+function rosterLeagueComparison(){
  const ra=DB.rosterAnalysis;
- if(!ra||ra.status!=='validated-final-rosters'||!Array.isArray(ra.weeks)||ra.throughWeek!==DB.completedThrough)return '';
- const records=ra.weeks.map(w=>w.teams.find(x=>x.teamId===t.id)).filter(Boolean);
- if(records.length!==DB.completedThrough)return '';
- const hits=records.reduce((n,x)=>n+x.weightedHits,0),maximum=records.reduce((n,x)=>n+x.weightedMax,0),possible=records.length*METRICS.lineup.weightedPossible;
- const benchCount=records.reduce((n,x)=>n+x.potentiallyUsefulBenchCount,0),benchMiss=records.reduce((n,x)=>n+x.missedWeighted,0);
- const headline=benchMiss>0?`${benchCount} bench performances could have improved your starting lineup.`:`Your bench offered no additional qualifying lineup quality.`;
- return `<div class="card roster-action"><h3>${headline}</h3><p>Across ${records.length} finalized weeks, your best legal lineup from starters and bench would have earned ${fmt(maximum,1)} of ${possible} possible weighted quality points. IR excluded.</p><div class="roster-action-metrics"><div><strong>${fmt(100*hits/possible,1)}%</strong><span>Actual starter-worthy</span></div><div><strong>${fmt(100*maximum/possible,1)}%</strong><span>Roster ceiling</span></div><div><strong>${maximum?fmt(100*hits/maximum,1)+'%':'N/A'}</strong><span>Available quality used</span></div></div><p>${fmt(benchMiss,1)} weighted points of legal bench improvement remained; ${fmt(possible-maximum,1)} weighted points were impossible even with perfect hindsight. Kicker and defense count half as much.</p><button class="action" data-tab="performance">See weekly lineup detail →</button></div>`;
+ if(!ra||ra.status!=='validated-final-rosters'||!Array.isArray(ra.weeks)||ra.weeks.length!==DB.completedThrough||ra.throughWeek!==DB.completedThrough)return null;
+ return teams.map(team=>{
+  const rows=ra.weeks.map(w=>w.teams.find(x=>x.teamId===team.id));
+  if(rows.some(x=>!x))return null;
+  const hits=rows.reduce((n,x)=>n+x.weightedHits,0),maximum=rows.reduce((n,x)=>n+x.weightedMax,0),possible=rows.length*METRICS.lineup.weightedPossible;
+  return {id:team.id,hits,maximum,possible,swr:100*hits/possible,ceiling:100*maximum/possible,capture:maximum?100*hits/maximum:null,benchCount:rows.reduce((n,x)=>n+x.potentiallyUsefulBenchCount,0),benchMiss:rows.reduce((n,x)=>n+x.missedWeighted,0)};
+ }).filter(Boolean);
+}
+function lineupOverviewCard(t){
+ const comparison=rosterLeagueComparison();if(!comparison||comparison.length!==teams.length)return '';
+ const mine=comparison.find(x=>x.id===t.id);if(!mine)return '';
+ const swrs=comparison.map(x=>x.swr),ceilings=comparison.map(x=>x.ceiling),captures=comparison.map(x=>x.capture).filter(Number.isFinite),misses=comparison.map(x=>x.benchMiss);
+ const headline=mine.benchMiss>0?`${mine.benchCount} bench performances could have improved your starting lineup.`:'Your bench offered no additional qualifying lineup quality.';
+ const benchmark=(value,values)=>`<small>${leagueComparison(value,values)}</small>`;
+ return `<div class="card roster-action"><h3>${headline}</h3><p>Across ${DB.completedThrough} finalized weeks, your best legal lineup from starters and bench could have produced ${fmt(mine.maximum,1)} of ${mine.possible} possible quality points. Compare your results with the other nine teams:</p>
+ <div class="roster-action-metrics"><div><strong>${fmt(mine.swr,1)}%</strong><span>Actual starter-worthy</span>${benchmark(mine.swr,swrs)}</div>
+ <div><strong>${fmt(mine.ceiling,1)}%</strong><span>Roster ceiling</span>${benchmark(mine.ceiling,ceilings)}</div>
+ <div><strong>${mine.capture===null?'N/A':fmt(mine.capture,1)+'%'}</strong><span>Available quality used</span>${mine.capture===null?'<small>No qualifying roster ceiling</small>':benchmark(mine.capture,captures)}</div></div>
+ <p class="roster-context"><strong>Your bench:</strong> ${fmt(mine.benchMiss,1)} missed weighted quality points versus ${fmt(mean(misses),1)} league average · #${leagueRank(mine.benchMiss,misses)} of ${misses.length} most missed (higher means more left unused). <strong>Roster limitation:</strong> ${fmt(mine.possible-mine.maximum,1)} quality points were unavailable even with perfect hindsight. Kicker and defense count half as much.</p>
+ <button class="action" data-tab="performance">See weekly lineup detail →</button></div>`;
 }
 function overview(){
  let t=selected();
- return `${powerStandings()}${weekHeadlines()}${teamHero(t)}${lineupOverviewCard(t)}<div class="kpis overview-kpis">${kpi('Points for',fmt(t.pf,1),`${fmt(t.pf/DB.completedThrough,1)} points / week`)}${kpi('Extra wins',sign(t.luck),`${t.wins} actual · ${fmt(t.xw)} expected wins`,tone(t.luck))}${kpi('All-play record',`${fmt(t.winsAllPlay,1)}–${fmt(9*DB.completedThrough-t.winsAllPlay,1)}`,'Against every other team each week')}</div>${teamVerdict(t)}`;
+ return `${powerStandings()}${weekHeadlines()}${teamHero(t)}${lineupOverviewCard(t)}<div class="kpis overview-kpis">${kpi('Points for',fmt(t.pf,1),`${fmt(t.pf/DB.completedThrough,1)} PF/week · league ${fmt(mean(teams.map(x=>x.pf/DB.completedThrough)),1)} · rank #${leagueRank(t.pf,teams.map(x=>x.pf))}/10`)}${kpi('Extra wins',sign(t.luck),`${t.wins} actual · ${fmt(t.xw)} expected · league avg ${sign(mean(teams.map(x=>x.luck)),2)}`,tone(t.luck))}${kpi('All-play record',`${compactWins(t.winsAllPlay)}–${compactWins(9*DB.completedThrough-t.winsAllPlay)}`,`League avg ${compactWins(9*DB.completedThrough/2)}–${compactWins(9*DB.completedThrough/2)} · against nine rivals weekly`)}</div>${teamVerdict(t)}`;
 }
 function luck(){
  const t=selected();
