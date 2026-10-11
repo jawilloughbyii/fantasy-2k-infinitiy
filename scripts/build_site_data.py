@@ -47,8 +47,8 @@ def simulate(teams, n=20000):
     """Historical weekly score-preserving random valid perfect matchings."""
     rnd=random.Random(20261009); weeks=len(teams[0]['weeks']); by_id={t['id']:t for t in teams}; ids=list(by_id)
     old_divs=sorted({t['division'] for t in teams}); groups={d:[t for t in teams if t['division']==d] for d in old_divs}
-    count_wins={id:[0]*(weeks+1) for id in ids}; win_better={id:0.0 for id in ids}
-    rank_counts={id:[0]*len(groups[by_id[id]['division']]) for id in ids}; rank_sum={id:0 for id in ids}; win_sum={id:0 for id in ids}; rank_better={id:0.0 for id in ids}
+    count_wins={id:[0]*(weeks+1) for id in ids}
+    rank_counts={id:[0]*len(groups[by_id[id]['division']]) for id in ids}; rank_sum={id:0 for id in ids}; win_sum={id:0 for id in ids}
     total=weeks*n
     for _ in range(n):
         wins={id:0 for id in ids}
@@ -60,14 +60,12 @@ def simulate(teams, n=20000):
                 elif bp>ap:wins[b]+=1
                 else:wins[a]+=.5;wins[b]+=.5
         for t in teams:
-            id=t['id'];wa=wins[id];actual=t['wins'];win_sum[id]+=wa
+            id=t['id'];wa=wins[id];win_sum[id]+=wa
             ix=min(weeks,int(wa));count_wins[id][ix]+=1
-            win_better[id]+=(1.0 if wa<actual else .5 if wa==actual else 0.0)
         for group in groups.values():
             for t in group:
                 id=t['id'];place=1+sum(wins[o['id']]>wins[id] for o in group)
                 rank_counts[id][place-1]+=1;rank_sum[id]+=place
-                actual=t['divrank'];rank_better[id]+=(1.0 if place>actual else .5 if place==actual else 0.0)
     for t in teams:
         id=t['id'];t['simWinMean']=round(win_sum[id]/n,3);t['simRankMean']=round(rank_sum[id]/n,3)
         t['rankDist']=[round(100*x/n,3) for x in rank_counts[id]]
