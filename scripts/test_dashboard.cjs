@@ -101,13 +101,18 @@ async function main(){
  const sub=(kind,value)=>{click('[data-'+kind+'-view]',{[kind+'View']:value});return node('view').innerHTML;};
  assert.deepStrictEqual((html.match(/class="navbtn[^"]*" data-tab="[^"]+"/g)||[]).map(x=>x.match(/data-tab="([^"]+)"/)[1]),['overview','teams','history']);
  assert.equal((node('mobileNav').innerHTML.match(/<option value=/g)||[]).length,3,'Mobile navigation also has three destinations');
+ assert.ok(html.includes('id="weekStatus"')&&!html.includes('id="sourceStatus"')&&!html.includes('id="sideStatus"')&&!html.includes('id="footerStatus"'),'Only one persistent data-status indicator remains');
+ assert.equal(node('weekStatus').textContent,'2026 · Finalized through Week 4','Data-status indicator is based on approved completed weeks');
  assert.ok(view.includes('League standings & scoring rank')&&view.includes('Schedule luck · extra wins'),'Overview presents standings and schedule luck');
  assert.ok(view.includes('League avg PF')&&view.includes('League form'),'League strength and trend context retained');
  assert.ok(view.includes('power-desktop')&&view.includes('power-table')&&view.includes('power-mobile-item'));
  assert.equal((view.match(/<tr class="[^"]*" data-select="/g)||[]).length,10);
  assert.ok(view.includes('All-play')&&view.includes('Extra wins')&&view.includes('Form'));
- assert.ok(view.includes('What if opponents changed?')&&view.includes('darkest = 1st'),'What-if simulation retained on demand');
+ assert.ok(view.includes('What if opponents changed?')&&view.includes('Alternative completed schedules, not future forecasts.'),'What-if simulations and their retrospective caveat remain');
  assert.ok(view.includes('How the numbers work'),'Definitions retained in disclosure');
+ assert.ok(view.includes('Positive = favorable schedule · Negative = tougher draw'),'Short luck legend replaces repeated formula');
+ assert.ok(!view.includes('PF ranks teams by points scored, not predicted strength.')&&!view.includes('All-play compares each score against all nine teams'),'Remove repeated standings methodology footer');
+ assert.ok(view.includes('Ranked by total points scored'),'Preserve PF ranking context in heading');
 
  const topicNames=['Results & Schedule Luck','Scoring & Team DNA','Lineup Quality','Historical Franchise DNA','Data & Reliability'];
  assert.equal((view.match(/<details class="method-topic">/g)||[]).length,5,'Exactly five concise methodology topics appear inside Overview');
@@ -151,6 +156,8 @@ async function main(){
  assert.ok(view.includes('ALL-PLAY')&&view.includes('AVG PF / WEEK')&&view.includes('RECENT FORM')&&view.includes('CEILING CAPTURED'));
  assert.ok(!view.includes("BENCH MISS")&&!view.includes("UNAVOIDABLE"),'Move bench and unavoidable detail to Lineup subview');
  assert.ok(view.includes('SCORING')&&view.includes('LINEUP SWR')&&view.includes('CUMUL. LUCK'),'Preserve all three mini-trends');
+ assert.ok(!view.includes('Screenshot the dark report card')&&!view.includes('tc-outside-note'),'Report Card no longer adds screenshot instructions');
+ assert.ok(view.includes('LINEUP DETAILS: TEAMS → LINEUP'),'Useful action/context remains on the report card');
  node('teamSelect').listeners.change({target:{value:'3'}});
  view=node('view').innerHTML;
  assert.ok(view.includes('Israeli Nutonyaboob'));
@@ -180,6 +187,8 @@ async function main(){
 
  assert.equal((view.match(/<tspan dx="3" font-size="11">🏆<\/tspan>/g)||[]).length,3,'Map retains champion markers');
  assert.ok(view.includes('Historical metrics & season-by-season details'),'Historical methods progressively disclosed');
+ assert.ok(view.includes('Dashed splits:')&&view.includes('% CV.'),'Keep actual scoring-map split legend');
+ assert.ok(!view.includes('Labels may use leader lines'),'Remove redundant visual mechanics from map footer');
  assert.ok(view.includes('CURRENTLY · 2026')&&view.includes('Recent scoring trend'),'Current-season detail accessible');
  assert.ok(!view.includes('lineup-quality'),'Lineup no longer dominates DNA view');
  node('teamSelect').listeners.change({target:{value:'8'}});
@@ -191,12 +200,13 @@ async function main(){
  view=sub('team','lineup');
  assert.ok(view.includes('lineup-quality')&&view.includes('Roster ceiling')&&view.includes('Weekly lineup quality'),'Deep lineup analysis kept');
  assert.ok(view.includes('Bench upgrades:')&&view.includes('Weekly opponent scores'),'Original lineup/box-score evidence stays available');
- assert.ok(view.includes('K/DST half-weighted'),'Preserve roster methodology');
+ assert.ok(view.includes('Finalized hindsight, not pregame predictions.')&&view.includes('Week 4 cutoff:'),'Retain crucial hindsight caveat and actual final-week cutoff');
  view=tab('history');
  assert.ok(view.includes('2025 Yearbook')&&view.includes('Regular-season scoring order'),'Yearbook built from actual completed scoring');
+ assert.ok(!view.includes('This yearbook uses finalized regular-season scoring data.'),'Do not repeat yearbook methodology');
  assert.ok(view.includes('Rebuilt Golden Ponies'),'2025 scoring leader visible');
  assert.ok(view.includes('General&#39;s Dorm Room')&&view.includes('League champion: 2025'));
- assert.ok(view.includes('not official standings or playoff seeding'),'Do not mislabel PF ranking');
+ assert.ok(view.includes('PF-ranked, not official W–L standings.'),'Do not mislabel PF ranking');
  assert.equal((view.split('<tbody>')[1].split('</tbody>')[0].match(/<tr>/g)||[]).length,10,'Yearbook ranks exactly ten verified teams');
  events.change({target:{id:'historyYear',value:'2023'}});
  view=node('view').innerHTML;
@@ -204,6 +214,7 @@ async function main(){
  assert.ok(view.includes('The Load Warriors')&&view.includes('League champion: 2023'),'Historical champion alias receives trophy');
  view=sub('history','titles');
  assert.ok(view.includes('Championship Archive'));
+ assert.ok(view.includes('Verified championships only.')&&!view.includes('Titles were reconstructed from ESPN postseason matchup progression'),'Keep short title qualification without repetitive archive footer');
  for(const [name,year] of [['The Load Warriors',2023],['Mike Oxlong',2024],["General&#39;s Dorm Room",2025]]){
   assert.ok(view.includes(name)&&view.includes(year+' champion'),'Every verified title preserved');
  }
@@ -212,6 +223,7 @@ async function main(){
  assert.ok(view.includes('Franchise Legacy'));
  assert.ok(view.includes('Got Rice?')&&view.includes('2025')&&view.includes('2024'),'Current slot-6 franchise retains two known seasons');
  assert.ok(!view.includes('Team Figueroa'),'2023 owner cannot inherit legacy history');
+ assert.ok(view.includes('2023 ESPN slot 6 belongs to a different franchise and is excluded here.'),'Affected franchise retains identity continuity caveat');
  click('[data-tab]',{tab:'overview'});
  assert.equal(node('pageTitle').textContent,'League overview');
  console.log('Three-destination dashboard regression checks passed: standings, luck, expanded detail, team reports/DNA/lineup, source-backed history, trophies and ownership continuity.');
