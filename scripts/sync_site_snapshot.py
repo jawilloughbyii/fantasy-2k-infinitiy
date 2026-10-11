@@ -12,8 +12,10 @@ DEFINITIONS=ROOT/'reference'/'metric_definitions.json'
 IDENTITIES=ROOT/'reference'/'franchise_continuity.json'
 TEAM_IDS=ROOT/'reference'/'team_id_map.json'
 CHAMPIONS=ROOT/'reference'/'championship_history.json'
+HISTORICAL_SCORES=ROOT/'reference'/'historical_regular_season_scores.json'
 METRIC_PATTERN=re.compile(r'(<script id="metricdefs" type="application/json">)(.*?)(</script>)',re.S)
 CHAMP_PATTERN=re.compile(r'(<script id="championships" type="application/json">)(.*?)(</script>)',re.S)
+HIST_PATTERN=re.compile(r'(<script id="historicalscores" type="application/json">)(.*?)(</script>)',re.S)
 
 PATTERN=re.compile(r'(<script id="fantasydata" type="application/json">)(.*?)(</script>)',re.S)
 
@@ -64,7 +66,13 @@ def sync(html,data):
     updated=updated[:m.start(2)]+safe_json(metrics)+updated[m.end(2):]
     champ=CHAMP_PATTERN.search(updated)
     if not champ:raise ValueError('Missing championship metadata block in HTML')
-    return updated[:champ.start(2)]+safe_json(championship_metadata())+updated[champ.end(2):]
+    updated=updated[:champ.start(2)]+safe_json(championship_metadata())+updated[champ.end(2):]
+    historical=HIST_PATTERN.search(updated)
+    if not historical:raise ValueError('Missing historical scoring data block in HTML')
+    source=json.loads(HISTORICAL_SCORES.read_text(encoding='utf8'))
+    if source.get('league_id')!=data.get('leagueId',418244680):
+        raise ValueError('Historical scoring league mismatch')
+    return updated[:historical.start(2)]+safe_json(source)+updated[historical.end(2):]
 
 def main():
     a=argparse.ArgumentParser();a.add_argument('--html',default='index.html');a.add_argument('--data',required=True);a.add_argument('--output',required=True);args=a.parse_args()
