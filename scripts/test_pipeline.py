@@ -26,6 +26,19 @@ class TestPipeline(unittest.TestCase):
         self.assertTrue(all(t['projWeeks']==4 for t in d['teams']))
         self.assertAlmostEqual(d['leagueAveragePf'],120.92,places=1)
         self.assertEqual(d['simulationRuns'],100000)
+    def test_shared_quadrants_match_generated_history(self):
+        d=site.build(self.report(self.fixture),self.base)
+        expected=site.METRICS['scoring']['quadrants']
+        self.assertEqual(len(expected),4)
+        categories={x['id']:x['category'] for x in d['dnaHistory'][-1]['teams']}
+        self.assertEqual(categories[4],'Steady, lower-output')
+        self.assertEqual(categories[5],'Steady, lower-output')
+        self.assertTrue(set(categories.values()).issubset(set(expected)))
+        self.assertNotIn('rosterAnalysis',d,'Refreshed scoring must not silently carry stale finalized rosters')
+        for team in d['teams']:
+            self.assertNotIn('rankLuckPct',team)
+            self.assertNotIn('winLuckPct',team)
+            self.assertNotIn('luckpp',team)
     def test_active_week_excluded_even_with_live_points(self):
         x=copy.deepcopy(self.fixture);x['status']={'currentMatchupPeriod':5}
         # Current week only has partial scores, still must be excluded
