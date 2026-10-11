@@ -78,7 +78,10 @@ async function main(){
  assert.ok(view.includes('League 45.2%') && view.includes('League 62.3%') && view.includes('League 72.6%'),'All three roster percentages require league comparisons');
  assert.ok(view.includes('most missed'),'Bench opportunity needs league rank context');
  assert.ok(view.includes('roster-action') && view.includes('Roster ceiling'),'Overview must lead with usable lineup data');
- assert.ok(view.includes('W4 · BIGGEST SCHEDULE BOOST') && view.includes('extra wins in Week 4'));
+ assert.ok(!view.includes('Week 4 talking points') && !html.includes('function weekHeadlines(){'),'Talking points must be removed');
+ assert.ok(!view.includes('Avg extra wins'),'Zero-sum extra-wins average is not useful');
+ assert.ok(view.includes('Cumulative wins') && view.includes('Cumulative fantasy points') && view.includes('Cumulative all-play wins') && view.includes('Cumulative extra wins') && view.includes('Weekly PF (form)'),'All five standings metrics need trends');
+ assert.ok((view.match(/class="mini-spark /g)||[]).length>=50,'Ten teams times five metrics must show in desktop and mobile');
  assert.ok(!view.includes('Points vs ESPN'));
  assert.equal(node('weekStatus').textContent,'Early season · 4 weeks');
  function tab(tab){
