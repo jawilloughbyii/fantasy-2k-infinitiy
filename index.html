@@ -803,12 +803,28 @@ const titles={overview:['League overview','Standings, recent form and schedule l
 const functions={overview,teams:teamsPage,history:historyPage};
 function render(){document.getElementById('view').innerHTML=functions[state.tab]();document.getElementById('pageTitle').textContent=titles[state.tab][0];document.getElementById('intro').textContent=titles[state.tab][1];document.querySelectorAll('[data-tab]').forEach(el=>el.classList.toggle('active',el.dataset.tab===state.tab));document.getElementById('teamSelect').value=String(state.selected);document.getElementById('weekStatus').textContent=DB.completedThrough<7?`Early season · ${DB.completedThrough} weeks`:`Season to date · ${DB.completedThrough} weeks`;const mobile=document.getElementById('mobileSection');if(mobile)mobile.value=state.tab;}
 function init(){document.getElementById('teamSelect').innerHTML=teams.map(t=>`<option value="${t.id}">${teamNameText(t)}</option>`).join('');document.getElementById('mobileNav').innerHTML=`<label for="mobileSection">EXPLORE</label><select id="mobileSection" aria-label="Dashboard section">${navTabs.map(([id,name])=>`<option value="${id}">${name}</option>`).join('')}</select>`;document.getElementById('mobileSection').addEventListener('change',e=>{state.tab=e.target.value;render();window.scrollTo(0,0)});render()}
-document.addEventListener('click',e=>{let step=e.target.closest('[data-card-step]');if(step){const ordered=[...teams].sort((a,b)=>b.pf-a.pf||b.wins-a.wins),i=ordered.findIndex(t=>t.id===state.selected),next=ordered[i+Number(step.dataset.cardStep)];if(next)state.selected=next.id;render();return;}let expanded=e.target.closest('[data-expand-standing]');if(expanded){let id=Number(expanded.dataset.expandStanding);state.expandedStanding=state.expandedStanding===id?null:id;render();return;}let range=e.target.closest('[data-range]');if(range){state.weekRange=range.dataset.range;render();return;}let quadrant=e.target.closest('[data-quadrant]');if(quadrant){state.quadrant=state.quadrant===quadrant.dataset.quadrant?'all':quadrant.dataset.quadrant;render();return;}let btn=e.target.closest('[data-tab]');if(btn){state.tab=btn.dataset.tab;render();window.scrollTo({top:0,behavior:'instant'});return;}btn=e.target.closest('[data-select]');if(btn){state.selected=Number(btn.dataset.select);if(btn.dataset.jump)state.tab=btn.dataset.jump;render();if(btn.dataset.jump)window.scrollTo(0,0);return;}});
+document.addEventListener('click',e=>{
+ let sub=e.target.closest('[data-team-view]');
+ if(sub){state.teamView=sub.dataset.teamView;state.tab='teams';render();return;}
+ sub=e.target.closest('[data-history-view]');
+ if(sub){state.historyView=sub.dataset.historyView;state.tab='history';render();return;}
+ let step=e.target.closest('[data-card-step]');
+ if(step){const ordered=[...teams].sort((a,b)=>b.pf-a.pf||b.wins-a.wins),i=ordered.findIndex(t=>t.id===state.selected),next=ordered[i+Number(step.dataset.cardStep)];if(next)state.selected=next.id;render();return;}
+ let expanded=e.target.closest('[data-expand-standing]');
+ if(expanded){let id=Number(expanded.dataset.expandStanding);state.expandedStanding=state.expandedStanding===id?null:id;render();return;}
+ let range=e.target.closest('[data-range]');
+ if(range){state.weekRange=range.dataset.range;render();return;}
+ let quadrant=e.target.closest('[data-quadrant]');
+ if(quadrant){state.quadrant=state.quadrant===quadrant.dataset.quadrant?'all':quadrant.dataset.quadrant;render();return;}
+ let btn=e.target.closest('[data-tab]');
+ if(btn){state.tab=btn.dataset.tab;if(btn.dataset.teamDestination)state.teamView=btn.dataset.teamDestination;render();window.scrollTo(0,0);return;}
+ btn=e.target.closest('[data-select]');
+ if(btn){state.selected=Number(btn.dataset.select);if(btn.dataset.jump)state.tab=btn.dataset.jump;else if(state.tab==='overview'){state.tab='teams';state.teamView='card';}render();if(state.tab==='teams')window.scrollTo(0,0);return;}
+});
 document.addEventListener('keydown',e=>{if(e.key!=='Enter'&&e.key!==' ')return;const row=e.target.closest('[data-select]');if(row&&row.tagName==='TR'){e.preventDefault();state.selected=Number(row.dataset.select);render();}});
-document.getElementById('teamSelect').addEventListener('change',e=>{state.selected=Number(e.target.value);render();});
-document.addEventListener('change',async e=>{
-
-
+document.getElementById('teamSelect').addEventListener('change',e=>{state.selected=Number(e.target.value);if(state.tab==='overview'){state.tab='teams';state.teamView='card';}render();});
+document.addEventListener('change',e=>{
+ if(e.target.id==='historyYear'){const year=Number(e.target.value);if(HISTORICAL_SCORES.seasons.some(s=>s.year===year)){state.historyYear=year;render();}}
 });
 function validatePublicData(fresh){
  if(!fresh||fresh.completedThrough<4||fresh.completedThrough>18||!Array.isArray(fresh.teams)||fresh.teams.length!==10)throw new Error('Invalid approved data');
