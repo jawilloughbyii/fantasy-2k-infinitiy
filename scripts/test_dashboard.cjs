@@ -102,7 +102,7 @@ async function main(){
  assert.ok(view.includes('roster-action') && view.includes('Roster ceiling'),'Overview must lead with usable lineup data');
  assert.ok(!view.includes('Week 4 talking points') && !html.includes('function weekHeadlines(){'),'Talking points must be removed');
  assert.ok(!view.includes('Avg extra wins'),'Zero-sum extra-wins average is not useful');
- assert.ok(view.includes('Latest') && view.includes('Extra wins'),'League context remains alongside standings');
+ assert.ok(view.includes('League avg PF') && view.includes('Extra wins'),'League context remains alongside standings');
  assert.ok(!view.includes('Points vs ESPN'));
  assert.equal(node('weekStatus').textContent,'Early season · 4 weeks');
  function tab(tab){
