@@ -268,6 +268,8 @@
 @media(max-width:700px){.personality-map .map-svg{max-height:230px}.map-quadrant-labels{display:none}.mobile-quadrants{display:grid;gap:8px;margin-top:12px}.mobile-quadrants>p{font-size:11px;color:#657790;margin:0 0 3px}.personality-map .maplegend{display:none}.profile-chart.all-season{gap:2px}.profile-chart.all-season .week-column>strong{font-size:8px}.profile-chart.all-season .week-column>span{font-size:9px}.history-track.compact{grid-template-columns:repeat(auto-fit,minmax(71px,1fr))}}
 @media(max-width:410px){.league-chart{min-height:135px}.week-chart-legend{gap:7px}.league-kpis .card{padding:12px}.league-kpis strong{font-size:20px}}
 
+@media(max-width:720px){.topright .tag{display:inline-flex;padding:6px 10px;font-size:10px}#sourceStatus{display:none}}
+.map-svg [data-select]:focus rect{stroke:#0b1829;stroke-width:4}
 /* Compact action-first overview, sortable visual table and readable chart labels. */
 .power-table{width:100%;border-collapse:collapse;font-size:12px;min-width:680px}
 .power-table th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#637a95;padding:10px;border-bottom:1px solid #dfe8f2}
@@ -520,20 +522,20 @@ function lineupQualityCard(t){
  }
  const records=info.weeks.map(w=>({week:w.week,cutoffs:w.cutoffs,...(w.teams.find(x=>x.teamId===t.id)||{})})).filter(x=>x.teamId===t.id);
  if(!records.length)return '';
- const total=records.reduce((sum,x)=>sum+x.weightedHits,0),possible=records.length*8;
+ const total=records.reduce((sum,x)=>sum+x.weightedHits,0),possible=records.length*METRICS.lineup.weightedPossible;
  const recent=records.slice(-3),latest=records.at(-1);
  const miss=records.reduce((sum,x)=>sum+x.missedWeighted,0);
  const maxTotal=records.reduce((sum,x)=>sum+x.weightedMax,0);
  const capturePct=maxTotal>0?100*total/maxTotal:null,ceilingPct=100*maxTotal/possible;
  const shortfallPct=100*(possible-maxTotal)/possible,unrealized=maxTotal-total;
- const recentPct=100*recent.reduce((sum,x)=>sum+x.weightedHits,0)/(8*recent.length);
+ const recentPct=100*recent.reduce((sum,x)=>sum+x.weightedHits,0)/(METRICS.lineup.weightedPossible*recent.length);
  const slotMarkup=(latest.slots||[]).map(x=>`<div class="lineup-slot ${x.worthy?'worthy':''}" title="${esc(x.player)} · ${fmt(x.points,2)} final PF"><b>${esc(x.slot)} · ${x.worthy?'QUALIFIED':'MISSED'}</b><span>${esc(x.player)}</span><small>${fmt(x.points,1)} pts</small></div>`).join('');
  const opportunities=(latest.benchOpportunities||[]).length?latest.benchOpportunities.map(x=>`${esc(x.player)} (${esc(x.position)}, ${fmt(x.points,1)} pts)`).join(' · '):'None that improve qualification this week';
  return `<div class="card lineup-quality">${section('Lineup quality','Finalized weekly starters · league-wide positional rankings')}<div class="lineup-kpis">
  <div class="lineup-kpi"><span>Season starter-worthy</span><strong>${fmt(100*total/possible,1)}%</strong><small>${fmt(total,1)} / ${possible} weighted hits</small></div>
- <div class="lineup-kpi"><span>Latest week</span><strong>${fmt(latest.swrPct,1)}%</strong><small>${latest.qualifiedStarters} of 9 players qualified · W${latest.week}</small></div>
- <div class="lineup-kpi"><span>Last ${recent.length} weeks</span><strong>${fmt(recentPct,1)}%</strong><small>Weighted recent qualification rate</small></div>
- <div class="lineup-kpi"><span>Bench opportunity left</span><strong>${fmt(miss,1)}</strong><small>Weighted starter-worthy slots missed season-to-date</small></div></div>
+ <div class="lineup-kpi"><span>Latest week</span><strong>${fmt(latest.swrPct,1)}%</strong><small>${fmt(latest.weightedHits,1)} / 8 quality points · ${latest.qualifiedStarters} of 9 starters · K/DST half-weighted · W${latest.week}</small></div>
+ ${DB.completedThrough>=METRICS.momentum.minimumWeeks?`<div class="lineup-kpi"><span>Latest three weeks</span><strong>${fmt(recentPct,1)}%</strong><small>Weighted recent qualification rate</small></div>`:''}
+ <div class="lineup-kpi"><span>Bench opportunity left</span><strong>${fmt(miss,1)}</strong><small>Weighted quality points available through legal substitutions</small></div></div>
  <div class="lineup-ceiling"><div class="lineup-ceiling-head"><strong>How much could this roster actually deliver?</strong><small class="lineup-method">Best legal lineup from starters + bench · IR excluded</small></div>
  <div class="lineup-compare">
  <div class="lineup-compare-row"><span>Actual starter-worthy</span><strong>${fmt(100*total/possible,1)}%</strong><div class="lineup-track"><div class="lineup-fill" style="width:${100*total/possible}%"></div></div></div>
@@ -547,8 +549,16 @@ function lineupQualityCard(t){
  <p class="lineup-method">A starter is worthy if their final points meet the weekly NFL-wide qualification cutoff for their actual slot. FLEX recognizes positional qualifiers plus the 10 best remaining RB/WR/TE players. Bench opportunities count only legal upgrades after optimizing the existing starters first. Roster ceiling is the maximum legal weighted score from actual starters and bench (IR excluded). Ceiling captured is actual divided by that maximum; unavoidable shortfall is the portion of eight weighted points the roster could not supply even with perfect hindsight. This measures outcomes in hindsight, not pregame decision quality. K and DST are half-weighted.</p></div>`;
 }
 
-function profilePage(){const t=selected(),p=scoringProfiles[t.id];return `${identityBadge(t)}${personalityMap()}${dnaHistoryCard(t)}<div class="card">${section('How this team scores',teamName(t)+' · final scores through Week '+DB.completedThrough)}${profileMini(t)}${weeklyDNA(t)}${momentumStory(t)}<div class="data-note">Scoring profiles use completed weeks only. Recent form is descriptive, not a guarantee about future output.</div></div>${lineupQualityCard(t)}<div class="card">${section('The league’s scoring personalities','Choose a team to see its full profile')}${dnaLeaderboard()}</div><div class="card">${section('Scoring versus recorded ESPN projections','W1–W4 screenshots may differ from scheduled pre-week captures')}<div class="perf-hero"><div><span>Difference across ${t.projWeeks||0} recorded weeks</span><strong class="${tone(t.projPct||0)}">${t.projWeeks?sign(t.projPct,1)+'%':'N/A'}</strong></div><div><span>Total points difference</span><strong class="${tone(t.projdelta||0)}">${t.projWeeks?sign(t.projdelta):'N/A'}</strong></div></div>${sparkline(t)}</div>`;}
-
+function cleanProjectionWeeks(t){return t.weeks.filter(w=>w.proj!==null&&w.proj!==undefined&&w.projSource===METRICS.projection.verifiedSource&&w[METRICS.projection.verifiedFlag]===true);}
+function verifiedProjectionCard(t){
+ const eligible=cleanProjectionWeeks(t);if(eligible.length<METRICS.projection.minimumVerifiedWeeks)return '';
+ const actual=eligible.reduce((n,w)=>n+w.pf,0),projected=eligible.reduce((n,w)=>n+w.proj,0),pct=projected?100*(actual/projected-1):0;
+ return `<div class="card">${section('Verified pregame projections',`${eligible.length} independently verified capture weeks`)}<div class="perf-hero"><div><span>Actual versus pregame</span><strong>${sign(pct,1)}%</strong></div><div><span>Points difference</span><strong>${sign(actual-projected,1)}</strong></div></div></div>`;
+}
+function profilePage(){
+ const t=selected();
+ return `${identityBadge(t)}${lineupQualityCard(t)}${personalityMap()}<div class="card">${section('How this team scores',teamName(t)+' · final scores through Week '+DB.completedThrough)}${profileMini(t)}${weeklyDNA(t)}${momentumStory(t)}</div>${dnaHistoryCard(t)}<div class="card"><details><summary><strong>The league’s four scoring identities</strong> · view all teams</summary>${dnaLeaderboard()}</details></div>${verifiedProjectionCard(t)}`;
+}
 function personalityMap(){
  const list=[...teams].sort((a,b)=>b.pf/DB.completedThrough-a.pf/DB.completedThrough);
  const W=780,H=410,L=66,R=39,T=35,B=60,xvals=list.map(t=>scoringProfiles[t.id].average),yvals=list.map(t=>scoringProfiles[t.id].cv*100);
@@ -580,9 +590,9 @@ function dnaHistoryCard(t){
  const history=Array.from({length:n-METRICS.scoring.minimumWeeks+1},(_,i)=>{const w=i+METRICS.scoring.minimumWeeks,scores=t.weeks.slice(0,w).map(z=>z.pf),league=mean(teams.map(z=>mean(z.weeks.slice(0,w).map(a=>a.pf))));return {w,category:scoringQuadrant(mean(scores),stdev(scores)/Math.max(1,mean(scores)),league)};});
  return `<div class="card dna-history">${section('Season versus recent scoring identity','Compare the full season with the most recent four completed weeks')}<div class="history-summary" style="grid-template-columns:repeat(2,minmax(0,1fr))"><div><small>Season · W1–W${n}</small><strong>${esc(p.category)}</strong></div><div><small>Recent · W${starts}–W${n}</small><strong>${esc(recent)}</strong></div></div><details><summary>View past season identity changes</summary><div class="history-track compact">${history.map(h=>`<div class="history-item"><span>W${h.w}</span><strong>${esc(h.category)}</strong></div>`).join('')}</div></details></div>`;
 }
-const titles={overview:['League overview','Who won, who got the helpful matchups, and who scored above projections.'],luck:['Who got lucky?',"Who is ahead or behind thanks to the weekly schedule?"],performance:['Team DNA & scoring','Which teams have a steady floor, explosive ceiling, or changing momentum?'],divisions:['What if the schedule changed?','Retrospective weekly schedule reshuffles. Playoff forecasting is deferred.'],method:['How it works','Simple explanations of the statistics used throughout this report.']};
+const titles={overview:['League overview','Standings, this week’s stories, and what the selected team could control.'],luck:['Who got lucky?','Extra wins: actual record compared with all-play expectations.'],performance:['Team DNA & scoring','Lineup quality and one consistent four-quadrant scoring identity.'],divisions:['What if the schedule changed?','Retrospective distributions from reshuffling finalized weekly matchups.'],method:['How it works','One set of definitions for scoring, luck and roster quality.']};
 const functions={overview,luck,performance:perf,divisions,method};
-function render(){document.getElementById('view').innerHTML=functions[state.tab]();document.getElementById('pageTitle').textContent=titles[state.tab][0];document.getElementById('intro').textContent=titles[state.tab][1];document.querySelectorAll('[data-tab]').forEach(el=>el.classList.toggle('active',el.dataset.tab===state.tab));document.getElementById('teamSelect').value=String(state.selected);document.getElementById('weekStatus').textContent=`Final through W${DB.completedThrough} · Updated ${dataTimestamp(DB)}`;const mobile=document.getElementById('mobileSection');if(mobile)mobile.value=state.tab;}
+function render(){document.getElementById('view').innerHTML=functions[state.tab]();document.getElementById('pageTitle').textContent=titles[state.tab][0];document.getElementById('intro').textContent=titles[state.tab][1];document.querySelectorAll('[data-tab]').forEach(el=>el.classList.toggle('active',el.dataset.tab===state.tab));document.getElementById('teamSelect').value=String(state.selected);document.getElementById('weekStatus').textContent=DB.completedThrough<7?`Early season · ${DB.completedThrough} weeks`:`Season to date · ${DB.completedThrough} weeks`;const mobile=document.getElementById('mobileSection');if(mobile)mobile.value=state.tab;}
 function init(){document.getElementById('teamSelect').innerHTML=teams.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('');document.getElementById('mobileNav').innerHTML=`<label for="mobileSection">EXPLORE</label><select id="mobileSection" aria-label="Dashboard section">${navTabs.map(([id,name])=>`<option value="${id}">${name}</option>`).join('')}</select>`;document.getElementById('mobileSection').addEventListener('change',e=>{state.tab=e.target.value;render();window.scrollTo(0,0)});render()}
 document.addEventListener('click',e=>{let range=e.target.closest('[data-range]');if(range){state.weekRange=range.dataset.range;render();return;}let quadrant=e.target.closest('[data-quadrant]');if(quadrant){state.quadrant=state.quadrant===quadrant.dataset.quadrant?'all':quadrant.dataset.quadrant;render();return;}let btn=e.target.closest('[data-tab]');if(btn){state.tab=btn.dataset.tab;render();window.scrollTo({top:0,behavior:'instant'});return;}btn=e.target.closest('[data-select]');if(btn){state.selected=Number(btn.dataset.select);if(btn.dataset.jump)state.tab=btn.dataset.jump;render();if(btn.dataset.jump)window.scrollTo(0,0);return;}});
 document.getElementById('teamSelect').addEventListener('change',e=>{state.selected=Number(e.target.value);render();});
@@ -618,10 +628,12 @@ function validatePublicData(fresh){
  return true;
 }
 function dataTimestamp(db){let s=db.approvedAt||db.generated;if(!s)return 'time not recorded';let date=new Date(s);return Number.isNaN(date.getTime())?'time not recorded':date.toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});}
-function showStatus(embedded,error){const status=document.getElementById('sourceStatus'),time=dataTimestamp(DB),source=embedded?'Approved embedded snapshot':'Validated ESPN file';status.textContent=`${embedded?'Offline fallback':'Current approved data'} · W${DB.completedThrough} · ${time}`;
- document.getElementById('sideStatus').innerHTML=`<span class="dot"></span>${10*DB.completedThrough} finalized team-weeks<br>${fmt(DB.simulationRuns,0)} schedule simulations<br>${source}`;
- document.getElementById('footerStatus').textContent=`Fantasy 2K Infinity · ${source} · Completed through Week ${DB.completedThrough} · Updated ${time}${embedded?' · External feed unavailable or older':''}`;
- if(embedded&&error)document.getElementById('sourceStatus').title='External data unavailable or rejected; displaying approved embedded dataset.';
+function showStatus(embedded,error){
+ const status=document.getElementById('sourceStatus');
+ status.textContent=embedded?'Embedded approved data':'Validated ESPN data';
+ status.title=embedded&&error?'External data unavailable or rejected: using the matching embedded approved snapshot.':'Validated source';
+ document.getElementById('sideStatus').innerHTML='<span class="dot"></span>Final scores only';
+ document.getElementById('footerStatus').textContent='Fantasy 2K Infinity · Final scores only';
 }
 async function loadData(){let fallback=false,problem=null;
  try{const resp=await fetch('./data/league.json?v='+Date.now(),{cache:'no-store'});if(!resp.ok)throw new Error('External data unavailable');const fresh=await resp.json();validatePublicData(fresh);DB=fresh;teams=DB.teams;byId=Object.fromEntries(teams.map(t=>[t.id,t]));leagueMean=mean(teams.map(t=>t.pf/DB.completedThrough));scoringProfiles=buildScoringProfiles();}
