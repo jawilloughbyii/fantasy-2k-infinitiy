@@ -349,6 +349,14 @@ let state={tab:'overview',selected:3,division:'All',sort:'luck',weekRange:'lates
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=(n,k=2)=>Number(n).toLocaleString('en-US',{minimumFractionDigits:k,maximumFractionDigits:k});
 const sign=(n,k=2)=> (n>0?'+':'')+fmt(n,k);
+const compactWins=n=>Math.abs(n-Math.round(n))<.000001?fmt(n,0):fmt(n,1);
+const mean=a=>a.reduce((u,v)=>u+v,0)/Math.max(a.length,1);
+const leagueRank=(value,others,highIsGood=true)=>1+others.filter(n=>highIsGood?n>value+.000001:n<value-.000001).length;
+const leagueComparison=(value,others,{unit='%',decimals=1,highIsGood=true}={})=>{
+ const average=mean(others),rank=leagueRank(value,others,highIsGood);
+ return `League ${fmt(average,decimals)}${unit} · #${rank} of ${others.length}`;
+};
+
 const tone=n=>n>.001?'good':n<-.001?'bad':'neutral';
 const teamName=t=>esc(t.name);
 const owner=id=>byId[id];
@@ -417,7 +425,6 @@ function method(){return `<div class="card bigmethod">${section('How the numbers
  <h3>Data protection</h3><p>Credentials and owner names are not published. Updated HTML and external JSON are approved and published together, with matching embedded fallback data.</p></details></div>`;}
 
 /* Unified scoring DNA: the same four quadrant labels and cutoffs everywhere. */
-const mean=a=>a.reduce((u,v)=>u+v,0)/Math.max(a.length,1);
 const median=a=>{const b=[...a].sort((x,y)=>x-y),m=Math.floor(b.length/2);return b.length%2?b[m]:(b[m-1]+b[m])/2};
 const stdev=a=>Math.sqrt(mean(a.map(x=>(x-mean(a))**2)));
 let leagueMean=mean(teams.map(t=>t.pf/DB.completedThrough));
