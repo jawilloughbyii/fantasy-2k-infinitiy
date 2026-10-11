@@ -27,20 +27,21 @@ def embed(html):
     if not m: raise ValueError('index.html is missing the original validated fallback')
     return json.loads(m.group(1))
 
+METRICS=load(ROOT/'reference/metric_definitions.json')
+
 def mean(x): return sum(x)/len(x)
 def normalize(s): return re.sub('[^a-z0-9]','',s.lower())
 def rounding(x): return round(x+0.,8)
 
 def classification(scores, league_mean):
-    average=mean(scores); sd=stats.pstdev(scores) if len(scores)>1 else 0
+    """Use the identical four quadrants as the frontend map and shared definitions."""
+    average=mean(scores)
+    sd=stats.pstdev(scores) if len(scores)>1 else 0
     cv=sd/average if average>0 else 0
-    if cv>=.235 and max(scores)>=1.10*league_mean: return 'High ceiling, low floor'
-    if cv>=.235: return 'Boom-or-bust'
-    if cv<=.135 and average>=1.04*league_mean: return 'Reliable contender'
-    if cv<=.135: return 'Steady scorer'
-    if average>=1.08*league_mean: return 'High-upside contender'
-    if average<=.92*league_mean: return 'Inconsistent underdog'
-    return 'Balanced, with swings'
+    high=cv>METRICS['scoring']['quadrantCvBoundary']
+    right=average>=league_mean
+    return METRICS['scoring']['quadrants'][(1 if right else 0)+(0 if high else 2)]
+
 
 def simulate(teams, n=20000):
     """Historical weekly score-preserving random valid perfect matchings."""
@@ -115,6 +116,7 @@ def build(report,base):
             if m.get('winner') not in (None,predicted):raise ValueError(f'Week {w}: inconsistent winner')
     result=copy.deepcopy(base)
     result.pop('week5',None)  # old in-progress screenshot must not persist
+    result.pop('rosterAnalysis',None)  # historical roster analysis requires a separate completed-week validation
     result['completedThrough']=latest
     result['source']='ESPN authenticated, baseline reconciled'
     result['generated']=report.get('generated_at_utc') or dt.datetime.now(dt.timezone.utc).isoformat()
@@ -138,7 +140,7 @@ def build(report,base):
                     'win':1 if pf>pa else 0,'xw':None,'weekLuck':None,'delta':round(pf-proj,2) if proj is not None else None,'rank':None})
         sorted_week=sorted(week_points[w].values(),reverse=True)
         for t in result['teams']:
-            row=t['weeks'][-1];pf=row['pf'];beats=sum(pf>p for id,p in week_points[w].items() if id!=t['id']);ties=sum(pf==p for id,p in week_points[w].items() if id!=t['id']);xw=(beats+.5*ties)/9
+            row=t['weeks'][-1];pf=row['pf'];beats=sum(pf>p for id,p in week_points[w].items() if id!=t['id']);ties=sum(pf==p for id,p in week_points[w].items() if id!=t['id']);xw=(beats+METRICS['luck']['tieCredit']*ties)/(len(result['teams'])-1)
             row['xw']=rounding(xw);row['weekLuck']=rounding(row['win']-xw);row['rank']=1+sum(p>pf for p in week_points[w].values())
     for t in result['teams']:
         rows=t['weeks'];wins=sum(x['win'] for x in rows); losses=len(rows)-wins
@@ -160,23 +162,23 @@ def build(report,base):
     result['leagueMedianPf']=round(stats.median([p for x in week_points.values() for p in x.values()]),2)
     result['dnaHistory']=[]
     for w in range(1,latest+1):
-        avg=mean(week_avg[:w]);entry={'throughWeek':w,'status':'provisional' if w<=5 else 'emerging' if w<=9 else 'established','teams':[]}
+        avg=mean(week_avg[:w]);entry={'throughWeek':w,'status':'observed','teams':[]}
         for t in result['teams']:
             scores=[r['pf'] for r in t['weeks'][:w]]
-            entry['teams'].append({'id':t['id'],'category':classification(scores,avg) if w>=4 else 'Not enough weeks','averagePf':round(mean(scores),2),
+            entry['teams'].append({'id':t['id'],'category':classification(scores,avg) if w>=METRICS['scoring']['minimumWeeks'] else 'Not enough weeks','averagePf':round(mean(scores),2),
              'cvPct':round((stats.pstdev(scores)/mean(scores))*100,2) if mean(scores)>0 else 0.0})
         result['dnaHistory'].append(entry)
     result['recentDna']=[]
-    if latest>=7:
-        recent_week_avg=mean(week_avg[-4:]);earliest_recent=latest-3
+    if latest>=METRICS['recentDna']['minimumWeeks']:
+        recent_window=METRICS['recentDna']['window'];recent_week_avg=mean(week_avg[-recent_window:]);earliest_recent=latest-recent_window+1
         for t in result['teams']:
-            scores=[r['pf'] for r in t['weeks'][-4:]]
+            scores=[r['pf'] for r in t['weeks'][-recent_window:]]
             result['recentDna'].append({'id':t['id'],'weeks':[earliest_recent,latest],
              'category':classification(scores,recent_week_avg),'cvPct':round(100*stats.pstdev(scores)/mean(scores),2) if mean(scores)>0 else 0.0})
     result['methodNotes']=["Private ESPN backfill reconciled against 40 known scores and opponents for Weeks 1–4.",
      "Only completed periods before ESPN's current matchup period enter scoring calculations.",
      "Original Weeks 1–4 displayed projection values are not verified pregame snapshots. Missing future projections remain blank.",
-     "No player data, manager names, ESPN authentication credentials or playoff odds are published."]
+     "Manager names and ESPN authentication credentials are never published. Validated finalized roster metrics are published separately."]
     if len(result['teams'])!=10 or any(len(t['weeks'])!=latest for t in result['teams']):raise ValueError('Output completeness check failed')
     assert round(sum(t['pf'] for t in result['teams']),2)==round(sum(t['pa'] for t in result['teams']),2)
     return result
