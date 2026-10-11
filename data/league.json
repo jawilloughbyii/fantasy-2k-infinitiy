@@ -997,8 +997,7 @@
         {
           "id": 4,
           "category": "Not enough weeks",
-          "averagePf": 101.97,
-          "cvPct": 15.6
+          "averagePf": 101.97,          "cvPct": 15.6
         },
         {
           "id": 5,
@@ -1171,5 +1170,3582 @@
       ]
     }
   ],
-  "recentDna": []
+  "recentDna": [],
+  "rosterAnalysis": {
+    "status": "validated-final-rosters",
+    "throughWeek": 4,
+    "generatedAt": "2026-10-10T21:10:20.955617+00:00",
+    "weights": {
+      "skill": 1,
+      "K": 0.5,
+      "DST": 0.5
+    },
+    "weeks": [
+      {
+        "week": 1,
+        "cutoffs": {
+          "QB": 21.1,
+          "RB": 13.8,
+          "WR": 15.4,
+          "TE": 13.3,
+          "K": 10.0,
+          "DST": 9.0,
+          "FLEX": 12.2
+        },
+        "teams": [
+          {
+            "teamId": 1,
+            "week": 1,
+            "weightedHits": 3.0,
+            "weightedMax": 5.0,
+            "weightedPossible": 8,
+            "swrPct": 37.5,
+            "qualifiedStarters": 3,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "CeeDee Lamb",
+                "position": "WR",
+                "points": 15.4,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "De'Von Achane",
+                "position": "RB",
+                "points": 10.6,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Tetairoa McMillan",
+                "position": "WR",
+                "points": 10.5,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Travis Etienne Jr.",
+                "position": "RB",
+                "points": 14.8,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Tyler Warren",
+                "position": "TE",
+                "points": 10.3,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Cam Skattebo",
+                "position": "RB",
+                "points": 14.1,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Jayden Daniels",
+                "position": "QB",
+                "points": 17.66,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Brandon Aubrey",
+                "position": "K",
+                "points": 1.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Texans D/ST",
+                "position": "DST",
+                "points": -1.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "T.J. Hockenson",
+                "position": "TE",
+                "points": 13.6
+              },
+              {
+                "player": "Deebo Samuel Sr.",
+                "position": "WR",
+                "points": 18.0
+              }
+            ]
+          },
+          {
+            "teamId": 2,
+            "week": 1,
+            "weightedHits": 3.0,
+            "weightedMax": 5.0,
+            "weightedPossible": 8,
+            "swrPct": 37.5,
+            "qualifiedStarters": 3,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 1.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 1,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Jaxon Smith-Njigba",
+                "position": "WR",
+                "points": 26.2,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Saquon Barkley",
+                "position": "RB",
+                "points": 9.0,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Trey McBride",
+                "position": "TE",
+                "points": 24.5,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Garrett Wilson",
+                "position": "WR",
+                "points": 13.9,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Jalen Hurts",
+                "position": "QB",
+                "points": 24.72,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Davante Adams",
+                "position": "WR",
+                "points": 5.6,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Jaylen Warren",
+                "position": "RB",
+                "points": 10.3,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Broncos D/ST",
+                "position": "DST",
+                "points": 3.0,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Ka'imi Fairbairn",
+                "position": "K",
+                "points": 9.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Matthew Golden",
+                "position": "WR",
+                "points": 15.5
+              }
+            ]
+          },
+          {
+            "teamId": 3,
+            "week": 1,
+            "weightedHits": 1.5,
+            "weightedMax": 3.5,
+            "weightedPossible": 8,
+            "swrPct": 18.75,
+            "qualifiedStarters": 2,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Jahmyr Gibbs",
+                "position": "RB",
+                "points": 33.6,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Drake London",
+                "position": "WR",
+                "points": 5.5,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "A.J. Brown",
+                "position": "WR",
+                "points": 5.6,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Colston Loveland",
+                "position": "TE",
+                "points": 0.0,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Drake Maye",
+                "position": "QB",
+                "points": 9.82,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Jameson Williams",
+                "position": "WR",
+                "points": 8.5,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Kenny Gainwell",
+                "position": "RB",
+                "points": 2.8,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Jason Myers",
+                "position": "K",
+                "points": 7.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Jaguars D/ST",
+                "position": "DST",
+                "points": 14.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Kyle Monangai",
+                "position": "RB",
+                "points": 20.4
+              },
+              {
+                "player": "Jalen Coker",
+                "position": "WR",
+                "points": 33.8
+              }
+            ]
+          },
+          {
+            "teamId": 4,
+            "week": 1,
+            "weightedHits": 1.5,
+            "weightedMax": 3.5,
+            "weightedPossible": 8,
+            "swrPct": 18.75,
+            "qualifiedStarters": 2,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "James Cook III",
+                "position": "RB",
+                "points": 9.9,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Chase Brown",
+                "position": "RB",
+                "points": 18.8,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "DeVonta Smith",
+                "position": "WR",
+                "points": 8.3,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Rome Odunze",
+                "position": "WR",
+                "points": 7.2,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Justin Herbert",
+                "position": "QB",
+                "points": 13.26,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Rico Dowdle",
+                "position": "RB",
+                "points": 4.1,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Jake Bates",
+                "position": "K",
+                "points": 7.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Lions D/ST",
+                "position": "DST",
+                "points": 10.0,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Dalton Schultz",
+                "position": "TE",
+                "points": 7.5,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "DJ Moore",
+                "position": "WR",
+                "points": 21.0
+              },
+              {
+                "player": "Christian Watson",
+                "position": "WR",
+                "points": 32.7
+              }
+            ]
+          },
+          {
+            "teamId": 5,
+            "week": 1,
+            "weightedHits": 4.5,
+            "weightedMax": 5.5,
+            "weightedPossible": 8,
+            "swrPct": 56.25,
+            "qualifiedStarters": 5,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
+            "benchQualifiedCount": 1,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Ja'Marr Chase",
+                "position": "WR",
+                "points": 3.2,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Ashton Jeanty",
+                "position": "RB",
+                "points": 32.7,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Nico Collins",
+                "position": "WR",
+                "points": 21.2,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Malik Nabers",
+                "position": "WR",
+                "points": 12.9,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "D'Andre Swift",
+                "position": "RB",
+                "points": 32.4,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Joe Burrow",
+                "position": "QB",
+                "points": 14.16,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Kyle Pitts Sr.",
+                "position": "TE",
+                "points": 0.0,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Cam Little",
+                "position": "K",
+                "points": 12.0,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Eagles D/ST",
+                "position": "DST",
+                "points": 3.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Jaxson Dart",
+                "position": "QB",
+                "points": 26.6
+              }
+            ]
+          },
+          {
+            "teamId": 6,
+            "week": 1,
+            "weightedHits": 3.0,
+            "weightedMax": 7.0,
+            "weightedPossible": 8,
+            "swrPct": 37.5,
+            "qualifiedStarters": 3,
+            "totalStarters": 9,
+            "missedWeighted": 4.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 4.0,
+            "benchQualifiedCount": 4,
+            "potentiallyUsefulBenchCount": 4,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Bijan Robinson",
+                "position": "RB",
+                "points": 31.3,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Josh Allen",
+                "position": "QB",
+                "points": 35.66,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "George Pickens",
+                "position": "WR",
+                "points": 5.8,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Tee Higgins",
+                "position": "WR",
+                "points": 8.9,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Javonte Williams",
+                "position": "RB",
+                "points": 24.2,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Bhayshul Tuten",
+                "position": "RB",
+                "points": 9.8,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Harold Fannin Jr.",
+                "position": "TE",
+                "points": 4.1,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Harrison Mevis",
+                "position": "K",
+                "points": 1.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Patriots D/ST",
+                "position": "DST",
+                "points": 7.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Mike Evans",
+                "position": "WR",
+                "points": 16.9
+              },
+              {
+                "player": "Jakobi Meyers",
+                "position": "WR",
+                "points": 12.2
+              },
+              {
+                "player": "Stefon Diggs",
+                "position": "WR",
+                "points": 15.5
+              },
+              {
+                "player": "Dallas Goedert",
+                "position": "TE",
+                "points": 23.7
+              }
+            ]
+          },
+          {
+            "teamId": 7,
+            "week": 1,
+            "weightedHits": 3.5,
+            "weightedMax": 4.5,
+            "weightedPossible": 8,
+            "swrPct": 43.75,
+            "qualifiedStarters": 4,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
+            "benchQualifiedCount": 1,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Amon-Ra St. Brown",
+                "position": "WR",
+                "points": 28.7,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Omarion Hampton",
+                "position": "RB",
+                "points": 8.3,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Breece Hall",
+                "position": "RB",
+                "points": 19.8,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Emeka Egbuka",
+                "position": "WR",
+                "points": 11.3,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "David Montgomery",
+                "position": "RB",
+                "points": 28.9,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Dak Prescott",
+                "position": "QB",
+                "points": 14.4,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Sam LaPorta",
+                "position": "TE",
+                "points": 9.8,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Rams D/ST",
+                "position": "DST",
+                "points": 2.0,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Evan McPherson",
+                "position": "K",
+                "points": 19.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Jacory Croskey-Merritt",
+                "position": "RB",
+                "points": 12.6
+              }
+            ]
+          },
+          {
+            "teamId": 8,
+            "week": 1,
+            "weightedHits": 6.5,
+            "weightedMax": 6.5,
+            "weightedPossible": 8,
+            "swrPct": 81.25,
+            "qualifiedStarters": 7,
+            "totalStarters": 9,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
+            "benchQualifiedCount": 1,
+            "potentiallyUsefulBenchCount": 0,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Jonathan Taylor",
+                "position": "RB",
+                "points": 25.1,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Kenneth Walker III",
+                "position": "RB",
+                "points": 34.1,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Chris Olave",
+                "position": "WR",
+                "points": 28.2,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Zay Flowers",
+                "position": "WR",
+                "points": 26.0,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Rhamondre Stevenson",
+                "position": "RB",
+                "points": 14.5,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Tucker Kraft",
+                "position": "TE",
+                "points": 9.5,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Trevor Lawrence",
+                "position": "QB",
+                "points": 26.1,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Cameron Dicker",
+                "position": "K",
+                "points": 2.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Steelers D/ST",
+                "position": "DST",
+                "points": 19.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": []
+          },
+          {
+            "teamId": 9,
+            "week": 1,
+            "weightedHits": 5.0,
+            "weightedMax": 5.0,
+            "weightedPossible": 8,
+            "swrPct": 62.5,
+            "qualifiedStarters": 6,
+            "totalStarters": 9,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
+            "benchQualifiedCount": 3,
+            "potentiallyUsefulBenchCount": 0,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Puka Nacua",
+                "position": "WR",
+                "points": 12.4,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Derrick Henry",
+                "position": "RB",
+                "points": 35.3,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Kyren Williams",
+                "position": "RB",
+                "points": 15.5,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Lamar Jackson",
+                "position": "QB",
+                "points": 24.96,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Jaylen Waddle",
+                "position": "WR",
+                "points": 1.2,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Bucky Irving",
+                "position": "RB",
+                "points": 20.3,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Travis Kelce",
+                "position": "TE",
+                "points": 10.1,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Seahawks D/ST",
+                "position": "DST",
+                "points": 14.0,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Eddy Pineiro",
+                "position": "K",
+                "points": 10.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": []
+          },
+          {
+            "teamId": 10,
+            "week": 1,            "weightedHits": 5.0,
+            "weightedMax": 6.0,
+            "weightedPossible": 8,
+            "swrPct": 62.5,
+            "qualifiedStarters": 5,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
+            "benchQualifiedCount": 1,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Christian McCaffrey",
+                "position": "RB",
+                "points": 13.8,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Justin Jefferson",
+                "position": "WR",
+                "points": 31.2,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Rashee Rice",
+                "position": "WR",
+                "points": 9.9,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Jeremiyah Love",
+                "position": "RB",
+                "points": 13.0,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Tony Pollard",
+                "position": "RB",
+                "points": 4.4,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Caleb Williams",
+                "position": "QB",
+                "points": 37.26,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Isaiah Likely",
+                "position": "TE",
+                "points": 27.8,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Ravens D/ST",
+                "position": "DST",
+                "points": 6.0,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Wil Lutz",
+                "position": "K",
+                "points": 4.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Parker Washington",
+                "position": "WR",
+                "points": 19.3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "week": 2,
+        "cutoffs": {
+          "QB": 20.22,
+          "RB": 11.1,
+          "WR": 14.2,
+          "TE": 14.4,
+          "K": 9.0,
+          "DST": 9.0,
+          "FLEX": 11.4
+        },
+        "teams": [
+          {
+            "teamId": 1,
+            "week": 2,
+            "weightedHits": 4.5,
+            "weightedMax": 4.5,
+            "weightedPossible": 8,
+            "swrPct": 56.25,
+            "qualifiedStarters": 5,
+            "totalStarters": 9,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
+            "benchQualifiedCount": 0,
+            "potentiallyUsefulBenchCount": 0,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "CeeDee Lamb",
+                "position": "WR",
+                "points": 35.3,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "De'Von Achane",
+                "position": "RB",
+                "points": 12.3,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Tetairoa McMillan",
+                "position": "WR",
+                "points": 15.1,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Travis Etienne Jr.",
+                "position": "RB",
+                "points": 7.1,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Tyler Warren",
+                "position": "TE",
+                "points": 14.4,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Cam Skattebo",
+                "position": "RB",
+                "points": 9.5,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Jayden Daniels",
+                "position": "QB",
+                "points": 14.74,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Brandon Aubrey",
+                "position": "K",
+                "points": 17.0,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Texans D/ST",
+                "position": "DST",
+                "points": 6.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": []
+          },
+          {
+            "teamId": 2,
+            "week": 2,
+            "weightedHits": 4.5,
+            "weightedMax": 5.5,
+            "weightedPossible": 8,
+            "swrPct": 56.25,
+            "qualifiedStarters": 5,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
+            "benchQualifiedCount": 3,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Jaxon Smith-Njigba",
+                "position": "WR",
+                "points": 42.5,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Saquon Barkley",
+                "position": "RB",
+                "points": 3.0,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Trey McBride",
+                "position": "TE",
+                "points": 18.1,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Garrett Wilson",
+                "position": "WR",
+                "points": 16.7,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Jalen Hurts",
+                "position": "QB",
+                "points": 16.16,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Davante Adams",
+                "position": "WR",
+                "points": 39.5,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Jaylen Warren",
+                "position": "RB",
+                "points": 9.7,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Broncos D/ST",
+                "position": "DST",
+                "points": 9.0,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Ka'imi Fairbairn",
+                "position": "K",
+                "points": 6.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Jonah Coleman",
+                "position": "RB",
+                "points": 14.8
+              }
+            ]
+          },
+          {
+            "teamId": 3,
+            "week": 2,
+            "weightedHits": 2.0,
+            "weightedMax": 4.0,
+            "weightedPossible": 8,
+            "swrPct": 25.0,
+            "qualifiedStarters": 2,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Jahmyr Gibbs",
+                "position": "RB",
+                "points": 23.3,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Drake London",
+                "position": "WR",
+                "points": 8.9,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Colston Loveland",
+                "position": "TE",
+                "points": 1.3,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Drake Maye",
+                "position": "QB",
+                "points": 8.02,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Jameson Williams",
+                "position": "WR",
+                "points": 5.3,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Kyle Monangai",
+                "position": "RB",
+                "points": 7.8,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Jalen Coker",
+                "position": "WR",
+                "points": 14.6,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Jason Myers",
+                "position": "K",
+                "points": 7.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Buccaneers D/ST",
+                "position": "DST",
+                "points": 2.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Devaughn Vele",
+                "position": "WR",
+                "points": 11.4
+              },
+              {
+                "player": "Bryce Young",
+                "position": "QB",
+                "points": 24.08
+              }
+            ]
+          },
+          {
+            "teamId": 4,
+            "week": 2,
+            "weightedHits": 4.5,
+            "weightedMax": 5.5,
+            "weightedPossible": 8,
+            "swrPct": 56.25,
+            "qualifiedStarters": 5,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "James Cook III",
+                "position": "RB",
+                "points": 20.9,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Chase Brown",
+                "position": "RB",
+                "points": 11.2,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "DeVonta Smith",
+                "position": "WR",
+                "points": 27.7,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "DJ Moore",
+                "position": "WR",
+                "points": -0.1,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Rome Odunze",
+                "position": "WR",
+                "points": 7.3,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Justin Herbert",
+                "position": "QB",
+                "points": 7.88,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Dalton Schultz",
+                "position": "TE",
+                "points": 26.0,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Chiefs D/ST",
+                "position": "DST",
+                "points": 1.0,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Harrison Butker",
+                "position": "K",
+                "points": 16.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Christian Watson",
+                "position": "WR",
+                "points": 14.1
+              }
+            ]
+          },
+          {
+            "teamId": 5,
+            "week": 2,
+            "weightedHits": 3.0,
+            "weightedMax": 5.0,
+            "weightedPossible": 8,
+            "swrPct": 37.5,
+            "qualifiedStarters": 3,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Ja'Marr Chase",
+                "position": "WR",
+                "points": 26.5,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Ashton Jeanty",
+                "position": "RB",
+                "points": 10.3,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Malik Nabers",
+                "position": "WR",
+                "points": 1.1,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "D'Andre Swift",
+                "position": "RB",
+                "points": 12.9,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Jaxson Dart",
+                "position": "QB",
+                "points": 0.8,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Jordan Addison",
+                "position": "WR",
+                "points": 4.1,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Cam Little",
+                "position": "K",
+                "points": 7.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Eagles D/ST",
+                "position": "DST",
+                "points": 3.0,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Dalton Kincaid",
+                "position": "TE",
+                "points": 22.5,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "TreVeyon Henderson",
+                "position": "RB",
+                "points": 13.6
+              },
+              {
+                "player": "Josh Downs",
+                "position": "WR",
+                "points": 14.2
+              }
+            ]
+          },
+          {
+            "teamId": 6,
+            "week": 2,
+            "weightedHits": 3.5,
+            "weightedMax": 5.5,
+            "weightedPossible": 8,
+            "swrPct": 43.75,
+            "qualifiedStarters": 4,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 3,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Bijan Robinson",
+                "position": "RB",
+                "points": 11.1,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Josh Allen",
+                "position": "QB",
+                "points": 40.82,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "George Pickens",
+                "position": "WR",
+                "points": 10.0,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Tee Higgins",
+                "position": "WR",
+                "points": 14.5,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Javonte Williams",
+                "position": "RB",
+                "points": 8.0,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Mike Evans",
+                "position": "WR",
+                "points": 8.4,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Dallas Goedert",
+                "position": "TE",
+                "points": 1.4,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Harrison Mevis",
+                "position": "K",
+                "points": 3.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Patriots D/ST",
+                "position": "DST",
+                "points": 21.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Bhayshul Tuten",
+                "position": "RB",
+                "points": 14.2
+              },
+              {
+                "player": "Stefon Diggs",
+                "position": "WR",
+                "points": 21.7
+              }
+            ]
+          },
+          {
+            "teamId": 7,
+            "week": 2,
+            "weightedHits": 6.0,
+            "weightedMax": 6.0,
+            "weightedPossible": 8,
+            "swrPct": 75.0,
+            "qualifiedStarters": 7,
+            "totalStarters": 9,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
+            "benchQualifiedCount": 0,
+            "potentiallyUsefulBenchCount": 0,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Amon-Ra St. Brown",
+                "position": "WR",
+                "points": 35.2,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Omarion Hampton",
+                "position": "RB",
+                "points": 17.5,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Breece Hall",
+                "position": "RB",
+                "points": 14.2,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Emeka Egbuka",
+                "position": "WR",
+                "points": 10.3,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "David Montgomery",
+                "position": "RB",
+                "points": 4.4,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Dak Prescott",
+                "position": "QB",
+                "points": 29.76,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Sam LaPorta",
+                "position": "TE",
+                "points": 17.2,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Rams D/ST",
+                "position": "DST",
+                "points": 11.0,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Evan McPherson",
+                "position": "K",
+                "points": 12.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": []
+          },
+          {
+            "teamId": 8,
+            "week": 2,
+            "weightedHits": 3.5,
+            "weightedMax": 4.5,
+            "weightedPossible": 8,
+            "swrPct": 43.75,
+            "qualifiedStarters": 4,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Jonathan Taylor",
+                "position": "RB",
+                "points": 29.2,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Kenneth Walker III",
+                "position": "RB",
+                "points": 23.8,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Chris Olave",
+                "position": "WR",
+                "points": 22.6,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Ladd McConkey",
+                "position": "WR",
+                "points": 6.5,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Rhamondre Stevenson",
+                "position": "RB",
+                "points": 3.6,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Tucker Kraft",
+                "position": "TE",
+                "points": 3.5,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Trevor Lawrence",
+                "position": "QB",
+                "points": 6.16,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Cameron Dicker",
+                "position": "K",
+                "points": 1.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "49ers D/ST",
+                "position": "DST",
+                "points": 9.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Tank Bigsby",
+                "position": "RB",
+                "points": 11.8
+              }
+            ]
+          },
+          {
+            "teamId": 9,
+            "week": 2,
+            "weightedHits": 5.5,
+            "weightedMax": 6.5,
+            "weightedPossible": 8,
+            "swrPct": 68.75,
+            "qualifiedStarters": 6,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
+            "benchQualifiedCount": 4,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Puka Nacua",
+                "position": "WR",
+                "points": 0.0,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Derrick Henry",
+                "position": "RB",
+                "points": 17.7,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Lamar Jackson",
+                "position": "QB",
+                "points": 14.8,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Jaylen Waddle",
+                "position": "WR",
+                "points": 21.8,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Bucky Irving",
+                "position": "RB",
+                "points": 13.0,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Chuba Hubbard",
+                "position": "RB",
+                "points": 14.4,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Travis Kelce",
+                "position": "TE",
+                "points": 25.1,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Seahawks D/ST",
+                "position": "DST",
+                "points": 9.0,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Eddy Pineiro",
+                "position": "K",
+                "points": 5.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Patrick Mahomes",
+                "position": "QB",
+                "points": 28.98
+              }
+            ]
+          },
+          {
+            "teamId": 10,
+            "week": 2,
+            "weightedHits": 3.5,
+            "weightedMax": 3.5,
+            "weightedPossible": 8,
+            "swrPct": 43.75,
+            "qualifiedStarters": 4,
+            "totalStarters": 9,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
+            "benchQualifiedCount": 0,
+            "potentiallyUsefulBenchCount": 0,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Christian McCaffrey",
+                "position": "RB",
+                "points": 22.6,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Justin Jefferson",
+                "position": "WR",
+                "points": 8.5,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Rashee Rice",
+                "position": "WR",
+                "points": 12.3,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Jeremiyah Love",
+                "position": "RB",
+                "points": 7.5,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Parker Washington",
+                "position": "WR",
+                "points": 16.8,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Caleb Williams",
+                "position": "QB",
+                "points": 7.72,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Isaiah Likely",
+                "position": "TE",
+                "points": 8.3,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Ravens D/ST",
+                "position": "DST",
+                "points": 3.0,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Wil Lutz",
+                "position": "K",
+                "points": 9.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": []
+          }
+        ]
+      },
+      {
+        "week": 3,
+        "cutoffs": {
+          "QB": 22.22,
+          "RB": 11.1,
+          "WR": 15.8,
+          "TE": 14.7,
+          "K": 12.0,
+          "DST": 9.0,
+          "FLEX": 13.0
+        },
+        "teams": [
+          {
+            "teamId": 1,
+            "week": 3,
+            "weightedHits": 4.5,
+            "weightedMax": 4.5,
+            "weightedPossible": 8,
+            "swrPct": 56.25,
+            "qualifiedStarters": 5,
+            "totalStarters": 9,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
+            "benchQualifiedCount": 0,
+            "potentiallyUsefulBenchCount": 0,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "CeeDee Lamb",
+                "position": "WR",
+                "points": 20.2,
+                "worthy": true              },
+              {
+                "slot": "RB",
+                "player": "De'Von Achane",
+                "position": "RB",
+                "points": 1.7,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Tetairoa McMillan",
+                "position": "WR",
+                "points": 3.7,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Tyler Warren",
+                "position": "TE",
+                "points": 14.7,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Cam Skattebo",
+                "position": "RB",
+                "points": 13.0,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Brandon Aubrey",
+                "position": "K",
+                "points": 10.0,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Deebo Samuel Sr.",
+                "position": "WR",
+                "points": 15.4,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Jared Goff",
+                "position": "QB",
+                "points": 19.36,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Vikings D/ST",
+                "position": "DST",
+                "points": 19.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": []
+          },
+          {
+            "teamId": 2,
+            "week": 3,
+            "weightedHits": 5.5,
+            "weightedMax": 6.5,
+            "weightedPossible": 8,
+            "swrPct": 68.75,
+            "qualifiedStarters": 6,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Jaxon Smith-Njigba",
+                "position": "WR",
+                "points": 35.36,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Saquon Barkley",
+                "position": "RB",
+                "points": 9.0,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Trey McBride",
+                "position": "TE",
+                "points": 16.5,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Garrett Wilson",
+                "position": "WR",
+                "points": 26.7,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Jalen Hurts",
+                "position": "QB",
+                "points": 12.62,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Davante Adams",
+                "position": "WR",
+                "points": 20.7,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Jaylen Warren",
+                "position": "RB",
+                "points": 20.6,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Broncos D/ST",
+                "position": "DST",
+                "points": 14.0,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Ka'imi Fairbairn",
+                "position": "K",
+                "points": 5.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Aaron Jones Sr.",
+                "position": "RB",
+                "points": 14.2
+              }
+            ]
+          },
+          {
+            "teamId": 3,
+            "week": 3,
+            "weightedHits": 3.0,
+            "weightedMax": 3.0,
+            "weightedPossible": 8,
+            "swrPct": 37.5,
+            "qualifiedStarters": 3,
+            "totalStarters": 9,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
+            "benchQualifiedCount": 0,
+            "potentiallyUsefulBenchCount": 0,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Jahmyr Gibbs",
+                "position": "RB",
+                "points": 41.4,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Drake London",
+                "position": "WR",
+                "points": 28.4,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Kyle Monangai",
+                "position": "RB",
+                "points": 3.1,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Jalen Coker",
+                "position": "WR",
+                "points": 3.8,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Jason Myers",
+                "position": "K",
+                "points": 9.0,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Devaughn Vele",
+                "position": "WR",
+                "points": 6.9,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Bryce Young",
+                "position": "QB",
+                "points": 13.64,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Juwan Johnson",
+                "position": "TE",
+                "points": 23.3,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Panthers D/ST",
+                "position": "DST",
+                "points": 5.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": []
+          },
+          {
+            "teamId": 4,
+            "week": 3,
+            "weightedHits": 3.5,
+            "weightedMax": 5.5,
+            "weightedPossible": 8,
+            "swrPct": 43.75,
+            "qualifiedStarters": 4,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 3,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "James Cook III",
+                "position": "RB",
+                "points": 19.4,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Chase Brown",
+                "position": "RB",
+                "points": 8.9,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Brock Bowers",
+                "position": "TE",
+                "points": 27.6,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "DeVonta Smith",
+                "position": "WR",
+                "points": 12.5,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Christian Watson",
+                "position": "WR",
+                "points": 22.6,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Justin Herbert",
+                "position": "QB",
+                "points": 12.74,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Dalton Schultz",
+                "position": "TE",
+                "points": 6.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Chiefs D/ST",
+                "position": "DST",
+                "points": 9.0,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Harrison Butker",
+                "position": "K",
+                "points": 5.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Rachaad White",
+                "position": "RB",
+                "points": 11.1
+              },
+              {
+                "player": "Tyler Shough",
+                "position": "QB",
+                "points": 23.8
+              }
+            ]
+          },
+          {
+            "teamId": 5,
+            "week": 3,
+            "weightedHits": 3.0,
+            "weightedMax": 4.0,
+            "weightedPossible": 8,
+            "swrPct": 37.5,
+            "qualifiedStarters": 3,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
+            "benchQualifiedCount": 1,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Ja'Marr Chase",
+                "position": "WR",
+                "points": 24.8,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Ashton Jeanty",
+                "position": "RB",
+                "points": 12.3,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Malik Nabers",
+                "position": "WR",
+                "points": 7.6,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "D'Andre Swift",
+                "position": "RB",
+                "points": 10.8,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Joe Burrow",
+                "position": "QB",
+                "points": 22.58,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Josh Downs",
+                "position": "WR",
+                "points": 12.7,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Cam Little",
+                "position": "K",
+                "points": 4.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Eagles D/ST",
+                "position": "DST",
+                "points": 0.0,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Dalton Kincaid",
+                "position": "TE",
+                "points": 3.8,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Jordan Addison",
+                "position": "WR",
+                "points": 20.0
+              }
+            ]
+          },
+          {
+            "teamId": 6,
+            "week": 3,
+            "weightedHits": 3.5,
+            "weightedMax": 6.5,
+            "weightedPossible": 8,
+            "swrPct": 43.75,
+            "qualifiedStarters": 4,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 1.0,
+            "totalOpportunityWeighted": 3.0,
+            "benchQualifiedCount": 3,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Bijan Robinson",
+                "position": "RB",
+                "points": 35.3,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Josh Allen",
+                "position": "QB",
+                "points": 17.46,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "George Pickens",
+                "position": "WR",
+                "points": 15.2,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Tee Higgins",
+                "position": "WR",
+                "points": 21.0,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Javonte Williams",
+                "position": "RB",
+                "points": 18.3,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Mike Evans",
+                "position": "WR",
+                "points": 12.4,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Harrison Mevis",
+                "position": "K",
+                "points": 16.0,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Patriots D/ST",
+                "position": "DST",
+                "points": 0.0,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Mark Andrews",
+                "position": "TE",
+                "points": 5.4,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Harold Fannin Jr.",
+                "position": "TE",
+                "points": 24.1
+              },
+              {
+                "player": "Jakobi Meyers",
+                "position": "WR",
+                "points": 19.4
+              }
+            ]
+          },
+          {
+            "teamId": 7,
+            "week": 3,
+            "weightedHits": 0.0,
+            "weightedMax": 1.0,
+            "weightedPossible": 8,
+            "swrPct": 0.0,
+            "qualifiedStarters": 0,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
+            "benchQualifiedCount": 1,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Amon-Ra St. Brown",
+                "position": "WR",
+                "points": 11.9,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Omarion Hampton",
+                "position": "RB",
+                "points": 5.6,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Breece Hall",
+                "position": "RB",
+                "points": 8.5,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Emeka Egbuka",
+                "position": "WR",
+                "points": 11.2,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "David Montgomery",
+                "position": "RB",
+                "points": 6.8,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Dak Prescott",
+                "position": "QB",
+                "points": 18.94,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Sam LaPorta",
+                "position": "TE",
+                "points": 7.4,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Rams D/ST",
+                "position": "DST",
+                "points": 3.0,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Evan McPherson",
+                "position": "K",
+                "points": 11.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Wan'Dale Robinson",
+                "position": "WR",
+                "points": 18.7
+              }
+            ]
+          },
+          {
+            "teamId": 8,
+            "week": 3,
+            "weightedHits": 2.0,
+            "weightedMax": 3.0,
+            "weightedPossible": 8,
+            "swrPct": 25.0,
+            "qualifiedStarters": 2,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
+            "benchQualifiedCount": 1,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Jonathan Taylor",
+                "position": "RB",
+                "points": 9.2,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Kenneth Walker III",
+                "position": "RB",
+                "points": 21.3,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Chris Olave",
+                "position": "WR",
+                "points": 19.7,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Ladd McConkey",
+                "position": "WR",
+                "points": 10.6,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Tucker Kraft",
+                "position": "TE",
+                "points": 6.6,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Trevor Lawrence",
+                "position": "QB",
+                "points": 19.78,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Cameron Dicker",
+                "position": "K",
+                "points": 9.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "49ers D/ST",
+                "position": "DST",
+                "points": 1.0,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Rashod Bateman",
+                "position": "WR",
+                "points": 5.7,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Luther Burden III",
+                "position": "WR",
+                "points": 19.8
+              }
+            ]
+          },
+          {
+            "teamId": 9,
+            "week": 3,
+            "weightedHits": 3.0,
+            "weightedMax": 6.0,
+            "weightedPossible": 8,
+            "swrPct": 37.5,
+            "qualifiedStarters": 3,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 1.0,
+            "totalOpportunityWeighted": 3.0,
+            "benchQualifiedCount": 3,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Derrick Henry",
+                "position": "RB",
+                "points": 21.9,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Lamar Jackson",
+                "position": "QB",
+                "points": 20.44,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Jaylen Waddle",
+                "position": "WR",
+                "points": 6.4,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Bucky Irving",
+                "position": "RB",
+                "points": 7.8,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Chuba Hubbard",
+                "position": "RB",
+                "points": 15.0,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Michael Wilson",
+                "position": "WR",
+                "points": 25.9,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Travis Kelce",
+                "position": "TE",
+                "points": 13.9,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Seahawks D/ST",
+                "position": "DST",
+                "points": 2.0,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Eddy Pineiro",
+                "position": "K",
+                "points": 6.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "George Kittle",
+                "position": "TE",
+                "points": 26.2
+              },
+              {
+                "player": "Brock Purdy",
+                "position": "QB",
+                "points": 31.28
+              }
+            ]
+          },
+          {
+            "teamId": 10,
+            "week": 3,
+            "weightedHits": 3.0,
+            "weightedMax": 5.0,
+            "weightedPossible": 8,
+            "swrPct": 37.5,
+            "qualifiedStarters": 3,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 1.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Christian McCaffrey",
+                "position": "RB",
+                "points": 21.6,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Justin Jefferson",
+                "position": "WR",
+                "points": 5.2,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Rashee Rice",
+                "position": "WR",
+                "points": 15.8,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Jeremiyah Love",
+                "position": "RB",
+                "points": 21.9,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Parker Washington",
+                "position": "WR",
+                "points": 13.0,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Isaiah Likely",
+                "position": "TE",
+                "points": 3.3,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Ravens D/ST",
+                "position": "DST",
+                "points": 4.0,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Kyler Murray",
+                "position": "QB",
+                "points": 10.42,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Jake Bates",
+                "position": "K",
+                "points": 7.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Terry McLaurin",
+                "position": "WR",
+                "points": 19.7
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "week": 4,
+        "cutoffs": {
+          "QB": 18.52,
+          "RB": 16.0,
+          "WR": 15.5,
+          "TE": 13.0,
+          "K": 11.0,
+          "DST": 7.0,
+          "FLEX": 13.3
+        },
+        "teams": [
+          {
+            "teamId": 1,
+            "week": 4,
+            "weightedHits": 4.5,
+            "weightedMax": 6.5,
+            "weightedPossible": 8,
+            "swrPct": 56.25,
+            "qualifiedStarters": 5,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 3,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "CeeDee Lamb",
+                "position": "WR",
+                "points": 41.3,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Tetairoa McMillan",
+                "position": "WR",
+                "points": 45.2,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Tyler Warren",
+                "position": "TE",
+                "points": 9.1,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Cam Skattebo",
+                "position": "RB",
+                "points": 7.6,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Brandon Aubrey",
+                "position": "K",
+                "points": 10.0,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Woody Marks",
+                "position": "RB",
+                "points": 8.2,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Deebo Samuel Sr.",
+                "position": "WR",
+                "points": 18.0,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Jared Goff",
+                "position": "QB",
+                "points": 20.48,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Vikings D/ST",
+                "position": "DST",
+                "points": 9.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "T.J. Hockenson",
+                "position": "TE",
+                "points": 24.9
+              },
+              {
+                "player": "Brian Robinson Jr.",
+                "position": "RB",
+                "points": 25.7
+              }
+            ]
+          },
+          {
+            "teamId": 2,
+            "week": 4,
+            "weightedHits": 1.5,
+            "weightedMax": 3.5,
+            "weightedPossible": 8,
+            "swrPct": 18.75,
+            "qualifiedStarters": 2,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Jaxon Smith-Njigba",
+                "position": "WR",
+                "points": 12.6,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Saquon Barkley",
+                "position": "RB",
+                "points": 2.0,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Trey McBride",
+                "position": "TE",
+                "points": 10.1,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Garrett Wilson",
+                "position": "WR",
+                "points": 5.7,
+                "worthy": false              },
+              {
+                "slot": "QB",
+                "player": "Jalen Hurts",
+                "position": "QB",
+                "points": 13.52,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Davante Adams",
+                "position": "WR",
+                "points": 7.2,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Broncos D/ST",
+                "position": "DST",
+                "points": 2.0,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Aaron Jones Sr.",
+                "position": "RB",
+                "points": 16.8,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Ka'imi Fairbairn",
+                "position": "K",
+                "points": 16.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Jaylen Warren",
+                "position": "RB",
+                "points": 15.6
+              },
+              {
+                "player": "RJ Harvey",
+                "position": "RB",
+                "points": 19.3
+              }
+            ]
+          },
+          {
+            "teamId": 3,
+            "week": 4,
+            "weightedHits": 4.5,
+            "weightedMax": 6.5,
+            "weightedPossible": 8,
+            "swrPct": 56.25,
+            "qualifiedStarters": 5,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 1.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 3,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Jahmyr Gibbs",
+                "position": "RB",
+                "points": 17.7,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Drake London",
+                "position": "WR",
+                "points": 14.6,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Devaughn Vele",
+                "position": "WR",
+                "points": 17.4,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Bryce Young",
+                "position": "QB",
+                "points": 21.46,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Denzel Boston",
+                "position": "WR",
+                "points": 12.9,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Juwan Johnson",
+                "position": "TE",
+                "points": 11.9,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Ollie Gordon II",
+                "position": "RB",
+                "points": 18.0,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Packers D/ST",
+                "position": "DST",
+                "points": 10.0,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Tyler Loop",
+                "position": "K",
+                "points": 8.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Jameson Williams",
+                "position": "WR",
+                "points": 16.2
+              }
+            ]
+          },
+          {
+            "teamId": 4,
+            "week": 4,
+            "weightedHits": 3.5,
+            "weightedMax": 4.5,
+            "weightedPossible": 8,
+            "swrPct": 43.75,
+            "qualifiedStarters": 4,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
+            "benchQualifiedCount": 1,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "James Cook III",
+                "position": "RB",
+                "points": 16.3,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Chase Brown",
+                "position": "RB",
+                "points": 19.1,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Brock Bowers",
+                "position": "TE",
+                "points": 20.6,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "DJ Moore",
+                "position": "WR",
+                "points": 2.7,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Christian Watson",
+                "position": "WR",
+                "points": 7.7,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Tyler Shough",
+                "position": "QB",
+                "points": 15.94,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Braelon Allen",
+                "position": "RB",
+                "points": 8.7,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Bears D/ST",
+                "position": "DST",
+                "points": 8.0,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Chase McLaughlin",
+                "position": "K",
+                "points": 2.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Rome Odunze",
+                "position": "WR",
+                "points": 15.4
+              }
+            ]
+          },
+          {
+            "teamId": 5,
+            "week": 4,
+            "weightedHits": 3.5,
+            "weightedMax": 5.5,
+            "weightedPossible": 8,
+            "swrPct": 43.75,
+            "qualifiedStarters": 4,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Ja'Marr Chase",
+                "position": "WR",
+                "points": 5.7,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Ashton Jeanty",
+                "position": "RB",
+                "points": 18.6,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Nico Collins",
+                "position": "WR",
+                "points": 30.8,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "D'Andre Swift",
+                "position": "RB",
+                "points": 7.4,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Joe Burrow",
+                "position": "QB",
+                "points": 23.72,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Josh Downs",
+                "position": "WR",
+                "points": 4.6,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Cam Little",
+                "position": "K",
+                "points": 14.0,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Dalton Kincaid",
+                "position": "TE",
+                "points": 1.7,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Bills D/ST",
+                "position": "DST",
+                "points": 4.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Malik Nabers",
+                "position": "WR",
+                "points": 23.2
+              },
+              {
+                "player": "Alvin Kamara",
+                "position": "RB",
+                "points": 22.8
+              }
+            ]
+          },
+          {
+            "teamId": 6,
+            "week": 4,
+            "weightedHits": 4.5,
+            "weightedMax": 5.5,
+            "weightedPossible": 8,
+            "swrPct": 56.25,
+            "qualifiedStarters": 5,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
+            "benchQualifiedCount": 1,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Bijan Robinson",
+                "position": "RB",
+                "points": 27.7,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Josh Allen",
+                "position": "QB",
+                "points": 18.52,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "George Pickens",
+                "position": "WR",
+                "points": 9.5,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Tee Higgins",
+                "position": "WR",
+                "points": 26.7,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Javonte Williams",
+                "position": "RB",
+                "points": 31.3,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Harold Fannin Jr.",
+                "position": "TE",
+                "points": 11.7,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Mike Evans",
+                "position": "WR",
+                "points": 12.6,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Harrison Mevis",
+                "position": "K",
+                "points": 6.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Browns D/ST",
+                "position": "DST",
+                "points": 9.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Mark Andrews",
+                "position": "TE",
+                "points": 13.7
+              }
+            ]
+          },
+          {
+            "teamId": 7,
+            "week": 4,
+            "weightedHits": 2.0,
+            "weightedMax": 3.0,
+            "weightedPossible": 8,
+            "swrPct": 25.0,
+            "qualifiedStarters": 2,
+            "totalStarters": 9,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 1.0,
+            "totalOpportunityWeighted": 1.0,
+            "benchQualifiedCount": 0,
+            "potentiallyUsefulBenchCount": 0,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Amon-Ra St. Brown",
+                "position": "WR",
+                "points": 15.5,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Omarion Hampton",
+                "position": "RB",
+                "points": 13.3,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Emeka Egbuka",
+                "position": "WR",
+                "points": 3.3,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "David Montgomery",
+                "position": "RB",
+                "points": 4.3,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Dak Prescott",
+                "position": "QB",
+                "points": 18.1,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Sam LaPorta",
+                "position": "TE",
+                "points": 22.4,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Quentin Johnston",
+                "position": "WR",
+                "points": 5.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Rams D/ST",
+                "position": "DST",
+                "points": 5.0,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Evan McPherson",
+                "position": "K",
+                "points": 5.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": []
+          },
+          {
+            "teamId": 8,
+            "week": 4,
+            "weightedHits": 5.5,
+            "weightedMax": 6.5,
+            "weightedPossible": 8,
+            "swrPct": 68.75,
+            "qualifiedStarters": 6,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Jonathan Taylor",
+                "position": "RB",
+                "points": 22.7,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Kenneth Walker III",
+                "position": "RB",
+                "points": 30.9,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Chris Olave",
+                "position": "WR",
+                "points": 19.6,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Zay Flowers",
+                "position": "WR",
+                "points": 25.8,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Luther Burden III",
+                "position": "WR",
+                "points": 11.4,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Tucker Kraft",
+                "position": "TE",
+                "points": 16.5,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Trevor Lawrence",
+                "position": "QB",
+                "points": 13.08,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Steelers D/ST",
+                "position": "DST",
+                "points": 6.0,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Will Reichard",
+                "position": "K",
+                "points": 19.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Rhamondre Stevenson",
+                "position": "RB",
+                "points": 18.4
+              }
+            ]
+          },
+          {
+            "teamId": 9,
+            "week": 4,
+            "weightedHits": 5.5,
+            "weightedMax": 7.5,
+            "weightedPossible": 8,
+            "swrPct": 68.75,
+            "qualifiedStarters": 6,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 1.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 3,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Puka Nacua",
+                "position": "WR",
+                "points": 27.7,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Derrick Henry",
+                "position": "RB",
+                "points": 15.9,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Lamar Jackson",
+                "position": "QB",
+                "points": 18.88,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Bucky Irving",
+                "position": "RB",
+                "points": 6.1,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "George Kittle",
+                "position": "TE",
+                "points": 17.0,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Chuba Hubbard",
+                "position": "RB",
+                "points": 25.9,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Michael Wilson",
+                "position": "WR",
+                "points": 16.5,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Seahawks D/ST",
+                "position": "DST",
+                "points": 12.0,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Eddy Pineiro",
+                "position": "K",
+                "points": 5.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Kyren Williams",
+                "position": "RB",
+                "points": 36.7
+              }
+            ]
+          },
+          {
+            "teamId": 10,
+            "week": 4,
+            "weightedHits": 1.5,
+            "weightedMax": 3.5,
+            "weightedPossible": 8,
+            "swrPct": 18.75,
+            "qualifiedStarters": 2,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Christian McCaffrey",
+                "position": "RB",
+                "points": 16.0,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Rashee Rice",
+                "position": "WR",
+                "points": 0.0,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Jeremiyah Love",
+                "position": "RB",
+                "points": 6.5,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Terry McLaurin",
+                "position": "WR",
+                "points": 0.0,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Parker Washington",
+                "position": "WR",
+                "points": 2.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Ravens D/ST",
+                "position": "DST",
+                "points": 6.0,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Jake Bates",
+                "position": "K",
+                "points": 18.0,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Kenyon Sadiq",
+                "position": "TE",
+                "points": 0.0,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Sam Darnold",
+                "position": "QB",
+                "points": 13.32,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Quinshon Judkins",
+                "position": "RB",
+                "points": 21.6
+              },
+              {
+                "player": "Isaiah Likely",
+                "position": "TE",
+                "points": 13.6
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
