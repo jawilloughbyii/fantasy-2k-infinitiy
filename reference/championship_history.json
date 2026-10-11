@@ -1,0 +1,33 @@
+{
+  "league_id": 418244680,
+  "scope": "Confirmed reconstructed championship winners from 2023-2025; franchise continuity rather than team display names controls trophy display.",
+  "champions": [
+    {
+      "season": 2023,
+      "espn_team_id": 7,
+      "franchise_id": "franchise-07",
+      "team_name_at_win": "The Load Warriors",
+      "status": "confirmed"
+    },
+    {
+      "season": 2024,
+      "espn_team_id": 10,
+      "franchise_id": "franchise-10",
+      "team_name_at_win": "Mike Oxlong",
+      "status": "confirmed"
+    },
+    {
+      "season": 2025,
+      "espn_team_id": 1,
+      "franchise_id": "franchise-01",
+      "team_name_at_win": "General's Dorm Room",
+      "status": "confirmed"
+    }
+  ],
+  "rules": {
+    "marker": "One trophy for a verified title-winning franchise, displaying years and a title count when needed.",
+    "historical_aliases": "Resolve an historical team by (season, ESPN ID), never by display name.",
+    "unknown_titles": "No trophy for unverified claimed titles; Quattro Padres has no confirmed title in these records.",
+    "owner_privacy": "Store no owner or manager identifiers."
+  }
+}
