@@ -12,6 +12,7 @@ const definitions=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/metric_de
 const continuity=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/franchise_continuity.json'),'utf8'));
 const espnMapping=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/team_id_map.json'),'utf8'));
 const championshipHistory=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/championship_history.json'),'utf8'));
+const historicalScores=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_regular_season_scores.json'),'utf8'));
 function embedded(id){
  const begin='<script id="'+id+'" type="application/json">';
  const a=html.indexOf(begin),b=html.indexOf('</script>',a+begin.length);
@@ -27,6 +28,8 @@ const historyEmbedded={
  champions:championshipHistory.champions
 };
 assert.deepStrictEqual(embedded('championships'),historyEmbedded,'Embedded champion metadata must match the verified reference files');
+assert.deepStrictEqual(embedded('historicalscores'),historicalScores,'Embedded historical scores must come from the sanctioned reference file');
+assert.equal(historicalScores.seasons.reduce((n,s)=>n+s.teams.reduce((n,t)=>n+t.scores.length,0),0),420);
 assert.deepStrictEqual(championshipHistory.champions.map(x=>[x.season,x.espn_team_id,x.franchise_id]),[
  [2023,7,'franchise-07'],[2024,10,'franchise-10'],[2025,1,'franchise-01']
 ]);
@@ -73,7 +76,7 @@ function node(id){
  return elements.get(id);
 }
 const doc={
- getElementById(id){const el=node(id);if(id==='fantasydata')el.textContent=JSON.stringify(data);if(id==='metricdefs')el.textContent=JSON.stringify(definitions);if(id==='championships')el.textContent=JSON.stringify(historyEmbedded);return el;},querySelectorAll:()=>[],
+ getElementById(id){const el=node(id);if(id==='fantasydata')el.textContent=JSON.stringify(data);if(id==='metricdefs')el.textContent=JSON.stringify(definitions);if(id==='championships')el.textContent=JSON.stringify(historyEmbedded);if(id==='historicalscores')el.textContent=JSON.stringify(historicalScores);return el;},querySelectorAll:()=>[],
  addEventListener(name,handler){events[name]=handler}
 };
 const fetch=async()=>({ok:true,json:async()=>data});
@@ -166,6 +169,20 @@ assert.ok((node('teamSelect').innerHTML.match(/🏆/g)||[]).length===3,'Selector
  view=tab('performance');
  assert.equal((view.match(/<tspan dx="3" font-size="11">🏆<\/tspan>/g)||[]).length,3,'All three winning franchises get map trophies');
  assert.ok(view.includes('Volatile underdogs'),'Default selected team uses canonical quadrant');
+ assert.ok(view.includes('Franchise fingerprint · completed seasons only'),'Historical DNA appears within Team DNA');
+ assert.ok(view.includes('Rolling weights: 2025 50.0% · 2024 30.0% · 2023 20.0%'),'Three-season rolling weights are visible');
+ assert.ok(view.includes('Current 2026 DNA:'),'Current season remains explicitly separate');
+ node('teamSelect').listeners.change({target:{value:'8'}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('General&#39;s Dorm Room')&&view.includes('+8.5%'),'GDR recency-weighted strength is derived from historical ESPN scores');
+ assert.ok(view.includes('15.1%'),'GDR weighted historical volatility is shown');
+ node('teamSelect').listeners.change({target:{value:'10'}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('2025 62.5% · 2024 37.5%'),'Current slot-6 franchise renormalizes two known seasons');
+ assert.ok(!view.includes('Team Figueroa'),'Previous 2023 slot-6 owner cannot enter current franchise DNA');
+ assert.ok(!view.includes('2023 20.0%'),'Legacy owner season is excluded from current franchise weighting');
+ node('teamSelect').listeners.change({target:{value:'3'}});
+ view=node('view').innerHTML;
  assert.ok(!view.includes('Inconsistent underdog'));
  assert.ok(!view.includes('Scoring versus recorded ESPN projections'));
  assert.ok(!view.includes('Season versus recent scoring identity'),'Four-week recent DNA must be gated');

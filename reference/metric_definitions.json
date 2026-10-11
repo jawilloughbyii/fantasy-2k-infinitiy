@@ -68,5 +68,20 @@
     "#6396c8",
     "#94b9da",
     "#c7dbea"
-  ]
+  ],
+  "historicalDna": {
+    "completedSeasonWeights": [
+      0.5,
+      0.3,
+      0.2
+    ],
+    "maxCompletedSeasons": 3,
+    "scoringStrength": "Within each completed season, team mean final PF per week divided by league mean final PF per week, minus one. Weighted mean of those league-relative strengths.",
+    "volatility": "Within each completed season, population standard deviation of 14 regular-season final weekly PF divided by team mean PF. Weighted mean of season CVs.",
+    "classification": "Use existing scoring quadrants, with weighted relative PF >= 0 for the above-league axis and weighted CV > scoring.quadrantCvBoundary for volatility.",
+    "availableWeights": "Choose the latest up to three verified completed seasons for the same franchise and normalize available 50/30/20 weights to sum to 100%.",
+    "allTime": "Equal-weight all verified completed seasons of the same franchise; observed quadrant persistence never recency-weighted.",
+    "activeSeason": "Never blend ongoing 2026 data into Historical DNA; Current DNA remains separate.",
+    "franchiseContinuity": "Explicit season + ESPN team slot mapping; 2023 ESPN slot 6 differs from 2024+."
+  }
 }
