@@ -117,6 +117,7 @@ async function main(){
  for(const phrase of ['What it measures','How we calculate it','How to read it'])assert.ok(view.includes(phrase),'Each metric uses approachable explanatory language');
  assert.ok(view.includes('Actual wins − all-play expected wins'),'Extra wins is plainly explained');
  assert.ok(view.includes('above 20% CV'),'DNA CV cutoff is derived from the shared definitions');
+ assert.ok(!view.includes('${m.')&&!view.includes('${fmt('),'No unresolved template expressions may appear in rendered definitions');
  assert.ok(view.includes('From Week 6'),'Momentum calculation uses the canonical full-window switch');
  assert.ok(view.includes('Weighted qualifying points ÷ 8'),'Starter-Worthy Rate uses canonical eight weighted slots');
  assert.ok(view.includes('at least 3 independent weekly pregame captures'),'Pregame verification gate is preserved');
