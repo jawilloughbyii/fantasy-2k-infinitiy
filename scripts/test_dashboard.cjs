@@ -108,6 +108,25 @@ async function main(){
  assert.ok(view.includes('All-play')&&view.includes('Extra wins')&&view.includes('Form'));
  assert.ok(view.includes('What if opponents changed?')&&view.includes('darkest = 1st'),'What-if simulation retained on demand');
  assert.ok(view.includes('How the numbers work'),'Definitions retained in disclosure');
+
+ const topicNames=['Results & Schedule Luck','Scoring & Team DNA','Lineup Quality','Historical Franchise DNA','Data & Reliability'];
+ assert.equal((view.match(/<details class="method-topic">/g)||[]).length,5,'Exactly five concise methodology topics appear inside Overview');
+ assert.equal((view.match(/<div class="method-item">/g)||[]).length,17,'All 17 metric explanations remain accessible');
+ for(const topic of topicNames)assert.ok(view.includes('<summary><strong>'+topic+'</strong>'),'Missing calculation topic: '+topic);
+ assert.ok(!view.includes('<details class="method-topic" open'),'All methodology topics start collapsed');
+ for(const phrase of ['What it measures','How we calculate it','How to read it'])assert.ok(view.includes(phrase),'Each metric uses approachable explanatory language');
+ assert.ok(view.includes('Actual wins − all-play expected wins'),'Extra wins is plainly explained');
+ assert.ok(view.includes('above 20% CV'),'DNA CV cutoff is derived from the shared definitions');
+ assert.ok(!view.includes('${m.')&&!view.includes('${fmt('),'No unresolved template expressions may appear in rendered definitions');
+ assert.ok(view.includes('From Week 6'),'Momentum calculation uses the canonical full-window switch');
+ assert.ok(view.includes('Weighted qualifying points ÷ 8'),'Starter-Worthy Rate uses canonical eight weighted slots');
+ assert.ok(view.includes('at least 3 independent weekly pregame captures'),'Pregame verification gate is preserved');
+ assert.ok(view.includes('Latest completed season: 50%; previous: 30%; third: 20%'),'Historical DNA weights match the canonical definition');
+ assert.ok(view.includes('2023 ESPN slot 6 belongs to a different owner'),'Historical continuity boundary stays clear');
+ assert.ok(view.includes('unavailable—not a zero score'),'Missing measurements are not zero-filled');
+ assert.ok(!view.includes('class="method-details"'),'Old nested technical prose is replaced, not duplicated');
+ assert.ok(!view.includes('\\n <h3>Pregame projections'),'Literal escaped newline is not rendered in the method section');
+
  assert.ok(!view.includes('selhero refinedhero')&&!view.includes('roster-action'),'Remove duplicate selected-team hero/roster from Overview');
  assert.ok(!view.includes('overview-kpis'),'Remove redundant overview KPI group');
  assert.ok(!view.includes('Avg extra wins'),'Do not create a meaningless zero-sum headline');
