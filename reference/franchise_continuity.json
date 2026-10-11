@@ -1,0 +1,78 @@
+{
+  "league_id": 418244680,
+  "key_grain": "season + espn_team_id",
+  "scope": "Explicitly verified seasons only; future and older seasons must be mapped and verified before longitudinal joins.",
+  "verification": "User-confirmed continuity and ESPN ID 6 change of owner between 2023 and 2024 on 2026-10-11; 2026 ESPN slots independently reconciled against 40 final scores.",
+  "season_to_franchise": {
+    "2023": {
+      "1": "franchise-01",
+      "2": "franchise-02",
+      "3": "franchise-03",
+      "4": "franchise-04",
+      "5": "franchise-05",
+      "6": "franchise-06-legacy-2023",
+      "7": "franchise-07",
+      "8": "franchise-08",
+      "9": "franchise-09",
+      "10": "franchise-10"
+    },
+    "2024": {
+      "1": "franchise-01",
+      "2": "franchise-02",
+      "3": "franchise-03",
+      "4": "franchise-04",
+      "5": "franchise-05",
+      "6": "franchise-06-current-2024",
+      "7": "franchise-07",
+      "8": "franchise-08",
+      "9": "franchise-09",
+      "10": "franchise-10"
+    },
+    "2025": {
+      "1": "franchise-01",
+      "2": "franchise-02",
+      "3": "franchise-03",
+      "4": "franchise-04",
+      "5": "franchise-05",
+      "6": "franchise-06-current-2024",
+      "7": "franchise-07",
+      "8": "franchise-08",
+      "9": "franchise-09",
+      "10": "franchise-10"
+    },
+    "2026": {
+      "1": "franchise-01",
+      "2": "franchise-02",
+      "3": "franchise-03",
+      "4": "franchise-04",
+      "5": "franchise-05",
+      "6": "franchise-06-current-2024",
+      "7": "franchise-07",
+      "8": "franchise-08",
+      "9": "franchise-09",
+      "10": "franchise-10"
+    }
+  },
+  "documented_transitions": [
+    {
+      "espn_team_id": 6,
+      "prior_season": 2023,
+      "first_new_season": 2024,
+      "prior_franchise_id": "franchise-06-legacy-2023",
+      "new_franchise_id": "franchise-06-current-2024",
+      "reason": "Different franchise/owner in 2023; user-confirmed. Do not attribute 2023 results to current franchise."
+    }
+  ],
+  "policies": {
+    "match_by": "explicit (season, espn_team_id) mapping",
+    "never_match_by": [
+      "team display name",
+      "ESPN team ID alone across seasons",
+      "dashboard internal team ID"
+    ],
+    "unmapped": "fail closed; do not infer or carry forward",
+    "league_level_analysis": "retain all legitimate team-season results, including the legacy 2023 franchise",
+    "franchise_level_analysis": "partition ESPN ID 6 at the 2023/2024 boundary",
+    "privacy": "No owner identities or authentication credentials stored here."
+  }
+}
