@@ -140,6 +140,18 @@ async function main(){
  node('teamSelect').listeners.change({target:{value:'3'}});
  view=sub('team','dna');
  assert.ok(view.includes('The Scoring Personality Map')&&view.includes('Franchise fingerprint · completed seasons only'),'DNA combines current map and historical identity');
+ const identityStart=view.indexOf('<section class="identity-strip"'),identityEnd=view.indexOf('</section>',identityStart);
+ assert.ok(identityStart>=0&&identityEnd>identityStart,'A shared identity card surrounds both scoring tendencies');
+ const identity=view.slice(identityStart,identityEnd);
+ assert.ok(identity.includes('SCORING IDENTITY')&&identity.includes('Volatile underdogs'),'Current-season scoring identity remains first in the shared card');
+ assert.ok(identity.includes('HISTORICAL DNA')&&identity.includes('Franchise fingerprint · completed seasons only'),'Historical franchise identity is embedded below current identity');
+ assert.ok(identity.indexOf('HISTORICAL DNA')>identity.indexOf('SCORING IDENTITY'),'Historical tendency follows current identity');
+ assert.ok(identity.includes('Typical scoring strength')&&identity.includes('Typical weekly volatility')&&identity.includes('Historical consistency'),'Three historical context measures are visible in the identity card');
+ assert.ok(identity.includes('Current 2026 DNA:')&&identity.includes('View season-by-season fingerprint'),'Current vs historical comparison and expandable detail are within the same identity card');
+ assert.equal((view.match(/class='identity-historical'/g)||[]).length,1,'Historical DNA appears exactly once');
+ assert.ok(view.indexOf('The Scoring Personality Map')>identityEnd,'Scoring map follows the unified identity card');
+ assert.ok(!view.includes("class='card histdna'"),'No redundant standalone historical card');
+
  assert.equal((view.match(/<tspan dx="3" font-size="11">🏆<\/tspan>/g)||[]).length,3,'Map retains champion markers');
  assert.ok(view.includes('View season-by-season fingerprint, weights and lifetime baseline'),'Historical methods progressively disclosed');
  assert.ok(view.includes('Current 2026 DNA:')&&view.includes('Recent scoring trend'),'Current-season detail accessible');
