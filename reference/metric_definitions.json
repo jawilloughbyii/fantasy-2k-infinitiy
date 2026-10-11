@@ -83,5 +83,175 @@
     "allTime": "Equal-weight all verified completed seasons of the same franchise; observed quadrant persistence never recency-weighted.",
     "activeSeason": "Never blend ongoing 2026 data into Historical DNA; Current DNA remains separate.",
     "franchiseContinuity": "Explicit season + ESPN team slot mapping; 2023 ESPN slot 6 differs from 2024+."
-  }
+  },
+  "glossary": [
+    {
+      "key": "pf",
+      "group": "Scoring",
+      "label": "Points for (PF)",
+      "summary": "Total finalized fantasy points scored by a team over the selected regular-season period.",
+      "detail": "A scoring measure, not a win total. Yearbook PF excludes playoff weeks."
+    },
+    {
+      "key": "avgPf",
+      "group": "Scoring",
+      "label": "PF per week",
+      "summary": "Team points for divided by completed weeks in the selected period.",
+      "detail": "League average PF/week is calculated over all ten teams and the same weeks."
+    },
+    {
+      "key": "record",
+      "group": "Results",
+      "label": "Record (W–L)",
+      "summary": "Wins and losses under the actual head-to-head schedule.",
+      "detail": "This is not the all-play result or the PF ranking."
+    },
+    {
+      "key": "allPlay",
+      "group": "Results",
+      "label": "All-play record",
+      "summary": "Each team's weekly final score is compared with each of the other nine teams; comparison wins and losses accumulate.",
+      "detail": "Tied scores award half a comparison win each. It describes scoring strength independently of the assigned head-to-head schedule."
+    },
+    {
+      "key": "expectedWins",
+      "group": "Results",
+      "label": "Expected wins (all-play)",
+      "summary": "Each week, all-play comparison wins plus half-credit ties are divided by the nine possible opponents, then summed.",
+      "detail": "This is a schedule-neutral expectation from completed scores, not a pregame forecast or playoff prediction."
+    },
+    {
+      "key": "extraWins",
+      "group": "Results",
+      "label": "Extra wins (schedule luck)",
+      "summary": "Actual matchup wins minus expected all-play wins.",
+      "detail": "Positive means the actual schedule helped relative to all-play expectation; negative means it hurt. This is the only headline luck measure."
+    },
+    {
+      "key": "recentForm",
+      "group": "Scoring",
+      "label": "Recent form",
+      "summary": "Change in average PF/week between the most recent completed scoring window and the immediately preceding equal-length window.",
+      "detail": "Shown as raw PF/week movement in standings and current DNA; the report card also shows movement as a percentage of season PF/week."
+    },
+    {
+      "key": "dna",
+      "group": "Scoring",
+      "label": "Scoring identity (DNA)",
+      "summary": "A four-quadrant classification using average PF/week versus the league average and weekly scoring volatility (CV).",
+      "detail": "High scoring is at or above the league baseline. High volatility is above the canonical CV boundary; categories are Volatile underdogs, High-upside wildcards, Steady lower-output, and Reliable contenders."
+    },
+    {
+      "key": "cv",
+      "group": "Scoring",
+      "label": "Coefficient of variation (CV)",
+      "summary": "Population standard deviation of completed weekly PF divided by that team's mean weekly PF.",
+      "detail": "Expressed as a percentage. Lower CV means more consistent weekly scoring relative to the average; it does not directly measure roster skill."
+    },
+    {
+      "key": "momentum",
+      "group": "Scoring",
+      "label": "Momentum",
+      "summary": "Heating up, cooling off or mostly flat based on relative change between equal-length recent and prior PF/week windows.",
+      "detail": "The trend has a minimum completed-week gate and uses the shared metric thresholds, not arbitrary current-page calculations."
+    },
+    {
+      "key": "swr",
+      "group": "Lineup",
+      "label": "Starter-Worthy Rate (SWR)",
+      "summary": "Weighted share of actual finalized starting slots meeting that week's NFL-wide positional qualification cutoffs.",
+      "detail": "Seven skill slots carry weight 1 each; kicker and defense carry 0.5 each, for 8 weighted possible points. This is hindsight using final scores, not a pregame prediction."
+    },
+    {
+      "key": "rosterCeiling",
+      "group": "Lineup",
+      "label": "Roster ceiling",
+      "summary": "The maximum weighted Starter-Worthy quality attainable using the team's actual finalized starters and bench in a legal lineup.",
+      "detail": "IR is excluded; the optimization permits valid slot assignments and captures what was available in hindsight, not a recommended pregame lineup."
+    },
+    {
+      "key": "ceilingCaptured",
+      "group": "Lineup",
+      "label": "Ceiling captured",
+      "summary": "Actual weighted starter-worthy quality divided by the best legal weighted roster ceiling.",
+      "detail": "Unavailable when no attainable qualifying ceiling exists. Higher means more of the roster's attainable hindsight quality was used."
+    },
+    {
+      "key": "benchMiss",
+      "group": "Lineup",
+      "label": "Bench opportunity left",
+      "summary": "Weighted lineup-quality points missed because an actual bench player could have legally improved the starting lineup.",
+      "detail": "Bench upgrades are counted after optimizing assignments of existing starters, so this is separate from simply rearranging starters."
+    },
+    {
+      "key": "unavoidable",
+      "group": "Lineup",
+      "label": "Unavoidable shortfall",
+      "summary": "The difference between the eight possible weekly weighted quality points and the best attainable legal roster quality.",
+      "detail": "Represents a roster limitation even with perfect hindsight; it is not a bench-management mistake."
+    },
+    {
+      "key": "weeklySWR",
+      "group": "Lineup",
+      "label": "Weekly lineup quality",
+      "summary": "Starter-Worthy Rate and ceiling captured for each separately validated finalized week.",
+      "detail": "Latest-week slot breakdowns and legal bench opportunities are available under Lineup."
+    },
+    {
+      "key": "historicalDna",
+      "group": "History",
+      "label": "Historical franchise DNA",
+      "summary": "A scoring identity computed across the most recent verified completed seasons of the same permanent franchise.",
+      "detail": "Weight the underlying season-relative PF and season CV first, then classify using the current canonical DNA quadrant boundaries. The ongoing 2026 season is separate."
+    },
+    {
+      "key": "historicalStrength",
+      "group": "History",
+      "label": "PF versus league",
+      "summary": "Season PF/week divided by the league's PF/week for that same season, minus one.",
+      "detail": "The historical fingerprint recency-weights these league-adjusted season values; lifetime context equally weights available completed seasons."
+    },
+    {
+      "key": "historicalVolatility",
+      "group": "History",
+      "label": "Historical weekly volatility",
+      "summary": "Recency-weighted average of each completed season's coefficient of variation.",
+      "detail": "CV is calculated separately for each full regular season before the recency weights are applied."
+    },
+    {
+      "key": "historicalConsistency",
+      "group": "History",
+      "label": "Historical consistency",
+      "summary": "How many verified completed seasons share a franchise's most frequently observed DNA quadrant.",
+      "detail": "Each observed season counts equally. A tie between most common quadrants is labeled mixed rather than forced into one."
+    },
+    {
+      "key": "simulations",
+      "group": "Results",
+      "label": "What-if schedule reshuffles",
+      "summary": "Retrospective distributions of division finishes produced by changing weekly opponents but retaining finalized team scores.",
+      "detail": "These are alternative historical schedules, not a second schedule-luck headline or an official playoff probability."
+    },
+    {
+      "key": "pfRank",
+      "group": "Scoring",
+      "label": "Scoring rank",
+      "summary": "Position after sorting teams by total regular-season points for, highest first.",
+      "detail": "It is not official W–L standings, division seeding, or predicted team strength."
+    },
+    {
+      "key": "title",
+      "group": "History",
+      "label": "Verified championship",
+      "summary": "A confirmed winning franchise in the historical championship record, associated by permanent franchise ID.",
+      "detail": "Trophies follow the franchise across team-name changes; unsupported earlier titles and unverified full playoff brackets are not shown."
+    },
+    {
+      "key": "projections",
+      "group": "Lineup",
+      "label": "Verified pregame projection comparison",
+      "summary": "Actual final points compared only with explicitly verified pregame projections.",
+      "detail": "Requires the canonical minimum number of independent pregame captures; in-game ESPN snapshots are excluded."
+    }
+  ]
 }
