@@ -47,7 +47,12 @@ def check_season(year):
     assert all(x["winner"] == "UNDECIDED" for x in byes)
     r1_teams = [side["team_id"] for x in r1 for side in x["sides"]]
     assert len(set(r1_teams)) == 4
-    assert {seeds[x] for x in r1_teams} == {3, 4, 5, 6}
+    qualified = bye_teams | set(r1_teams)
+    assert len(qualified) == 6
+    # ESPN may apply commissioner/division overrides: never substitute numeric seeds
+    # for actual winners-bracket membership. 2025 contains a qualifying seed 7.
+    reported_top_six = {tid for tid, seed in seeds.items() if seed <= 6}
+    qualification_exception = sorted(qualified.symmetric_difference(reported_top_six))
     r1_winners = {check_winner(x)["team_id"] for x in r1}
     semis_teams = [s["team_id"] for x in w16 for s in x["sides"]]
     assert len(set(semis_teams)) == 4
@@ -91,6 +96,9 @@ def check_season(year):
         bracket.append(entry)
     return championship, {
         "year": year, "league_id": d["league_id"], "playoff_teams": 6,
+        "actual_playoff_team_ids": sorted(qualified),
+        "playoff_team_seeds": {str(t): seeds[t] for t in sorted(qualified)},
+        "numeric_seed_vs_bracket_exception_team_ids": qualification_exception,
         "regular_season_weeks": 14, "playoff_weeks": [15, 16, 17],
         "championship_bracket": bracket, "champion": championship,
         "third_place_matchup_verified": True,
@@ -104,6 +112,9 @@ def main():
         result, bracket = check_season(year)
         validated.append(result)
         bracket_years.append(bracket)
+        if bracket["numeric_seed_vs_bracket_exception_team_ids"]:
+            print(f"{year}: NOTE actual qualification differs from numeric top-six seeds: "
+                  f"{bracket['numeric_seed_vs_bracket_exception_team_ids']}")
         print(f"{year}: VERIFIED CHAMPION {result['champion_team_name']} "
               f"({result['champion_points']:.2f}–{result['runner_up_points']:.2f}) "
               f"over {result['runner_up_team_name']}; franchise={result['champion_franchise_id']}")
