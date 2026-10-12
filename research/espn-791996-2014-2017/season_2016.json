@@ -2229,6 +2229,30 @@
   ],
   "draft": {
     "status": "invalid_player_id",
+    "reported_pick_count": 170,
+    "diagnostic": {
+      "value": -16026,
+      "value_type": "int",
+      "available_pick_keys": [
+        "autoDraftTypeId",
+        "bidAmount",
+        "id",
+        "keeper",
+        "lineupSlotId",
+        "memberId",
+        "nominatingTeamId",
+        "overallPickNumber",
+        "owningTeamIds",
+        "playerId",
+        "reservedForKeeper",
+        "roundId",
+        "roundPickNumber",
+        "teamId",
+        "tradeLocked"
+      ],
+      "overall": 115,
+      "round": 12
+    },
     "picks": []
   },
   "publication": "ISOLATED_RESEARCH_NOT_IMPORTED"
