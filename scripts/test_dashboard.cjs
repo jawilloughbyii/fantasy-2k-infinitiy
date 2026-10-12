@@ -254,6 +254,7 @@ async function main(){
  view=node('view').innerHTML;
  assert.ok(view.includes('2021 Playoff bracket')&&view.includes('Lord Farquaad')&&view.includes('Watertown Teapots'),'2021 final is available by changing the year');
  view=sub('history','draft');
+ assert.ok(view.includes('id="draftTag"'),'Draft outcome selector is rendered');
  assert.ok(view.includes('Draft History · 2021–2026')&&view.includes('Jahmyr Gibbs'),'Current draft is selectable');
  assert.equal((view.split('<tbody id="draftRows">')[1].split('</tbody>')[0].match(/<tr>/g)||[]).length,160,'2026 draft displays all 160 picks');
  events.change({target:{id:'draftYear',value:'2021'}});
