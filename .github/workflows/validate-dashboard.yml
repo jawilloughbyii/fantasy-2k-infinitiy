@@ -8,12 +8,14 @@ on:
       - 'reference/metric_definitions.json'
       - 'reference/historical_regular_season_scores.json'
       - 'reference/championship_history.json'
+      - 'reference/historical_playoff_brackets.json'
       - 'reference/franchise_continuity.json'
       - 'reference/team_id_map.json'
       - 'scripts/build_site_data.py'
       - 'scripts/sync_site_snapshot.py'
       - 'scripts/test_dashboard.cjs'
       - 'scripts/test_historical_dna.py'
+      - 'scripts/test_historical_playoffs.py'
       - 'scripts/test_pipeline.py'
       - 'scripts/test_roster_analysis.py'
       - 'README.md'
@@ -26,6 +28,7 @@ on:
       - 'reference/metric_definitions.json'
       - 'reference/historical_regular_season_scores.json'
       - 'reference/championship_history.json'
+      - 'reference/historical_playoff_brackets.json'
       - 'reference/franchise_continuity.json'
       - 'reference/team_id_map.json'
       - 'scripts/**'
@@ -51,6 +54,8 @@ jobs:
         run: python scripts/test_roster_analysis.py
       - name: Verify completed historical seasons and franchise DNA weighting
         run: python scripts/test_historical_dna.py
+      - name: Verify historical postseason brackets, final scores and franchise titles
+        run: python scripts/test_historical_playoffs.py
       - name: Verify approved snapshots and active dashboard pages
         run: node scripts/test_dashboard.cjs
       - name: Verify snapshot synchronization preserves championship metadata
