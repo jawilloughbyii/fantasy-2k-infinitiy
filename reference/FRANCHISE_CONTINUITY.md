@@ -13,11 +13,11 @@ Composite historical input key is **(season, ESPN league ID, ESPN team ID)**. Se
 | Year | Participant change | Historical assignment |
 | --- | --- | --- |
 | 2021–2022 | Original 10 people | Archived team slots 1–10 mapped to the same 10 stable franchise identities |
-| 2023 | Aaron joins, Neal out | Aaron controls Comepig (ESPN ID 5); Diego controls Team Figueroa (ID 6) |
-| 2024 | Neal returns, Diego out | Neal controls Alan's Cordon Bleu Cavern (ID 6); Aaron stays with Comepig (ID 5) |
-| 2025–2026 | No further changes confirmed | Neal: Alan's Cordon Bleu Cavern → Got Rice?; Aaron: Comepig |
+| 2023 | New entrant joins; returning franchise absent | Comepig is new entrant franchise (ID 5); Team Figueroa remains legacy franchise (ID 6) |
+| 2024 | Original participant returns; prior slot occupant departs | Returnee controls Alan's Cordon Bleu Cavern (ID 6); new entrant retains Comepig (ID 5) |
+| 2025–2026 | No further changes confirmed | Returning franchise: Alan's Cordon Bleu Cavern → Got Rice?; new entrant: Comepig |
 
-Neal's original 2021–2022 franchise performance joins to his 2024–2026 record, **with a missing 2023** (never carry someone else's results into the gap). Diego's original 2021–2022 results join to Team Figueroa in 2023 and stop there. Aaron's franchise starts in 2023 and is kept separate from Neal and Diego.
+The returning franchise's 2021–2022 results join to its 2024–2026 record, **with a missing 2023** (never carry another franchise's results into the gap). The departed franchise's 2021–2022 results join to Team Figueroa in 2023 and stop there. The new entrant franchise starts in 2023 and remains separate.
 
 ### Dashboard semantics
 
