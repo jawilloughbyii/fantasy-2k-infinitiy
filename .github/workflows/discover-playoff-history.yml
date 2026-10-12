@@ -26,6 +26,8 @@ jobs:
           ESPN_S2: ${{ secrets.ESPN_S2 }}
           ESPN_SWID: ${{ secrets.ESPN_SWID }}
         run: python scripts/discover_playoff_history.py
+      - name: Verify championship bracket progressions and outcomes
+        run: python scripts/validate_playoff_history.py
       - name: Upload sanitized private postseason research
         if: always()
         uses: actions/upload-artifact@v4
