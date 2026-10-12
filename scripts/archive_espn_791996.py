@@ -139,7 +139,8 @@ def draft(year, cookie, team_ids):
             return {"status": "unknown_draft_team", "picks": []}
         if type(r["overallPickNumber"]) is not int or r["overallPickNumber"] <= 0:
             return {"status": "invalid_overall_pick", "picks": []}
-        if type(r["playerId"]) is not int or r["playerId"] <= 0:
+        # ESPN uses negative identifiers for drafted team defenses; they are valid.
+        if type(r["playerId"]) is not int or r["playerId"] == 0:
             return {"status": "invalid_player_id", "reported_pick_count": len(raw),
                     "diagnostic": {"value": r["playerId"], "value_type": type(r["playerId"]).__name__,
                                    "available_pick_keys": sorted(q.keys()),
