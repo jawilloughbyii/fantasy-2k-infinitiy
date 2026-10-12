@@ -35,6 +35,9 @@ assert.deepStrictEqual(embedded('championships'),historyEmbedded,'Embedded champ
 assert.deepStrictEqual(embedded('historicalscores'),historicalScores,'Embedded historical scores must come from the sanctioned reference file');
 assert.deepStrictEqual(embedded('historicalplayoffs'),playoffHistory,'Embedded playoffs must match the validated bracket reference');
 assert.deepStrictEqual(embedded('historicaldrafts'),draftHistory,'Embedded drafts must match source-verified JSON');
+assert.deepStrictEqual(embedded('historicaldraftgrades'),gradedDrafts,'Published grading matches verified reference');
+assert.equal(gradedDrafts.coverage.pick_count,820);
+
 assert.equal(draftHistory.seasons.reduce((n,s)=>n+s.picks.length,0),980,'980 actual ESPN draft picks');
 assert.equal(historicalScores.seasons.reduce((n,s)=>n+s.teams.reduce((n,t)=>n+t.scores.length,0),0),700);
 assert.deepStrictEqual(championshipHistory.champions.map(x=>[x.season,x.espn_team_id,x.franchise_id]),[
