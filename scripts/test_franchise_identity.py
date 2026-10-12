@@ -17,10 +17,10 @@ class TestFranchiseIdentity(unittest.TestCase):
     def test_confirmed_owner_continuity_across_leagues(self):
         m = self.reference
         self.assertEqual(fid.franchise_for(2021,1,m,1493036707),fid.franchise_for(2022,1,m,1493036707))
-        self.assertEqual(fid.franchise_for(2021,1,m,1493036707),fid.franchise_for(2024,6,m,418244680))  # Neal returned
-        self.assertEqual(fid.franchise_for(2022,2,m,1493036707),fid.franchise_for(2023,6,m,418244680))  # Diego
+        self.assertEqual(fid.franchise_for(2021,1,m,1493036707),fid.franchise_for(2024,6,m,418244680))  # Returning franchise
+        self.assertEqual(fid.franchise_for(2022,2,m,1493036707),fid.franchise_for(2023,6,m,418244680))  # Outgoing franchise
         self.assertNotEqual(fid.franchise_for(2023,6,m),fid.franchise_for(2024,6,m))
-        self.assertNotEqual(fid.franchise_for(2023,5,m),fid.franchise_for(2022,1,m))  # Aaron is new
+        self.assertNotEqual(fid.franchise_for(2023,5,m),fid.franchise_for(2022,1,m))  # New entrant
         self.assertEqual(fid.franchise_for(2023,5,m),fid.franchise_for(2026,5,m))
         with self.assertRaisesRegex(ValueError,'league ID'):
             fid.franchise_for(2022,1,m,418244680)
