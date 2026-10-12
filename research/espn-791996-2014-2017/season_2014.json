@@ -1,0 +1,2235 @@
+{
+  "season": 2014,
+  "league_id": 791996,
+  "verification": {
+    "league_identity": "user_confirmed_2026_10_12",
+    "source": "authenticated_ESPN_leagueHistory",
+    "regular_season": "70_game_14_week_reconciled",
+    "postseason": "validated_bracket_path",
+    "draft": "invalid_player_id",
+    "franchise_mapping": "not_started"
+  },
+  "league_name": "Horny Bryant Men Pt. Deux",
+  "settings": {
+    "regular_season_matchup_period_count": 14,
+    "playoff_team_count": 4,
+    "playoff_matchup_period_length": 1,
+    "scoring_type": "H2H_POINTS",
+    "scoring_item_count": 47,
+    "lineup_slot_counts": {
+      "0": 1,
+      "1": 0,
+      "2": 2,
+      "3": 0,
+      "4": 2,
+      "5": 0,
+      "6": 1,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "16": 1,
+      "17": 1,
+      "18": 1,
+      "19": 0,
+      "20": 7,
+      "21": 0,
+      "22": 0,
+      "23": 1
+    },
+    "draft_type": "SNAKE"
+  },
+  "teams": [
+    {
+      "espn_team_id": 1,
+      "display_name": "Shady Akers",
+      "abbreviation": "OGC"
+    },
+    {
+      "espn_team_id": 2,
+      "display_name": "Pewter City Giodudes",
+      "abbreviation": "PCG"
+    },
+    {
+      "espn_team_id": 3,
+      "display_name": "Lucille's Baby Daddy",
+      "abbreviation": "8==D"
+    },
+    {
+      "espn_team_id": 4,
+      "display_name": "Pittsburgh Pig Fuckers",
+      "abbreviation": "DOPE"
+    },
+    {
+      "espn_team_id": 5,
+      "display_name": "Kanye West",
+      "abbreviation": "YEZY"
+    },
+    {
+      "espn_team_id": 6,
+      "display_name": "Team Alumni Stink",
+      "abbreviation": "Alum"
+    },
+    {
+      "espn_team_id": 7,
+      "display_name": "Jimmy Graham's UnderPerformers",
+      "abbreviation": "COKE"
+    },
+    {
+      "espn_team_id": 8,
+      "display_name": "Sleazy Veasey's Teenie Peenie",
+      "abbreviation": "EZ"
+    },
+    {
+      "espn_team_id": 9,
+      "display_name": "Pokerwithmy Fleener",
+      "abbreviation": "Flee"
+    },
+    {
+      "espn_team_id": 10,
+      "display_name": "Touchdown Syndrome",
+      "abbreviation": "Stam"
+    }
+  ],
+  "standings": {
+    "type": "derived_from_ESPN_regular_season_matchups_not_official_rank",
+    "rows": [
+      {
+        "espn_team_id": 10,
+        "name": "Touchdown Syndrome",
+        "wins": 11,
+        "losses": 3,
+        "ties": 0,
+        "points_for": 1838.0,
+        "points_against": 1592.0,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 142.0
+          },
+          {
+            "week": 2,
+            "points": 108.0
+          },
+          {
+            "week": 3,
+            "points": 112.0
+          },
+          {
+            "week": 4,
+            "points": 126.0
+          },
+          {
+            "week": 5,
+            "points": 102.0
+          },
+          {
+            "week": 6,
+            "points": 111.0
+          },
+          {
+            "week": 7,
+            "points": 123.0
+          },
+          {
+            "week": 8,
+            "points": 131.0
+          },
+          {
+            "week": 9,
+            "points": 178.0
+          },
+          {
+            "week": 10,
+            "points": 137.0
+          },
+          {
+            "week": 11,
+            "points": 115.0
+          },
+          {
+            "week": 12,
+            "points": 133.0
+          },
+          {
+            "week": 13,
+            "points": 151.0
+          },
+          {
+            "week": 14,
+            "points": 169.0
+          }
+        ]
+      },
+      {
+        "espn_team_id": 3,
+        "name": "Lucille's Baby Daddy",
+        "wins": 10,
+        "losses": 3,
+        "ties": 1,
+        "points_for": 2043.0,
+        "points_against": 1768.0,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 139.0
+          },
+          {
+            "week": 2,
+            "points": 127.0
+          },
+          {
+            "week": 3,
+            "points": 128.0
+          },
+          {
+            "week": 4,
+            "points": 117.0
+          },
+          {
+            "week": 5,
+            "points": 164.0
+          },
+          {
+            "week": 6,
+            "points": 148.0
+          },
+          {
+            "week": 7,
+            "points": 163.0
+          },
+          {
+            "week": 8,
+            "points": 191.0
+          },
+          {
+            "week": 9,
+            "points": 174.0
+          },
+          {
+            "week": 10,
+            "points": 120.0
+          },
+          {
+            "week": 11,
+            "points": 137.0
+          },
+          {
+            "week": 12,
+            "points": 151.0
+          },
+          {
+            "week": 13,
+            "points": 130.0
+          },
+          {
+            "week": 14,
+            "points": 154.0
+          }
+        ]
+      },
+      {
+        "espn_team_id": 8,
+        "name": "Sleazy Veasey's Teenie Peenie",
+        "wins": 10,
+        "losses": 4,
+        "ties": 0,
+        "points_for": 1750.0,
+        "points_against": 1744.0,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 122.0
+          },
+          {
+            "week": 2,
+            "points": 77.0
+          },
+          {
+            "week": 3,
+            "points": 94.0
+          },
+          {
+            "week": 4,
+            "points": 145.0
+          },
+          {
+            "week": 5,
+            "points": 109.0
+          },
+          {
+            "week": 6,
+            "points": 127.0
+          },
+          {
+            "week": 7,
+            "points": 122.0
+          },
+          {
+            "week": 8,
+            "points": 124.0
+          },
+          {
+            "week": 9,
+            "points": 99.0
+          },
+          {
+            "week": 10,
+            "points": 137.0
+          },
+          {
+            "week": 11,
+            "points": 124.0
+          },
+          {
+            "week": 12,
+            "points": 164.0
+          },
+          {
+            "week": 13,
+            "points": 141.0
+          },
+          {
+            "week": 14,
+            "points": 165.0
+          }
+        ]
+      },
+      {
+        "espn_team_id": 9,
+        "name": "Pokerwithmy Fleener",
+        "wins": 8,
+        "losses": 6,
+        "ties": 0,
+        "points_for": 1705.0,
+        "points_against": 1671.0,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 117.0
+          },
+          {
+            "week": 2,
+            "points": 96.0
+          },
+          {
+            "week": 3,
+            "points": 155.0
+          },
+          {
+            "week": 4,
+            "points": 154.0
+          },
+          {
+            "week": 5,
+            "points": 92.0
+          },
+          {
+            "week": 6,
+            "points": 75.0
+          },
+          {
+            "week": 7,
+            "points": 95.0
+          },
+          {
+            "week": 8,
+            "points": 185.0
+          },
+          {
+            "week": 9,
+            "points": 166.0
+          },
+          {
+            "week": 10,
+            "points": 84.0
+          },
+          {
+            "week": 11,
+            "points": 80.0
+          },
+          {
+            "week": 12,
+            "points": 126.0
+          },
+          {
+            "week": 13,
+            "points": 165.0
+          },
+          {
+            "week": 14,
+            "points": 115.0
+          }
+        ]
+      },
+      {
+        "espn_team_id": 6,
+        "name": "Team Alumni Stink",
+        "wins": 7,
+        "losses": 7,
+        "ties": 0,
+        "points_for": 1796.0,
+        "points_against": 1697.0,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 128.0
+          },
+          {
+            "week": 2,
+            "points": 139.0
+          },
+          {
+            "week": 3,
+            "points": 107.0
+          },
+          {
+            "week": 4,
+            "points": 125.0
+          },
+          {
+            "week": 5,
+            "points": 152.0
+          },
+          {
+            "week": 6,
+            "points": 100.0
+          },
+          {
+            "week": 7,
+            "points": 128.0
+          },
+          {
+            "week": 8,
+            "points": 134.0
+          },
+          {
+            "week": 9,
+            "points": 161.0
+          },
+          {
+            "week": 10,
+            "points": 175.0
+          },
+          {
+            "week": 11,
+            "points": 114.0
+          },
+          {
+            "week": 12,
+            "points": 126.0
+          },
+          {
+            "week": 13,
+            "points": 102.0
+          },
+          {
+            "week": 14,
+            "points": 105.0
+          }
+        ]
+      },
+      {
+        "espn_team_id": 1,
+        "name": "Shady Akers",
+        "wins": 6,
+        "losses": 8,
+        "ties": 0,
+        "points_for": 1662.0,
+        "points_against": 1701.0,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 90.0
+          },
+          {
+            "week": 2,
+            "points": 88.0
+          },
+          {
+            "week": 3,
+            "points": 122.0
+          },
+          {
+            "week": 4,
+            "points": 129.0
+          },
+          {
+            "week": 5,
+            "points": 105.0
+          },
+          {
+            "week": 6,
+            "points": 95.0
+          },
+          {
+            "week": 7,
+            "points": 93.0
+          },
+          {
+            "week": 8,
+            "points": 123.0
+          },
+          {
+            "week": 9,
+            "points": 119.0
+          },
+          {
+            "week": 10,
+            "points": 148.0
+          },
+          {
+            "week": 11,
+            "points": 136.0
+          },
+          {
+            "week": 12,
+            "points": 127.0
+          },
+          {
+            "week": 13,
+            "points": 155.0
+          },
+          {
+            "week": 14,
+            "points": 132.0
+          }
+        ]
+      },
+      {
+        "espn_team_id": 4,
+        "name": "Pittsburgh Pig Fuckers",
+        "wins": 5,
+        "losses": 8,
+        "ties": 1,
+        "points_for": 1678.0,
+        "points_against": 1682.0,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 128.0
+          },
+          {
+            "week": 2,
+            "points": 134.0
+          },
+          {
+            "week": 3,
+            "points": 98.0
+          },
+          {
+            "week": 4,
+            "points": 130.0
+          },
+          {
+            "week": 5,
+            "points": 174.0
+          },
+          {
+            "week": 6,
+            "points": 92.0
+          },
+          {
+            "week": 7,
+            "points": 137.0
+          },
+          {
+            "week": 8,
+            "points": 152.0
+          },
+          {
+            "week": 9,
+            "points": 82.0
+          },
+          {
+            "week": 10,
+            "points": 120.0
+          },
+          {
+            "week": 11,
+            "points": 93.0
+          },
+          {
+            "week": 12,
+            "points": 115.0
+          },
+          {
+            "week": 13,
+            "points": 109.0
+          },
+          {
+            "week": 14,
+            "points": 114.0
+          }
+        ]
+      },
+      {
+        "espn_team_id": 2,
+        "name": "Pewter City Giodudes",
+        "wins": 4,
+        "losses": 10,
+        "ties": 0,
+        "points_for": 1701.0,
+        "points_against": 1857.0,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 132.0
+          },
+          {
+            "week": 2,
+            "points": 112.0
+          },
+          {
+            "week": 3,
+            "points": 110.0
+          },
+          {
+            "week": 4,
+            "points": 118.0
+          },
+          {
+            "week": 5,
+            "points": 133.0
+          },
+          {
+            "week": 6,
+            "points": 142.0
+          },
+          {
+            "week": 7,
+            "points": 92.0
+          },
+          {
+            "week": 8,
+            "points": 149.0
+          },
+          {
+            "week": 9,
+            "points": 95.0
+          },
+          {
+            "week": 10,
+            "points": 109.0
+          },
+          {
+            "week": 11,
+            "points": 119.0
+          },
+          {
+            "week": 12,
+            "points": 100.0
+          },
+          {
+            "week": 13,
+            "points": 136.0
+          },
+          {
+            "week": 14,
+            "points": 154.0
+          }
+        ]
+      },
+      {
+        "espn_team_id": 7,
+        "name": "Jimmy Graham's UnderPerformers",
+        "wins": 4,
+        "losses": 10,
+        "ties": 0,
+        "points_for": 1599.0,
+        "points_against": 1858.0,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 106.0
+          },
+          {
+            "week": 2,
+            "points": 164.0
+          },
+          {
+            "week": 3,
+            "points": 88.0
+          },
+          {
+            "week": 4,
+            "points": 102.0
+          },
+          {
+            "week": 5,
+            "points": 106.0
+          },
+          {
+            "week": 6,
+            "points": 153.0
+          },
+          {
+            "week": 7,
+            "points": 110.0
+          },
+          {
+            "week": 8,
+            "points": 121.0
+          },
+          {
+            "week": 9,
+            "points": 106.0
+          },
+          {
+            "week": 10,
+            "points": 165.0
+          },
+          {
+            "week": 11,
+            "points": 76.0
+          },
+          {
+            "week": 12,
+            "points": 117.0
+          },
+          {
+            "week": 13,
+            "points": 78.0
+          },
+          {
+            "week": 14,
+            "points": 107.0
+          }
+        ]
+      },
+      {
+        "espn_team_id": 5,
+        "name": "Kanye West",
+        "wins": 4,
+        "losses": 10,
+        "ties": 0,
+        "points_for": 1512.0,
+        "points_against": 1714.0,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 134.0
+          },
+          {
+            "week": 2,
+            "points": 78.0
+          },
+          {
+            "week": 3,
+            "points": 85.0
+          },
+          {
+            "week": 4,
+            "points": 108.0
+          },
+          {
+            "week": 5,
+            "points": 95.0
+          },
+          {
+            "week": 6,
+            "points": 150.0
+          },
+          {
+            "week": 7,
+            "points": 88.0
+          },
+          {
+            "week": 8,
+            "points": 103.0
+          },
+          {
+            "week": 9,
+            "points": 101.0
+          },
+          {
+            "week": 10,
+            "points": 85.0
+          },
+          {
+            "week": 11,
+            "points": 120.0
+          },
+          {
+            "week": 12,
+            "points": 114.0
+          },
+          {
+            "week": 13,
+            "points": 163.0
+          },
+          {
+            "week": 14,
+            "points": 88.0
+          }
+        ]
+      }
+    ],
+    "score_winner_anomalies": []
+  },
+  "postseason": {
+    "status": "validated_bracket_path",
+    "winner_record": {
+      "espn_team_id": 8,
+      "team_name": "Sleazy Veasey's Teenie Peenie",
+      "final_matchup_id": 75,
+      "final_week": 16,
+      "final_points": 132.0,
+      "runner_up_team_id": 10,
+      "semifinal_advancement_matches_finalists": true,
+      "winner_field_matches_final_score": true
+    }
+  },
+  "matchups": [
+    {
+      "matchup_id": 0,
+      "week": 1,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 90.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 128.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 1,
+      "week": 1,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 134.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 132.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 2,
+      "week": 1,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 142.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 106.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 3,
+      "week": 1,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 128.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 3,
+          "points": 139.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 4,
+      "week": 1,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 9,
+          "points": 117.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 122.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 5,
+      "week": 2,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 2,
+          "points": 112.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 164.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 6,
+      "week": 2,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 127.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 88.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 7,
+      "week": 2,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 8,
+          "points": 77.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 139.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 8,
+      "week": 2,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 134.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 78.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 9,
+      "week": 2,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 9,
+          "points": 96.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 108.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 10,
+      "week": 3,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 128.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 94.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 11,
+      "week": 3,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 2,
+          "points": 110.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 4,
+          "points": 98.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 12,
+      "week": 3,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 88.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 155.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 13,
+      "week": 3,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 122.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 85.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 14,
+      "week": 3,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 107.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 112.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 15,
+      "week": 4,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 130.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 154.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 16,
+      "week": 4,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 108.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 3,
+          "points": 117.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 17,
+      "week": 4,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 126.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 145.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 18,
+      "week": 4,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 129.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 118.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 19,
+      "week": 4,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 125.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 102.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 20,
+      "week": 5,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 95.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 102.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 21,
+      "week": 5,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 174.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 105.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 22,
+      "week": 5,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 9,
+          "points": 92.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 152.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 23,
+      "week": 5,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 164.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 133.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 24,
+      "week": 5,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 8,
+          "points": 109.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 106.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 25,
+      "week": 6,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 100.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 142.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 26,
+      "week": 6,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 153.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 3,
+          "points": 148.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 27,
+      "week": 6,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 8,
+          "points": 127.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 4,
+          "points": 92.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 28,
+      "week": 6,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 9,
+          "points": 75.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 150.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 29,
+      "week": 6,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 111.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 95.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 30,
+      "week": 7,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 163.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 128.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 31,
+      "week": 7,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 137.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 110.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 32,
+      "week": 7,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 88.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 122.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 33,
+      "week": 7,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 93.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 95.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 34,
+      "week": 7,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 2,
+          "points": 92.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 123.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 35,
+      "week": 8,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 134.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 4,
+          "points": 152.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 36,
+      "week": 8,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 121.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 103.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 37,
+      "week": 8,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 8,
+          "points": 124.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 123.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 38,
+      "week": 8,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 9,
+          "points": 185.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 149.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 39,
+      "week": 8,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 131.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 3,
+          "points": 191.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 40,
+      "week": 9,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 101.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 161.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 41,
+      "week": 9,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 119.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 4,
+          "points": 82.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 42,
+      "week": 9,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 106.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 178.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 43,
+      "week": 9,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 2,
+          "points": 95.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 3,
+          "points": 174.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 44,
+      "week": 9,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 8,
+          "points": 99.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 166.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 45,
+      "week": 10,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 148.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 165.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 46,
+      "week": 10,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 2,
+          "points": 109.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 85.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 47,
+      "week": 10,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 175.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 137.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 48,
+      "week": 10,
+      "playoff_tier_type": "NONE",
+      "winner": "TIE",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 120.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 4,
+          "points": 120.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 49,
+      "week": 10,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 137.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 84.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 50,
+      "week": 11,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 2,
+          "points": 119.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 124.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 51,
+      "week": 11,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 136.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 3,
+          "points": 137.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 52,
+      "week": 11,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 9,
+          "points": 80.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 76.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 53,
+      "week": 11,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 120.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 4,
+          "points": 93.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 54,
+      "week": 11,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 115.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 114.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 55,
+      "week": 12,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 151.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 126.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 56,
+      "week": 12,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 115.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 100.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 57,
+      "week": 12,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 8,
+          "points": 164.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 133.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 58,
+      "week": 12,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 114.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 127.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 59,
+      "week": 12,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 117.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 126.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 60,
+      "week": 13,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 109.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 151.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 61,
+      "week": 13,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 130.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 163.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 62,
+      "week": 13,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 102.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 165.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 63,
+      "week": 13,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 2,
+          "points": 136.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 155.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 64,
+      "week": 13,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 78.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 141.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 65,
+      "week": 14,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 105.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 132.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 66,
+      "week": 14,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 107.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 154.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 67,
+      "week": 14,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 8,
+          "points": 165.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 3,
+          "points": 154.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 68,
+      "week": 14,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 9,
+          "points": 115.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 4,
+          "points": 114.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 69,
+      "week": 14,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 169.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 88.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 70,
+      "week": 15,
+      "playoff_tier_type": "WINNERS_BRACKET",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 128.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 128.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 71,
+      "week": 15,
+      "playoff_tier_type": "WINNERS_BRACKET",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 141.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 145.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 72,
+      "week": 15,
+      "playoff_tier_type": "LOSERS_CONSOLATION_LADDER",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 117.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 61.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 73,
+      "week": 15,
+      "playoff_tier_type": "LOSERS_CONSOLATION_LADDER",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 80.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 119.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 74,
+      "week": 15,
+      "playoff_tier_type": "LOSERS_CONSOLATION_LADDER",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 73.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 109.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 75,
+      "week": 16,
+      "playoff_tier_type": "WINNERS_BRACKET",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 114.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 132.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 76,
+      "week": 16,
+      "playoff_tier_type": "WINNERS_CONSOLATION_LADDER",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 94.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 115.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 77,
+      "week": 16,
+      "playoff_tier_type": "LOSERS_CONSOLATION_LADDER",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 95.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 101.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 78,
+      "week": 16,
+      "playoff_tier_type": "LOSERS_CONSOLATION_LADDER",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 85.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 113.0
+        }
+      ]
+    },
+    {
+      "matchup_id": 79,
+      "week": 16,
+      "playoff_tier_type": "LOSERS_CONSOLATION_LADDER",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 104.0
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 119.0
+        }
+      ]
+    }
+  ],
+  "draft": {
+    "status": "invalid_player_id",
+    "picks": []
+  },
+  "publication": "ISOLATED_RESEARCH_NOT_IMPORTED"
+}

@@ -1,0 +1,56 @@
+{
+  "candidate_league_id": 791996,
+  "league_name": "Horny Bryant Men Pt. Deux",
+  "identity": "user_confirmed",
+  "scope": "2014-2017 only",
+  "status": "ISOLATED_RESEARCH_NO_PRODUCTION_IMPORT",
+  "created_at_utc": "2026-10-12T22:22:21.795284+00:00",
+  "seasons": [
+    {
+      "season": 2014,
+      "regular_games": 70,
+      "team_weeks": 140,
+      "postseason_games": 10,
+      "postseason_status": "validated_bracket_path",
+      "draft_status": "invalid_player_id",
+      "draft_picks": 0,
+      "regular_season_pf_total": 17284.0
+    },
+    {
+      "season": 2015,
+      "regular_games": 70,
+      "team_weeks": 140,
+      "postseason_games": 10,
+      "postseason_status": "source_final_record_only_advancement_unresolved",
+      "draft_status": "invalid_player_id",
+      "draft_picks": 0,
+      "regular_season_pf_total": 17881.52
+    },
+    {
+      "season": 2016,
+      "regular_games": 70,
+      "team_weeks": 140,
+      "postseason_games": 10,
+      "postseason_status": "validated_bracket_path",
+      "draft_status": "invalid_player_id",
+      "draft_picks": 0,
+      "regular_season_pf_total": 17839.8
+    },
+    {
+      "season": 2017,
+      "regular_games": 70,
+      "team_weeks": 140,
+      "postseason_games": 10,
+      "postseason_status": "validated_bracket_path",
+      "draft_status": "invalid_player_id",
+      "draft_picks": 0,
+      "regular_season_pf_total": 17409.82
+    }
+  ],
+  "privacy": "Selected fantasy team display names and scores only; no owners or cookies",
+  "not_linked_to": [
+    "2013 candidate 1435116",
+    "2021-2022 league 1493036707",
+    "2023-2026 league 418244680"
+  ]
+}
