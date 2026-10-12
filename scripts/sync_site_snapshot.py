@@ -56,14 +56,14 @@ def championship_metadata():
         final=season.get('postseason') if season else None
         if not (season and season['league_id']==791996 and
                 old['source_league_id']==791996 and old['status']=='confirmed_legacy_season' and
-                old.get('franchise_id') is None and
+                old.get('franchise_id')==identity['season_to_franchise'][str(old['season'])][str(old['espn_team_id'])] and
                 final and final['status']=='validated_bracket_path' and final['bracket_validated'] is True and
                 old['espn_team_id']==final['winner_espn_team_id'] and
                 old['team_name_at_win']==final['winner_team_name'] and
                 next((t['name'] for t in season['teams'] if t['espn_team_id']==old['espn_team_id']),None)==old['team_name_at_win']):
             raise ValueError('Unreconciled legacy trophy data')
-        if str(old['season']) in identity['season_to_franchise']:
-            raise ValueError('Old-era franchise attribution is not authorized')
+        if identity['league_ids_by_season'][str(old['season'])]!=791996:
+            raise ValueError('Legacy trophy league mismatch')
     if archived[2015]['postseason']['bracket_validated'] is not False or 2015 in {r['season'] for r in old_winners}:
         raise ValueError('Disputed 2015 final must not award a trophy')
     if team_ids['season'] not in (2026,):
