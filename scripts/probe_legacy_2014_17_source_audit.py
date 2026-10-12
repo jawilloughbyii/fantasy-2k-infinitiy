@@ -9,7 +9,7 @@ DRAFT=json.loads((ROOT/"reference/historical_legacy_draft_picks_2014_2017.json")
 SCORES=json.loads((ROOT/"reference/historical_regular_season_scores.json").read_text())
 LEAGUE=791996
 BASE="https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl"
-POSITION={1:"QB",2:"RB",3:"WR",4:"TE",5:"K",16:"D/ST",17:"P"}
+POSITION={1:"QB",2:"RB",3:"WR",4:"TE",5:"K",16:"D/ST",7:"P"}
 def call(url,cookie,filter_obj=None):
     h={"Cookie":cookie,"Accept":"application/json","User-Agent":"Fantasy2K-Audit/1.0"}
     if filter_obj is not None:h["X-Fantasy-Filter"]=json.dumps(filter_obj,separators=(",",":"))
