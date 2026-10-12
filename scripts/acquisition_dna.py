@@ -99,3 +99,35 @@ def equal_weight_history(seasons):
          for k in CATEGORIES}
     return {"status":"verified_equal_season_weight","verified_seasons":sorted(years),"mix":mix,
             "note":"Equal weight per complete season. Historical punter-era and nine-slot seasons are not pooled by raw starter count; quality yield remains era-specific."}
+
+
+def last_verified_source(player_id, franchise_id, locked_at, events, complete_chain=False):
+    """Classify latest pre-lock entry; never assume continuous draft ownership.
+
+    Events are sanitized source-verified rows with player_id, franchise_id,
+    effective_at (offset-aware ISO string) and action:
+    draft/trade/waiver/free_agent/keeper/other/drop.
+    Every departure ends the previous source spell. Any unverified or partial
+    transaction feed returns unknown instead of attributing a draft pick.
+    """
+    from datetime import datetime
+    if not complete_chain:return "unknown"
+    if type(player_id)!=int or player_id==0 or not isinstance(franchise_id,str):
+        raise ValueError("Invalid stable player/franchise ID")
+    try:
+        cutoff=datetime.fromisoformat(locked_at)
+        if cutoff.tzinfo is None:raise ValueError("Lock timestamp missing timezone")
+    except (ValueError,TypeError):raise ValueError("Invalid original game lock timestamp")
+    eligible=[]
+    for event in events:
+        if event.get("player_id")!=player_id or event.get("franchise_id")!=franchise_id:continue
+        at=datetime.fromisoformat(event["effective_at"])
+        if at.tzinfo is None:raise ValueError("Transaction has no timezone")
+        if at<=cutoff:
+            if event.get("action") not in (*CATEGORIES[:-1],"drop"):
+                raise ValueError("Unrecognized acquisition action; do not guess")
+            eligible.append((at,event["action"]))
+    if not eligible:return "unknown"
+    eligible.sort()
+    latest=eligible[-1][1]
+    return "unknown" if latest=="drop" else latest
