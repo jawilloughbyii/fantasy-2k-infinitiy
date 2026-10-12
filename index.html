@@ -950,6 +950,8 @@ function historyChampions(){
 }
 
 function draftSeason(){return DRAFTS.seasons.find(s=>s.year===Number(state.draftYear));}
+function draftGrade(p,year=state.draftYear){return DRAFT_GRADES_BY_YEAR[Number(year)]?.[p.overall]||null;}
+function draftTagText(g){return g?.tag==='ERA_ONLY'?'Punter era':g?.tag||'Pending';}
 function draftCurrentName(fid){return teams.find(t=>franchiseFor(t)===fid)?.name||'Historical franchise';}
 function draftFilteredPicks(){
  const season=draftSeason();if(!season)return [];
