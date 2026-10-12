@@ -13,10 +13,12 @@ IDENTITIES=ROOT/'reference'/'franchise_continuity.json'
 TEAM_IDS=ROOT/'reference'/'team_id_map.json'
 CHAMPIONS=ROOT/'reference'/'championship_history.json'
 HISTORICAL_SCORES=ROOT/'reference'/'historical_regular_season_scores.json'
+HISTORICAL_DRAFTS=ROOT/'reference'/'historical_draft_picks.json'
 PLAYOFF_BRACKETS=ROOT/'reference'/'historical_playoff_brackets.json'
 METRIC_PATTERN=re.compile(r'(<script id="metricdefs" type="application/json">)(.*?)(</script>)',re.S)
 CHAMP_PATTERN=re.compile(r'(<script id="championships" type="application/json">)(.*?)(</script>)',re.S)
 HIST_PATTERN=re.compile(r'(<script id="historicalscores" type="application/json">)(.*?)(</script>)',re.S)
+DRAFT_PATTERN=re.compile(r'(<script id="historicaldrafts" type="application/json">)(.*?)(</script>)',re.S)
 PLAYOFF_PATTERN=re.compile(r'(<script id="historicalplayoffs" type="application/json">)(.*?)(</script>)',re.S)
 
 PATTERN=re.compile(r'(<script id="fantasydata" type="application/json">)(.*?)(</script>)',re.S)
@@ -53,6 +55,9 @@ def championship_metadata():
             raise ValueError('Sensitive information in championship metadata')
     return result
 
+def identity_leagues():
+    return json.loads(IDENTITIES.read_text(encoding='utf8'))['league_ids_by_season']
+
 def sync(html,data):
     if data.get('completedThrough',0)<4 or len(data.get('teams',[]))!=10:raise ValueError('Incomplete approved dataset')
     match=PATTERN.search(html)
@@ -83,7 +88,15 @@ def sync(html,data):
     champions=json.loads(CHAMPIONS.read_text(encoding='utf8'))['champions']
     if {int(x['season']) for x in champions}!={int(y) for y in brackets['seasons']}:
         raise ValueError('Championship history coverage differs from verified playoff brackets')
-    return updated[:playoff.start(2)]+safe_json(brackets)+updated[playoff.end(2):]
+    updated=updated[:playoff.start(2)]+safe_json(brackets)+updated[playoff.end(2):]
+    draft=DRAFT_PATTERN.search(updated)
+    if not draft:raise ValueError('Missing embedded historical draft snapshot')
+    drafts=json.loads(HISTORICAL_DRAFTS.read_text(encoding='utf8'))
+    if drafts.get('status')!='verified_picks_not_performance_grades' or drafts.get('coverage',{}).get('pick_count')!=980:
+        raise ValueError('Unvalidated historic draft data')
+    if {str(s['year']):s['league_id'] for s in drafts['seasons']}!=identity_leagues():
+        raise ValueError('Draft season ESPN league IDs do not match owner mapping')
+    return updated[:draft.start(2)]+safe_json(drafts)+updated[draft.end(2):]
 
 def main():
     a=argparse.ArgumentParser();a.add_argument('--html',default='index.html');a.add_argument('--data',required=True);a.add_argument('--output',required=True);args=a.parse_args()
