@@ -68,11 +68,11 @@ def validate_mapping(manifest):
     if source_leagues['2022'] == source_leagues['2023'] or not (source_leagues['2021']==source_leagues['2022']==1493036707):
         raise ValueError('Archived league source identity mismatch')
     if owner_old['1'] != seasons['2024']['6'] or owner_old['2'] != owner_new['6']:
-        raise ValueError('Neal/Diego owner continuity across league migration must remain distinct')
+        raise ValueError('Departed and returning franchise continuity must remain distinct')
     if owner_old['5'] != owner_new['3'] or owner_old['6'] != owner_new['4']:
         raise ValueError('Confirmed Quattro Padres / Golden Ponies franchise linkage changed')
     if owner_new['5'] in set(owner_old.values()):
-        raise ValueError('Aaron must begin as a new franchise in 2023')
+        raise ValueError('2023 entrant must begin as a new franchise')
     # User-confirmed historical exception: never silently undo this split.
     for year in ('2023', '2024', '2025', '2026'):
         if year not in seasons:
