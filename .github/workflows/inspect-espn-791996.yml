@@ -1,0 +1,37 @@
+name: Inspect ESPN 791996 historical identity (private, read-only)
+
+on:
+  push:
+    branches: [research/probe-espn-791996]
+    paths:
+      - 'scripts/inspect_espn_791996.py'
+      - '.github/workflows/inspect-espn-791996.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify inspection syntax
+        run: python -m py_compile scripts/inspect_espn_791996.py
+      - name: Fetch only sanitized 2014-2017 league identity records
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/inspect_espn_791996.py
+      - name: Upload short-lived research artifact (not public dashboard)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: league-791996-2014-17-identity-research
+          path: output/research-791996-identity/historical_identity_review.json
+          if-no-files-found: warn
+          retention-days: 7
