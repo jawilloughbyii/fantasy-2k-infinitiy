@@ -1,0 +1,410 @@
+{
+  "source": "Authenticated ESPN historical league 791996 mTeam record.overall compared against all 280 original matchup results",
+  "status": "verified_official_wlt_pf_pa_official_rank_not_returned",
+  "seasons": [
+    {
+      "year": 2014,
+      "league_id": 791996,
+      "official_ranking_available": false,
+      "ranking_note": "ESPN mTeam record.overall returned W/L/T, PF and PA, not official seed/rank; standings display remains derived.",
+      "source": "authenticated_ESPN_leagueHistory_mTeam_record_overall",
+      "record_count": 10,
+      "reconciled_count": 10,
+      "rows": [
+        {
+          "espn_team_id": 1,
+          "name": "Shady Akers",
+          "wins": 6,
+          "losses": 8,
+          "ties": 0,
+          "points_for": 1662.0,
+          "points_against": 1701.0
+        },
+        {
+          "espn_team_id": 2,
+          "name": "Pewter City Giodudes",
+          "wins": 4,
+          "losses": 10,
+          "ties": 0,
+          "points_for": 1701.0,
+          "points_against": 1857.0
+        },
+        {
+          "espn_team_id": 3,
+          "name": "Lucille's Baby Daddy",
+          "wins": 10,
+          "losses": 3,
+          "ties": 1,
+          "points_for": 2043.0,
+          "points_against": 1768.0
+        },
+        {
+          "espn_team_id": 4,
+          "name": "Pittsburgh Pig Fuckers",
+          "wins": 5,
+          "losses": 8,
+          "ties": 1,
+          "points_for": 1678.0,
+          "points_against": 1682.0
+        },
+        {
+          "espn_team_id": 5,
+          "name": "Kanye West",
+          "wins": 4,
+          "losses": 10,
+          "ties": 0,
+          "points_for": 1512.0,
+          "points_against": 1714.0
+        },
+        {
+          "espn_team_id": 6,
+          "name": "Team Alumni Stink",
+          "wins": 7,
+          "losses": 7,
+          "ties": 0,
+          "points_for": 1796.0,
+          "points_against": 1697.0
+        },
+        {
+          "espn_team_id": 7,
+          "name": "Jimmy Graham's UnderPerformers",
+          "wins": 4,
+          "losses": 10,
+          "ties": 0,
+          "points_for": 1599.0,
+          "points_against": 1858.0
+        },
+        {
+          "espn_team_id": 8,
+          "name": "Sleazy Veasey's Teenie Peenie",
+          "wins": 10,
+          "losses": 4,
+          "ties": 0,
+          "points_for": 1750.0,
+          "points_against": 1744.0
+        },
+        {
+          "espn_team_id": 9,
+          "name": "Pokerwithmy Fleener",
+          "wins": 8,
+          "losses": 6,
+          "ties": 0,
+          "points_for": 1705.0,
+          "points_against": 1671.0
+        },
+        {
+          "espn_team_id": 10,
+          "name": "Touchdown Syndrome",
+          "wins": 11,
+          "losses": 3,
+          "ties": 0,
+          "points_for": 1838.0,
+          "points_against": 1592.0
+        }
+      ]
+    },
+    {
+      "year": 2015,
+      "league_id": 791996,
+      "official_ranking_available": false,
+      "ranking_note": "ESPN mTeam record.overall returned W/L/T, PF and PA, not official seed/rank; standings display remains derived.",
+      "source": "authenticated_ESPN_leagueHistory_mTeam_record_overall",
+      "record_count": 10,
+      "reconciled_count": 10,
+      "rows": [
+        {
+          "espn_team_id": 1,
+          "name": "Crosby Sweaters",
+          "wins": 8,
+          "losses": 6,
+          "ties": 0,
+          "points_for": 1879.22,
+          "points_against": 1731.52
+        },
+        {
+          "espn_team_id": 2,
+          "name": "The General's \"Dorm Room\"",
+          "wins": 11,
+          "losses": 3,
+          "ties": 0,
+          "points_for": 1951.1,
+          "points_against": 1678.02
+        },
+        {
+          "espn_team_id": 3,
+          "name": "The Bear Jew",
+          "wins": 8,
+          "losses": 6,
+          "ties": 0,
+          "points_for": 1973.68,
+          "points_against": 1780.08
+        },
+        {
+          "espn_team_id": 4,
+          "name": "Adam Vinatier U a New Asshole",
+          "wins": 6,
+          "losses": 8,
+          "ties": 0,
+          "points_for": 1700.18,
+          "points_against": 1814.22
+        },
+        {
+          "espn_team_id": 5,
+          "name": "Kanye West",
+          "wins": 3,
+          "losses": 11,
+          "ties": 0,
+          "points_for": 1607.58,
+          "points_against": 1809.56
+        },
+        {
+          "espn_team_id": 6,
+          "name": "Hustle Gang Homie",
+          "wins": 6,
+          "losses": 8,
+          "ties": 0,
+          "points_for": 1834.08,
+          "points_against": 1821.36
+        },
+        {
+          "espn_team_id": 7,
+          "name": "Please Don't Forsett",
+          "wins": 7,
+          "losses": 7,
+          "ties": 0,
+          "points_for": 1675.68,
+          "points_against": 1762.64
+        },
+        {
+          "espn_team_id": 8,
+          "name": "Edwin's 20/70 Eyesight",
+          "wins": 6,
+          "losses": 8,
+          "ties": 0,
+          "points_for": 1812.62,
+          "points_against": 1924.56
+        },
+        {
+          "espn_team_id": 9,
+          "name": "Pokerwithmy Fleener",
+          "wins": 8,
+          "losses": 6,
+          "ties": 0,
+          "points_for": 1642.08,
+          "points_against": 1760.48
+        },
+        {
+          "espn_team_id": 10,
+          "name": "Touchdown Syndrome",
+          "wins": 7,
+          "losses": 7,
+          "ties": 0,
+          "points_for": 1805.3,
+          "points_against": 1799.08
+        }
+      ]
+    },
+    {
+      "year": 2016,
+      "league_id": 791996,
+      "official_ranking_available": false,
+      "ranking_note": "ESPN mTeam record.overall returned W/L/T, PF and PA, not official seed/rank; standings display remains derived.",
+      "source": "authenticated_ESPN_leagueHistory_mTeam_record_overall",
+      "record_count": 10,
+      "reconciled_count": 10,
+      "rows": [
+        {
+          "espn_team_id": 1,
+          "name": "Nacho Players",
+          "wins": 6,
+          "losses": 8,
+          "ties": 0,
+          "points_for": 1714.88,
+          "points_against": 1814.48
+        },
+        {
+          "espn_team_id": 2,
+          "name": "The General's \"Dorm Room\"",
+          "wins": 8,
+          "losses": 6,
+          "ties": 0,
+          "points_for": 1916.46,
+          "points_against": 1813.96
+        },
+        {
+          "espn_team_id": 3,
+          "name": "The Bear Jew",
+          "wins": 8,
+          "losses": 6,
+          "ties": 0,
+          "points_for": 1856.0,
+          "points_against": 1704.94
+        },
+        {
+          "espn_team_id": 4,
+          "name": "A. Foster n The Rosterfarians",
+          "wins": 5,
+          "losses": 9,
+          "ties": 0,
+          "points_for": 1735.26,
+          "points_against": 1989.34
+        },
+        {
+          "espn_team_id": 5,
+          "name": "Kanye West",
+          "wins": 6,
+          "losses": 8,
+          "ties": 0,
+          "points_for": 1714.34,
+          "points_against": 1752.96
+        },
+        {
+          "espn_team_id": 6,
+          "name": "Harambe DayCare Services",
+          "wins": 7,
+          "losses": 7,
+          "ties": 0,
+          "points_for": 1551.86,
+          "points_against": 1592.92
+        },
+        {
+          "espn_team_id": 7,
+          "name": "Gosh Darnit Andy",
+          "wins": 5,
+          "losses": 9,
+          "ties": 0,
+          "points_for": 1560.58,
+          "points_against": 1766.36
+        },
+        {
+          "espn_team_id": 8,
+          "name": "Cuckleberry Finn",
+          "wins": 8,
+          "losses": 6,
+          "ties": 0,
+          "points_for": 1861.76,
+          "points_against": 1812.16
+        },
+        {
+          "espn_team_id": 9,
+          "name": "Jaqiuzz so much I Philip Rivers",
+          "wins": 8,
+          "losses": 6,
+          "ties": 0,
+          "points_for": 1919.98,
+          "points_against": 1847.66
+        },
+        {
+          "espn_team_id": 10,
+          "name": "Touchdown Syndrome",
+          "wins": 9,
+          "losses": 5,
+          "ties": 0,
+          "points_for": 2008.68,
+          "points_against": 1745.02
+        }
+      ]
+    },
+    {
+      "year": 2017,
+      "league_id": 791996,
+      "official_ranking_available": false,
+      "ranking_note": "ESPN mTeam record.overall returned W/L/T, PF and PA, not official seed/rank; standings display remains derived.",
+      "source": "authenticated_ESPN_leagueHistory_mTeam_record_overall",
+      "record_count": 10,
+      "reconciled_count": 10,
+      "rows": [
+        {
+          "espn_team_id": 1,
+          "name": "Trump's  Troopers",
+          "wins": 6,
+          "losses": 8,
+          "ties": 0,
+          "points_for": 1657.78,
+          "points_against": 1864.48
+        },
+        {
+          "espn_team_id": 2,
+          "name": "The General's \"Dorm Room\"",
+          "wins": 9,
+          "losses": 5,
+          "ties": 0,
+          "points_for": 1722.86,
+          "points_against": 1713.48
+        },
+        {
+          "espn_team_id": 3,
+          "name": "The Bear Jew",
+          "wins": 10,
+          "losses": 4,
+          "ties": 0,
+          "points_for": 1987.04,
+          "points_against": 1655.74
+        },
+        {
+          "espn_team_id": 4,
+          "name": "Boswell That Ends Well",
+          "wins": 8,
+          "losses": 6,
+          "ties": 0,
+          "points_for": 1846.26,
+          "points_against": 1681.04
+        },
+        {
+          "espn_team_id": 5,
+          "name": "Kanye West",
+          "wins": 4,
+          "losses": 10,
+          "ties": 0,
+          "points_for": 1695.54,
+          "points_against": 1964.06
+        },
+        {
+          "espn_team_id": 6,
+          "name": "Tiki  Torches",
+          "wins": 5,
+          "losses": 9,
+          "ties": 0,
+          "points_for": 1435.12,
+          "points_against": 1610.88
+        },
+        {
+          "espn_team_id": 7,
+          "name": "Gosh Darnit Andy",
+          "wins": 7,
+          "losses": 7,
+          "ties": 0,
+          "points_for": 1844.42,
+          "points_against": 1684.62
+        },
+        {
+          "espn_team_id": 8,
+          "name": "Cuckleberry Finn",
+          "wins": 9,
+          "losses": 5,
+          "ties": 0,
+          "points_for": 1791.98,
+          "points_against": 1717.34
+        },
+        {
+          "espn_team_id": 9,
+          "name": "Jaqiuzz so much I Philip Rivers",
+          "wins": 6,
+          "losses": 8,
+          "ties": 0,
+          "points_for": 1777.8,
+          "points_against": 1761.08
+        },
+        {
+          "espn_team_id": 10,
+          "name": "Touchdown Syndrome",
+          "wins": 6,
+          "losses": 8,
+          "ties": 0,
+          "points_for": 1651.02,
+          "points_against": 1757.1
+        }
+      ]
+    }
+  ]
+}

@@ -127,7 +127,7 @@ def sync(html,data):
     legacy_match=LEGACY_DRAFT_PATTERN.search(updated)
     if not legacy_match:raise ValueError('Missing legacy draft snapshot')
     legacy=json.loads(LEGACY_DRAFTS.read_text(encoding='utf8'))
-    if legacy.get('status')!='verified_raw_picks_player_enrichment_pending' or legacy.get('coverage',{}).get('pick_count')!=680:
+    if legacy.get('status')!='verified_original_year_player_metadata_complete' or legacy.get('coverage',{}).get('pick_count')!=680 or legacy.get('coverage',{}).get('named_picks')!=680 or legacy.get('coverage',{}).get('positioned_picks')!=680:
         raise ValueError('Legacy 2014-17 drafts are incomplete')
     if [s['year'] for s in legacy['seasons']]!=[2014,2015,2016,2017] or any(s['league_id']!=791996 for s in legacy['seasons']):
         raise ValueError('Legacy draft identity mismatch')

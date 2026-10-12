@@ -1,0 +1,1432 @@
+{
+  "source": "Authenticated ESPN historical league 791996 mSettings; original per-year scoring points and overrides retained by stat ID, no modern scoring substituted",
+  "status": "verified_source_scoring_definitions",
+  "seasons": [
+    {
+      "year": 2014,
+      "league_id": 791996,
+      "source": "authenticated_ESPN_leagueHistory_mSettings",
+      "scoring_type": "H2H_POINTS",
+      "scoring_item_count": 47,
+      "lineup_slot_counts": {
+        "0": 1,
+        "1": 0,
+        "2": 2,
+        "3": 0,
+        "4": 2,
+        "5": 0,
+        "6": 1,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 0,
+        "12": 0,
+        "13": 0,
+        "14": 0,
+        "15": 0,
+        "16": 1,
+        "17": 1,
+        "18": 1,
+        "19": 0,
+        "20": 7,
+        "21": 0,
+        "22": 0,
+        "23": 1
+      },
+      "items": [
+        {
+          "statId": 4,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 8,
+          "points": 1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 19,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 20,
+          "points": -2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 25,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 26,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 28,
+          "points": 1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 43,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 44,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 48,
+          "points": 1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 53,
+          "points": 1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 63,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 72,
+          "points": -2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 74,
+          "points": 5.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 77,
+          "points": 4.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 80,
+          "points": 3.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 85,
+          "points": -1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 86,
+          "points": 1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 89,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 5.0
+          }
+        },
+        {
+          "statId": 90,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 4.0
+          }
+        },
+        {
+          "statId": 91,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 3.0
+          }
+        },
+        {
+          "statId": 92,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 1.0
+          }
+        },
+        {
+          "statId": 93,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 95,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 96,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 97,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 98,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 3.0
+          }
+        },
+        {
+          "statId": 99,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 1.0
+          }
+        },
+        {
+          "statId": 101,
+          "points": 6.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 102,
+          "points": 6.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 103,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 104,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 123,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -1.0
+          }
+        },
+        {
+          "statId": 124,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -3.0
+          }
+        },
+        {
+          "statId": 125,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -5.0
+          }
+        },
+        {
+          "statId": 128,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 5.0
+          }
+        },
+        {
+          "statId": 129,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 3.0
+          }
+        },
+        {
+          "statId": 130,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 132,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -1.0
+          }
+        },
+        {
+          "statId": 133,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -3.0
+          }
+        },
+        {
+          "statId": 134,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -5.0
+          }
+        },
+        {
+          "statId": 135,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -6.0
+          }
+        },
+        {
+          "statId": 136,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -7.0
+          }
+        },
+        {
+          "statId": 141,
+          "points": 1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 148,
+          "points": 3.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 149,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 150,
+          "points": 1.0,
+          "isReverseItem": false
+        }
+      ]
+    },
+    {
+      "year": 2015,
+      "league_id": 791996,
+      "source": "authenticated_ESPN_leagueHistory_mSettings",
+      "scoring_type": "H2H_POINTS",
+      "scoring_item_count": 50,
+      "lineup_slot_counts": {
+        "0": 1,
+        "1": 0,
+        "2": 2,
+        "3": 0,
+        "4": 2,
+        "5": 0,
+        "6": 1,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 0,
+        "12": 0,
+        "13": 0,
+        "14": 0,
+        "15": 0,
+        "16": 1,
+        "17": 1,
+        "18": 1,
+        "19": 0,
+        "20": 7,
+        "21": 0,
+        "22": 0,
+        "23": 1
+      },
+      "items": [
+        {
+          "statId": 3,
+          "points": 0.04,
+          "isReverseItem": false
+        },
+        {
+          "statId": 4,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 19,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 20,
+          "points": -2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 24,
+          "points": 0.1,
+          "isReverseItem": false
+        },
+        {
+          "statId": 25,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 26,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 42,
+          "points": 0.1,
+          "isReverseItem": false
+        },
+        {
+          "statId": 43,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 44,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 53,
+          "points": 1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 63,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 72,
+          "points": -2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 74,
+          "points": 5.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 77,
+          "points": 4.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 80,
+          "points": 3.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 85,
+          "points": -1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 86,
+          "points": 1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 89,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 5.0
+          }
+        },
+        {
+          "statId": 90,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 4.0
+          }
+        },
+        {
+          "statId": 91,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 3.0
+          }
+        },
+        {
+          "statId": 92,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 1.0
+          }
+        },
+        {
+          "statId": 93,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 95,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 96,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 97,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 98,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 3.0
+          }
+        },
+        {
+          "statId": 99,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 1.0
+          }
+        },
+        {
+          "statId": 101,
+          "points": 6.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 102,
+          "points": 6.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 103,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 104,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 123,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -1.0
+          }
+        },
+        {
+          "statId": 124,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -3.0
+          }
+        },
+        {
+          "statId": 125,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -5.0
+          }
+        },
+        {
+          "statId": 128,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 5.0
+          }
+        },
+        {
+          "statId": 129,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 3.0
+          }
+        },
+        {
+          "statId": 130,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 132,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -1.0
+          }
+        },
+        {
+          "statId": 133,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -3.0
+          }
+        },
+        {
+          "statId": 134,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -5.0
+          }
+        },
+        {
+          "statId": 135,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -6.0
+          }
+        },
+        {
+          "statId": 136,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -7.0
+          }
+        },
+        {
+          "statId": 140,
+          "points": 0.5,
+          "isReverseItem": false
+        },
+        {
+          "statId": 141,
+          "points": 1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 148,
+          "points": 5.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 149,
+          "points": 4.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 150,
+          "points": 3.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 151,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 152,
+          "points": 1.0,
+          "isReverseItem": false
+        }
+      ]
+    },
+    {
+      "year": 2016,
+      "league_id": 791996,
+      "source": "authenticated_ESPN_leagueHistory_mSettings",
+      "scoring_type": "H2H_POINTS",
+      "scoring_item_count": 50,
+      "lineup_slot_counts": {
+        "0": 1,
+        "1": 0,
+        "2": 2,
+        "3": 0,
+        "4": 2,
+        "5": 0,
+        "6": 1,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 0,
+        "12": 0,
+        "13": 0,
+        "14": 0,
+        "15": 0,
+        "16": 1,
+        "17": 1,
+        "18": 1,
+        "19": 0,
+        "20": 7,
+        "21": 0,
+        "22": 0,
+        "23": 1
+      },
+      "items": [
+        {
+          "statId": 3,
+          "points": 0.04,
+          "isReverseItem": false
+        },
+        {
+          "statId": 4,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 19,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 20,
+          "points": -2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 24,
+          "points": 0.1,
+          "isReverseItem": false
+        },
+        {
+          "statId": 25,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 26,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 42,
+          "points": 0.1,
+          "isReverseItem": false
+        },
+        {
+          "statId": 43,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 44,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 53,
+          "points": 1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 63,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 72,
+          "points": -2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 74,
+          "points": 5.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 77,
+          "points": 4.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 80,
+          "points": 3.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 85,
+          "points": -1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 86,
+          "points": 1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 89,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 5.0
+          }
+        },
+        {
+          "statId": 90,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 4.0
+          }
+        },
+        {
+          "statId": 91,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 3.0
+          }
+        },
+        {
+          "statId": 92,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 1.0
+          }
+        },
+        {
+          "statId": 93,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 95,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 96,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 97,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 98,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 3.0
+          }
+        },
+        {
+          "statId": 99,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 1.0
+          }
+        },
+        {
+          "statId": 101,
+          "points": 6.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 102,
+          "points": 6.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 103,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 104,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 123,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -1.0
+          }
+        },
+        {
+          "statId": 124,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -3.0
+          }
+        },
+        {
+          "statId": 125,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -5.0
+          }
+        },
+        {
+          "statId": 128,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 5.0
+          }
+        },
+        {
+          "statId": 129,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 3.0
+          }
+        },
+        {
+          "statId": 130,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 132,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -1.0
+          }
+        },
+        {
+          "statId": 133,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -3.0
+          }
+        },
+        {
+          "statId": 134,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -5.0
+          }
+        },
+        {
+          "statId": 135,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -6.0
+          }
+        },
+        {
+          "statId": 136,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -7.0
+          }
+        },
+        {
+          "statId": 140,
+          "points": 0.5,
+          "isReverseItem": false
+        },
+        {
+          "statId": 141,
+          "points": 1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 148,
+          "points": 5.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 149,
+          "points": 4.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 150,
+          "points": 3.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 151,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 152,
+          "points": 1.0,
+          "isReverseItem": false
+        }
+      ]
+    },
+    {
+      "year": 2017,
+      "league_id": 791996,
+      "source": "authenticated_ESPN_leagueHistory_mSettings",
+      "scoring_type": "H2H_POINTS",
+      "scoring_item_count": 50,
+      "lineup_slot_counts": {
+        "0": 1,
+        "1": 0,
+        "2": 2,
+        "3": 0,
+        "4": 2,
+        "5": 0,
+        "6": 1,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 0,
+        "12": 0,
+        "13": 0,
+        "14": 0,
+        "15": 0,
+        "16": 1,
+        "17": 1,
+        "18": 1,
+        "19": 0,
+        "20": 7,
+        "21": 0,
+        "22": 0,
+        "23": 1,
+        "24": 0
+      },
+      "items": [
+        {
+          "statId": 3,
+          "points": 0.04,
+          "isReverseItem": false
+        },
+        {
+          "statId": 4,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 19,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 20,
+          "points": -2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 24,
+          "points": 0.1,
+          "isReverseItem": false
+        },
+        {
+          "statId": 25,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 26,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 42,
+          "points": 0.1,
+          "isReverseItem": false
+        },
+        {
+          "statId": 43,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 44,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 53,
+          "points": 1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 63,
+          "points": 6.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 72,
+          "points": -2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 74,
+          "points": 5.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 77,
+          "points": 4.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 80,
+          "points": 3.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 85,
+          "points": -1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 86,
+          "points": 1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 89,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 5.0
+          }
+        },
+        {
+          "statId": 90,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 4.0
+          }
+        },
+        {
+          "statId": 91,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 3.0
+          }
+        },
+        {
+          "statId": 92,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 1.0
+          }
+        },
+        {
+          "statId": 93,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 95,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 96,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 97,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 98,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 3.0
+          }
+        },
+        {
+          "statId": 99,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 1.0
+          }
+        },
+        {
+          "statId": 101,
+          "points": 6.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 102,
+          "points": 6.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 103,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 104,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 6.0
+          }
+        },
+        {
+          "statId": 123,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -1.0
+          }
+        },
+        {
+          "statId": 124,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -3.0
+          }
+        },
+        {
+          "statId": 125,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -5.0
+          }
+        },
+        {
+          "statId": 128,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 5.0
+          }
+        },
+        {
+          "statId": 129,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 3.0
+          }
+        },
+        {
+          "statId": 130,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": 2.0
+          }
+        },
+        {
+          "statId": 132,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -1.0
+          }
+        },
+        {
+          "statId": 133,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -3.0
+          }
+        },
+        {
+          "statId": 134,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -5.0
+          }
+        },
+        {
+          "statId": 135,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -6.0
+          }
+        },
+        {
+          "statId": 136,
+          "points": 0.0,
+          "isReverseItem": false,
+          "pointsOverrides": {
+            "16": -7.0
+          }
+        },
+        {
+          "statId": 140,
+          "points": 0.5,
+          "isReverseItem": false
+        },
+        {
+          "statId": 141,
+          "points": 1.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 148,
+          "points": 5.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 149,
+          "points": 4.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 150,
+          "points": 3.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 151,
+          "points": 2.0,
+          "isReverseItem": false
+        },
+        {
+          "statId": 152,
+          "points": 1.0,
+          "isReverseItem": false
+        }
+      ]
+    }
+  ]
+}
