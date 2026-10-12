@@ -1,16 +1,25 @@
 name: Discover historical ESPN seasons (private, read only)
 
 on:
+  push:
+    branches: [feature/archived-2021-2022-discovery]
+    paths:
+      - 'scripts/discover_historical_seasons.py'
+      - '.github/workflows/discover-historical-seasons.yml'
   workflow_dispatch:
     inputs:
+      league_id:
+        description: ESPN historical league ID
+        required: true
+        default: '1493036707'
       start_year:
         description: Oldest season to inspect
         required: true
-        default: '2010'
+        default: '2021'
       end_year:
         description: Newest historical season to inspect
         required: true
-        default: '2025'
+        default: '2022'
 
 permissions:
   contents: read
@@ -27,9 +36,10 @@ jobs:
         env:
           ESPN_S2: ${{ secrets.ESPN_S2 }}
           ESPN_SWID: ${{ secrets.ESPN_SWID }}
-          START_YEAR: ${{ inputs.start_year }}
-          END_YEAR: ${{ inputs.end_year }}
-        run: python scripts/discover_historical_seasons.py --start-year "$START_YEAR" --end-year "$END_YEAR" --output-dir output/historical-discovery
+          LEAGUE_ID: ${{ inputs.league_id || '1493036707' }}
+          START_YEAR: ${{ inputs.start_year || '2021' }}
+          END_YEAR: ${{ inputs.end_year || '2022' }}
+        run: python scripts/discover_historical_seasons.py --league-id "$LEAGUE_ID" --start-year "$START_YEAR" --end-year "$END_YEAR" --output-dir output/historical-discovery
       - name: Upload private sanitized research artifact
         if: always()
         uses: actions/upload-artifact@v4
