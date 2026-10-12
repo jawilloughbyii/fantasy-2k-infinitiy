@@ -30,7 +30,8 @@ const historyEmbedded={
  league_id:championshipHistory.league_id,
  season_to_franchise:continuity.season_to_franchise,
  dashboard_to_espn:espnMapping.baseline_to_espn,
- champions:championshipHistory.champions
+ champions:championshipHistory.champions,
+ legacy_champions:championshipHistory.legacy_champions
 };
 assert.deepStrictEqual(embedded('championships'),historyEmbedded,'Embedded champion metadata must match the verified reference files');
 assert.deepStrictEqual(embedded('historicalscores'),historicalScores,'Embedded historical scores must come from the sanctioned reference file');
@@ -101,6 +102,14 @@ assert.notEqual(instrumented,script[1],'Champion renderer test hook could not be
 const sandbox={document:doc,window:{scrollTo(){}},fetch,console};
 vm.runInNewContext(instrumented,sandbox,{timeout:5000});
 const names=sandbox.__championshipTest;
+assert.deepStrictEqual(championshipHistory.legacy_champions.map(x=>[x.season,x.espn_team_id,x.source_league_id]),[[2014,8,791996],[2016,9,791996],[2017,3,791996]]);
+for(const [year,tid,alias] of [[2014,8,"Sleazy Veasey's Teenie Peenie"],[2016,9,"Jaqiuzz so much I Philip Rivers"],[2017,3,"The Bear Jew"]]){
+ assert.ok(names.teamName({espn_team_id:tid,name:alias},year).includes('League champion: '+year),'Old-era winning alias gets trophy only in the winning season');
+ assert.ok(!names.teamName({espn_team_id:tid,name:alias},2015).includes('champion-trophy'),'Old-era team IDs do not inherit trophies in disputed 2015');
+}
+assert.ok(!names.teamName({espn_team_id:2,name:'The General\'s "Dorm Room"'},2015).includes('champion-trophy'),'Disputed 2015 ESPN final must not receive trophy');
+assert.ok(!names.teamName({espn_team_id:8,name:'Cuckleberry Finn'},2017).includes('champion-trophy'),'Runner-up must not receive trophy');
+assert.ok(!names.teamName({id:8,name:'Current team'},2026).includes('2014'),'Old ESPN team ID must not become a current-season trophy');
 assert.ok(names.teamName({espn_team_id:3,name:'Lord Farquaad'},2021).includes('League champion: 2021'),'2021 winner has the season trophy');
 assert.ok(names.teamName({espn_team_id:5,name:'Quatro Padres'},2022).includes('League champion: 2022'),'2022 winner has the season trophy');
 assert.ok(names.teamName({id:7,name:'Project Haily Mary'},2026).includes('2021, 2023'),'Current 2026 franchise owns both 2021 and 2023 titles');
