@@ -108,11 +108,12 @@ for(const [year,tid,alias] of [[2014,8,"Sleazy Veasey's Teenie Peenie"],[2016,9,
  assert.ok(names.teamName({espn_team_id:tid,name:alias},year).includes('League champion: '+year),'Old-era winning alias gets trophy only in the winning season');
  assert.ok(!names.teamName({espn_team_id:tid,name:alias},2015).includes('champion-trophy'),'Old-era team IDs do not inherit trophies in disputed 2015');
 }
-assert.ok(!names.teamName({espn_team_id:2,name:'The General\'s "Dorm Room"'},2015).includes('champion-trophy'),'Disputed 2015 ESPN final must not receive trophy');
+assert.ok(names.teamName({espn_team_id:2,name:'The General\'s "Dorm Room"'},2015).includes('League champion: 2015'),'2015 ESPN recorded-final winner receives historical trophy');
 assert.ok(!names.teamName({espn_team_id:8,name:'Cuckleberry Finn'},2017).includes('champion-trophy'),'Runner-up must not receive trophy');
 assert.ok(names.teamName({id:3,name:'Israeli Nutonyaboob'},2026).includes('2014'),'Confirmed current franchise inherits 2014 trophy');
 assert.ok(names.teamName({id:4,name:'Golden Ponies'},2026).includes('2016'),'Confirmed Golden Ponies inherit 2016 trophy');
 assert.ok(names.teamName({id:1,name:'Aubreys 3rd Leg'},2026).includes('2017'),'Confirmed winning franchise inherits 2017 trophy');
+assert.ok(names.teamName({id:8,name:"General's Dorm Room"},2026).includes('2015, 2025'),'General now inherits confirmed 2015 and 2025 championship titles');
 assert.ok(names.teamName({espn_team_id:3,name:'Lord Farquaad'},2021).includes('League champion: 2021'),'2021 winner has the season trophy');
 assert.ok(names.teamName({espn_team_id:5,name:'Quatro Padres'},2022).includes('League champion: 2022'),'2022 winner has the season trophy');
 assert.ok(names.teamName({id:7,name:'Project Haily Mary'},2026).includes('2021, 2023'),'Current 2026 franchise owns both 2021 and 2023 titles');
@@ -165,7 +166,7 @@ async function main(){
  assert.ok(!view.includes('selhero refinedhero')&&!view.includes('roster-action'),'Remove duplicate selected-team hero/roster from Overview');
  assert.ok(!view.includes('overview-kpis'),'Remove redundant overview KPI group');
  assert.ok(!view.includes('Avg extra wins'),'Do not create a meaningless zero-sum headline');
- for(const [name,year] of [['The Domestic House Cats','2024'],['Project Haily Mary','2021, 2023'],["General&#39;s Dorm Room",'2025']]){
+ for(const [name,year] of [['The Domestic House Cats','2024'],['Project Haily Mary','2021, 2023'],["General&#39;s Dorm Room",'2015, 2025']]){
   assert.ok(view.includes(name+'<span class="champion-trophy"'),'Standings must mark '+name);
   assert.ok(view.includes('League champion: '+year),'Championship year available '+year);
  }
@@ -244,7 +245,7 @@ async function main(){
  assert.ok(view.includes('2014 Yearbook')&&view.includes('Lucille&#39;s Baby Daddy')&&view.includes('Sleazy Veasey'),'2014 archived yearbook and final are visible');
  events.change({target:{id:'historyYear',value:'2015'}});
  view=node('view').innerHTML;
- assert.ok(view.includes('2015 Yearbook')&&view.includes('ESPN final winner*')&&view.includes('title remains unverified'),'Disputed 2015 championship is disclosed without title certification');
+ assert.ok(view.includes('2015 Yearbook')&&view.includes('Confirmed champion')&&view.includes('semifinal advancement discrepancy is retained')&&view.includes('League champion: 2015'),'2015 Yearbook credits ESPN final winner while preserving source discrepancy');
  events.change({target:{id:'historyYear',value:'2017'}});
  view=node('view').innerHTML;
  assert.ok(view.includes('2017 Yearbook')&&view.includes('The Bear Jew'),'2017 yearbook available');
@@ -267,9 +268,9 @@ async function main(){
  assert.ok(view.includes('The Load Warriors')&&view.includes('League champion: 2023'),'Historical champion alias receives trophy');
  view=sub('history','titles');
  assert.ok(view.includes('Championship Archive'));
- assert.ok(view.includes('2014 champion')&&view.includes('2016 champion')&&view.includes('2017 champion'),'Unified archive lists all three old-era title winners');
- assert.ok(view.includes('League champion: 2014')&&view.includes('League champion: 2016')&&view.includes('League champion: 2017'),'All old-era winner cards use trophy markers');
- assert.ok(view.includes('Eight verified championships across recovered years')&&!view.includes('Titles were reconstructed from ESPN postseason matchup progression'),'Verified title coverage without verbose footer');
+ assert.ok(view.includes('2014 champion')&&view.includes('2015 champion')&&view.includes('2016 champion')&&view.includes('2017 champion'),'Unified archive lists all four old-era title winners');
+ assert.ok(view.includes('League champion: 2014')&&view.includes('League champion: 2015')&&view.includes('League champion: 2016')&&view.includes('League champion: 2017'),'All four old-era winner cards use trophy markers');
+ assert.ok(view.includes('Nine championship-game winners across recovered years')&&!view.includes('Titles were reconstructed from ESPN postseason matchup progression'),'Verified title coverage without verbose footer');
  for(const [name,year] of [['Lord Farquaad',2021],['Quatro Padres',2022],['The Load Warriors',2023],['Mike Oxlong',2024],["General&#39;s Dorm Room",2025]]){
   assert.ok(view.includes(name)&&view.includes(year+' champion'),'Every verified title preserved');
  }
