@@ -41,7 +41,7 @@ jobs:
           END_YEAR: ${{ inputs.end_year || '2022' }}
         run: python scripts/discover_historical_seasons.py --league-id "$LEAGUE_ID" --start-year "$START_YEAR" --end-year "$END_YEAR" --output-dir output/historical-discovery
       - name: Validate archived regular-season scores (2021–2022 only)
-        if: ${{ success() && env.START_YEAR == '2021' && env.END_YEAR == '2022' && env.LEAGUE_ID == '1493036707' }}
+        if: ${{ success() && (inputs.start_year == '2021' || inputs.start_year == '') && (inputs.end_year == '2022' || inputs.end_year == '') && (inputs.league_id == '1493036707' || inputs.league_id == '') }}
         env:
           START_YEAR: ${{ inputs.start_year || '2021' }}
           END_YEAR: ${{ inputs.end_year || '2022' }}
