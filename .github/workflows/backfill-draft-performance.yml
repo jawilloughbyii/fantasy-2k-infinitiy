@@ -1,0 +1,36 @@
+name: Backfill historical draft player performance (private)
+
+on:
+  push:
+    branches: [research/draft-value-performance-2021-2025]
+    paths:
+      - 'scripts/backfill_draft_player_performance.py'
+      - 'scripts/grade_draft_value.py'
+      - '.github/workflows/backfill-draft-performance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch original-season full player pools
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/backfill_draft_player_performance.py
+      - name: Upload private, minimized player-scoring data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: historical-draft-performance-private
+          path: output/draft-performance/*.json
+          retention-days: 7
+          if-no-files-found: warn
