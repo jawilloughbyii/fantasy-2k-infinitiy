@@ -264,7 +264,9 @@ async function main(){
  assert.ok(view.includes('The Load Warriors')&&view.includes('League champion: 2023'),'Historical champion alias receives trophy');
  view=sub('history','titles');
  assert.ok(view.includes('Championship Archive'));
- assert.ok(view.includes('Five ESPN-verified champions')&&!view.includes('Titles were reconstructed from ESPN postseason matchup progression'),'Verified title coverage without verbose footer');
+ assert.ok(view.includes('2014 champion')&&view.includes('2016 champion')&&view.includes('2017 champion'),'Unified archive lists all three old-era title winners');
+ assert.ok(view.includes('League champion: 2014')&&view.includes('League champion: 2016')&&view.includes('League champion: 2017'),'All old-era winner cards use trophy markers');
+ assert.ok(view.includes('Eight verified championships across recovered years')&&!view.includes('Titles were reconstructed from ESPN postseason matchup progression'),'Verified title coverage without verbose footer');
  for(const [name,year] of [['Lord Farquaad',2021],['Quatro Padres',2022],['The Load Warriors',2023],['Mike Oxlong',2024],["General&#39;s Dorm Room",2025]]){
   assert.ok(view.includes(name)&&view.includes(year+' champion'),'Every verified title preserved');
  }
