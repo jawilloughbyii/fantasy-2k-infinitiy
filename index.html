@@ -970,9 +970,11 @@ function draftRows(){
  return draftFilteredPicks().map(p=>{
   const historic=season.teams.find(t=>t.espn_team_id===p.espn_team_id);
   const current=draftCurrentName(p.franchise_id);
+  const grade=draftGrade(p);
+  const label=draftTagText(grade);
   return `<tr><td class="num">${p.overall}</td><td class="num">${p.round}</td><td class="num">${p.round_pick}</td>
    <td class="draft-player">${esc(p.player_name)}</td><td><span class="draft-position">${esc(p.position)}</span></td>
-   <td>${esc(current)}<span class="draft-era">${esc(historic.season_team_name)} · ESPN team ${historic.espn_team_id}</span></td></tr>`;
+   <td>${esc(current)}<span class="draft-era">${esc(historic.season_team_name)} · ESPN team ${historic.espn_team_id}</span></td><td><span class="draft-tag draft-tag-${grade?.tag||'PENDING'}">${esc(label)}</span>${grade?.tag==='ERA_ONLY'?'<span class="draft-score">Punter · historical format</span>':grade?`<span class="draft-score">${fmt(grade.regular_pf,1)} season PF · ${grade.value_added>=0?'+':''}${fmt(grade.value_added*100,1)} value pts${grade.elite_hit?' · Elite hit':''}</span>`:'<span class="draft-score">2026 season incomplete</span>'}</td></tr>`;
  }).join('');
 }
 function draftPage(){
