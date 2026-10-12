@@ -9,6 +9,7 @@ const ROOT=path.resolve(__dirname,'..');
 const html=fs.readFileSync(path.join(ROOT,'index.html'),'utf8');
 const data=JSON.parse(fs.readFileSync(path.join(ROOT,'data/league.json'),'utf8'));
 const definitions=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/metric_definitions.json'),'utf8'));
+const acquisitionDna=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/acquisition_dna.json'),'utf8'));
 const continuity=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/franchise_continuity.json'),'utf8'));
 const espnMapping=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/team_id_map.json'),'utf8'));
 const championshipHistory=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/championship_history.json'),'utf8'));
@@ -26,6 +27,7 @@ function embedded(id){
 }
 assert.deepStrictEqual(embedded('fantasydata'),data,'External JSON and embedded fallback must match');
 assert.deepStrictEqual(embedded('metricdefs'),definitions,'HTML definitions must come from one canonical file');
+assert.deepStrictEqual(embedded('acquisitiondna'),acquisitionDna,'Acquisition DNA must match approved canonical reference');
 const historyEmbedded={
  league_id:championshipHistory.league_id,
  season_to_franchise:continuity.season_to_franchise,
@@ -92,7 +94,7 @@ function node(id){
  return elements.get(id);
 }
 const doc={
- getElementById(id){const el=node(id);if(id==='fantasydata')el.textContent=JSON.stringify(data);if(id==='metricdefs')el.textContent=JSON.stringify(definitions);if(id==='championships')el.textContent=JSON.stringify(historyEmbedded);if(id==='historicalscores')el.textContent=JSON.stringify(historicalScores);if(id==='historicalplayoffs')el.textContent=JSON.stringify(playoffHistory);if(id==='historicaldrafts')el.textContent=JSON.stringify(draftHistory);if(id==='legacydrafts')el.textContent=JSON.stringify(legacyDrafts);if(id==='historicaldraftgrades')el.textContent=JSON.stringify(gradedDrafts);return el;},querySelectorAll:()=>[],
+ getElementById(id){const el=node(id);if(id==='fantasydata')el.textContent=JSON.stringify(data);if(id==='metricdefs')el.textContent=JSON.stringify(definitions);if(id==='acquisitiondna')el.textContent=JSON.stringify(acquisitionDna);if(id==='championships')el.textContent=JSON.stringify(historyEmbedded);if(id==='historicalscores')el.textContent=JSON.stringify(historicalScores);if(id==='historicalplayoffs')el.textContent=JSON.stringify(playoffHistory);if(id==='historicaldrafts')el.textContent=JSON.stringify(draftHistory);if(id==='legacydrafts')el.textContent=JSON.stringify(legacyDrafts);if(id==='historicaldraftgrades')el.textContent=JSON.stringify(gradedDrafts);return el;},querySelectorAll:()=>[],
  addEventListener(name,handler){events[name]=handler}
 };
 const fetch=async()=>({ok:true,json:async()=>data});
@@ -322,8 +324,12 @@ async function main(){
  events.change({target:{id:'draftTag',value:'STEAL'}});
  view=node('view').innerHTML;
  assert.equal((view.split('<tbody id="draftRows">')[1].split('</tbody>')[0].match(/<tr>/g)||[]).length,15,'2024 source-verified steals are filterable');
+ view=sub('teams','dna');
+ assert.ok(view.includes('Acquisition DNA · 2026')&&view.includes('Awaiting provenance')&&view.includes('Lineup execution · ceiling captured'),'Current acquisition model is present and does not fabricate source attribution');
+ assert.ok(view.includes('attainable weighted quality points')&&!view.includes('NaN%'),'Current execution comes from independently validated roster ceiling, not source attribution');
  view=sub('history','legacy');
  assert.ok(view.includes('Franchise Legacy'));
+ assert.ok(view.includes('Historical Acquisition DNA')&&view.includes('No verified historical starter-source seasons yet'),'Historical section honestly awaits original-era transactions and roster provenance');
  assert.ok(view.includes('Got Rice?')&&view.includes('2025')&&view.includes('2024')&&view.includes('2022')&&view.includes('2021'),'Returning franchise recovers old-league years');
  assert.ok(view.includes('Fully Staffed Young Hoes')&&view.includes('Let&#39;s Go Brandin'),'Historic aliases belong to current team owner');
  assert.ok(!view.includes('2023</td><td class="tiny">'),'Absent owner must have a gap in 2023');
