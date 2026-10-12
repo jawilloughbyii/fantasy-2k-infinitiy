@@ -43,7 +43,7 @@ def season_data(season,cookie):
              "sortPercOwned":{"sortPriority":1,"sortAsc":False},
              "filterStatsForTopScoringPeriodIds":{"value":18,"additionalValue":[f"00{y}"]}}}
         data=fetch(url,cookie,f)
-        if data.get("id")!=lid:raise ValueError(f"{y}: league mismatch")
+        if int(data.get("id",-1))!=lid:raise ValueError(f"{y}: league mismatch")
         rows=data.get("players")
         if not isinstance(rows,list) or (offset==0 and not rows):raise ValueError(f"{y}: empty/incomplete player pool")
         for row in rows:
