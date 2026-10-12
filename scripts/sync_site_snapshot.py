@@ -49,23 +49,48 @@ def championship_metadata():
     historical=json.loads(HISTORICAL_SCORES.read_text(encoding='utf8'))
     archived={s['year']:s for s in historical['seasons']}
     old_winners=history.get('legacy_champions',[])
-    if [r['season'] for r in old_winners]!=[2014,2016,2017]:
+    if [r['season'] for r in old_winners]!=[2014,2015,2016,2017]:
         raise ValueError('Missing or extra source-verified legacy title years')
+    original_2015=json.loads((ROOT/'research'/'espn-791996-2014-2017'/'season_2015.json').read_text(encoding='utf8'))
+    source_final=next((m for m in original_2015['matchups'] if m['week']==16 and
+                      m['matchup_id']==75 and m['playoff_tier_type']=='WINNERS_BRACKET'),None)
+    if not source_final or source_final['winner']!='HOME':
+        raise ValueError('ESPN 2015 original final is not confirmed')
+    home=next((t for t in source_final['sides'] if t['side']=='home'),None)
+    away=next((t for t in source_final['sides'] if t['side']=='away'),None)
+    if not home or not away or (home['espn_team_id'],home['points'],away['espn_team_id'],away['points'])!=(2,173.62,9,88.2):
+        raise ValueError('2015 original ESPN championship final differs from published record')
+    if original_2015['postseason']['winner_record']['semifinal_advancement_matches_finalists'] is not False:
+        raise ValueError('Original 2015 semifinal discrepancy must remain visible')
     for old in old_winners:
         season=archived.get(old['season'])
         final=season.get('postseason') if season else None
         if not (season and season['league_id']==791996 and
                 old['source_league_id']==791996 and old['status']=='confirmed_legacy_season' and
                 old.get('franchise_id')==identity['season_to_franchise'][str(old['season'])][str(old['espn_team_id'])] and
-                final and final['status']=='validated_bracket_path' and final['bracket_validated'] is True and
-                old['espn_team_id']==final['winner_espn_team_id'] and
+                final and old['espn_team_id']==final['winner_espn_team_id'] and
                 old['team_name_at_win']==final['winner_team_name'] and
                 next((t['name'] for t in season['teams'] if t['espn_team_id']==old['espn_team_id']),None)==old['team_name_at_win']):
             raise ValueError('Unreconciled legacy trophy data')
+        if old['season']==2015:
+            record=final.get('championship_record',{})
+            if not (old['bracket_status']=='confirmed_recorded_final_semifinal_discrepancy' and
+                    old['semifinal_progression_consistent'] is False and
+                    final['status']=='confirmed_recorded_final_semifinal_progression_discrepancy' and
+                    final['championship_confirmed'] is True and
+                    final['bracket_validated'] is False and
+                    final['semifinal_progression_discrepancy'] is True and
+                    final['championship_basis']=='ESPN_recorded_Week_16_final_authoritative_by_user_decision' and
+                    (record.get('matchup_id'),record.get('week'),record.get('winner_espn_team_id'),
+                     record.get('runner_up_espn_team_id'),record.get('winner_points'),record.get('runner_up_points'),
+                     record.get('source_winner_side'))==(75,16,2,9,173.62,88.2,'HOME') and
+                    (final['final_points'],final['runner_up_points'],final['runner_up_espn_team_id'])==(173.62,88.2,9)):
+                raise ValueError('2015 trophy lacks authentic ESPN recorded final or discrepancy disclosure')
+        elif not (final['status']=='validated_bracket_path' and final['bracket_validated'] is True and
+                  old['bracket_status']=='validated_bracket_path'):
+            raise ValueError('Other legacy trophies require validated bracket advancement')
         if identity['league_ids_by_season'][str(old['season'])]!=791996:
             raise ValueError('Legacy trophy league mismatch')
-    if archived[2015]['postseason']['bracket_validated'] is not False or 2015 in {r['season'] for r in old_winners}:
-        raise ValueError('Disputed 2015 final must not award a trophy')
     if team_ids['season'] not in (2026,):
         raise ValueError('Unverified live dashboard season mapping')
     result={
