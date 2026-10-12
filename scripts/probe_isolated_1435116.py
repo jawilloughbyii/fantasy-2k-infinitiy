@@ -25,7 +25,7 @@ YEARS = {
 }
 
 
-def one(url, label, headers):
+def one(url, label, headers, expected_id=LEAGUE):
     req = urllib.request.Request(url, headers=headers)
     try:
         with urllib.request.urlopen(req, timeout=30) as res:
@@ -46,7 +46,7 @@ def one(url, label, headers):
                 if isinstance(payload.get("settings"), dict) else None,
             "returned_keys": sorted(payload.keys()),
         }
-        if str(result["returned_id"]) != str(LEAGUE):
+        if str(result["returned_id"]) != str(expected_id):
             result["result"] = "id_mismatch"
         return result
     except urllib.error.HTTPError as exc:
@@ -68,10 +68,10 @@ def main():
     # A positive control only validates auth/endpoint, never establishes a
     # relationship between this league and any known iteration.
     controls = [
-        ("control_ffl_2022_known", f"{BASE}/ffl/seasons/2022/segments/0/leagues/1493036707?view=mTeam"),
-        ("control_ffl_2026_known", f"{BASE}/ffl/seasons/2026/segments/0/leagues/418244680?view=mTeam"),
+        ("control_ffl_2022_known", f"{BASE}/ffl/seasons/2022/segments/0/leagues/1493036707?view=mTeam", 1493036707),
+        ("control_ffl_2026_known", f"{BASE}/ffl/seasons/2026/segments/0/leagues/418244680?view=mTeam", 418244680),
     ]
-    control_results = [one(url, label, headers) for label, url in controls]
+    control_results = [one(url, label, headers, expected_id) for label, url, expected_id in controls]
     for control in control_results:
         print(f"CONTROL {control['target']}: {control['result']} "
               f"status={control.get('code')} returned_id={control.get('returned_id')}")
