@@ -1,6 +1,6 @@
 {
   "league_id": 418244680,
-  "scope": "Five ESPN-verified 2021–2025 and three 2014/2016/2017 champions, all linked to user-confirmed stable franchises. Disputed 2015 ESPN final is not a confirmed title.",
+  "scope": "Five verified 2021–2025 and four verified 2014–2017 champions, all linked to user-confirmed stable franchises. For 2015, ESPN's recorded Week 16 final determines the champion under the user's ruling; archived semifinal advancement discrepancy is preserved.",
   "champions": [
     {
       "season": 2021,
@@ -48,8 +48,8 @@
     "historical_aliases": "Resolve by (season, ESPN source league ID, ESPN team ID), then anonymous permanent franchise ID.",
     "unknown_titles": "No trophy for unverified seasons or placement games; historic aliases show trophies only for the season they won.",
     "owner_privacy": "Store no owner or manager identifiers.",
-    "legacy_season_markers": "2014, 2016 and 2017 ESPN verified trophy years now credited to explicit user-confirmed cross-era franchise mappings. Old winning team aliases display trophies only in the original winning season; current franchises display cumulative confirmed titles.",
-    "disputed_2015": "ESPN's recorded 2015 final winner is disclosed textually only, because semifinal advancement conflicts with the reported finalists. No trophy, championship count or modern attribution."
+    "legacy_season_markers": "2014–2017 title trophies credited to user-confirmed franchises. In 2015 the recorded ESPN final winner is authoritative despite the preserved inconsistent semifinal progression; original-era aliases receive a trophy in the season won and current franchises receive cumulative verified titles.",
+    "recorded_final_2015": "Use exactly the two ESPN-recorded Week 16 championship finalists and the ESPN final's winner/points to award 2015: The General's \"Dorm Room\" (ESPN team 2, 173.62) beats Pokerwithmy Fleener (ESPN team 9, 88.20). Preserve the semifinal advancement discrepancy without fabricating a correction; do not claim bracket progression was reconciled."
   },
   "legacy_champions": [
     {
@@ -60,6 +60,17 @@
       "source_league_id": 791996,
       "bracket_status": "validated_bracket_path",
       "franchise_id": "franchise-02"
+    },
+    {
+      "season": 2015,
+      "espn_team_id": 2,
+      "team_name_at_win": "The General's \"Dorm Room\"",
+      "status": "confirmed_legacy_season",
+      "source_league_id": 791996,
+      "bracket_status": "confirmed_recorded_final_semifinal_discrepancy",
+      "franchise_id": "franchise-01",
+      "confirmation_basis": "ESPN Week 16 winners-bracket final matchup 75; HOME 173.62 vs AWAY 88.20; user directs recorded finalists and final winner are authoritative",
+      "semifinal_progression_consistent": false
     },
     {
       "season": 2016,
