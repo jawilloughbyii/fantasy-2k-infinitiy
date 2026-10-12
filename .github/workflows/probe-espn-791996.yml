@@ -1,0 +1,37 @@
+name: Probe ESPN league 791996 (read-only research)
+
+on:
+  push:
+    branches: [research/probe-espn-791996]
+    paths:
+      - 'scripts/probe_espn_791996.py'
+      - '.github/workflows/probe-espn-791996.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Syntax check
+        run: python -m py_compile scripts/probe_espn_791996.py
+      - name: Run authenticated read-only candidate probe
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/probe_espn_791996.py
+      - name: Upload sanitized research results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: candidate-791996-sanitized-coverage
+          path: output/research-791996/sanitized_coverage.json
+          if-no-files-found: warn
+          retention-days: 7
