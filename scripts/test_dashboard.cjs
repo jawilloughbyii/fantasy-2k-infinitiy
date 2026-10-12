@@ -270,6 +270,9 @@ async function main(){
  events.change({target:{id:'draftYear',value:'2024'}});
  view=node('view').innerHTML;
  assert.ok(view.includes('Got Rice?')&&view.includes('Alan&#39;s Cordon Bleu Cavern'),'Returning owner resolves to current display with original era alias');
+ events.change({target:{id:'draftTag',value:'STEAL'}});
+ view=node('view').innerHTML;
+ assert.equal((view.split('<tbody id="draftRows">')[1].split('</tbody>')[0].match(/<tr>/g)||[]).length,15,'2024 source-verified steals are filterable');
  view=sub('history','legacy');
  assert.ok(view.includes('Franchise Legacy'));
  assert.ok(view.includes('Got Rice?')&&view.includes('2025')&&view.includes('2024')&&view.includes('2022')&&view.includes('2021'),'Returning franchise recovers old-league years');
