@@ -560,7 +560,7 @@ const DRAFT_DNA_BY_FRANCHISE=Object.fromEntries(DRAFT_GRADES.franchise_dna.map(x
 const TITLES_BY_FRANCHISE=HISTORY.champions.filter(x=>x.status==='confirmed').reduce((out,x)=>{(out[x.franchise_id]??=[]).push(x.season);return out;},{});
 const RANK_COLORS=METRICS.rankColors;
 const navTabs=[['overview','Overview'],['teams','Teams'],['history','History']];
-let state={tab:'overview',teamView:'card',historyView:'yearbook',historyYear:2025,playoffYear:2025,draftYear:2026,draftFranchise:'all',draftRound:'all',draftPosition:'all',draftQuery:'',selected:3,expandedStanding:null,division:'All',sort:'luck',weekRange:'latest',quadrant:'all'};
+let state={tab:'overview',teamView:'card',historyView:'yearbook',historyYear:2025,playoffYear:2025,draftYear:2026,draftFranchise:'all',draftRound:'all',draftPosition:'all',draftTag:'all',draftQuery:'',selected:3,expandedStanding:null,division:'All',sort:'luck',weekRange:'latest',quadrant:'all'};
  let sourceFallback=false;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=(n,k=2)=>Number(n).toLocaleString('en-US',{minimumFractionDigits:k,maximumFractionDigits:k});
