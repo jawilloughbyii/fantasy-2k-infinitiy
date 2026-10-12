@@ -5,6 +5,7 @@ on:
     branches: [research/verify-playoffs-2021-2025]
     paths:
       - 'scripts/discover_playoff_history.py'
+      - 'scripts/validate_playoff_history.py'
       - '.github/workflows/discover-playoff-history.yml'
   workflow_dispatch:
 
