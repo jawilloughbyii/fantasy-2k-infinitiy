@@ -30,7 +30,8 @@ const historyEmbedded={
  league_id:championshipHistory.league_id,
  season_to_franchise:continuity.season_to_franchise,
  dashboard_to_espn:espnMapping.baseline_to_espn,
- champions:championshipHistory.champions
+ champions:championshipHistory.champions,
+ legacy_champions:championshipHistory.legacy_champions
 };
 assert.deepStrictEqual(embedded('championships'),historyEmbedded,'Embedded champion metadata must match the verified reference files');
 assert.deepStrictEqual(embedded('historicalscores'),historicalScores,'Embedded historical scores must come from the sanctioned reference file');
@@ -101,6 +102,14 @@ assert.notEqual(instrumented,script[1],'Champion renderer test hook could not be
 const sandbox={document:doc,window:{scrollTo(){}},fetch,console};
 vm.runInNewContext(instrumented,sandbox,{timeout:5000});
 const names=sandbox.__championshipTest;
+assert.deepStrictEqual(championshipHistory.legacy_champions.map(x=>[x.season,x.espn_team_id,x.source_league_id]),[[2014,8,791996],[2016,9,791996],[2017,3,791996]]);
+for(const [year,tid,alias] of [[2014,8,"Sleazy Veasey's Teenie Peenie"],[2016,9,"Jaqiuzz so much I Philip Rivers"],[2017,3,"The Bear Jew"]]){
+ assert.ok(names.teamName({espn_team_id:tid,name:alias},year).includes('League champion: '+year),'Old-era winning alias gets trophy only in the winning season');
+ assert.ok(!names.teamName({espn_team_id:tid,name:alias},2015).includes('champion-trophy'),'Old-era team IDs do not inherit trophies in disputed 2015');
+}
+assert.ok(!names.teamName({espn_team_id:2,name:'The General\'s "Dorm Room"'},2015).includes('champion-trophy'),'Disputed 2015 ESPN final must not receive trophy');
+assert.ok(!names.teamName({espn_team_id:8,name:'Cuckleberry Finn'},2017).includes('champion-trophy'),'Runner-up must not receive trophy');
+assert.ok(!names.teamName({id:8,name:'Current team'},2026).includes('2014'),'Old ESPN team ID must not become a current-season trophy');
 assert.ok(names.teamName({espn_team_id:3,name:'Lord Farquaad'},2021).includes('League champion: 2021'),'2021 winner has the season trophy');
 assert.ok(names.teamName({espn_team_id:5,name:'Quatro Padres'},2022).includes('League champion: 2022'),'2022 winner has the season trophy');
 assert.ok(names.teamName({id:7,name:'Project Haily Mary'},2026).includes('2021, 2023'),'Current 2026 franchise owns both 2021 and 2023 titles');
@@ -255,7 +264,9 @@ async function main(){
  assert.ok(view.includes('The Load Warriors')&&view.includes('League champion: 2023'),'Historical champion alias receives trophy');
  view=sub('history','titles');
  assert.ok(view.includes('Championship Archive'));
- assert.ok(view.includes('Five ESPN-verified champions')&&!view.includes('Titles were reconstructed from ESPN postseason matchup progression'),'Verified title coverage without verbose footer');
+ assert.ok(view.includes('2014 champion')&&view.includes('2016 champion')&&view.includes('2017 champion'),'Unified archive lists all three old-era title winners');
+ assert.ok(view.includes('League champion: 2014')&&view.includes('League champion: 2016')&&view.includes('League champion: 2017'),'All old-era winner cards use trophy markers');
+ assert.ok(view.includes('Eight verified championships across recovered years')&&!view.includes('Titles were reconstructed from ESPN postseason matchup progression'),'Verified title coverage without verbose footer');
  for(const [name,year] of [['Lord Farquaad',2021],['Quatro Padres',2022],['The Load Warriors',2023],['Mike Oxlong',2024],["General&#39;s Dorm Room",2025]]){
   assert.ok(view.includes(name)&&view.includes(year+' champion'),'Every verified title preserved');
  }
