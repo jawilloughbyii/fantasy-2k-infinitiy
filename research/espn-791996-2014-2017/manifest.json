@@ -4,7 +4,7 @@
   "identity": "user_confirmed",
   "scope": "2014-2017 only",
   "status": "ISOLATED_RESEARCH_NO_PRODUCTION_IMPORT",
-  "created_at_utc": "2026-10-12T22:22:58.858354+00:00",
+  "created_at_utc": "2026-10-12T22:23:25.214265+00:00",
   "seasons": [
     {
       "season": 2014,
@@ -12,8 +12,8 @@
       "team_weeks": 140,
       "postseason_games": 10,
       "postseason_status": "validated_bracket_path",
-      "draft_status": "invalid_player_id",
-      "draft_picks": 0,
+      "draft_status": "retrieved_original_espn_picks",
+      "draft_picks": 170,
       "regular_season_pf_total": 17284.0
     },
     {
@@ -22,8 +22,8 @@
       "team_weeks": 140,
       "postseason_games": 10,
       "postseason_status": "source_final_record_only_advancement_unresolved",
-      "draft_status": "invalid_player_id",
-      "draft_picks": 0,
+      "draft_status": "retrieved_original_espn_picks",
+      "draft_picks": 170,
       "regular_season_pf_total": 17881.52
     },
     {
@@ -32,8 +32,8 @@
       "team_weeks": 140,
       "postseason_games": 10,
       "postseason_status": "validated_bracket_path",
-      "draft_status": "invalid_player_id",
-      "draft_picks": 0,
+      "draft_status": "retrieved_original_espn_picks",
+      "draft_picks": 170,
       "regular_season_pf_total": 17839.8
     },
     {
@@ -42,8 +42,8 @@
       "team_weeks": 140,
       "postseason_games": 10,
       "postseason_status": "validated_bracket_path",
-      "draft_status": "invalid_player_id",
-      "draft_picks": 0,
+      "draft_status": "retrieved_original_espn_picks",
+      "draft_picks": 170,
       "regular_season_pf_total": 17409.82
     }
   ],
