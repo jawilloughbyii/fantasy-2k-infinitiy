@@ -777,6 +777,11 @@ function verifiedProjectionCard(t){
 }
 // Historical DNA uses complete past regular seasons and verified permanent franchise IDs.
 // It never treats the current incomplete season or a renamed team as historical evidence.
+function draftIdentity(t){
+ const d=DRAFT_DNA_BY_FRANCHISE[franchiseFor(t)];if(!d)return '';
+ const weights=d.recent_year_weights.map(x=>x.year+' '+fmt(x.weight*100,0)+'%').join(' · ');
+ return `<section class='draft-dna-brief' aria-label='Historical draft identity'><div class='draft-dna-title'><span>HISTORICAL DRAFT IDENTITY</span><strong>${esc(d.profile)}</strong><small>${d.completed_seasons.length} completed drafts · ${esc(weights)}</small></div><div class='draft-dna-stats'><div><strong>${fmt(d.draft_value_index,1)}</strong><span>Efficiency · 100 baseline</span></div><div><strong>${fmt(d.steal_rate*100,1)}%</strong><span>Skill-position steal rate</span></div><div><strong>${fmt(d.early_hit_rate*100,1)}%</strong><span>Early-round hit rate</span></div></div><details><summary>Draft DNA methodology</summary><p>Season-relative production above positional replacement is compared with held-out drafts of comparable position and cost. Premium picks carry more weight; K/DST have half weight and punters are era-only. Tags describe realized value, not injury causes or roster-management skill. 2026 is excluded until completed.</p></details></section>`;
+}
 function historicalFranchiseDNA(t){
  const franchise=franchiseFor(t),cfg=METRICS.historicalDna;
  const all=HISTORICAL_SCORES.seasons.filter(s=>s.year<METRICS.season).sort((a,b)=>b.year-a.year).flatMap(season=>{
