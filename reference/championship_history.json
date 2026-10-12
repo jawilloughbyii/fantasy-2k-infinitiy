@@ -1,33 +1,52 @@
 {
   "league_id": 418244680,
-  "scope": "Confirmed reconstructed championship winners from 2023-2025; franchise continuity rather than team display names controls trophy display.",
+  "scope": "Five ESPN-verified 2021–2025 champions (Week 17 WINNERS_BRACKET finals, validated semifinal advancement). Trophies follow stable franchise identity across team names and ESPN league migrations.",
   "champions": [
+    {
+      "season": 2021,
+      "espn_team_id": 3,
+      "franchise_id": "franchise-07",
+      "team_name_at_win": "Lord Farquaad",
+      "status": "confirmed",
+      "source_league_id": 1493036707
+    },
+    {
+      "season": 2022,
+      "espn_team_id": 5,
+      "franchise_id": "franchise-03",
+      "team_name_at_win": "Quatro Padres",
+      "status": "confirmed",
+      "source_league_id": 1493036707
+    },
     {
       "season": 2023,
       "espn_team_id": 7,
       "franchise_id": "franchise-07",
       "team_name_at_win": "The Load Warriors",
-      "status": "confirmed"
+      "status": "confirmed",
+      "source_league_id": 418244680
     },
     {
       "season": 2024,
       "espn_team_id": 10,
       "franchise_id": "franchise-10",
       "team_name_at_win": "Mike Oxlong",
-      "status": "confirmed"
+      "status": "confirmed",
+      "source_league_id": 418244680
     },
     {
       "season": 2025,
       "espn_team_id": 1,
       "franchise_id": "franchise-01",
       "team_name_at_win": "General's Dorm Room",
-      "status": "confirmed"
+      "status": "confirmed",
+      "source_league_id": 418244680
     }
   ],
   "rules": {
     "marker": "One trophy for a verified title-winning franchise, displaying years and a title count when needed.",
-    "historical_aliases": "Resolve an historical team by (season, ESPN ID), never by display name.",
-    "unknown_titles": "No trophy for unverified claimed titles; Quattro Padres has no confirmed title in these records.",
+    "historical_aliases": "Resolve by (season, ESPN source league ID, ESPN team ID), then anonymous permanent franchise ID.",
+    "unknown_titles": "No trophy for unverified seasons or placement games; historic aliases show trophies only for the season they won.",
     "owner_privacy": "Store no owner or manager identifiers."
   }
 }

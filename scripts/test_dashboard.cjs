@@ -13,6 +13,7 @@ const continuity=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/franchise_
 const espnMapping=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/team_id_map.json'),'utf8'));
 const championshipHistory=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/championship_history.json'),'utf8'));
 const historicalScores=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_regular_season_scores.json'),'utf8'));
+const playoffHistory=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_playoff_brackets.json'),'utf8'));
 function embedded(id){
  const begin='<script id="'+id+'" type="application/json">';
  const a=html.indexOf(begin),b=html.indexOf('</script>',a+begin.length);
@@ -29,9 +30,10 @@ const historyEmbedded={
 };
 assert.deepStrictEqual(embedded('championships'),historyEmbedded,'Embedded champion metadata must match the verified reference files');
 assert.deepStrictEqual(embedded('historicalscores'),historicalScores,'Embedded historical scores must come from the sanctioned reference file');
+assert.deepStrictEqual(embedded('historicalplayoffs'),playoffHistory,'Embedded playoffs must match the validated bracket reference');
 assert.equal(historicalScores.seasons.reduce((n,s)=>n+s.teams.reduce((n,t)=>n+t.scores.length,0),0),700);
 assert.deepStrictEqual(championshipHistory.champions.map(x=>[x.season,x.espn_team_id,x.franchise_id]),[
- [2023,7,'franchise-07'],[2024,10,'franchise-10'],[2025,1,'franchise-01']
+ [2021,3,'franchise-07'],[2022,5,'franchise-03'],[2023,7,'franchise-07'],[2024,10,'franchise-10'],[2025,1,'franchise-01']
 ]);
 assert.equal(data.teams.length,10);
 assert.equal(data.completedThrough,4);
@@ -76,7 +78,7 @@ function node(id){
  return elements.get(id);
 }
 const doc={
- getElementById(id){const el=node(id);if(id==='fantasydata')el.textContent=JSON.stringify(data);if(id==='metricdefs')el.textContent=JSON.stringify(definitions);if(id==='championships')el.textContent=JSON.stringify(historyEmbedded);if(id==='historicalscores')el.textContent=JSON.stringify(historicalScores);return el;},querySelectorAll:()=>[],
+ getElementById(id){const el=node(id);if(id==='fantasydata')el.textContent=JSON.stringify(data);if(id==='metricdefs')el.textContent=JSON.stringify(definitions);if(id==='championships')el.textContent=JSON.stringify(historyEmbedded);if(id==='historicalscores')el.textContent=JSON.stringify(historicalScores);if(id==='historicalplayoffs')el.textContent=JSON.stringify(playoffHistory);return el;},querySelectorAll:()=>[],
  addEventListener(name,handler){events[name]=handler}
 };
 const fetch=async()=>({ok:true,json:async()=>data});
@@ -87,6 +89,10 @@ assert.notEqual(instrumented,script[1],'Champion renderer test hook could not be
 const sandbox={document:doc,window:{scrollTo(){}},fetch,console};
 vm.runInNewContext(instrumented,sandbox,{timeout:5000});
 const names=sandbox.__championshipTest;
+assert.ok(names.teamName({espn_team_id:3,name:'Lord Farquaad'},2021).includes('League champion: 2021'),'2021 winner has the season trophy');
+assert.ok(names.teamName({espn_team_id:5,name:'Quatro Padres'},2022).includes('League champion: 2022'),'2022 winner has the season trophy');
+assert.ok(names.teamName({id:7,name:'Project Haily Mary'},2026).includes('2021, 2023'),'Current 2026 franchise owns both 2021 and 2023 titles');
+assert.ok(names.teamName({id:5,name:'Quattro Padres'},2026).includes('League champion: 2022'),'Current Padres retain verified 2022 title');
 assert.ok(names.teamName({espn_team_id:7,name:'The Load Warriors'},2023).includes('League champion: 2023'),'Historic 2023 winning alias gets trophy');
 assert.ok(names.teamName({espn_team_id:10,name:'Mike Oxlong'},2024).includes('League champion: 2024'),'Historic 2024 winning alias gets trophy');
 assert.ok(names.teamName({espn_team_id:1,name:"General's Dorm Room"},2025).includes('League champion: 2025'),'Historic 2025 winning alias gets trophy');
@@ -135,12 +141,12 @@ async function main(){
  assert.ok(!view.includes('selhero refinedhero')&&!view.includes('roster-action'),'Remove duplicate selected-team hero/roster from Overview');
  assert.ok(!view.includes('overview-kpis'),'Remove redundant overview KPI group');
  assert.ok(!view.includes('Avg extra wins'),'Do not create a meaningless zero-sum headline');
- for(const [name,year] of [['The Domestic House Cats','2024'],['Project Haily Mary','2023'],["General&#39;s Dorm Room",'2025']]){
+ for(const [name,year] of [['The Domestic House Cats','2024'],['Project Haily Mary','2021, 2023'],["General&#39;s Dorm Room",'2025']]){
   assert.ok(view.includes(name+'<span class="champion-trophy"'),'Standings must mark '+name);
   assert.ok(view.includes('League champion: '+year),'Championship year available '+year);
  }
- assert.ok(!view.includes('Quattro Padres<span class="champion-trophy"'),'No unverified champion badges');
- assert.equal((node('teamSelect').innerHTML.match(/🏆/g)||[]).length,3,'Global team selector retains trophies');
+ assert.ok(view.includes('Quattro Padres<span class="champion-trophy"'),'Verified 2022 champion must receive current trophy');
+ assert.equal((node('teamSelect').innerHTML.match(/🏆/g)||[]).length,4,'Global team selector displays all four title-owning franchises');
  click('[data-expand-standing]',{expandStanding:'6'});
  view=node('view').innerHTML;
  assert.ok(view.includes('standing-detail-6')&&view.includes('View The Domestic House Cats'),'Mobile expansion retained');
@@ -185,7 +191,7 @@ async function main(){
  assert.ok(view.indexOf('The Scoring Personality Map')>identityEnd,'Scoring map follows concise identity card');
  assert.ok(!view.includes("class='card histdna'"),'No redundant standalone historical card');
 
- assert.equal((view.match(/<tspan dx="3" font-size="11">🏆<\/tspan>/g)||[]).length,3,'Map retains champion markers');
+ assert.equal((view.match(/<tspan dx="3" font-size="11">🏆<\/tspan>/g)||[]).length,4,'Map marks all four title-owning franchises');
  assert.ok(view.includes('Historical metrics & season-by-season details'),'Historical methods progressively disclosed');
  assert.ok(view.includes('Dashed splits:')&&view.includes('% CV.'),'Keep actual scoring-map split legend');
  assert.ok(!view.includes('Labels may use leader lines'),'Remove redundant visual mechanics from map footer');
@@ -215,21 +221,30 @@ async function main(){
  view=node('view').innerHTML;
  assert.ok(view.includes('2022 Yearbook')&&view.includes('Puss in Boots'),'Archived 2022 historical names and yearbook are available');
  assert.ok(view.includes('one starting punter (P)')&&view.includes('Lineup Quality is not available'),'Punter-era scoring is disclosed without unsupported lineup quality');
- assert.ok(view.includes('Not verified')&&!view.includes('League champion:'),'No unverified 2022 champion nor future trophy');
+ assert.ok(view.includes('Quatro Padres')&&view.includes('League champion: 2022'),'2022 Yearbook confirms Quatro Padres championship');
  events.change({target:{id:'historyYear',value:'2021'}});
  view=node('view').innerHTML;
  assert.ok(view.includes('2021 Yearbook')&&view.includes('Fully Staffed Young Hoes'),'Archived 2021 historical teams are available');
- assert.ok(!view.includes('League champion:'),'No unverified 2021 championships');
+ assert.ok(view.includes('Lord Farquaad')&&view.includes('League champion: 2021'),'2021 Yearbook confirms Lord Farquaad championship');
  events.change({target:{id:'historyYear',value:'2023'}});
  view=node('view').innerHTML;
  assert.ok(view.includes('The Load Warriors')&&view.includes('League champion: 2023'),'Historical champion alias receives trophy');
  view=sub('history','titles');
  assert.ok(view.includes('Championship Archive'));
- assert.ok(view.includes('Verified championships only.')&&!view.includes('Titles were reconstructed from ESPN postseason matchup progression'),'Keep short title qualification without repetitive archive footer');
- for(const [name,year] of [['The Load Warriors',2023],['Mike Oxlong',2024],["General&#39;s Dorm Room",2025]]){
+ assert.ok(view.includes('Five ESPN-verified champions')&&!view.includes('Titles were reconstructed from ESPN postseason matchup progression'),'Verified title coverage without verbose footer');
+ for(const [name,year] of [['Lord Farquaad',2021],['Quatro Padres',2022],['The Load Warriors',2023],['Mike Oxlong',2024],["General&#39;s Dorm Room",2025]]){
   assert.ok(view.includes(name)&&view.includes(year+' champion'),'Every verified title preserved');
  }
- assert.ok(!view.includes('Quattro Padres'),'No invented historical championship');
+ assert.ok(view.includes('Quattro Padres'),'The current Padres franchise is identified for its historical title');
+ assert.ok(view.includes('2025 Playoff bracket')&&view.includes('Comepig')&&view.includes('seed 7'),'2025 bracket and seeding caveat appear');
+ events.change({target:{id:'playoffYear',value:'2022'}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('2022 Playoff bracket')&&view.includes('123.43')&&view.includes('109.77'),'2022 championship final is shown');
+ assert.ok(view.includes('TimmyT&#39;s Golden Ponies')&&view.includes('Quatro Padres'),'Historic finalists use their season names');
+ assert.equal((view.match(/class="playoff-match"/g)||[]).length,7,'All verified winner-bracket matches and first-round byes appear');
+ events.change({target:{id:'playoffYear',value:'2021'}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('2021 Playoff bracket')&&view.includes('Lord Farquaad')&&view.includes('Watertown Teapots'),'2021 final is available by changing the year');
  view=sub('history','legacy');
  assert.ok(view.includes('Franchise Legacy'));
  assert.ok(view.includes('Got Rice?')&&view.includes('2025')&&view.includes('2024')&&view.includes('2022')&&view.includes('2021'),'Returning franchise recovers old-league years');

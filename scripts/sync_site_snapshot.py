@@ -13,9 +13,11 @@ IDENTITIES=ROOT/'reference'/'franchise_continuity.json'
 TEAM_IDS=ROOT/'reference'/'team_id_map.json'
 CHAMPIONS=ROOT/'reference'/'championship_history.json'
 HISTORICAL_SCORES=ROOT/'reference'/'historical_regular_season_scores.json'
+PLAYOFF_BRACKETS=ROOT/'reference'/'historical_playoff_brackets.json'
 METRIC_PATTERN=re.compile(r'(<script id="metricdefs" type="application/json">)(.*?)(</script>)',re.S)
 CHAMP_PATTERN=re.compile(r'(<script id="championships" type="application/json">)(.*?)(</script>)',re.S)
 HIST_PATTERN=re.compile(r'(<script id="historicalscores" type="application/json">)(.*?)(</script>)',re.S)
+PLAYOFF_PATTERN=re.compile(r'(<script id="historicalplayoffs" type="application/json">)(.*?)(</script>)',re.S)
 
 PATTERN=re.compile(r'(<script id="fantasydata" type="application/json">)(.*?)(</script>)',re.S)
 
@@ -72,7 +74,16 @@ def sync(html,data):
     source=json.loads(HISTORICAL_SCORES.read_text(encoding='utf8'))
     if source.get('league_id')!=data.get('leagueId',418244680):
         raise ValueError('Historical scoring league mismatch')
-    return updated[:historical.start(2)]+safe_json(source)+updated[historical.end(2):]
+    updated=updated[:historical.start(2)]+safe_json(source)+updated[historical.end(2):]
+    playoff=PLAYOFF_PATTERN.search(updated)
+    if not playoff:raise ValueError('Missing historical playoff data block in HTML')
+    brackets=json.loads(PLAYOFF_BRACKETS.read_text(encoding='utf8'))
+    if set(brackets['seasons'])!={str(s['year']) for s in source['seasons']}:
+        raise ValueError('Historical playoff seasons do not match approved scoring seasons')
+    champions=json.loads(CHAMPIONS.read_text(encoding='utf8'))['champions']
+    if {int(x['season']) for x in champions}!={int(y) for y in brackets['seasons']}:
+        raise ValueError('Championship history coverage differs from verified playoff brackets')
+    return updated[:playoff.start(2)]+safe_json(brackets)+updated[playoff.end(2):]
 
 def main():
     a=argparse.ArgumentParser();a.add_argument('--html',default='index.html');a.add_argument('--data',required=True);a.add_argument('--output',required=True);args=a.parse_args()
