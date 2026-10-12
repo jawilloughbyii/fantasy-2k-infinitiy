@@ -214,7 +214,7 @@ async function main(){
  assert.ok(view.indexOf('The Scoring Personality Map')>identityEnd,'Scoring map follows concise identity card');
  assert.ok(!view.includes("class='card histdna'"),'No redundant standalone historical card');
 
- assert.equal((view.match(/<tspan dx="3" font-size="11">🏆<\/tspan>/g)||[]).length,4,'Map marks all four title-owning franchises');
+ assert.equal((view.match(/<tspan dx="3" font-size="11">🏆<\/tspan>/g)||[]).length,7,'Map marks seven title-owning franchises');
  assert.ok(view.includes('Historical metrics & season-by-season details'),'Historical methods progressively disclosed');
  assert.ok(view.includes('Dashed splits:')&&view.includes('% CV.'),'Keep actual scoring-map split legend');
  assert.ok(!view.includes('Labels may use leader lines'),'Remove redundant visual mechanics from map footer');
