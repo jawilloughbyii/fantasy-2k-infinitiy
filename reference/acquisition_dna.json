@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "status": "awaiting_verified_starter_acquisition_provenance",
+  "source": "No source attribution has been published; future backfill must verify original-season ESPN draft, transaction chain and each finalized starter's stable ESPN player ID before activation.",
+  "completed_historical_years": [],
+  "current_year": 2026,
+  "season_summaries": [],
+  "coverage": {
+    "verified_source_starter_weeks": 0,
+    "verified_source_seasons": 0,
+    "current_2026_provenance": "pending",
+    "historical_provenance": "pending"
+  },
+  "privacy": "Only player/slot fantasy metadata and anonymous franchise IDs may be published; never ESPN owners/members/cookies.",
+  "activation_rule": "Only complete original-year ESPN starter weeks with exact season-specific roster counts, verified acquisition chains, and original-year quality where yield is offered. Do not infer source from draft-only lists or current rosters."
+}
