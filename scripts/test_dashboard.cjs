@@ -284,6 +284,13 @@ async function main(){
  events.change({target:{id:'playoffYear',value:'2021'}});
  view=node('view').innerHTML;
  assert.ok(view.includes('2021 Playoff bracket')&&view.includes('Lord Farquaad')&&view.includes('Watertown Teapots'),'2021 final is available by changing the year');
+ events.change({target:{id:'playoffYear',value:'2015'}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('2015 ESPN winners bracket')&&view.includes('2015 champion'),'2015 title appears once in original-era archive');
+ assert.ok(view.includes('173.62')&&view.includes('88.20')&&view.includes('Pokerwithmy Fleener'),'Both original ESPN final scores and finalists are displayed');
+ assert.ok(view.includes('recorded Week 16 final')&&view.includes('semifinal winner field disagrees'),'2015 title authority and original semifinal discrepancy are disclosed');
+ assert.ok(!view.includes('Championship remains unverified.')&&!view.includes('2015 ESPN final*'),'No outdated 2015 provisional-title UI persists');
+ assert.equal((view.match(/2015 champion/g)||[]).length,1,'2015 awarded title is not duplicated in the unified archive');
  view=sub('history','draft');
  assert.ok(view.includes('id="draftTag"'),'Draft outcome selector is rendered');
  assert.ok(view.includes('Draft History · 2014–2026')&&view.includes('Jahmyr Gibbs'),'Current draft is selectable');
