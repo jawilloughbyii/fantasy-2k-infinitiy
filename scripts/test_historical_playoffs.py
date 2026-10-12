@@ -71,6 +71,24 @@ class VerifiedPlayoffs(unittest.TestCase):
                 else:
                     self.assertEqual(season["seed_exception_ids"], [])
 
+    def test_legacy_season_trophies_do_not_infer_manager_identity(self):
+        expected={2014:8,2016:9,2017:3}
+        records=C['legacy_champions']
+        self.assertEqual({x['season']:x['espn_team_id'] for x in records},expected)
+        for c in records:
+            season=next(s for s in H['seasons'] if s['year']==c['season'])
+            final=season['postseason']
+            self.assertEqual((c['source_league_id'],season['league_id']),(791996,791996))
+            self.assertEqual((c['status'],c['bracket_status']),('confirmed_legacy_season','validated_bracket_path'))
+            self.assertIsNone(c['franchise_id'])
+            self.assertTrue(final['bracket_validated'])
+            self.assertEqual((c['espn_team_id'],c['team_name_at_win']),
+                             (final['winner_espn_team_id'],final['winner_team_name']))
+            self.assertNotIn(str(c['season']),F['season_to_franchise'])
+        self.assertFalse(next(s for s in H['seasons'] if s['year']==2015)['postseason']['bracket_validated'])
+        self.assertNotIn(2015,expected)
+        self.assertEqual([x['season'] for x in C['champions']],[2021,2022,2023,2024,2025])
+
     def test_manager_gap_and_multiple_trophies(self):
         legacy = F["season_to_franchise"]
         self.assertEqual(legacy["2021"]["3"], legacy["2023"]["7"])
