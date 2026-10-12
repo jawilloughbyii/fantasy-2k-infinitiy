@@ -1,0 +1,71 @@
+name: Archive 2014-17 ESPN league 791996 research only
+
+on:
+  push:
+    branches: [research/probe-espn-791996]
+    paths:
+      - 'scripts/archive_espn_791996.py'
+      - '.github/workflows/archive-espn-791996.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/probe-espn-791996
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate syntax
+        run: python -m py_compile scripts/inspect_espn_791996.py scripts/archive_espn_791996.py
+      - name: Retrieve and reconcile isolated historical records
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/archive_espn_791996.py
+      - name: Confirm only whitelisted sanitized records enter research directory
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('research/espn-791996-2014-2017')
+          files=sorted(p.glob('*.json'))
+          assert len(files)==5 and {x.name for x in files}=={'manifest.json',*[f'season_{y}.json' for y in range(2014,2018)]}
+          for f in files:
+              d=json.loads(f.read_text())
+              assert d.get('status',d.get('publication')) in ('ISOLATED_RESEARCH_NO_PRODUCTION_IMPORT','ISOLATED_RESEARCH_NOT_IMPORTED')
+              forbidden={'owner','owners','members','member','email','cookies','cookie','espn_s2','espn_swid','swid','session'}
+              def scan(x):
+                  if isinstance(x,dict):
+                      assert not set(map(str.lower,x)).intersection(forbidden),(f,'unsafe field')
+                      for v in x.values():scan(v)
+                  elif isinstance(x,list):
+                      for v in x:scan(v)
+              scan(d)
+          print('PASS: all five research-only snapshots schema-sanitized')
+          PY
+      - name: Preserve sanitized archive on research branch only
+        run: |
+          test "$(git branch --show-current)" = "research/probe-espn-791996"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/espn-791996-2014-2017/
+          if ! git diff --cached --quiet; then
+            git commit -m "Preserve sanitized 2014-2017 league 791996 research archive"
+            git push origin HEAD:research/probe-espn-791996
+          fi
+      - name: Upload private research copy
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: espn-791996-2014-2017-research
+          path: research/espn-791996-2014-2017/*.json
+          if-no-files-found: warn
+          retention-days: 7
