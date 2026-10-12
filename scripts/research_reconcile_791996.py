@@ -190,6 +190,16 @@ def main():
     for y,rows in seasons.items():
         counts=collections.Counter(r["evidence"] for r in rows)
         print(f"{y}: {dict(counts)}; conflicting={sum(r['unresolved_source_conflict'] for r in rows)}")
+    # Only team display names and already-public anonymous franchise keys appear in logs.
+    for y,rows in seasons.items():
+        print(f"RECONCILIATION {y} (candidates only; not approved):")
+        for item in rows:
+            print(json.dumps({"slot":item["espn_team_id"],
+              "team":item["historical_team"],
+              "candidate":item["candidate_modern_franchise_id"],
+              "channel":item["source_channels"],
+              "within_era":item["within_2014_2017_evidence"],
+              "conflict":item["unresolved_source_conflict"]},ensure_ascii=False))
     print("Only a sanitized, unapproved research report was written; no raw ESPN member identifiers.")
 
 if __name__=="__main__":
