@@ -98,7 +98,17 @@ def sync(html,data):
         raise ValueError('Unvalidated historic draft data')
     if {str(s['year']):s['league_id'] for s in drafts['seasons']}!=identity_leagues():
         raise ValueError('Draft season ESPN league IDs do not match owner mapping')
-    return updated[:draft.start(2)]+safe_json(drafts)+updated[draft.end(2):]
+    updated=updated[:draft.start(2)]+safe_json(drafts)+updated[draft.end(2):]
+    grade_match=GRADE_PATTERN.search(updated)
+    if not grade_match:raise ValueError('Missing historical draft grade block')
+    grade_data=json.loads(HISTORICAL_DRAFT_GRADES.read_text(encoding='utf8'))
+    if grade_data.get('status')!='retrospective_verified_model_v1':
+        raise ValueError('Unverified draft grading data')
+    if [s['year'] for s in grade_data['seasons']]!=[s['year'] for s in drafts['seasons'][:5]]:
+        raise ValueError('Draft grade year mismatch')
+    if grade_data.get('coverage',{}).get('pick_count')!=820:
+        raise ValueError('Incomplete draft grade coverage')
+    return updated[:grade_match.start(2)]+safe_json(grade_data)+updated[grade_match.end(2):]
 
 def main():
     a=argparse.ArgumentParser();a.add_argument('--html',default='index.html');a.add_argument('--data',required=True);a.add_argument('--output',required=True);args=a.parse_args()
