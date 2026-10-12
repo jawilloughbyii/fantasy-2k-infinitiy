@@ -29,7 +29,7 @@ const historyEmbedded={
 };
 assert.deepStrictEqual(embedded('championships'),historyEmbedded,'Embedded champion metadata must match the verified reference files');
 assert.deepStrictEqual(embedded('historicalscores'),historicalScores,'Embedded historical scores must come from the sanctioned reference file');
-assert.equal(historicalScores.seasons.reduce((n,s)=>n+s.teams.reduce((n,t)=>n+t.scores.length,0),0),420);
+assert.equal(historicalScores.seasons.reduce((n,s)=>n+s.teams.reduce((n,t)=>n+t.scores.length,0),0),700);
 assert.deepStrictEqual(championshipHistory.champions.map(x=>[x.season,x.espn_team_id,x.franchise_id]),[
  [2023,7,'franchise-07'],[2024,10,'franchise-10'],[2025,1,'franchise-01']
 ]);
@@ -92,7 +92,7 @@ assert.ok(names.teamName({espn_team_id:10,name:'Mike Oxlong'},2024).includes('Le
 assert.ok(names.teamName({espn_team_id:1,name:"General's Dorm Room"},2025).includes('League champion: 2025'),'Historic 2025 winning alias gets trophy');
 assert.ok(!names.teamName({espn_team_id:6,name:'Team Figueroa'},2023).includes('champion-trophy'),'Legacy slot 6 never inherits current franchise record');
 assert.ok(!names.teamName({espn_team_id:3,name:'Quattro Padres'},2025).includes('champion-trophy'),'No unverified Quattro title');
-assert.ok(!names.teamName({espn_team_id:7,name:'The Load Warriors'},2022).includes('champion-trophy'),'Unmapped years must never inherit a title');
+assert.ok(!names.teamName({espn_team_id:7,name:'The Load Warriors'},2022).includes('champion-trophy'),'Older historical years must never inherit titles from future seasons');
 async function main(){
  for(let i=0;i<8;i++)await Promise.resolve();
  let view=node('view').innerHTML;
@@ -171,7 +171,7 @@ async function main(){
  const identity=view.slice(identityStart,identityEnd);
  const collapsed=identity.split('<details class="deep-dive identity-details">')[0];
  assert.equal((collapsed.match(/class="identity-era"/g)||[]).length,2,'Exactly two compact identity columns');
- assert.ok(collapsed.includes('CURRENTLY · 2026')&&collapsed.includes('HISTORICALLY · 2023–2025'),'Current versus history is immediately visible');
+ assert.ok(collapsed.includes('CURRENTLY · 2026')&&collapsed.includes('HISTORICALLY · 2023, 2024, 2025'),'Current versus history is immediately visible');
  assert.ok(collapsed.includes('Volatile underdogs')&&collapsed.includes('Steady, lower-output'),'Initial franchise has distinct current versus historical classifications');
  assert.ok(collapsed.includes('PF/wk')&&collapsed.includes('23.7% CV'),'Concise current scoring details are visible');
  assert.ok(collapsed.includes('Differs from its recency-weighted franchise tendency.'),'Comparison is readable without expanding');
@@ -196,7 +196,7 @@ async function main(){
  assert.ok(view.includes('+8.5%')&&view.includes('15.1%'),'GDR historical scoring and volatility retained');
  node('teamSelect').listeners.change({target:{value:'10'}});
  view=node('view').innerHTML;
- assert.ok(view.includes('2025 62.5% · 2024 37.5%')&&!view.includes('Team Figueroa'),'Current franchise excludes legacy 2023 ownership');
+ assert.ok(view.includes('2025 50.0% · 2024 30.0% · 2022 20.0%')&&!view.includes('Team Figueroa'),'Returning franchise uses its own 2022 results but excludes the 2023 owner');
  view=sub('team','lineup');
  assert.ok(view.includes('lineup-quality')&&view.includes('Roster ceiling')&&view.includes('Weekly lineup quality'),'Deep lineup analysis kept');
  assert.ok(view.includes('Bench upgrades:')&&view.includes('Weekly opponent scores'),'Original lineup/box-score evidence stays available');
@@ -211,6 +211,17 @@ async function main(){
  events.change({target:{id:'historyYear',value:'2023'}});
  view=node('view').innerHTML;
  assert.ok(view.includes('2023 Yearbook')&&view.includes('Team Figueroa'),'Legacy franchise remains in league yearbook');
+ events.change({target:{id:'historyYear',value:'2022'}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('2022 Yearbook')&&view.includes('Puss in Boots'),'Archived 2022 historical names and yearbook are available');
+ assert.ok(view.includes('one starting punter (P)')&&view.includes('Lineup Quality is not available'),'Punter-era scoring is disclosed without unsupported lineup quality');
+ assert.ok(view.includes('Not verified')&&!view.includes('League champion:'),'No unverified 2022 champion nor future trophy');
+ events.change({target:{id:'historyYear',value:'2021'}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('2021 Yearbook')&&view.includes('Fully Staffed Young Hoes'),'Archived 2021 historical teams are available');
+ assert.ok(!view.includes('League champion:'),'No unverified 2021 championships');
+ events.change({target:{id:'historyYear',value:'2023'}});
+ view=node('view').innerHTML;
  assert.ok(view.includes('The Load Warriors')&&view.includes('League champion: 2023'),'Historical champion alias receives trophy');
  view=sub('history','titles');
  assert.ok(view.includes('Championship Archive'));
@@ -221,7 +232,9 @@ async function main(){
  assert.ok(!view.includes('Quattro Padres'),'No invented historical championship');
  view=sub('history','legacy');
  assert.ok(view.includes('Franchise Legacy'));
- assert.ok(view.includes('Got Rice?')&&view.includes('2025')&&view.includes('2024'),'Current slot-6 franchise retains two known seasons');
+ assert.ok(view.includes('Got Rice?')&&view.includes('2025')&&view.includes('2024')&&view.includes('2022')&&view.includes('2021'),'Returning franchise recovers old-league years');
+ assert.ok(view.includes('Fully Staffed Young Hoes')&&view.includes('Let&#39;s Go Brandin'),'Historic aliases belong to current team owner');
+ assert.ok(!view.includes('2023</td><td class="tiny">'),'Absent owner must have a gap in 2023');
  assert.ok(!view.includes('Team Figueroa'),'2023 owner cannot inherit legacy history');
  assert.ok(view.includes('2023 ESPN slot 6 belongs to a different franchise and is excluded here.'),'Affected franchise retains identity continuity caveat');
  click('[data-tab]',{tab:'overview'});
