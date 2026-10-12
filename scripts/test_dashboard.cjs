@@ -15,6 +15,8 @@ const championshipHistory=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/c
 const historicalScores=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_regular_season_scores.json'),'utf8'));
 const playoffHistory=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_playoff_brackets.json'),'utf8'));
 const draftHistory=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_draft_picks.json'),'utf8'));
+const gradedDrafts=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_draft_grades.json'),'utf8'));
+
 function embedded(id){
  const begin='<script id="'+id+'" type="application/json">';
  const a=html.indexOf(begin),b=html.indexOf('</script>',a+begin.length);
@@ -33,6 +35,9 @@ assert.deepStrictEqual(embedded('championships'),historyEmbedded,'Embedded champ
 assert.deepStrictEqual(embedded('historicalscores'),historicalScores,'Embedded historical scores must come from the sanctioned reference file');
 assert.deepStrictEqual(embedded('historicalplayoffs'),playoffHistory,'Embedded playoffs must match the validated bracket reference');
 assert.deepStrictEqual(embedded('historicaldrafts'),draftHistory,'Embedded drafts must match source-verified JSON');
+assert.deepStrictEqual(embedded('historicaldraftgrades'),gradedDrafts,'Published grading matches verified reference');
+assert.equal(gradedDrafts.coverage.pick_count,820);
+
 assert.equal(draftHistory.seasons.reduce((n,s)=>n+s.picks.length,0),980,'980 actual ESPN draft picks');
 assert.equal(historicalScores.seasons.reduce((n,s)=>n+s.teams.reduce((n,t)=>n+t.scores.length,0),0),700);
 assert.deepStrictEqual(championshipHistory.champions.map(x=>[x.season,x.espn_team_id,x.franchise_id]),[
@@ -81,7 +86,7 @@ function node(id){
  return elements.get(id);
 }
 const doc={
- getElementById(id){const el=node(id);if(id==='fantasydata')el.textContent=JSON.stringify(data);if(id==='metricdefs')el.textContent=JSON.stringify(definitions);if(id==='championships')el.textContent=JSON.stringify(historyEmbedded);if(id==='historicalscores')el.textContent=JSON.stringify(historicalScores);if(id==='historicalplayoffs')el.textContent=JSON.stringify(playoffHistory);if(id==='historicaldrafts')el.textContent=JSON.stringify(draftHistory);return el;},querySelectorAll:()=>[],
+ getElementById(id){const el=node(id);if(id==='fantasydata')el.textContent=JSON.stringify(data);if(id==='metricdefs')el.textContent=JSON.stringify(definitions);if(id==='championships')el.textContent=JSON.stringify(historyEmbedded);if(id==='historicalscores')el.textContent=JSON.stringify(historicalScores);if(id==='historicalplayoffs')el.textContent=JSON.stringify(playoffHistory);if(id==='historicaldrafts')el.textContent=JSON.stringify(draftHistory);if(id==='historicaldraftgrades')el.textContent=JSON.stringify(gradedDrafts);return el;},querySelectorAll:()=>[],
  addEventListener(name,handler){events[name]=handler}
 };
 const fetch=async()=>({ok:true,json:async()=>data});
@@ -249,6 +254,7 @@ async function main(){
  view=node('view').innerHTML;
  assert.ok(view.includes('2021 Playoff bracket')&&view.includes('Lord Farquaad')&&view.includes('Watertown Teapots'),'2021 final is available by changing the year');
  view=sub('history','draft');
+ assert.ok(view.includes('id="draftTag"'),'Draft outcome selector is rendered');
  assert.ok(view.includes('Draft History · 2021–2026')&&view.includes('Jahmyr Gibbs'),'Current draft is selectable');
  assert.equal((view.split('<tbody id="draftRows">')[1].split('</tbody>')[0].match(/<tr>/g)||[]).length,160,'2026 draft displays all 160 picks');
  events.change({target:{id:'draftYear',value:'2021'}});
@@ -264,6 +270,9 @@ async function main(){
  events.change({target:{id:'draftYear',value:'2024'}});
  view=node('view').innerHTML;
  assert.ok(view.includes('Got Rice?')&&view.includes('Alan&#39;s Cordon Bleu Cavern'),'Returning owner resolves to current display with original era alias');
+ events.change({target:{id:'draftTag',value:'STEAL'}});
+ view=node('view').innerHTML;
+ assert.equal((view.split('<tbody id="draftRows">')[1].split('</tbody>')[0].match(/<tr>/g)||[]).length,15,'2024 source-verified steals are filterable');
  view=sub('history','legacy');
  assert.ok(view.includes('Franchise Legacy'));
  assert.ok(view.includes('Got Rice?')&&view.includes('2025')&&view.includes('2024')&&view.includes('2022')&&view.includes('2021'),'Returning franchise recovers old-league years');
