@@ -1091,6 +1091,16 @@ document.addEventListener('change',e=>{
 document.addEventListener('input',e=>{
  if(e.target.id==='draftQuery'){
   state.draftQuery=e.target.value;
+  if(Number(state.draftYear)<2021){
+   const season=LEGACY_DRAFTS.seasons.find(s=>s.year===Number(state.draftYear));
+   const query=state.draftQuery.trim().toLowerCase();
+   const teamName=id=>season.teams.find(t=>t.espn_team_id===id)?.season_team_name||'Unknown';
+   const picks=season.picks.filter(p=>(state.draftFranchise==='all'||String(p.espn_team_id)===String(state.draftFranchise))&&(state.draftRound==='all'||p.round===Number(state.draftRound))&&(!query||String(p.player_id).includes(query)||teamName(p.espn_team_id).toLowerCase().includes(query)));
+   const body=document.getElementById('draftRows'),count=document.getElementById('draftResultCount');
+   if(body)body.innerHTML=picks.map(p=>'<tr><td class="num">'+p.overall+'</td><td class="num">'+p.round+'</td><td class="num">'+p.round_pick+'</td><td>ESPN player ID '+p.player_id+'</td><td>'+esc(teamName(p.espn_team_id))+'</td><td>Pending original-era player-name verification</td></tr>').join('');
+   if(count)count.textContent=picks.length+' of 170 original ESPN picks shown';
+   return;
+  }
   const body=document.getElementById('draftRows');
   const count=document.getElementById('draftResultCount');
   if(body)body.innerHTML=draftRows();
