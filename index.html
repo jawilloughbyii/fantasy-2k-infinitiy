@@ -994,7 +994,7 @@ function draftPage(){
   <div><label for="draftRound">ROUND</label><select id="draftRound" class="select" aria-label="Filter by draft round">${choices([['all','All rounds'],...Array.from({length:season.rounds},(_,i)=>[i+1,'Round '+(i+1)])],state.draftRound)}</select></div>
   <div><label for="draftPosition">POSITION</label><select id="draftPosition" class="select" aria-label="Filter by drafted position">${choices([['all','All positions'],...['QB','RB','WR','TE','K','D/ST',...(season.historical_punter_position?['P']:[])].map(pos=>[pos,pos])],state.draftPosition)}</select></div>
   <input id="draftQuery" type="search" placeholder="Search player, current franchise or historical team name" aria-label="Search draft history" value="${esc(state.draftQuery)}" />
- </div><div class="draft-results" id="draftResultCount">${draftFilteredPicks().length} of ${season.total_picks} picks shown · Year-specific ESPN player records · No performance-based draft grades</div>
+ </div><div class="draft-results" id="draftResultCount">${draftFilteredPicks().length} of ${season.total_picks} picks shown · Year-specific ESPN player records · Grades use retrospective model v1</div>
  <div class="tablewrap"><table class="history-table draft-table"><thead><tr><th class="num">Overall</th><th class="num">Round</th><th class="num">Pick</th><th>Player</th><th>Pos.</th><th>Current franchise / season team</th><th>Draft outcome / value</th></tr></thead><tbody id="draftRows">${draftRows()}</tbody></table></div>
  <p class="history-note">Historical draft ownership follows the person, not a reused ESPN team slot. Former participants remain in older seasons under a historical-franchise label. Original draft selections are not adjusted for trades or later roster moves.</p></div>`;
 }
@@ -1041,7 +1041,7 @@ document.addEventListener('input',e=>{
   const body=document.getElementById('draftRows');
   const count=document.getElementById('draftResultCount');
   if(body)body.innerHTML=draftRows();
-  if(count)count.textContent=draftFilteredPicks().length+' of '+draftSeason().total_picks+' picks shown · Year-specific ESPN player records · No performance-based draft grades';
+  if(count)count.textContent=draftFilteredPicks().length+' of '+draftSeason().total_picks+' picks shown · Year-specific ESPN player records · Grades use retrospective model v1';
  }
 });
 function validatePublicData(fresh){
