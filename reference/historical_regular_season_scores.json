@@ -18,7 +18,63 @@
         "winner_team_name": "Sleazy Veasey's Teenie Peenie",
         "runner_up_espn_team_id": 10,
         "final_points": 132,
-        "bracket_validated": true
+        "bracket_validated": true,
+        "final_matchup_id": 75,
+        "runner_up_points": 114,
+        "final_week": 16,
+        "winners_bracket_games": [
+          {
+            "week": 15,
+            "matchup_id": 70,
+            "winner": "HOME",
+            "teams": [
+              {
+                "espn_team_id": 10,
+                "side": "home",
+                "points": 128
+              },
+              {
+                "espn_team_id": 9,
+                "side": "away",
+                "points": 128
+              }
+            ]
+          },
+          {
+            "week": 15,
+            "matchup_id": 71,
+            "winner": "AWAY",
+            "teams": [
+              {
+                "espn_team_id": 3,
+                "side": "home",
+                "points": 141
+              },
+              {
+                "espn_team_id": 8,
+                "side": "away",
+                "points": 145
+              }
+            ]
+          },
+          {
+            "week": 16,
+            "matchup_id": 75,
+            "winner": "AWAY",
+            "teams": [
+              {
+                "espn_team_id": 10,
+                "side": "home",
+                "points": 114
+              },
+              {
+                "espn_team_id": 8,
+                "side": "away",
+                "points": 132
+              }
+            ]
+          }
+        ]
       },
       "teams": [
         {
@@ -238,7 +294,63 @@
         "winner_team_name": "The General's \"Dorm Room\"",
         "runner_up_espn_team_id": 9,
         "final_points": 173.62,
-        "bracket_validated": false
+        "bracket_validated": false,
+        "final_matchup_id": 75,
+        "runner_up_points": 88.2,
+        "final_week": 16,
+        "winners_bracket_games": [
+          {
+            "week": 15,
+            "matchup_id": 70,
+            "winner": "AWAY",
+            "teams": [
+              {
+                "espn_team_id": 1,
+                "side": "home",
+                "points": 97.86
+              },
+              {
+                "espn_team_id": 2,
+                "side": "away",
+                "points": 149.34
+              }
+            ]
+          },
+          {
+            "week": 15,
+            "matchup_id": 71,
+            "winner": "AWAY",
+            "teams": [
+              {
+                "espn_team_id": 9,
+                "side": "home",
+                "points": 159.2
+              },
+              {
+                "espn_team_id": 3,
+                "side": "away",
+                "points": 160.26
+              }
+            ]
+          },
+          {
+            "week": 16,
+            "matchup_id": 75,
+            "winner": "HOME",
+            "teams": [
+              {
+                "espn_team_id": 2,
+                "side": "home",
+                "points": 173.62
+              },
+              {
+                "espn_team_id": 9,
+                "side": "away",
+                "points": 88.2
+              }
+            ]
+          }
+        ]
       },
       "teams": [
         {
@@ -458,7 +570,63 @@
         "winner_team_name": "Jaqiuzz so much I Philip Rivers",
         "runner_up_espn_team_id": 10,
         "final_points": 177.68,
-        "bracket_validated": true
+        "bracket_validated": true,
+        "final_matchup_id": 75,
+        "runner_up_points": 157.96,
+        "final_week": 16,
+        "winners_bracket_games": [
+          {
+            "week": 15,
+            "matchup_id": 70,
+            "winner": "AWAY",
+            "teams": [
+              {
+                "espn_team_id": 2,
+                "side": "home",
+                "points": 113.14
+              },
+              {
+                "espn_team_id": 10,
+                "side": "away",
+                "points": 143.82
+              }
+            ]
+          },
+          {
+            "week": 15,
+            "matchup_id": 71,
+            "winner": "HOME",
+            "teams": [
+              {
+                "espn_team_id": 9,
+                "side": "home",
+                "points": 168.96
+              },
+              {
+                "espn_team_id": 8,
+                "side": "away",
+                "points": 82.92
+              }
+            ]
+          },
+          {
+            "week": 16,
+            "matchup_id": 75,
+            "winner": "AWAY",
+            "teams": [
+              {
+                "espn_team_id": 10,
+                "side": "home",
+                "points": 157.96
+              },
+              {
+                "espn_team_id": 9,
+                "side": "away",
+                "points": 177.68
+              }
+            ]
+          }
+        ]
       },
       "teams": [
         {
@@ -678,7 +846,63 @@
         "winner_team_name": "The Bear Jew",
         "runner_up_espn_team_id": 8,
         "final_points": 113.1,
-        "bracket_validated": true
+        "bracket_validated": true,
+        "final_matchup_id": 75,
+        "runner_up_points": 96.96,
+        "final_week": 16,
+        "winners_bracket_games": [
+          {
+            "week": 15,
+            "matchup_id": 70,
+            "winner": "HOME",
+            "teams": [
+              {
+                "espn_team_id": 3,
+                "side": "home",
+                "points": 169.78
+              },
+              {
+                "espn_team_id": 4,
+                "side": "away",
+                "points": 98.58
+              }
+            ]
+          },
+          {
+            "week": 15,
+            "matchup_id": 71,
+            "winner": "HOME",
+            "teams": [
+              {
+                "espn_team_id": 8,
+                "side": "home",
+                "points": 153.84
+              },
+              {
+                "espn_team_id": 2,
+                "side": "away",
+                "points": 150.24
+              }
+            ]
+          },
+          {
+            "week": 16,
+            "matchup_id": 75,
+            "winner": "HOME",
+            "teams": [
+              {
+                "espn_team_id": 3,
+                "side": "home",
+                "points": 113.1
+              },
+              {
+                "espn_team_id": 8,
+                "side": "away",
+                "points": 96.96
+              }
+            ]
+          }
+        ]
       },
       "teams": [
         {
