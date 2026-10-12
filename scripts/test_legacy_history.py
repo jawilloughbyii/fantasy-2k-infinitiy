@@ -30,7 +30,7 @@ class HistoricalLegacyValidation(unittest.TestCase):
                 a=archive(year)
                 s=next(s for s in SCORES['seasons'] if s['year']==year)
                 self.assertEqual((a['league_id'],s['league_id']),(LEGACY_ID,LEGACY_ID))
-                self.assertEqual(s['franchise_attribution'],'unmapped_not_assumed')
+                self.assertEqual(s['franchise_attribution'],'user_confirmed_account_reconciled_2014_2017')
                 self.assertEqual(len(s['teams']),10)
                 regular=[m for m in a['matchups'] if type(m['week']) is int and m['week']<=14]
                 self.assertEqual(len(regular),70)
@@ -68,18 +68,19 @@ class HistoricalLegacyValidation(unittest.TestCase):
             self.assertEqual([p['overall'] for p in d['picks']],list(range(1,171)))
             self.assertEqual(len({p['player_id'] for p in d['picks']}),170)
             self.assertEqual({p['espn_team_id'] for p in d['picks']},set(range(1,11)))
-            self.assertTrue(all(t['franchise_id'] is None for t in d['teams']))
+            self.assertEqual({t['franchise_id'] for t in d['teams']},{FRANCHISE['season_to_franchise'][str(d['year'])][str(t['espn_team_id'])] for t in d['teams']})
             src={p['overallPickNumber']:p for p in a['draft']['picks']}
             for p in d['picks']:
                 q=src[p['overall']]
                 self.assertEqual((p['round'],p['round_pick'],p['espn_team_id'],p['player_id']),
                                  (q['roundId'],q['roundPickNumber'],q['teamId'],q['playerId']))
+                self.assertEqual(p['franchise_id'],FRANCHISE['season_to_franchise'][str(d['year'])][str(p['espn_team_id'])])
                 self.assertIsNone(p['player_name'])
                 self.assertIsNone(p['position'])
 
     def test_playoff_titles_carefully_separated(self):
         self.assertEqual({c['season'] for c in CHAMPS['champions']},set(range(2021,2026)))
-        self.assertFalse(any(str(y) in FRANCHISE['season_to_franchise'] for y in EXPECTED))
+        self.assertTrue(all(str(y) in FRANCHISE['season_to_franchise'] for y in EXPECTED))
         for year in EXPECTED:
             a=archive(year)
             s=next(s for s in SCORES['seasons'] if s['year']==year)

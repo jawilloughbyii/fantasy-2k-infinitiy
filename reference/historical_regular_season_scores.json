@@ -1,13 +1,13 @@
 {
   "league_id": 418244680,
-  "source": "ESPN final regular-season scores: user-confirmed 2014–2017 league 791996 (research archive); 2021–2022 league 1493036707; 2023–2025 league 418244680. 2014–2017 franchise attribution remains unmapped and excluded from current franchise DNA.",
+  "source": "ESPN final regular-season scores: user-confirmed 2014–2017 league 791996 (research archive); 2021–2022 league 1493036707; 2023–2025 league 418244680. 2014–2017 franchise attribution was confirmed by user and reconciled to the explicit composite-key mapping; absent 2018–2020 data are not inferred.",
   "regular_season_weeks": 14,
   "seasons": [
     {
       "year": 2014,
       "league_id": 791996,
       "source_status": "user_confirmed_and_70_ESPN_games_reconciled",
-      "franchise_attribution": "unmapped_not_assumed",
+      "franchise_attribution": "user_confirmed_account_reconciled_2014_2017",
       "scoring_environment": {
         "starting_punter": true,
         "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison."
@@ -283,7 +283,7 @@
       "year": 2015,
       "league_id": 791996,
       "source_status": "user_confirmed_and_70_ESPN_games_reconciled",
-      "franchise_attribution": "unmapped_not_assumed",
+      "franchise_attribution": "user_confirmed_account_reconciled_2014_2017",
       "scoring_environment": {
         "starting_punter": true,
         "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison."
@@ -559,7 +559,7 @@
       "year": 2016,
       "league_id": 791996,
       "source_status": "user_confirmed_and_70_ESPN_games_reconciled",
-      "franchise_attribution": "unmapped_not_assumed",
+      "franchise_attribution": "user_confirmed_account_reconciled_2014_2017",
       "scoring_environment": {
         "starting_punter": true,
         "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison."
@@ -835,7 +835,7 @@
       "year": 2017,
       "league_id": 791996,
       "source_status": "user_confirmed_and_70_ESPN_games_reconciled",
-      "franchise_attribution": "unmapped_not_assumed",
+      "franchise_attribution": "user_confirmed_account_reconciled_2014_2017",
       "scoring_environment": {
         "starting_punter": true,
         "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison."

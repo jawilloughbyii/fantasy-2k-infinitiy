@@ -1,6 +1,6 @@
 {
   "league_id": 418244680,
-  "scope": "Five ESPN-verified 2021–2025 franchise-linked champions plus three source-verified 2014/2016/2017 legacy season champions without cross-era franchise attribution. The 2015 final result has disputed semifinal progression and is not credited.",
+  "scope": "Five ESPN-verified 2021–2025 and three 2014/2016/2017 champions, all linked to user-confirmed stable franchises. Disputed 2015 ESPN final is not a confirmed title.",
   "champions": [
     {
       "season": 2021,
@@ -48,7 +48,7 @@
     "historical_aliases": "Resolve by (season, ESPN source league ID, ESPN team ID), then anonymous permanent franchise ID.",
     "unknown_titles": "No trophy for unverified seasons or placement games; historic aliases show trophies only for the season they won.",
     "owner_privacy": "Store no owner or manager identifiers.",
-    "legacy_season_markers": "2014, 2016 and 2017 display a trophy only on the archived season's ESPN champion team ID; no current-season or cross-era franchise trophy is granted until owner identity is separately confirmed.",
+    "legacy_season_markers": "2014, 2016 and 2017 ESPN verified trophy years now credited to explicit user-confirmed cross-era franchise mappings. Old winning team aliases display trophies only in the original winning season; current franchises display cumulative confirmed titles.",
     "disputed_2015": "ESPN's recorded 2015 final winner is disclosed textually only, because semifinal advancement conflicts with the reported finalists. No trophy, championship count or modern attribution."
   },
   "legacy_champions": [
@@ -59,7 +59,7 @@
       "status": "confirmed_legacy_season",
       "source_league_id": 791996,
       "bracket_status": "validated_bracket_path",
-      "franchise_id": null
+      "franchise_id": "franchise-02"
     },
     {
       "season": 2016,
@@ -68,7 +68,7 @@
       "status": "confirmed_legacy_season",
       "source_league_id": 791996,
       "bracket_status": "validated_bracket_path",
-      "franchise_id": null
+      "franchise_id": "franchise-04"
     },
     {
       "season": 2017,
@@ -77,7 +77,7 @@
       "status": "confirmed_legacy_season",
       "source_league_id": 791996,
       "bracket_status": "validated_bracket_path",
-      "franchise_id": null
+      "franchise_id": "franchise-09"
     }
   ]
 }

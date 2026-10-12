@@ -109,7 +109,9 @@ for(const [year,tid,alias] of [[2014,8,"Sleazy Veasey's Teenie Peenie"],[2016,9,
 }
 assert.ok(!names.teamName({espn_team_id:2,name:'The General\'s "Dorm Room"'},2015).includes('champion-trophy'),'Disputed 2015 ESPN final must not receive trophy');
 assert.ok(!names.teamName({espn_team_id:8,name:'Cuckleberry Finn'},2017).includes('champion-trophy'),'Runner-up must not receive trophy');
-assert.ok(!names.teamName({id:8,name:'Current team'},2026).includes('2014'),'Old ESPN team ID must not become a current-season trophy');
+assert.ok(names.teamName({id:3,name:'Israeli Nutonyaboob'},2026).includes('2014'),'Confirmed current franchise inherits 2014 trophy');
+assert.ok(names.teamName({id:4,name:'Golden Ponies'},2026).includes('2016'),'Confirmed Golden Ponies inherit 2016 trophy');
+assert.ok(names.teamName({id:1,name:'Aubreys 3rd Leg'},2026).includes('2017'),'Confirmed winning franchise inherits 2017 trophy');
 assert.ok(names.teamName({espn_team_id:3,name:'Lord Farquaad'},2021).includes('League champion: 2021'),'2021 winner has the season trophy');
 assert.ok(names.teamName({espn_team_id:5,name:'Quatro Padres'},2022).includes('League champion: 2022'),'2022 winner has the season trophy');
 assert.ok(names.teamName({id:7,name:'Project Haily Mary'},2026).includes('2021, 2023'),'Current 2026 franchise owns both 2021 and 2023 titles');
@@ -167,7 +169,7 @@ async function main(){
   assert.ok(view.includes('League champion: '+year),'Championship year available '+year);
  }
  assert.ok(view.includes('Quattro Padres<span class="champion-trophy"'),'Verified 2022 champion must receive current trophy');
- assert.equal((node('teamSelect').innerHTML.match(/🏆/g)||[]).length,4,'Global team selector displays all four title-owning franchises');
+ assert.equal((node('teamSelect').innerHTML.match(/🏆/g)||[]).length,7,'Global team selector displays seven title-owning franchises');
  click('[data-expand-standing]',{expandStanding:'6'});
  view=node('view').innerHTML;
  assert.ok(view.includes('standing-detail-6')&&view.includes('View The Domestic House Cats'),'Mobile expansion retained');
@@ -212,7 +214,7 @@ async function main(){
  assert.ok(view.indexOf('The Scoring Personality Map')>identityEnd,'Scoring map follows concise identity card');
  assert.ok(!view.includes("class='card histdna'"),'No redundant standalone historical card');
 
- assert.equal((view.match(/<tspan dx="3" font-size="11">🏆<\/tspan>/g)||[]).length,4,'Map marks all four title-owning franchises');
+ assert.equal((view.match(/<tspan dx="3" font-size="11">🏆<\/tspan>/g)||[]).length,7,'Map marks seven title-owning franchises');
  assert.ok(view.includes('Historical metrics & season-by-season details'),'Historical methods progressively disclosed');
  assert.ok(view.includes('Dashed splits:')&&view.includes('% CV.'),'Keep actual scoring-map split legend');
  assert.ok(!view.includes('Labels may use leader lines'),'Remove redundant visual mechanics from map footer');

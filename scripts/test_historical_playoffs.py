@@ -80,11 +80,11 @@ class VerifiedPlayoffs(unittest.TestCase):
             final=season['postseason']
             self.assertEqual((c['source_league_id'],season['league_id']),(791996,791996))
             self.assertEqual((c['status'],c['bracket_status']),('confirmed_legacy_season','validated_bracket_path'))
-            self.assertIsNone(c['franchise_id'])
+            self.assertEqual(c['franchise_id'],F['season_to_franchise'][str(c['season'])][str(c['espn_team_id'])])
             self.assertTrue(final['bracket_validated'])
             self.assertEqual((c['espn_team_id'],c['team_name_at_win']),
                              (final['winner_espn_team_id'],final['winner_team_name']))
-            self.assertNotIn(str(c['season']),F['season_to_franchise'])
+            self.assertEqual(F['league_ids_by_season'][str(c['season'])],791996)
         self.assertFalse(next(s for s in H['seasons'] if s['year']==2015)['postseason']['bracket_validated'])
         self.assertNotIn(2015,expected)
         self.assertEqual([x['season'] for x in C['champions']],[2021,2022,2023,2024,2025])

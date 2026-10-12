@@ -1,9 +1,57 @@
 {
   "league_id": 418244680,
   "key_grain": "season + ESPN league ID + ESPN team ID",
-  "scope": "Confirmed stable manager-franchise attribution 2021–2026; public outputs use current fantasy team display names, not owner names.",
-  "verification": "2021–2022 person-to-franchise identity confirmed by user on 2026-10-12; 2023 Team Figueroa belongs to the outgoing legacy franchise; 2024 Alan's Cordon Bleu Cavern and 2026 Got Rice? belong to a returning franchise; Comepig is a new participant franchise starting 2023. ESPN 2021–2022 scoring validated separately.",
+  "scope": "Confirmed stable manager-franchise attribution for recovered seasons 2014–2017 and 2021–2026; 2018–2020 unavailable",
+  "verification": "2021–2022 person-to-franchise identity confirmed by user on 2026-10-12; 2023 Team Figueroa belongs to the outgoing legacy franchise; 2024 Alan's Cordon Bleu Cavern and 2026 Got Rice? belong to a returning franchise; Comepig is a new participant franchise starting 2023. ESPN 2021–2022 scoring validated separately. ESPN original league 791996 2014–2017 ten slots reconciled against later league 2021–2026; eight account matches and user confirmation of remaining slot 6/10 plus explicit approval of all eight on 2026-10-12.",
   "season_to_franchise": {
+    "2014": {
+      "1": "franchise-06-current-2024",
+      "2": "franchise-01",
+      "3": "franchise-09",
+      "4": "franchise-08",
+      "5": "franchise-06-legacy-2023",
+      "6": "franchise-07",
+      "7": "franchise-10",
+      "8": "franchise-02",
+      "9": "franchise-04",
+      "10": "franchise-03"
+    },
+    "2015": {
+      "1": "franchise-06-current-2024",
+      "2": "franchise-01",
+      "3": "franchise-09",
+      "4": "franchise-08",
+      "5": "franchise-06-legacy-2023",
+      "6": "franchise-07",
+      "7": "franchise-10",
+      "8": "franchise-02",
+      "9": "franchise-04",
+      "10": "franchise-03"
+    },
+    "2016": {
+      "1": "franchise-06-current-2024",
+      "2": "franchise-01",
+      "3": "franchise-09",
+      "4": "franchise-08",
+      "5": "franchise-06-legacy-2023",
+      "6": "franchise-07",
+      "7": "franchise-10",
+      "8": "franchise-02",
+      "9": "franchise-04",
+      "10": "franchise-03"
+    },
+    "2017": {
+      "1": "franchise-06-current-2024",
+      "2": "franchise-01",
+      "3": "franchise-09",
+      "4": "franchise-08",
+      "5": "franchise-06-legacy-2023",
+      "6": "franchise-07",
+      "7": "franchise-10",
+      "8": "franchise-02",
+      "9": "franchise-04",
+      "10": "franchise-03"
+    },
     "2021": {
       "1": "franchise-06-current-2024",
       "2": "franchise-06-legacy-2023",
@@ -96,10 +144,14 @@
     ],
     "unmapped": "fail closed; do not infer or carry forward",
     "league_level_analysis": "retain all valid season results, including managers no longer participating",
-    "franchise_level_analysis": "follow confirmed manager-franchise continuity even across league migrations, slot changes and participation gaps; outgoing franchise 2021–2023 only; returning franchise 2021–2022 and 2024–2026; new entrant franchise 2023–2026",
+    "franchise_level_analysis": "Follow user-approved original league 2014–2017 mapping and 2021–2026 franchise mapping; never manufacture absent 2018–2020 records; outgoing franchise has 2014–2017 and 2021–2023 only; returning franchise 2014–2017, 2021–2022 and 2024–2026; new entrant starts 2023.",
     "privacy": "No owner identities or authentication credentials stored here."
   },
   "league_ids_by_season": {
+    "2014": 791996,
+    "2015": 791996,
+    "2016": 791996,
+    "2017": 791996,
     "2021": 1493036707,
     "2022": 1493036707,
     "2023": 418244680,

@@ -11,7 +11,7 @@ class TestFranchiseIdentity(unittest.TestCase):
         cls.reference = fid.load_mapping()
 
     def test_verified_2023_through_2026_coverage(self):
-        self.assertEqual(set(self.reference['season_to_franchise']), {'2021', '2022', '2023', '2024', '2025', '2026'})
+        self.assertEqual(set(self.reference['season_to_franchise']), {'2014', '2015', '2016', '2017', '2021', '2022', '2023', '2024', '2025', '2026'})
         self.assertEqual(len({f for season in self.reference['season_to_franchise'].values() for f in season.values()}), 11)
 
     def test_confirmed_owner_continuity_across_leagues(self):
@@ -27,7 +27,7 @@ class TestFranchiseIdentity(unittest.TestCase):
 
     def test_archived_franchise_mapping_unique_each_season(self):
         m=self.reference
-        for year in ('2021','2022'):
+        for year in ('2014','2015','2016','2017','2021','2022'):
             self.assertEqual(len(set(m['season_to_franchise'][year].values())),10)
         # Person identities are explicitly mapped to new slot IDs, not joined on slot.
         self.assertEqual(fid.franchise_for(2022,7,m),fid.franchise_for(2023,2,m))
