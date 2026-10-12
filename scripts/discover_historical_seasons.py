@@ -49,14 +49,21 @@ def probe(year, s2, swid, league_id):
     settings = source.get("settings") or {}
     schedule_settings = settings.get("scheduleSettings") or {}
     scoring_settings = settings.get("scoringSettings") or {}
+    roster_settings = settings.get("rosterSettings") or {}
+    slot_counts = roster_settings.get("lineupSlotCounts") or {}
+    score_items = scoring_settings.get("scoringItems") or []
     safe = {"season": year, "league_id": league_id, "teams": teams, "matchups": matches,
             "metadata": {"team_count": len(teams), "matchup_count": len(matches),
                          "weeks_present": weeks, "fully_scored_weeks": complete,
                          "regular_season_matchup_count": schedule_settings.get("matchupPeriodCount"),
-                         "scoring_type": scoring_settings.get("scoringType")}}
+                         "scoring_type": scoring_settings.get("scoringType"),
+                         "lineup_slot_counts": slot_counts,
+                         "roster_size": roster_settings.get("rosterSize"),
+                         "scoring_items": [{"stat_id": item.get("statId"), "points": item.get("points")} for item in score_items if item.get("statId") is not None]}}
     summary = {"season": year, "status": "retrieved", "team_count": len(teams),
                "matchups": len(matches), "weeks_present": weeks, "fully_scored_weeks": complete,
                "missing_points_sides": sum(s["points"] is None for m in matches for s in m["sides"])}
+    print(f"{year} roster slots: {json.dumps(slot_counts, sort_keys=True)}")
     return summary, safe
 
 def main():
