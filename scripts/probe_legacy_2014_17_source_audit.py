@@ -64,7 +64,7 @@ def scoring(src):
             "items":items,"lineup_slot_counts":roster.get("lineupSlotCounts"),
             "roster_settings_keys":sorted(k for k in roster if k not in ("owners","members"))}
 def get_pool(year,cookie,ids,variant):
-    filt=({"players":{"filterIds":{"value":ids},"limit":max(200,len(ids))}}
+    filt=({"players":{"filterIds":{"value":ids}}}
           if variant in ("history_kona","history_card","league_default") else {"filterIds":{"value":ids}})
     if variant=="history_kona":return history(year,"kona_player_info",cookie,filt)
     if variant=="history_card":return history(year,"kona_playercard",cookie,filt)
