@@ -1,0 +1,36 @@
+name: Discover historical ESPN playoffs (private, read only)
+
+on:
+  push:
+    branches: [research/verify-playoffs-2021-2025]
+    paths:
+      - 'scripts/discover_playoff_history.py'
+      - '.github/workflows/discover-playoff-history.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  discover-playoffs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Retrieve 2021–2025 postseason structure
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/discover_playoff_history.py
+      - name: Upload sanitized private postseason research
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: postseason-research-private
+          path: output/postseason-research/*.json
+          if-no-files-found: warn
+          retention-days: 7
