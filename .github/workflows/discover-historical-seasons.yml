@@ -40,11 +40,20 @@ jobs:
           START_YEAR: ${{ inputs.start_year || '2021' }}
           END_YEAR: ${{ inputs.end_year || '2022' }}
         run: python scripts/discover_historical_seasons.py --league-id "$LEAGUE_ID" --start-year "$START_YEAR" --end-year "$END_YEAR" --output-dir output/historical-discovery
+      - name: Validate archived regular-season scores (2021–2022 only)
+        if: ${{ success() && env.START_YEAR == '2021' && env.END_YEAR == '2022' && env.LEAGUE_ID == '1493036707' }}
+        env:
+          START_YEAR: ${{ inputs.start_year || '2021' }}
+          END_YEAR: ${{ inputs.end_year || '2022' }}
+          LEAGUE_ID: ${{ inputs.league_id || '1493036707' }}
+        run: python scripts/validate_archived_2021_2022.py --input-dir output/historical-discovery --output-dir output/validated-historical
       - name: Upload private sanitized research artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: historical-espn-discovery
-          path: output/historical-discovery/*.json
+          path: |
+            output/historical-discovery/*.json
+            output/validated-historical/*.json
           if-no-files-found: warn
           retention-days: 7
