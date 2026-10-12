@@ -1031,10 +1031,11 @@ document.getElementById('teamSelect').addEventListener('change',e=>{state.select
 document.addEventListener('change',e=>{
  if(e.target.id==='historyYear'){const year=Number(e.target.value);if(HISTORICAL_SCORES.seasons.some(s=>s.year===year)){state.historyYear=year;render();}}
  if(e.target.id==='playoffYear'){const year=Number(e.target.value);if(PLAYOFFS.seasons[String(year)]){state.playoffYear=year;render();}}
- if(e.target.id==='draftYear'){const year=Number(e.target.value);if(DRAFTS.seasons.some(s=>s.year===year)){state.draftYear=year;state.draftFranchise='all';state.draftRound='all';state.draftPosition='all';state.draftQuery='';render();}}
+ if(e.target.id==='draftYear'){const year=Number(e.target.value);if(DRAFTS.seasons.some(s=>s.year===year)){state.draftYear=year;state.draftFranchise='all';state.draftRound='all';state.draftPosition='all';state.draftTag='all';state.draftQuery='';render();}}
  if(e.target.id==='draftFranchise'){state.draftFranchise=e.target.value;render();}
  if(e.target.id==='draftRound'){state.draftRound=e.target.value;render();}
  if(e.target.id==='draftPosition'){state.draftPosition=e.target.value;render();}
+ if(e.target.id==='draftTag'){state.draftTag=e.target.value;render();}
 });
 document.addEventListener('input',e=>{
  if(e.target.id==='draftQuery'){
