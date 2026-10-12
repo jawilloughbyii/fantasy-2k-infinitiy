@@ -149,7 +149,7 @@ async function main(){
 
  const topicNames=['Results & Schedule Luck','Scoring & Team DNA','Lineup Quality','Historical Franchise DNA','Data & Reliability'];
  assert.equal((view.match(/<details class="method-topic">/g)||[]).length,5,'Exactly five concise methodology topics appear inside Overview');
- assert.equal((view.match(/<div class="method-item">/g)||[]).length,17,'All 17 metric explanations remain accessible');
+ assert.equal((view.match(/<div class="method-item">/g)||[]).length,18,'All 18 metric explanations, including Acquisition DNA, remain accessible');
  for(const topic of topicNames)assert.ok(view.includes('<summary><strong>'+topic+'</strong>'),'Missing calculation topic: '+topic);
  assert.ok(!view.includes('<details class="method-topic" open'),'All methodology topics start collapsed');
  for(const phrase of ['What it measures','How we calculate it','How to read it'])assert.ok(view.includes(phrase),'Each metric uses approachable explanatory language');
