@@ -960,6 +960,7 @@ function draftFilteredPicks(){
   (state.draftFranchise==='all'||p.franchise_id===state.draftFranchise)&&
   (state.draftRound==='all'||p.round===Number(state.draftRound))&&
   (state.draftPosition==='all'||p.position===state.draftPosition)&&
+  (state.draftTag==='all'||(draftGrade(p)?.tag||'PENDING')===state.draftTag)&&
   (!q||p.player_name.toLocaleLowerCase().includes(q)||
        (season.teams.find(t=>t.espn_team_id===p.espn_team_id)?.season_team_name||'').toLocaleLowerCase().includes(q)||
        draftCurrentName(p.franchise_id).toLocaleLowerCase().includes(q)));
