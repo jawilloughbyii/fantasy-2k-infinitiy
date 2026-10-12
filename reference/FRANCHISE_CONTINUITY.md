@@ -1,33 +1,40 @@
-# Historical franchise continuity (research only)
+# Historical franchise continuity (stable manager identity)
 
-Source of truth: [franchise_continuity.json](franchise_continuity.json). This is a separate, opt-in reference for **league 418244680**. It is not connected to the live 2026 dashboard, its embedded fallback, the published league JSON, or the ingestion/data model.
+Source of truth: [franchise_continuity.json](franchise_continuity.json).
 
-## Confirmed identity rule
+## Identity policy (confirmed October 12, 2026)
 
-A franchise is a continuous historical participant, not a display name and not necessarily an ESPN team slot. Resolve with the **(season, ESPN team ID)** pair, then map to `franchise_id`. Do not join to the dashboard's different internal team IDs without using [team_id_map.json](team_id_map.json). The user confirmed continuity for ESPN IDs 1–10 across 2023–2026, **with one exception**:
+The permanent franchise key follows the **manager/participant**, not the changing team name or ESPN roster slot. Public dashboard cards display the **current fantasy team name**, with original historical team names in annual yearbooks; private person names are not embedded in public data.
 
-| ESPN slot | 2023 | 2024 | 2025 | 2026 |
-|---|---|---|---|---|
-| 6 | `franchise-06-legacy-2023` (Team Figueroa) | `franchise-06-current-2024` | `franchise-06-current-2024` | `franchise-06-current-2024` |
+Composite historical input key is **(season, ESPN league ID, ESPN team ID)**. Seasons 2021–2022 belong to ESPN league `1493036707`. Seasons 2023–2026 belong to league `418244680`. The explicit map joins those season slots to an anonymous, stable franchise ID; matching the numeric slot across different ESPN leagues is forbidden.
 
-The change of ownership/franchise occurred **after 2023, before 2024**, confirmed by the user October 11, 2026. All other nine ESPN slots retain their franchise key across those four years. There are **11** franchises represented across the four seasons, but always 10 teams within each season. No owner identifiers are recorded.
+### Participation changes
 
-## Analysis safeguards
+| Year | Participant change | Historical assignment |
+| --- | --- | --- |
+| 2021–2022 | Original 10 people | Archived team slots 1–10 mapped to the same 10 stable franchise identities |
+| 2023 | New entrant joins; returning franchise absent | Comepig is new entrant franchise (ID 5); Team Figueroa remains legacy franchise (ID 6) |
+| 2024 | Original participant returns; prior slot occupant departs | Returnee controls Alan's Cordon Bleu Cavern (ID 6); new entrant retains Comepig (ID 5) |
+| 2025–2026 | No further changes confirmed | Returning franchise: Alan's Cordon Bleu Cavern → Got Rice?; new entrant: Comepig |
 
-- Keep Team Figueroa's 2023 games, PF, record, luck, and scoring profile in **2023 league-wide analysis**; do not add them to the current slot 6 franchise's lifetime totals.
-- Include 2023 legacy and 2024+ current as **separate franchise IDs** in longitudinal analysis.
-- Team display names can change freely and are not primary keys.
-- Do not claim verified continuity for 2022 or earlier or 2027 onward. Extend the explicit season map only when verified.
-- Keep regular season and postseason distinctions independent of this identity mapping.
-- ESPN ID 6 is an ESPN identifier. In the approved **2026 dashboard**, its corresponding internal baseline ID is **10**; the internal ID 6 maps instead to ESPN ID 10.
-- The prior historical ESPN discovery artifacts are exploratory research, not yet approved for publication.
+The returning franchise's 2021–2022 results join to its 2024–2026 record, **with a missing 2023** (never carry another franchise's results into the gap). The departed franchise's 2021–2022 results join to Team Figueroa in 2023 and stop there. The new entrant franchise starts in 2023 and remains separate.
 
-To resolve an identity in future historical research:
+### Dashboard semantics
 
-```python
-from franchise_identity import load_mapping, franchise_for
-mapping = load_mapping()
-franchise_id = franchise_for(2023, 6, mapping)
-```
+- **Owner-based** Historical Team DNA, Franchise Legacy, all-time records, and championship credit.
+- Current teams shown by their current 2026 fantasy display names; in historical yearbooks use the team name used in that season.
+- Keep 2026 current scoring separate from completed historical years.
+- Historical DNA uses the **most recent three completed seasons in which the manager participated**, weighted 50/30/20. Gaps remain visible; they are not counted as zero or silently assigned.
+- Archived 2021–2022 championship metadata stays unavailable until separately verified. No new trophy markers are inferred from team names.
+- Only verified scoring data should enter the public historical JSON; the source snapshots are read-only authenticated ESPN data, and private owner credentials are never included.
 
-For regression checks: `python scripts/test_franchise_identity.py`. The dedicated GitHub workflow executes these checks when the continuity reference or resolver changes.
+## Source files
+
+- `reference/franchise_continuity.json`: anonymous ID mapping, source league per year, and confirmed transitions
+- `reference/team_id_map.json`: mapping from **2026 dashboard ID** to 2026 ESPN team ID (different numbering)
+- `reference/historical_regular_season_scores.json`: approved published historical final regular-season scoring (currently 2023–2025 until old-season scores are explicitly published)
+- `scripts/franchise_identity.py`: strict identity validation/resolution
+- `scripts/test_franchise_identity.py`: continuity regression tests
+- `scripts/validate_archived_2021_2022.py` (separate PR #26): validated archived scoring preview; output remains private until approved
+
+Do not publish person names, raw authenticated API responses, owner/manager identifiers, or ESPN cookies.
