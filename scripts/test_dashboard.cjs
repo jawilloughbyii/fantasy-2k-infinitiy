@@ -83,7 +83,7 @@ function node(id){
  return elements.get(id);
 }
 const doc={
- getElementById(id){const el=node(id);if(id==='fantasydata')el.textContent=JSON.stringify(data);if(id==='metricdefs')el.textContent=JSON.stringify(definitions);if(id==='championships')el.textContent=JSON.stringify(historyEmbedded);if(id==='historicalscores')el.textContent=JSON.stringify(historicalScores);if(id==='historicalplayoffs')el.textContent=JSON.stringify(playoffHistory);if(id==='historicaldrafts')el.textContent=JSON.stringify(draftHistory);return el;},querySelectorAll:()=>[],
+ getElementById(id){const el=node(id);if(id==='fantasydata')el.textContent=JSON.stringify(data);if(id==='metricdefs')el.textContent=JSON.stringify(definitions);if(id==='championships')el.textContent=JSON.stringify(historyEmbedded);if(id==='historicalscores')el.textContent=JSON.stringify(historicalScores);if(id==='historicalplayoffs')el.textContent=JSON.stringify(playoffHistory);if(id==='historicaldrafts')el.textContent=JSON.stringify(draftHistory);if(id==='historicaldraftgrades')el.textContent=JSON.stringify(gradedDrafts);return el;},querySelectorAll:()=>[],
  addEventListener(name,handler){events[name]=handler}
 };
 const fetch=async()=>({ok:true,json:async()=>data});
