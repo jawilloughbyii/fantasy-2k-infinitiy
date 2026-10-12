@@ -141,7 +141,7 @@ async function main(){
  assert.ok(!view.includes('selhero refinedhero')&&!view.includes('roster-action'),'Remove duplicate selected-team hero/roster from Overview');
  assert.ok(!view.includes('overview-kpis'),'Remove redundant overview KPI group');
  assert.ok(!view.includes('Avg extra wins'),'Do not create a meaningless zero-sum headline');
- for(const [name,year] of [['The Domestic House Cats','2024'],['Project Haily Mary','2023'],["General&#39;s Dorm Room",'2025']]){
+ for(const [name,year] of [['The Domestic House Cats','2024'],['Project Haily Mary','2021, 2023'],["General&#39;s Dorm Room",'2025']]){
   assert.ok(view.includes(name+'<span class="champion-trophy"'),'Standings must mark '+name);
   assert.ok(view.includes('League champion: '+year),'Championship year available '+year);
  }
