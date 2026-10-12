@@ -1,0 +1,35 @@
+name: Isolated ESPN league ID 1435116 access (private)
+
+on:
+  push:
+    branches: [research/isolated-1435116-access]
+    paths:
+      - 'scripts/probe_isolated_1435116.py'
+      - '.github/workflows/probe-isolated-1435116.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe league ID independently
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/probe_isolated_1435116.py
+      - name: Retain access diagnostics privately
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: isolated-league-1435116-private
+          path: output/isolated-league-1435116/*.json
+          if-no-files-found: warn
+          retention-days: 7
