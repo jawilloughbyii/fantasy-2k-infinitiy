@@ -1,0 +1,53 @@
+name: Audit original 2014-17 draft, scoring and standings
+
+on:
+  push:
+    branches: [research/2014-17-draft-scoring-standings]
+    paths:
+      - 'scripts/probe_legacy_2014_17_source_audit.py'
+      - '.github/workflows/audit-legacy-2014-17.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate audit script
+        run: python -m py_compile scripts/probe_legacy_2014_17_source_audit.py
+      - name: Collect sanitized year-specific ESPN evidence
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/probe_legacy_2014_17_source_audit.py
+      - name: Verify output has no private account fields
+        run: |
+          python - <<'PY'
+          import pathlib,json
+          r=json.loads(pathlib.Path('output/legacy-2014-17-verification/source_review.json').read_text())
+          assert [s['year'] for s in r['seasons']]==[2014,2015,2016,2017]
+          assert r['status']=='PRIVATE_RESEARCH_NOT_APPROVED'
+          def scan(x):
+              if isinstance(x,dict):
+                  bad={'owner','owners','members','member','memberid','email','cookies','cookie','espn_s2','espn_swid','swid','session','ownerid','primaryowner'}
+                  assert not set(map(str.lower,x)).intersection(bad)
+                  for v in x.values():scan(v)
+              elif isinstance(x,list):
+                  for v in x:scan(v)
+          scan(r)
+          print('PASS: historical audit artifact is source-identified and sanitized')
+          PY
+      - name: Upload selected fantasy records only
+        uses: actions/upload-artifact@v4
+        with:
+          name: legacy-2014-17-source-review
+          path: output/legacy-2014-17-verification/source_review.json
+          retention-days: 7
+          if-no-files-found: error
