@@ -10,8 +10,8 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 SOURCE=json.loads((ROOT/'reference/historical_regular_season_scores.json').read_text(encoding='utf8'))
 IDENTITY=json.loads((ROOT/'reference/franchise_continuity.json').read_text(encoding='utf8'))
 METRICS=json.loads((ROOT/'reference/metric_definitions.json').read_text(encoding='utf8'))
-YEARS=(2023,2024,2025)
-TOTALS={2023:16553.42,2024:16744.84,2025:16694.92}
+YEARS=(2021,2022,2023,2024,2025)
+TOTALS={2021:19773.13,2022:19061.08,2023:16553.42,2024:16744.84,2025:16694.92}
 
 def records(franchise):
     output=[]
@@ -39,13 +39,14 @@ class TestHistoricalDna(unittest.TestCase):
         self.assertEqual(SOURCE['regular_season_weeks'],14)
         self.assertEqual([s['year'] for s in SOURCE['seasons']],list(YEARS))
         for s in SOURCE['seasons']:
+            self.assertEqual(s['league_id'],IDENTITY['league_ids_by_season'][str(s['year'])])
             self.assertEqual(len(s['teams']),10)
             self.assertEqual({t['espn_team_id'] for t in s['teams']},set(range(1,11)))
             for t in s['teams']:
                 self.assertEqual(len(t['scores']),14)
                 self.assertTrue(all(isinstance(x,(int,float)) and math.isfinite(x) and x>=0 for x in t['scores']))
             self.assertAlmostEqual(sum(sum(t['scores']) for t in s['teams']),TOTALS[s['year']],places=2)
-        self.assertEqual(sum(len(t['scores']) for s in SOURCE['seasons'] for t in s['teams']),420)
+        self.assertEqual(sum(len(t['scores']) for s in SOURCE['seasons'] for t in s['teams']),700)
     def test_no_current_or_postseason_in_historical_source(self):
         self.assertTrue(all(s['year']<METRICS['season'] for s in SOURCE['seasons']))
         self.assertEqual(SOURCE['regular_season_weeks'],14)
@@ -57,21 +58,37 @@ class TestHistoricalDna(unittest.TestCase):
         self.assertAlmostEqual(relative,.08542,places=4)
         self.assertAlmostEqual(cv,.15062,places=4)
         all_time=statistics.mean(x[1] for x in records('franchise-01'))
-        self.assertAlmostEqual(all_time,.11110,places=4)
+        self.assertAlmostEqual(all_time,.06734,places=4)
     def test_new_franchise_excludes_legacy_season(self):
         old=IDENTITY['season_to_franchise']['2023']['6']
         current=IDENTITY['season_to_franchise']['2026']['6']
         self.assertNotEqual(old,current)
-        self.assertEqual([r[0] for r in records(current)],[2025,2024])
-        self.assertEqual([r[0] for r in records(old)],[2023])
+        self.assertEqual([r[0] for r in records(current)],[2025,2024,2022,2021])
+        self.assertEqual([r[0] for r in records(old)],[2023,2022,2021])
         w,relative,cv=fingerprint(current)
-        self.assertAlmostEqual(w[0],.625,places=10)
-        self.assertAlmostEqual(w[1],.375,places=10)
-        self.assertAlmostEqual(relative,.011,places=3)
-        self.assertAlmostEqual(cv,.215,places=3)
+        self.assertEqual(w,[.5,.3,.2])
+        self.assertAlmostEqual(relative,-.0104034,places=5)
+        self.assertAlmostEqual(cv,.2189403,places=5)
+        self.assertEqual([r[0] for r in records(current)[:3]],[2025,2024,2022])
+        self.assertNotIn(2023,[r[0] for r in records(current)])
     def test_all_current_franchises_have_only_verified_history(self):
         for franchise in IDENTITY['season_to_franchise']['2026'].values():
-            self.assertIn(len(records(franchise)),(2,3))
+            self.assertIn(len(records(franchise)),(3,4,5))
+    def test_archived_punter_scoring_is_preserved_not_reinterpreted_as_roster_quality(self):
+        archive=SOURCE['seasons'][:2]
+        self.assertEqual([s['year'] for s in archive],[2021,2022])
+        self.assertTrue(all(s['scoring_environment']['starting_punter'] for s in archive))
+        self.assertEqual(METRICS['lineup']['weightedPossible'],8)
+        self.assertFalse(any('rosterAnalysis' in s or 'starterWorthyRate' in s for s in archive))
+
+    def test_archived_owners_follow_verified_franchise_and_returning_manager(self):
+        old=IDENTITY['season_to_franchise']
+        self.assertEqual(old['2021']['1'],old['2022']['1'])
+        self.assertEqual(old['2022']['1'],old['2024']['6'])  # Returning franchise
+        self.assertNotEqual(old['2022']['1'],old['2023']['6'])  # Different owner of 2023 slot
+        self.assertEqual(old['2022']['2'],old['2023']['6'])
+        self.assertNotEqual(old['2023']['5'],old['2022']['1'])  # New participant in 2023
+
     def test_no_private_owner_fields(self):
         raw=json.dumps(SOURCE).lower()
         for forbidden in ('owner_name','manager_name','espn_s2','espn_swid','owner_id','manager_id'):
