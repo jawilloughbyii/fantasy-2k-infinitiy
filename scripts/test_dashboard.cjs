@@ -169,7 +169,7 @@ async function main(){
   assert.ok(view.includes('League champion: '+year),'Championship year available '+year);
  }
  assert.ok(view.includes('Quattro Padres<span class="champion-trophy"'),'Verified 2022 champion must receive current trophy');
- assert.equal((node('teamSelect').innerHTML.match(/🏆/g)||[]).length,4,'Global team selector displays all four title-owning franchises');
+ assert.equal((node('teamSelect').innerHTML.match(/🏆/g)||[]).length,7,'Global team selector displays seven title-owning franchises');
  click('[data-expand-standing]',{expandStanding:'6'});
  view=node('view').innerHTML;
  assert.ok(view.includes('standing-detail-6')&&view.includes('View The Domestic House Cats'),'Mobile expansion retained');
