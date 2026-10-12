@@ -103,7 +103,7 @@ assert.notEqual(instrumented,script[1],'Champion renderer test hook could not be
 const sandbox={document:doc,window:{scrollTo(){}},fetch,console};
 vm.runInNewContext(instrumented,sandbox,{timeout:5000});
 const names=sandbox.__championshipTest;
-assert.deepStrictEqual(championshipHistory.legacy_champions.map(x=>[x.season,x.espn_team_id,x.source_league_id]),[[2014,8,791996],[2016,9,791996],[2017,3,791996]]);
+assert.deepStrictEqual(championshipHistory.legacy_champions.map(x=>[x.season,x.espn_team_id,x.source_league_id]),[[2014,8,791996],[2015,2,791996],[2016,9,791996],[2017,3,791996]]);
 for(const [year,tid,alias] of [[2014,8,"Sleazy Veasey's Teenie Peenie"],[2016,9,"Jaqiuzz so much I Philip Rivers"],[2017,3,"The Bear Jew"]]){
  assert.ok(names.teamName({espn_team_id:tid,name:alias},year).includes('League champion: '+year),'Old-era winning alias gets trophy only in the winning season');
  assert.ok(!names.teamName({espn_team_id:tid,name:alias},2015).includes('champion-trophy'),'Old-era team IDs do not inherit trophies in disputed 2015');
