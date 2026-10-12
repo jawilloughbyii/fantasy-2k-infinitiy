@@ -6,6 +6,7 @@ on:
     paths:
       - 'scripts/discover_bhm_pre2021.py'
       - 'scripts/probe_bhm_endpoint_matrix.py'
+      - 'scripts/probe_bhm_host_control.py'
       - '.github/workflows/discover-bhm-pre2021.yml'
   workflow_dispatch:
 
@@ -31,6 +32,11 @@ jobs:
           ESPN_S2: ${{ secrets.ESPN_S2 }}
           ESPN_SWID: ${{ secrets.ESPN_SWID }}
         run: python scripts/probe_bhm_endpoint_matrix.py
+      - name: Verify authenticated control and alternate ESPN archive host
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/probe_bhm_host_control.py
       - name: Upload sanitized private season discovery
         if: always()
         uses: actions/upload-artifact@v4
