@@ -19,22 +19,43 @@ OUT = Path("output/bhm-pre2021-discovery")
 
 
 def fetch(year, cookie):
+    base = "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl"
     query = urllib.parse.urlencode([("view", v) for v in VIEWS])
-    url = (f"https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/"
-           f"seasons/{year}/segments/0/leagues/{LEAGUE_ID}?{query}")
-    req = urllib.request.Request(url, headers={
-        "Cookie": cookie, "Accept": "application/json",
-        "User-Agent": "Fantasy2KInfinity-ArchivedLeagueProbe/1.0"})
-    try:
-        with urllib.request.urlopen(req, timeout=45) as response:
-            return json.load(response), None
-    except urllib.error.HTTPError as exc:
-        if exc.code in (401, 403):
-            # HTTP access failure is not evidence of an absent fantasy season.
-            return None, {"status": "access_denied", "http_status": exc.code}
-        return None, {"status": "http_error", "http_status": exc.code}
-    except (urllib.error.URLError, TimeoutError, ValueError) as exc:
-        return None, {"status": "request_error", "error_type": type(exc).__name__}
+    urls = [
+        ("modern", f"{base}/seasons/{year}/segments/0/leagues/{LEAGUE_ID}?{query}"),
+        ("leagueHistory", f"{base}/leagueHistory/{LEAGUE_ID}?seasonId={year}&{query}"),
+    ]
+    attempts = []
+    for label, url in (list(reversed(urls)) if year < 2018 else urls):
+        req = urllib.request.Request(url, headers={
+            "Cookie": cookie, "Accept": "application/json",
+            "User-Agent": "Fantasy2KInfinity-ArchivedLeagueProbe/1.0"})
+        try:
+            with urllib.request.urlopen(req, timeout=45) as response:
+                source = json.load(response)
+            if isinstance(source, list):
+                if len(source) != 1:
+                    attempts.append({"endpoint": label, "status": "invalid_array_shape"})
+                    continue
+                source = source[0]
+            if not isinstance(source, dict):
+                attempts.append({"endpoint": label, "status": "invalid_shape"})
+                continue
+            if int(source.get("id", -1)) != LEAGUE_ID:
+                attempts.append({"endpoint": label, "status": "mismatched_league"})
+                continue
+            # Reject responses that are actually a different requested year.
+            declared = source.get("seasonId")
+            if declared is not None and int(declared) != year:
+                attempts.append({"endpoint": label, "status": "mismatched_season"})
+                continue
+            return source, None
+        except urllib.error.HTTPError as exc:
+            attempts.append({"endpoint": label, "status": "http_error", "code": exc.code})
+        except (urllib.error.URLError, TimeoutError, ValueError) as exc:
+            attempts.append({"endpoint": label, "status": "request_error",
+                             "error_type": type(exc).__name__})
+    return None, {"status": "no_valid_endpoint", "attempts": attempts}
 
 
 def score(v):
