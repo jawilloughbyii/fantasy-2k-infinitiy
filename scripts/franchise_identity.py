@@ -31,6 +31,11 @@ def validate_mapping(manifest):
             raise ValueError(f'{year}: every franchise ID must be non-empty')
         if len(set(mapping.values())) != 10:
             raise ValueError(f'{year}: a franchise cannot occupy two ESPN slots in one season')
+    source_leagues = manifest.get('league_ids_by_season')
+    if not isinstance(source_leagues, dict) or set(source_leagues) != set(seasons):
+        raise ValueError('Each mapped season must declare its ESPN league ID')
+    if any(not isinstance(source_leagues[y], int) or source_leagues[y] <= 0 for y in seasons):
+        raise ValueError('Invalid season ESPN league ID')
     transitions = manifest.get('documented_transitions')
     if not isinstance(transitions, list):
         raise ValueError('Missing explicit transition list')
@@ -52,9 +57,22 @@ def validate_mapping(manifest):
     for before, after in zip(year_values, year_values[1:]):
         if after != before + 1:
             continue  # Disjoint seasons are not evidence of continuity.
+        if source_leagues[str(before)] != source_leagues[str(after)]:
+            continue  # ESPN slots are not comparable across different league IDs.
         for tid in EXPECTED_ESPN_IDS:
             if seasons[str(before)][tid] != seasons[str(after)][tid] and (str(before), str(after), tid) not in declared:
                 raise ValueError(f'Undocumented franchise change: {before}/{after}, ESPN ID {tid}')
+    # Owner identity across old/new league IDs is explicitly validated, never inferred from slots.
+    owner_old = seasons['2022']
+    owner_new = seasons['2023']
+    if source_leagues['2022'] == source_leagues['2023'] or not (source_leagues['2021']==source_leagues['2022']==1493036707):
+        raise ValueError('Archived league source identity mismatch')
+    if owner_old['1'] != seasons['2024']['6'] or owner_old['2'] != owner_new['6']:
+        raise ValueError('Neal/Diego owner continuity across league migration must remain distinct')
+    if owner_old['5'] != owner_new['3'] or owner_old['6'] != owner_new['4']:
+        raise ValueError('Confirmed Quattro Padres / Golden Ponies franchise linkage changed')
+    if owner_new['5'] in set(owner_old.values()):
+        raise ValueError('Aaron must begin as a new franchise in 2023')
     # User-confirmed historical exception: never silently undo this split.
     for year in ('2023', '2024', '2025', '2026'):
         if year not in seasons:
@@ -77,9 +95,12 @@ def validate_mapping(manifest):
     return True
 
 
-def franchise_for(season, espn_team_id, manifest):
+def franchise_for(season, espn_team_id, manifest, league_id=None):
     """Strict resolver: unmapped years or IDs require explicit human validation."""
     validate_mapping(manifest)
+    expected_league = manifest['league_ids_by_season'].get(str(season))
+    if league_id is not None and expected_league != league_id:
+        raise ValueError(f'ESPN league ID does not match season {season}')
     try:
         return manifest['season_to_franchise'][str(season)][str(espn_team_id)]
     except KeyError:
