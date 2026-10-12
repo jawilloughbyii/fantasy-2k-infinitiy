@@ -1,0 +1,71 @@
+name: Promote audited 2014-17 draft scoring and standings
+
+on:
+  push:
+    branches: [research/2014-17-draft-scoring-standings]
+    paths:
+      - 'scripts/build_legacy_2014_17_verified.py'
+      - '.github/workflows/promote-audited-legacy-2014-17.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: research/2014-17-draft-scoring-standings
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check audit and promotion syntax
+        run: python -m py_compile scripts/probe_legacy_2014_17_source_audit.py scripts/build_legacy_2014_17_verified.py
+      - name: Re-read authenticated original ESPN source and fully reconcile
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: |
+          python scripts/probe_legacy_2014_17_source_audit.py > /tmp/sanitized_audit_summary.log
+          python scripts/build_legacy_2014_17_verified.py
+      - name: Synchronize published HTML fallback from verified references
+        run: python scripts/sync_site_snapshot.py --html index.html --data data/league.json --output index.html
+      - name: Validate full offline suite before publishing research branch
+        run: |
+          python scripts/test_pipeline.py
+          python scripts/test_roster_analysis.py
+          python scripts/test_historical_dna.py
+          python scripts/test_legacy_history.py
+          python scripts/test_legacy_enriched.py
+          python scripts/test_historical_playoffs.py
+          python scripts/test_historical_drafts.py
+          python scripts/test_historical_draft_grades.py
+          python scripts/test_franchise_identity.py
+          node scripts/test_dashboard.cjs
+          python scripts/sync_site_snapshot.py --html index.html --data data/league.json --output /tmp/legacy-sync-check.html
+          cmp index.html /tmp/legacy-sync-check.html
+      - name: Commit only verified public fantasy outputs onto isolated branch
+        run: |
+          test "$(git branch --show-current)" = "research/2014-17-draft-scoring-standings"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reference/historical_legacy_draft_picks_2014_2017.json reference/historical_legacy_scoring_2014_2017.json reference/historical_legacy_official_standings_2014_2017.json reference/historical_regular_season_scores.json index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Preserve 680 original-year player identities and audited 2014-17 rules and official records"
+            git push origin HEAD:research/2014-17-draft-scoring-standings
+          fi
+      - name: Preserve short-lived sanitized source-audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verified-legacy-2014-17-audit
+          path: output/legacy-2014-17-verification/source_review.json
+          retention-days: 7
+          if-no-files-found: warn
