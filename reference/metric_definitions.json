@@ -83,5 +83,51 @@
     "allTime": "Equal-weight all verified completed seasons of the same franchise; observed quadrant persistence never recency-weighted.",
     "activeSeason": "Never blend ongoing 2026 data into Historical DNA; Current DNA remains separate.",
     "franchiseContinuity": "Explicit season + ESPN team slot mapping; 2023 ESPN slot 6 differs from 2024+."
+  },
+  "acquisitionDna": {
+    "version": 1,
+    "scope": "Finalized regular-season starter appearances; source is the most recent verified acquisition INTO the same franchise before that player's fantasy-game lineup lock.",
+    "sourceCategories": [
+      "draft",
+      "trade",
+      "waiver",
+      "free_agent",
+      "keeper",
+      "other",
+      "unknown"
+    ],
+    "sourceDefinitions": {
+      "draft": "Picked by this franchise in the original season draft and retained continuously to the starter appearance",
+      "trade": "Most recent entry into this franchise was an executed trade",
+      "waiver": "Most recent entry was a processed waiver claim",
+      "free_agent": "Most recent entry was an unrestricted free-agent add",
+      "keeper": "Player entered the current season through an ESPN-verified keeper allocation; do not infer",
+      "other": "Verified commissioner/manual acquisition not otherwise classified",
+      "unknown": "Acquisition chain is missing, contradictory, post-lock or unverified; always included in mix denominator"
+    },
+    "mix": {
+      "denominator": "One finalized starter appearance = one starter-week, regardless of points or slot. All regular-season starters including K, D/ST and historical P are included; unknown is not discarded.",
+      "numerator": "Starter-weeks whose player's most recent verified entry into that franchise had the indicated source",
+      "crossSeason": "Calculate each season separately. Display lifetime context as equal-weight means of complete verified seasons, never pool 9-slot and punter-era denominators."
+    },
+    "yield": {
+      "denominator": "Within each source, sum eligible position-weighted starter opportunities with independently verified league-wide same-week slot qualification",
+      "numerator": "Within that source, sum weighted starter-worthy hits; K and D/ST count 0.5 and other 2026 skill slots count 1",
+      "status": "N/A until source and full year-specific player quality coverage are validated; conditional performance of starts, not causal acquisition skill or draft ROI"
+    },
+    "execution": {
+      "denominator": "Sum of independently verified best attainable legal roster quality from actual starters and bench, excluding IR",
+      "numerator": "Sum of independently verified realized starter-worthy quality; if zero attainable ceiling show N/A",
+      "separation": "A team-level lineup choice metric, not source-specific; do not call ceiling shortfall an execution failure"
+    },
+    "guards": [
+      "Player identity must use original season ESPN player ID, league ID, week, franchise ID and assigned legal lineup slot; never match players by display name",
+      "Use latest acquisition into the specific franchise; after a drop and reacquisition, prior draft credit does not persist",
+      "One player can supply a distinct starter appearance each completed week; no duplicate starter IDs in a franchise-week or two teams in a league-week",
+      "Enforce verified season-specific starting slot counts and completed week coverage before publication",
+      "Never backfill unknown starter sources by assumption, owner ID, team name or current roster state",
+      "Historical starter-worthy yield unavailable until original-year full player pool and lineup rules are reconciled; punter-era SWR must not reuse 2026 denominator",
+      "Mix and yield use regular-season finalized snapshots only, not pre-lock substitutions or unverified estimates"
+    ]
   }
 }
