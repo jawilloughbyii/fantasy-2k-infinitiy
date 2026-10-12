@@ -109,7 +109,9 @@ for(const [year,tid,alias] of [[2014,8,"Sleazy Veasey's Teenie Peenie"],[2016,9,
 }
 assert.ok(!names.teamName({espn_team_id:2,name:'The General\'s "Dorm Room"'},2015).includes('champion-trophy'),'Disputed 2015 ESPN final must not receive trophy');
 assert.ok(!names.teamName({espn_team_id:8,name:'Cuckleberry Finn'},2017).includes('champion-trophy'),'Runner-up must not receive trophy');
-assert.ok(!names.teamName({id:8,name:'Current team'},2026).includes('2014'),'Old ESPN team ID must not become a current-season trophy');
+assert.ok(names.teamName({id:3,name:'Israeli Nutonyaboob'},2026).includes('2014'),'Confirmed current franchise inherits 2014 trophy');
+assert.ok(names.teamName({id:4,name:'Golden Ponies'},2026).includes('2016'),'Confirmed Golden Ponies inherit 2016 trophy');
+assert.ok(names.teamName({id:1,name:'Aubreys 3rd Leg'},2026).includes('2017'),'Confirmed winning franchise inherits 2017 trophy');
 assert.ok(names.teamName({espn_team_id:3,name:'Lord Farquaad'},2021).includes('League champion: 2021'),'2021 winner has the season trophy');
 assert.ok(names.teamName({espn_team_id:5,name:'Quatro Padres'},2022).includes('League champion: 2022'),'2022 winner has the season trophy');
 assert.ok(names.teamName({id:7,name:'Project Haily Mary'},2026).includes('2021, 2023'),'Current 2026 franchise owns both 2021 and 2023 titles');
