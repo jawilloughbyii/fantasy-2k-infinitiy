@@ -15,6 +15,8 @@ const championshipHistory=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/c
 const historicalScores=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_regular_season_scores.json'),'utf8'));
 const playoffHistory=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_playoff_brackets.json'),'utf8'));
 const draftHistory=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_draft_picks.json'),'utf8'));
+const gradedDrafts=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_draft_grades.json'),'utf8'));
+
 function embedded(id){
  const begin='<script id="'+id+'" type="application/json">';
  const a=html.indexOf(begin),b=html.indexOf('</script>',a+begin.length);
