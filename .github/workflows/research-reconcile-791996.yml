@@ -1,0 +1,56 @@
+name: Read-only 2014-17 franchise continuity research
+
+on:
+  push:
+    branches: [research/reconcile-791996-franchise-identities]
+    paths:
+      - 'scripts/research_reconcile_791996.py'
+      - '.github/workflows/research-reconcile-791996.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate isolated research syntax
+        run: python -m py_compile scripts/research_reconcile_791996.py
+      - name: Compare ESPN ownership and draft membership in runner memory only
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/research_reconcile_791996.py
+      - name: Check research report never exports raw identifiers
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('output/private-reconciliation-791996/identity_candidates.json')
+          r=json.loads(p.read_text())
+          assert r['status']=='READ_ONLY_PRIVATE_RESEARCH_CANDIDATES_ONLY'
+          assert set(r['seasons'])=={'2014','2015','2016','2017'}
+          assert all(len(x)==10 for x in r['seasons'].values())
+          forbidden={'owners','owner','member','memberid','members','primaryowner','ownerid','cookie','espn_s2','espn_swid','email','username','hash','hmac'}
+          def check(x):
+              if isinstance(x,dict):
+                  assert not (set(map(str.lower,x)) & forbidden)
+                  for value in x.values():check(value)
+              elif isinstance(x,list):
+                  for value in x:check(value)
+          check(r)
+          print('PASS: only non-identifying candidate franchise references were exported')
+          PY
+      - name: Upload short-lived sanitized identity candidate report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-791996-franchise-candidates
+          path: output/private-reconciliation-791996/identity_candidates.json
+          if-no-files-found: warn
+          retention-days: 3
