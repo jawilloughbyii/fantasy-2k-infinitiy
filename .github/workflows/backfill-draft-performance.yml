@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   backfill:
@@ -26,6 +26,8 @@ jobs:
           ESPN_S2: ${{ secrets.ESPN_S2 }}
           ESPN_SWID: ${{ secrets.ESPN_SWID }}
         run: python scripts/backfill_draft_player_performance.py
+      - name: Grade every completed-year draft selection and franchise DNA
+        run: python scripts/grade_draft_value.py
       - name: Upload private, minimized player-scoring data
         if: always()
         uses: actions/upload-artifact@v4
@@ -34,3 +36,10 @@ jobs:
           path: output/draft-performance/*.json
           retention-days: 7
           if-no-files-found: warn
+      - name: Commit only approved graded summary to research branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reference/historical_draft_grades.json
+          git diff --cached --quiet || git commit -m "Stage verified retrospective draft grades and franchise DNA"
+          git push origin HEAD:research/draft-value-performance-2021-2025
