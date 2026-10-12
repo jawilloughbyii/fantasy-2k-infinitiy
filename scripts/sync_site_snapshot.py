@@ -46,13 +46,34 @@ def championship_metadata():
         mapped=identity['season_to_franchise'].get(str(year),{}).get(tid)
         if not mapped or mapped!=winner['franchise_id']:
             raise ValueError('Championship identity is not verified for its season')
+    historical=json.loads(HISTORICAL_SCORES.read_text(encoding='utf8'))
+    archived={s['year']:s for s in historical['seasons']}
+    old_winners=history.get('legacy_champions',[])
+    if [r['season'] for r in old_winners]!=[2014,2016,2017]:
+        raise ValueError('Missing or extra source-verified legacy title years')
+    for old in old_winners:
+        season=archived.get(old['season'])
+        final=season.get('postseason') if season else None
+        if not (season and season['league_id']==791996 and
+                old['source_league_id']==791996 and old['status']=='confirmed_legacy_season' and
+                old.get('franchise_id') is None and
+                final and final['status']=='validated_bracket_path' and final['bracket_validated'] is True and
+                old['espn_team_id']==final['winner_espn_team_id'] and
+                old['team_name_at_win']==final['winner_team_name'] and
+                next((t['name'] for t in season['teams'] if t['espn_team_id']==old['espn_team_id']),None)==old['team_name_at_win']):
+            raise ValueError('Unreconciled legacy trophy data')
+        if str(old['season']) in identity['season_to_franchise']:
+            raise ValueError('Old-era franchise attribution is not authorized')
+    if archived[2015]['postseason']['bracket_validated'] is not False or 2015 in {r['season'] for r in old_winners}:
+        raise ValueError('Disputed 2015 final must not award a trophy')
     if team_ids['season'] not in (2026,):
         raise ValueError('Unverified live dashboard season mapping')
     result={
         'league_id':history['league_id'],
         'season_to_franchise':identity['season_to_franchise'],
         'dashboard_to_espn':team_ids['baseline_to_espn'],
-        'champions':history['champions']
+        'champions':history['champions'],
+        'legacy_champions':old_winners
     }
     for forbidden in ('owner_name','manager_name','espn_s2','espn_swid'):
         if forbidden in json.dumps(result).lower():
