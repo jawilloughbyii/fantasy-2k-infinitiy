@@ -811,6 +811,7 @@ function historicalFranchiseDNA(t){
   <div class="identity-era"><span>HISTORICALLY · ${esc(seasonsLabel)}</span><strong>${esc(category)}</strong><small>${recent.length} completed ${recent.length===1?'season':'seasons'} · recency weighted</small></div>
  </div>
  <div class="identity-brief"><span>${esc(alignment)}</span>${p.momentum?`<span class="tag-soft ${p.trendClass}">${esc(p.momentum)} · ${sign(p.shift,1)} PF/wk</span>`:''}</div>
+ ${draftIdentity(t)}
  <details class="deep-dive identity-details"><summary>Historical metrics & season-by-season details</summary>
   <div class="histdna-grid"><div class="histdna-stat"><small>Typical scoring strength</small><strong>${signedPercent(relative)}</strong><span>PF per week versus the same-season league average</span></div><div class="histdna-stat"><small>Typical weekly volatility</small><strong>${fmt(cv*100,1)}%</strong><span>Recency-weighted season CV; lower means steadier</span></div><div class="histdna-stat"><small>Historical consistency</small><strong>${largest}/${all.length}</strong><span>${esc(tendency)} · all verified completed seasons, equally counted</span></div></div>
   <div class="sectionhead" style="margin:12px 0 7px"><div><h4 class="sectiontitle">Season-by-season fingerprint</h4><div class="sublabel">Each completed season compared with its own league average.</div></div></div>
