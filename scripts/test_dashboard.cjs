@@ -45,6 +45,7 @@ assert.equal(draftHistory.seasons.reduce((n,s)=>n+s.picks.length,0),980,'980 act
 assert.equal(historicalScores.seasons.reduce((n,s)=>n+s.teams.reduce((n,t)=>n+t.scores.length,0),0),1260);
 assert.deepStrictEqual(historicalScores.seasons.map(s=>s.year),[2014,2015,2016,2017,2021,2022,2023,2024,2025]);
 assert.equal(legacyDrafts.seasons.reduce((n,s)=>n+s.picks.length,0),680);
+assert.equal(legacyDrafts.seasons.reduce((n,s)=>n+s.picks.filter(p=>p.player_name&&p.position).length,0),680);
 assert.deepStrictEqual(championshipHistory.champions.map(x=>[x.season,x.espn_team_id,x.franchise_id]),[
  [2021,3,'franchise-07'],[2022,5,'franchise-03'],[2023,7,'franchise-07'],[2024,10,'franchise-10'],[2025,1,'franchise-01']
 ]);
@@ -289,7 +290,7 @@ async function main(){
 
  events.change({target:{id:'draftYear',value:'2014'}});
  view=node('view').innerHTML;
- assert.ok(view.includes('Shady Akers')&&view.includes('ESPN player ID')&&view.includes('Pending original-era player-name verification'),'2014 original ESPN draft displays without fabricated names or franchise mapping');
+ assert.ok(view.includes('Shady Akers')&&view.includes('ESPN player ID')&&view.includes('Adrian Peterson')&&view.includes('Verified original-year ESPN player metadata'),'2014 original ESPN draft shows authentic season-specific player names and positions');
  assert.equal((view.split('<tbody id="draftRows">')[1].split('</tbody>')[0].match(/<tr>/g)||[]).length,170,'2014 draft displays all 170 original picks');
  events.change({target:{id:'draftYear',value:'2016'}});
  view=node('view').innerHTML;
