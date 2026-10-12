@@ -2,7 +2,7 @@
   "league_id": 418244680,
   "key_grain": "season + ESPN league ID + ESPN team ID",
   "scope": "Confirmed stable manager-franchise attribution 2021–2026; public outputs use current fantasy team display names, not owner names.",
-  "verification": "2021–2022 person-to-franchise identity confirmed by user on 2026-10-12; 2023 Team Figueroa was Diego, 2024 Alan's Cordon Bleu Cavern and 2026 Got Rice? were Neal; Comepig was Aaron from 2023 onward. ESPN 2021–2022 scoring validated separately.",
+  "verification": "2021–2022 person-to-franchise identity confirmed by user on 2026-10-12; 2023 Team Figueroa belongs to the outgoing legacy franchise; 2024 Alan's Cordon Bleu Cavern and 2026 Got Rice? belong to a returning franchise; Comepig is a new participant franchise starting 2023. ESPN 2021–2022 scoring validated separately.",
   "season_to_franchise": {
     "2021": {
       "1": "franchise-06-current-2024",
@@ -84,7 +84,7 @@
       "first_new_season": 2024,
       "prior_franchise_id": "franchise-06-legacy-2023",
       "new_franchise_id": "franchise-06-current-2024",
-      "reason": "Diego managed 2023 Team Figueroa, replaced in 2024 by returning Neal (Alan's Cordon Bleu Cavern, later Got Rice?). Preserve Diego and Neal as distinct franchises."
+      "reason": "2023 Team Figueroa belongs to the outgoing franchise; the returning franchise occupies ESPN slot 6 in 2024 (Alan's Cordon Bleu Cavern, later Got Rice?). Keep the two identities separate."
     }
   ],
   "policies": {
@@ -96,7 +96,7 @@
     ],
     "unmapped": "fail closed; do not infer or carry forward",
     "league_level_analysis": "retain all valid season results, including managers no longer participating",
-    "franchise_level_analysis": "follow confirmed manager-franchise continuity even across league migrations, slot changes and participation gaps; Diego 2021–2023 only; Neal 2021–2022 and 2024–2026; Aaron 2023–2026",
+    "franchise_level_analysis": "follow confirmed manager-franchise continuity even across league migrations, slot changes and participation gaps; outgoing franchise 2021–2023 only; returning franchise 2021–2022 and 2024–2026; new entrant franchise 2023–2026",
     "privacy": "No owner identities or authentication credentials stored here."
   },
   "league_ids_by_season": {
