@@ -1,5 +1,5 @@
 {
-  "status": "RESEARCH_PROPOSAL_NOT_APPROVED_DO_NOT_IMPORT",
+  "status": "PARTIALLY_USER_CONFIRMED_RESEARCH_NOT_APPROVED_FOR_PRODUCTION",
   "source_league_id": 791996,
   "source_validation": "user_confirmed_historical_league; owner identifier evidence compared privately in GitHub Actions run 38319854476",
   "source_signal_summary": "All ten source-year owner identifiers unique each season; eight slots match one unique confirmed modern franchise through owner ID. All 2014–2017 account matches preserve ESPN slot across all four source years. Draft member ID 2014–2017 is shared across slots and is excluded.",
@@ -12,7 +12,7 @@
     2026
   ],
   "privacy": "Only public fantasy display names and anonymous franchise/candidate labels; no ESPN owner/member IDs or hashes",
-  "policy": "Do not publish/merge until user confirms that matching ESPN account implies same managing participant, and resolves slots 6 and 10. 2015 final remains disputed independently.",
+  "policy": "2014 ESPN slot 6 Team Alumni Stink confirmed by user as current Project Haily Mary (franchise-07); 2015–2017 slot 6 inherits only through documented stable original-era ESPN account evidence. Other 8 proposed account-based cross-era matches remain pending user approval. ESPN slot 10 Touchdown Syndrome unresolved. No production publication until reconciled; 2015 final independently disputed.",
   "seasons": [
     {
       "year": 2014,
@@ -61,10 +61,10 @@
         {
           "espn_team_id": 6,
           "historical_name": "Team Alumni Stink",
-          "candidate_franchise_id": null,
-          "provisional_legacy_id": "legacy-candidate-791996-06",
-          "evidence": "unique_within_old_era_owner_no_modern_account_match",
-          "approval": "pending_user_confirmation"
+          "candidate_franchise_id": "franchise-07",
+          "provisional_legacy_id": null,
+          "evidence": "user_confirmed_Team_Alumni_Stink_equals_Project_Haily_Mary",
+          "approval": "user_confirmed"
         },
         {
           "espn_team_id": 7,
@@ -147,10 +147,10 @@
         {
           "espn_team_id": 6,
           "historical_name": "Hustle Gang Homie",
-          "candidate_franchise_id": null,
-          "provisional_legacy_id": "legacy-candidate-791996-06",
-          "evidence": "unique_within_old_era_owner_no_modern_account_match",
-          "approval": "pending_user_confirmation"
+          "candidate_franchise_id": "franchise-07",
+          "provisional_legacy_id": null,
+          "evidence": "same_old_ESPN_owner_as_user_confirmed_2014_slot_6",
+          "approval": "source_continuity_from_user_confirmed_2014"
         },
         {
           "espn_team_id": 7,
@@ -233,10 +233,10 @@
         {
           "espn_team_id": 6,
           "historical_name": "Harambe DayCare Services",
-          "candidate_franchise_id": null,
-          "provisional_legacy_id": "legacy-candidate-791996-06",
-          "evidence": "unique_within_old_era_owner_no_modern_account_match",
-          "approval": "pending_user_confirmation"
+          "candidate_franchise_id": "franchise-07",
+          "provisional_legacy_id": null,
+          "evidence": "same_old_ESPN_owner_as_user_confirmed_2014_slot_6",
+          "approval": "source_continuity_from_user_confirmed_2014"
         },
         {
           "espn_team_id": 7,
@@ -319,10 +319,10 @@
         {
           "espn_team_id": 6,
           "historical_name": "Tiki  Torches",
-          "candidate_franchise_id": null,
-          "provisional_legacy_id": "legacy-candidate-791996-06",
-          "evidence": "unique_within_old_era_owner_no_modern_account_match",
-          "approval": "pending_user_confirmation"
+          "candidate_franchise_id": "franchise-07",
+          "provisional_legacy_id": null,
+          "evidence": "same_old_ESPN_owner_as_user_confirmed_2014_slot_6",
+          "approval": "source_continuity_from_user_confirmed_2014"
         },
         {
           "espn_team_id": 7,
@@ -357,6 +357,17 @@
           "approval": "pending_user_confirmation"
         }
       ]
+    }
+  ],
+  "user_confirmations": [
+    {
+      "source_league_id": 791996,
+      "season": 2014,
+      "espn_team_id": 6,
+      "historical_name": "Team Alumni Stink",
+      "modern_franchise_id": "franchise-07",
+      "modern_team_name": "Project Haily Mary",
+      "scope": "explicit_user_confirmation_of_2014_franchise; 2015-2017 source continuity relies on same original-era ESPN account"
     }
   ]
 }
