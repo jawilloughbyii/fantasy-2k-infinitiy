@@ -10,7 +10,9 @@
       "franchise_attribution": "user_confirmed_account_reconciled_2014_2017",
       "scoring_environment": {
         "starting_punter": true,
-        "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison."
+        "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison.",
+        "scoring_rule_reference": "reference/historical_legacy_scoring_2014_2017.json",
+        "scoring_item_count": 47
       },
       "postseason": {
         "status": "validated_bracket_path",
@@ -277,7 +279,13 @@
             169
           ]
         }
-      ]
+      ],
+      "standings_verification": {
+        "source": "ESPN_mTeam_record_overall",
+        "record_count": 10,
+        "wins_losses_ties_pf_pa": "all_10_exactly_reconciled",
+        "official_seed_order": "not_returned_do_not_infer"
+      }
     },
     {
       "year": 2015,
@@ -286,7 +294,9 @@
       "franchise_attribution": "user_confirmed_account_reconciled_2014_2017",
       "scoring_environment": {
         "starting_punter": true,
-        "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison."
+        "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison.",
+        "scoring_rule_reference": "reference/historical_legacy_scoring_2014_2017.json",
+        "scoring_item_count": 50
       },
       "postseason": {
         "status": "source_final_record_only_advancement_unresolved",
@@ -553,7 +563,13 @@
             105.54
           ]
         }
-      ]
+      ],
+      "standings_verification": {
+        "source": "ESPN_mTeam_record_overall",
+        "record_count": 10,
+        "wins_losses_ties_pf_pa": "all_10_exactly_reconciled",
+        "official_seed_order": "not_returned_do_not_infer"
+      }
     },
     {
       "year": 2016,
@@ -562,7 +578,9 @@
       "franchise_attribution": "user_confirmed_account_reconciled_2014_2017",
       "scoring_environment": {
         "starting_punter": true,
-        "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison."
+        "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison.",
+        "scoring_rule_reference": "reference/historical_legacy_scoring_2014_2017.json",
+        "scoring_item_count": 50
       },
       "postseason": {
         "status": "validated_bracket_path",
@@ -829,7 +847,13 @@
             171.94
           ]
         }
-      ]
+      ],
+      "standings_verification": {
+        "source": "ESPN_mTeam_record_overall",
+        "record_count": 10,
+        "wins_losses_ties_pf_pa": "all_10_exactly_reconciled",
+        "official_seed_order": "not_returned_do_not_infer"
+      }
     },
     {
       "year": 2017,
@@ -838,7 +862,9 @@
       "franchise_attribution": "user_confirmed_account_reconciled_2014_2017",
       "scoring_environment": {
         "starting_punter": true,
-        "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison."
+        "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison.",
+        "scoring_rule_reference": "reference/historical_legacy_scoring_2014_2017.json",
+        "scoring_item_count": 50
       },
       "postseason": {
         "status": "validated_bracket_path",
@@ -1105,7 +1131,13 @@
             115.16
           ]
         }
-      ]
+      ],
+      "standings_verification": {
+        "source": "ESPN_mTeam_record_overall",
+        "record_count": 10,
+        "wins_losses_ties_pf_pa": "all_10_exactly_reconciled",
+        "official_seed_order": "not_returned_do_not_infer"
+      }
     },
     {
       "year": 2021,
