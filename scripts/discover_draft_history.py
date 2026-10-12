@@ -72,6 +72,55 @@ def process(year, league, payload):
     return meta,private
 
 
+
+def enrich(year, league, cookie, data):
+    ids={int(p["playerId"]) for p in data["picks"]}
+    # Use year-specific ESPN player records, not 2026 rosters (retired players may disappear).
+    url=(f"https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/"
+         f"seasons/{year}/players?scoringPeriodId=0&view=players_wl")
+    filt={"filterIds":{"value":sorted(ids)}}
+    req=urllib.request.Request(url, headers={
+        "Cookie":cookie,"Accept":"application/json",
+        "X-Fantasy-Filter":json.dumps(filt),
+        "User-Agent":"Fantasy2KInfinity-DraftResearch/1.0"})
+    with urllib.request.urlopen(req, timeout=65) as response:
+        source=json.load(response)
+    if not isinstance(source,list):
+        raise ValueError(f"{year}: year-specific player endpoint has unexpected shape")
+    candidates={}
+    for entry in source:
+        record=entry.get("player") or entry
+        pid=record.get("id",entry.get("id"))
+        if type(pid) is int and pid in ids and isinstance(record.get("fullName"),str) and record["fullName"].strip():
+            candidates[pid]={"name":record["fullName"].strip(),"position_id":record.get("defaultPositionId")}
+    missing=ids-set(candidates)
+    # Retired and legacy special-teams players: look for them by ID in the same
+    # historical league context, never invent or substitute modern player names.
+    if missing:
+        query=urllib.parse.urlencode([("view","kona_player_info")])
+        lurl=(f"https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/"
+              f"seasons/{year}/segments/0/leagues/{league}?{query}")
+        req=urllib.request.Request(lurl,headers={
+            "Cookie":cookie,"Accept":"application/json",
+            "X-Fantasy-Filter":json.dumps({"players":{"filterIds":{"value":sorted(missing)}}}),
+            "User-Agent":"Fantasy2KInfinity-DraftResearch/1.0"})
+        with urllib.request.urlopen(req,timeout=65) as response:pool=json.load(response)
+        for entry in pool.get("players") or []:
+            record=(entry.get("playerPoolEntry") or entry).get("player") or entry.get("player") or {}
+            pid=record.get("id", (entry.get("playerPoolEntry") or entry).get("id",entry.get("id")))
+            if type(pid) is int and pid in missing and isinstance(record.get("fullName"),str) and record["fullName"].strip():
+                candidates[pid]={"name":record["fullName"].strip(),"position_id":record.get("defaultPositionId")}
+    for pick in data["picks"]:
+        meta=candidates.get(pick["playerId"])
+        pick["playerName"]=meta["name"] if meta else None
+        pick["positionId"]=meta["position_id"] if meta else None
+    unresolved=sorted(ids-set(candidates))
+    data["metadata"]["resolved_player_names"]=len(data["picks"])-sum(p["playerName"] is None for p in data["picks"])
+    data["metadata"]["unresolved_player_ids"]=unresolved
+    data["metadata"]["name_source"]="ESPN season-specific players_wl with ESPN same-season league fallback"
+    return data
+
+
 def main():
     s2,swid=os.environ.get("ESPN_S2","").strip(),os.environ.get("ESPN_SWID","").strip()
     if not s2 or not swid:raise RuntimeError("Missing GitHub Actions ESPN credentials")
@@ -79,8 +128,10 @@ def main():
     summary=[]
     for year,league in LEAGUES.items():
         try:
-            meta,data=process(year,league,get(year,league,
-                                  f"espn_s2={s2}; SWID={swid}"))
+            cookie=f"espn_s2={s2}; SWID={swid}"
+            meta,data=process(year,league,get(year,league,cookie))
+            data=enrich(year,league,cookie,data)
+            meta=data["metadata"]
             (OUT/f"draft_{year}.json").write_text(json.dumps(data,indent=2)+"\n")
         except urllib.error.HTTPError as e:
             meta={"year":year,"source_league_id":league,"status":f"http_{e.code}",
@@ -90,7 +141,8 @@ def main():
                   "status":"error_"+type(e).__name__, "pick_count":None}
         summary.append(meta)
         print(f"{year}: {meta['status']}; picks={meta.get('pick_count')}; "
-              f"rounds={meta.get('round_count')}; teams={meta.get('drafting_team_count')}")
+              f"rounds={meta.get('round_count')}; teams={meta.get('drafting_team_count')}; "
+              f"names={meta.get('resolved_player_names')}; unresolved={len(meta.get('unresolved_player_ids',[]))}")
     (OUT/"coverage_report.json").write_text(json.dumps({
         "scope":"private only, not published",
         "seasons":summary},indent=2)+"\n")
