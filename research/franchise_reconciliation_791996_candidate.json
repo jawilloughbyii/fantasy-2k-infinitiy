@@ -1,0 +1,362 @@
+{
+  "status": "RESEARCH_PROPOSAL_NOT_APPROVED_DO_NOT_IMPORT",
+  "source_league_id": 791996,
+  "source_validation": "user_confirmed_historical_league; owner identifier evidence compared privately in GitHub Actions run 38319854476",
+  "source_signal_summary": "All ten source-year owner identifiers unique each season; eight slots match one unique confirmed modern franchise through owner ID. All 2014–2017 account matches preserve ESPN slot across all four source years. Draft member ID 2014–2017 is shared across slots and is excluded.",
+  "modern_franchise_evidence_years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "privacy": "Only public fantasy display names and anonymous franchise/candidate labels; no ESPN owner/member IDs or hashes",
+  "policy": "Do not publish/merge until user confirms that matching ESPN account implies same managing participant, and resolves slots 6 and 10. 2015 final remains disputed independently.",
+  "seasons": [
+    {
+      "year": 2014,
+      "league_id": 791996,
+      "teams": [
+        {
+          "espn_team_id": 1,
+          "historical_name": "Shady Akers",
+          "candidate_franchise_id": "franchise-06-current-2024",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 2,
+          "historical_name": "Pewter City Giodudes",
+          "candidate_franchise_id": "franchise-01",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 3,
+          "historical_name": "Lucille's Baby Daddy",
+          "candidate_franchise_id": "franchise-09",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 4,
+          "historical_name": "Pittsburgh Pig Fuckers",
+          "candidate_franchise_id": "franchise-08",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 5,
+          "historical_name": "Kanye West",
+          "candidate_franchise_id": "franchise-06-legacy-2023",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 6,
+          "historical_name": "Team Alumni Stink",
+          "candidate_franchise_id": null,
+          "provisional_legacy_id": "legacy-candidate-791996-06",
+          "evidence": "unique_within_old_era_owner_no_modern_account_match",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 7,
+          "historical_name": "Jimmy Graham's UnderPerformers",
+          "candidate_franchise_id": "franchise-10",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 8,
+          "historical_name": "Sleazy Veasey's Teenie Peenie",
+          "candidate_franchise_id": "franchise-02",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 9,
+          "historical_name": "Pokerwithmy Fleener",
+          "candidate_franchise_id": "franchise-04",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 10,
+          "historical_name": "Touchdown Syndrome",
+          "candidate_franchise_id": null,
+          "provisional_legacy_id": "legacy-candidate-791996-10",
+          "evidence": "unique_within_old_era_owner_no_modern_account_match",
+          "approval": "pending_user_confirmation"
+        }
+      ]
+    },
+    {
+      "year": 2015,
+      "league_id": 791996,
+      "teams": [
+        {
+          "espn_team_id": 1,
+          "historical_name": "Crosby Sweaters",
+          "candidate_franchise_id": "franchise-06-current-2024",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 2,
+          "historical_name": "The General's \"Dorm Room\"",
+          "candidate_franchise_id": "franchise-01",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 3,
+          "historical_name": "The Bear Jew",
+          "candidate_franchise_id": "franchise-09",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 4,
+          "historical_name": "Adam Vinatier U a New Asshole",
+          "candidate_franchise_id": "franchise-08",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 5,
+          "historical_name": "Kanye West",
+          "candidate_franchise_id": "franchise-06-legacy-2023",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 6,
+          "historical_name": "Hustle Gang Homie",
+          "candidate_franchise_id": null,
+          "provisional_legacy_id": "legacy-candidate-791996-06",
+          "evidence": "unique_within_old_era_owner_no_modern_account_match",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 7,
+          "historical_name": "Please Don't Forsett",
+          "candidate_franchise_id": "franchise-10",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 8,
+          "historical_name": "Edwin's 20/70 Eyesight",
+          "candidate_franchise_id": "franchise-02",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 9,
+          "historical_name": "Pokerwithmy Fleener",
+          "candidate_franchise_id": "franchise-04",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 10,
+          "historical_name": "Touchdown Syndrome",
+          "candidate_franchise_id": null,
+          "provisional_legacy_id": "legacy-candidate-791996-10",
+          "evidence": "unique_within_old_era_owner_no_modern_account_match",
+          "approval": "pending_user_confirmation"
+        }
+      ]
+    },
+    {
+      "year": 2016,
+      "league_id": 791996,
+      "teams": [
+        {
+          "espn_team_id": 1,
+          "historical_name": "Nacho Players",
+          "candidate_franchise_id": "franchise-06-current-2024",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 2,
+          "historical_name": "The General's \"Dorm Room\"",
+          "candidate_franchise_id": "franchise-01",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 3,
+          "historical_name": "The Bear Jew",
+          "candidate_franchise_id": "franchise-09",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 4,
+          "historical_name": "A. Foster n The Rosterfarians",
+          "candidate_franchise_id": "franchise-08",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 5,
+          "historical_name": "Kanye West",
+          "candidate_franchise_id": "franchise-06-legacy-2023",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 6,
+          "historical_name": "Harambe DayCare Services",
+          "candidate_franchise_id": null,
+          "provisional_legacy_id": "legacy-candidate-791996-06",
+          "evidence": "unique_within_old_era_owner_no_modern_account_match",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 7,
+          "historical_name": "Gosh Darnit Andy",
+          "candidate_franchise_id": "franchise-10",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 8,
+          "historical_name": "Cuckleberry Finn",
+          "candidate_franchise_id": "franchise-02",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 9,
+          "historical_name": "Jaqiuzz so much I Philip Rivers",
+          "candidate_franchise_id": "franchise-04",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 10,
+          "historical_name": "Touchdown Syndrome",
+          "candidate_franchise_id": null,
+          "provisional_legacy_id": "legacy-candidate-791996-10",
+          "evidence": "unique_within_old_era_owner_no_modern_account_match",
+          "approval": "pending_user_confirmation"
+        }
+      ]
+    },
+    {
+      "year": 2017,
+      "league_id": 791996,
+      "teams": [
+        {
+          "espn_team_id": 1,
+          "historical_name": "Trump's  Troopers",
+          "candidate_franchise_id": "franchise-06-current-2024",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 2,
+          "historical_name": "The General's \"Dorm Room\"",
+          "candidate_franchise_id": "franchise-01",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 3,
+          "historical_name": "The Bear Jew",
+          "candidate_franchise_id": "franchise-09",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 4,
+          "historical_name": "Boswell That Ends Well",
+          "candidate_franchise_id": "franchise-08",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 5,
+          "historical_name": "Kanye West",
+          "candidate_franchise_id": "franchise-06-legacy-2023",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 6,
+          "historical_name": "Tiki  Torches",
+          "candidate_franchise_id": null,
+          "provisional_legacy_id": "legacy-candidate-791996-06",
+          "evidence": "unique_within_old_era_owner_no_modern_account_match",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 7,
+          "historical_name": "Gosh Darnit Andy",
+          "candidate_franchise_id": "franchise-10",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 8,
+          "historical_name": "Cuckleberry Finn",
+          "candidate_franchise_id": "franchise-02",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 9,
+          "historical_name": "Jaqiuzz so much I Philip Rivers",
+          "candidate_franchise_id": "franchise-04",
+          "provisional_legacy_id": null,
+          "evidence": "unique_ESPN_owner_account_match_to_modern_confirmed_franchise",
+          "approval": "pending_user_confirmation"
+        },
+        {
+          "espn_team_id": 10,
+          "historical_name": "Touchdown Syndrome",
+          "candidate_franchise_id": null,
+          "provisional_legacy_id": "legacy-candidate-791996-10",
+          "evidence": "unique_within_old_era_owner_no_modern_account_match",
+          "approval": "pending_user_confirmation"
+        }
+      ]
+    }
+  ]
+}
