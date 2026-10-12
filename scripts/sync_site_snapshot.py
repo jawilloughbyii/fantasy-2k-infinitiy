@@ -14,6 +14,7 @@ TEAM_IDS=ROOT/'reference'/'team_id_map.json'
 CHAMPIONS=ROOT/'reference'/'championship_history.json'
 HISTORICAL_SCORES=ROOT/'reference'/'historical_regular_season_scores.json'
 HISTORICAL_DRAFTS=ROOT/'reference'/'historical_draft_picks.json'
+HISTORICAL_DRAFT_GRADES=ROOT/'reference'/'historical_draft_grades.json'
 PLAYOFF_BRACKETS=ROOT/'reference'/'historical_playoff_brackets.json'
 METRIC_PATTERN=re.compile(r'(<script id="metricdefs" type="application/json">)(.*?)(</script>)',re.S)
 CHAMP_PATTERN=re.compile(r'(<script id="championships" type="application/json">)(.*?)(</script>)',re.S)
