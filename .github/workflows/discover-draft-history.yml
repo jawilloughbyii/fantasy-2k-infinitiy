@@ -1,0 +1,34 @@
+name: Research archived ESPN draft availability (private)
+
+on:
+  push:
+    branches: [research/draft-coverage-2021-2026]
+    paths:
+      - 'scripts/discover_draft_history.py'
+      - '.github/workflows/discover-draft-history.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  discover-drafts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check all six draft histories
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/discover_draft_history.py
+      - name: Upload private, sanitized draft records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: draft-coverage-private
+          path: output/draft-coverage/*.json
+          if-no-files-found: warn
+          retention-days: 7
