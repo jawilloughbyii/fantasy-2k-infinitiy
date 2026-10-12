@@ -58,8 +58,10 @@ class HistoricalLegacyValidation(unittest.TestCase):
                           (2024,418244680),(2025,418244680)])
 
     def test_draft_exact_source_and_unmapped_ownership(self):
-        self.assertEqual(DRAFTS['status'],'verified_raw_picks_player_enrichment_pending')
+        self.assertEqual(DRAFTS['status'],'verified_original_year_player_metadata_complete')
         self.assertEqual(DRAFTS['coverage']['pick_count'],680)
+        self.assertEqual(DRAFTS['coverage']['named_picks'],680)
+        self.assertEqual(DRAFTS['coverage']['positioned_picks'],680)
         self.assertEqual([s['year'] for s in DRAFTS['seasons']],list(EXPECTED))
         for d in DRAFTS['seasons']:
             a=archive(d['year'])
@@ -75,8 +77,9 @@ class HistoricalLegacyValidation(unittest.TestCase):
                 self.assertEqual((p['round'],p['round_pick'],p['espn_team_id'],p['player_id']),
                                  (q['roundId'],q['roundPickNumber'],q['teamId'],q['playerId']))
                 self.assertEqual(p['franchise_id'],FRANCHISE['season_to_franchise'][str(d['year'])][str(p['espn_team_id'])])
-                self.assertIsNone(p['player_name'])
-                self.assertIsNone(p['position'])
+                self.assertTrue(isinstance(p['player_name'],str) and p['player_name'].strip())
+                self.assertIn(p['position'],('QB','RB','WR','TE','K','D/ST','P'))
+                self.assertEqual(p['player_metadata_source'],'ESPN_season_players_wl_exact_original_draft_id')
 
     def test_playoff_titles_carefully_separated(self):
         self.assertEqual({c['season'] for c in CHAMPS['champions']},set(range(2021,2026)))
