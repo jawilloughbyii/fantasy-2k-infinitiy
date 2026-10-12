@@ -1,10 +1,431 @@
 {
   "league_id": 418244680,
-  "source": "Sanitized historical ESPN discovery, run 38146729094, artifact 11705112322; regular season final scores only",
+  "source": "Validated final ESPN regular-season scores: 2021–2022 old league 1493036707 (read-only archived discovery run 38288934702; scoring validator run 38281776553); 2023–2025 league 418244680 (discovery run 38146729094). Historical roster-quality metrics unavailable for old seasons.",
   "regular_season_weeks": 14,
   "seasons": [
     {
+      "year": 2021,
+      "league_id": 1493036707,
+      "scoring_environment": {
+        "starting_punter": true,
+        "note": "Historical ESPN starting lineup included a punter; season-relative comparisons recommended."
+      },
+      "teams": [
+        {
+          "espn_team_id": 1,
+          "name": "Fully Staffed Young Hoes",
+          "scores": [
+            167.09,
+            136.12,
+            161.48,
+            146.46,
+            149.14,
+            157.92,
+            169.86,
+            141.45,
+            121.32,
+            148.42,
+            141.52,
+            107.93,
+            140.43,
+            126.86
+          ]
+        },
+        {
+          "espn_team_id": 2,
+          "name": "Tier 1 Sanchez",
+          "scores": [
+            135.96,
+            153.53,
+            115.67,
+            121.13,
+            206.06,
+            127.18,
+            186.15,
+            134.48,
+            140.19,
+            139.42,
+            178.89,
+            99.58,
+            131.56,
+            158.97
+          ]
+        },
+        {
+          "espn_team_id": 3,
+          "name": "Lord Farquaad",
+          "scores": [
+            144.42,
+            154.01,
+            147.79,
+            158.65,
+            156.42,
+            133.09,
+            111.98,
+            157.17,
+            132.04,
+            100.38,
+            116.82,
+            133.72,
+            162.78,
+            138.64
+          ]
+        },
+        {
+          "espn_team_id": 4,
+          "name": "General's Moose Knuckle",
+          "scores": [
+            146.31,
+            148.21,
+            203.77,
+            94.16,
+            203.4,
+            116.54,
+            146.74,
+            121.18,
+            138.38,
+            160.14,
+            201.55,
+            131.18,
+            180.83,
+            205.89
+          ]
+        },
+        {
+          "espn_team_id": 5,
+          "name": "Quatro Padres",
+          "scores": [
+            150.3,
+            129.68,
+            119.37,
+            146.36,
+            142.45,
+            188.01,
+            123.19,
+            113.92,
+            100.7,
+            120.5,
+            109.87,
+            165.48,
+            151.64,
+            92.32
+          ]
+        },
+        {
+          "espn_team_id": 6,
+          "name": "TimmyT's Golden Ponies",
+          "scores": [
+            114.77,
+            174.7,
+            155.15,
+            112.08,
+            149.98,
+            143.1,
+            128.01,
+            102.79,
+            115.64,
+            88.76,
+            115.35,
+            126.8,
+            168.1,
+            151.64
+          ]
+        },
+        {
+          "espn_team_id": 7,
+          "name": "Elon Musk's Union Aversion",
+          "scores": [
+            170.2,
+            164.79,
+            166.13,
+            133.88,
+            135.62,
+            159.51,
+            112.48,
+            132.2,
+            120.7,
+            168.56,
+            78.79,
+            120.31,
+            143.18,
+            126.82
+          ]
+        },
+        {
+          "espn_team_id": 8,
+          "name": "Skeeter's Yeeters",
+          "scores": [
+            129.73,
+            160.47,
+            141.63,
+            167.85,
+            138.26,
+            159.98,
+            138.83,
+            80.31,
+            124.38,
+            129.3,
+            147.31,
+            118.96,
+            112.97,
+            151.87
+          ]
+        },
+        {
+          "espn_team_id": 9,
+          "name": "Tyreek in the Sheets",
+          "scores": [
+            152.15,
+            115.86,
+            119.93,
+            176.78,
+            122.89,
+            159.92,
+            138.03,
+            152.84,
+            108.08,
+            147.86,
+            104.06,
+            178.15,
+            120.08,
+            159.9
+          ]
+        },
+        {
+          "espn_team_id": 10,
+          "name": "Watertown Teapots",
+          "scores": [
+            133.98,
+            138.79,
+            135.51,
+            182.63,
+            154.15,
+            133.92,
+            147.8,
+            151.8,
+            112.49,
+            138.87,
+            196.37,
+            165.64,
+            122.28,
+            175.73
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2022,
+      "league_id": 1493036707,
+      "scoring_environment": {
+        "starting_punter": true,
+        "note": "Historical ESPN starting lineup included a punter; season-relative comparisons recommended."
+      },
+      "teams": [
+        {
+          "espn_team_id": 1,
+          "name": "Let's Go Brandin",
+          "scores": [
+            152.72,
+            172.56,
+            173.46,
+            109.43,
+            128.41,
+            104.08,
+            92.34,
+            91.7,
+            133.19,
+            105.6,
+            127.33,
+            144.17,
+            74.31,
+            113.81
+          ]
+        },
+        {
+          "espn_team_id": 2,
+          "name": "Tier 1 Sanchez",
+          "scores": [
+            136.5,
+            146.42,
+            110.1,
+            162.92,
+            79.99,
+            170.34,
+            180.94,
+            128.91,
+            141.55,
+            108.13,
+            138.67,
+            161.17,
+            168.42,
+            171.99
+          ]
+        },
+        {
+          "espn_team_id": 3,
+          "name": "Puss in Boots",
+          "scores": [
+            148.41,
+            122.69,
+            136.4,
+            108.06,
+            176.31,
+            141.45,
+            138.93,
+            171.97,
+            196.87,
+            143.23,
+            128.86,
+            132.74,
+            144.41,
+            107.35
+          ]
+        },
+        {
+          "espn_team_id": 4,
+          "name": "Najee By Nature",
+          "scores": [
+            155.66,
+            117.24,
+            84.74,
+            132.78,
+            88.77,
+            73.35,
+            100.85,
+            164.29,
+            115.28,
+            129.87,
+            148.88,
+            138.16,
+            114.64,
+            135.05
+          ]
+        },
+        {
+          "espn_team_id": 5,
+          "name": "Quatro Padres",
+          "scores": [
+            143.22,
+            161.44,
+            152.21,
+            132.85,
+            125.62,
+            129.92,
+            140.68,
+            189.41,
+            145.42,
+            168.06,
+            114.05,
+            158.41,
+            160.46,
+            129.55
+          ]
+        },
+        {
+          "espn_team_id": 6,
+          "name": "TimmyT's Golden Ponies",
+          "scores": [
+            163.46,
+            140.74,
+            141.92,
+            162.5,
+            244.59,
+            171.87,
+            113.55,
+            123.66,
+            103.1,
+            153.42,
+            159.6,
+            120.21,
+            130.73,
+            135.18
+          ]
+        },
+        {
+          "espn_team_id": 7,
+          "name": "Alan's Milking Table",
+          "scores": [
+            97.43,
+            148.28,
+            131,
+            105.2,
+            137.56,
+            96.18,
+            157.92,
+            171.02,
+            130.7,
+            152.47,
+            151.95,
+            164.79,
+            157.71,
+            128.04
+          ]
+        },
+        {
+          "espn_team_id": 8,
+          "name": "Skeeter's Yeeters",
+          "scores": [
+            146.4,
+            141.06,
+            126.48,
+            149.84,
+            117.43,
+            99.57,
+            112.49,
+            129.76,
+            130.18,
+            113.66,
+            124.95,
+            113.05,
+            122.78,
+            64.13
+          ]
+        },
+        {
+          "espn_team_id": 9,
+          "name": "Tyreek in the Sheets",
+          "scores": [
+            91.6,
+            165.32,
+            131.17,
+            173.69,
+            106.62,
+            132.91,
+            123.08,
+            142.85,
+            122.43,
+            100.79,
+            133.16,
+            144.1,
+            123.96,
+            107.96
+          ]
+        },
+        {
+          "espn_team_id": 10,
+          "name": "Watertown Teapots",
+          "scores": [
+            151.53,
+            166.18,
+            142.82,
+            163.3,
+            184.95,
+            115.69,
+            102.26,
+            182.06,
+            167.29,
+            145.6,
+            137.73,
+            161.29,
+            148.14,
+            128.34
+          ]
+        }
+      ]
+    },
+    {
       "year": 2023,
+      "league_id": 418244680,
       "teams": [
         {
           "espn_team_id": 1,
@@ -210,6 +631,7 @@
     },
     {
       "year": 2024,
+      "league_id": 418244680,
       "teams": [
         {
           "espn_team_id": 1,
@@ -415,6 +837,7 @@
     },
     {
       "year": 2025,
+      "league_id": 418244680,
       "teams": [
         {
           "espn_team_id": 1,
@@ -618,5 +1041,28 @@
         }
       ]
     }
-  ]
+  ],
+  "sources_by_season": {
+    "2021": {
+      "league_id": 1493036707,
+      "validation_run": 38288934702,
+      "regular_season_weeks": 14,
+      "starting_punter": true
+    },
+    "2022": {
+      "league_id": 1493036707,
+      "validation_run": 38288934702,
+      "regular_season_weeks": 14,
+      "starting_punter": true
+    },
+    "2023": {
+      "league_id": 418244680
+    },
+    "2024": {
+      "league_id": 418244680
+    },
+    "2025": {
+      "league_id": 418244680
+    }
+  }
 }
