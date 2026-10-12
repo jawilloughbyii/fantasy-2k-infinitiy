@@ -20,6 +20,7 @@ METRIC_PATTERN=re.compile(r'(<script id="metricdefs" type="application/json">)(.
 CHAMP_PATTERN=re.compile(r'(<script id="championships" type="application/json">)(.*?)(</script>)',re.S)
 HIST_PATTERN=re.compile(r'(<script id="historicalscores" type="application/json">)(.*?)(</script>)',re.S)
 DRAFT_PATTERN=re.compile(r'(<script id="historicaldrafts" type="application/json">)(.*?)(</script>)',re.S)
+GRADE_PATTERN=re.compile(DRAFT_PATTERN.pattern.replace('historicaldrafts','historicaldraftgrades'),re.S)
 PLAYOFF_PATTERN=re.compile(r'(<script id="historicalplayoffs" type="application/json">)(.*?)(</script>)',re.S)
 
 PATTERN=re.compile(r'(<script id="fantasydata" type="application/json">)(.*?)(</script>)',re.S)
