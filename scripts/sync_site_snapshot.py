@@ -121,7 +121,7 @@ def sync(html,data):
     drafts=json.loads(HISTORICAL_DRAFTS.read_text(encoding='utf8'))
     if drafts.get('status')!='verified_picks_not_performance_grades' or drafts.get('coverage',{}).get('pick_count')!=980:
         raise ValueError('Unvalidated historic draft data')
-    if {str(s['year']):s['league_id'] for s in drafts['seasons']}!=identity_leagues():
+    if {str(s['year']):s['league_id'] for s in drafts['seasons']}!={y:v for y,v in identity_leagues().items() if int(y)>=2021}:
         raise ValueError('Draft season ESPN league IDs do not match owner mapping')
     updated=updated[:draft.start(2)]+safe_json(drafts)+updated[draft.end(2):]
     legacy_match=LEGACY_DRAFT_PATTERN.search(updated)
