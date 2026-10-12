@@ -1,0 +1,23 @@
+name: Probe historical draft player scoring (private)
+on:
+  push:
+    branches: [research/draft-value-performance-2021-2025]
+    paths:
+      - 'scripts/probe_draft_player_stats.py'
+      - '.github/workflows/probe-draft-performance.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe season-specific drafted player weekly points
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/probe_draft_player_stats.py
