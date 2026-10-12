@@ -15,6 +15,7 @@ const championshipHistory=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/c
 const historicalScores=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_regular_season_scores.json'),'utf8'));
 const playoffHistory=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_playoff_brackets.json'),'utf8'));
 const draftHistory=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_draft_picks.json'),'utf8'));
+const legacyDrafts=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_legacy_draft_picks_2014_2017.json'),'utf8'));
 const gradedDrafts=JSON.parse(fs.readFileSync(path.join(ROOT,'reference/historical_draft_grades.json'),'utf8'));
 
 function embedded(id){
@@ -35,11 +36,14 @@ assert.deepStrictEqual(embedded('championships'),historyEmbedded,'Embedded champ
 assert.deepStrictEqual(embedded('historicalscores'),historicalScores,'Embedded historical scores must come from the sanctioned reference file');
 assert.deepStrictEqual(embedded('historicalplayoffs'),playoffHistory,'Embedded playoffs must match the validated bracket reference');
 assert.deepStrictEqual(embedded('historicaldrafts'),draftHistory,'Embedded drafts must match source-verified JSON');
+assert.deepStrictEqual(embedded('legacydrafts'),legacyDrafts,'Embedded 2014-17 ESPN drafts must match source-verified JSON');
 assert.deepStrictEqual(embedded('historicaldraftgrades'),gradedDrafts,'Published grading matches verified reference');
 assert.equal(gradedDrafts.coverage.pick_count,820);
 
 assert.equal(draftHistory.seasons.reduce((n,s)=>n+s.picks.length,0),980,'980 actual ESPN draft picks');
-assert.equal(historicalScores.seasons.reduce((n,s)=>n+s.teams.reduce((n,t)=>n+t.scores.length,0),0),700);
+assert.equal(historicalScores.seasons.reduce((n,s)=>n+s.teams.reduce((n,t)=>n+t.scores.length,0),0),1260);
+assert.deepStrictEqual(historicalScores.seasons.map(s=>s.year),[2014,2015,2016,2017,2021,2022,2023,2024,2025]);
+assert.equal(legacyDrafts.seasons.reduce((n,s)=>n+s.picks.length,0),680);
 assert.deepStrictEqual(championshipHistory.champions.map(x=>[x.season,x.espn_team_id,x.franchise_id]),[
  [2021,3,'franchise-07'],[2022,5,'franchise-03'],[2023,7,'franchise-07'],[2024,10,'franchise-10'],[2025,1,'franchise-01']
 ]);
@@ -86,7 +90,7 @@ function node(id){
  return elements.get(id);
 }
 const doc={
- getElementById(id){const el=node(id);if(id==='fantasydata')el.textContent=JSON.stringify(data);if(id==='metricdefs')el.textContent=JSON.stringify(definitions);if(id==='championships')el.textContent=JSON.stringify(historyEmbedded);if(id==='historicalscores')el.textContent=JSON.stringify(historicalScores);if(id==='historicalplayoffs')el.textContent=JSON.stringify(playoffHistory);if(id==='historicaldrafts')el.textContent=JSON.stringify(draftHistory);if(id==='historicaldraftgrades')el.textContent=JSON.stringify(gradedDrafts);return el;},querySelectorAll:()=>[],
+ getElementById(id){const el=node(id);if(id==='fantasydata')el.textContent=JSON.stringify(data);if(id==='metricdefs')el.textContent=JSON.stringify(definitions);if(id==='championships')el.textContent=JSON.stringify(historyEmbedded);if(id==='historicalscores')el.textContent=JSON.stringify(historicalScores);if(id==='historicalplayoffs')el.textContent=JSON.stringify(playoffHistory);if(id==='historicaldrafts')el.textContent=JSON.stringify(draftHistory);if(id==='legacydrafts')el.textContent=JSON.stringify(legacyDrafts);if(id==='historicaldraftgrades')el.textContent=JSON.stringify(gradedDrafts);return el;},querySelectorAll:()=>[],
  addEventListener(name,handler){events[name]=handler}
 };
 const fetch=async()=>({ok:true,json:async()=>data});
@@ -222,6 +226,18 @@ async function main(){
  assert.ok(view.includes('General&#39;s Dorm Room')&&view.includes('League champion: 2025'));
  assert.ok(view.includes('PF-ranked, not official W–L standings.'),'Do not mislabel PF ranking');
  assert.equal((view.split('<tbody>')[1].split('</tbody>')[0].match(/<tr>/g)||[]).length,10,'Yearbook ranks exactly ten verified teams');
+
+ events.change({target:{id:'historyYear',value:'2014'}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('2014 Yearbook')&&view.includes('Lucille&#39;s Baby Daddy')&&view.includes('Sleazy Veasey'),'2014 archived yearbook and final are visible');
+ events.change({target:{id:'historyYear',value:'2015'}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('2015 Yearbook')&&view.includes('ESPN final winner*')&&view.includes('title remains unverified'),'Disputed 2015 championship is disclosed without title certification');
+ events.change({target:{id:'historyYear',value:'2017'}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('2017 Yearbook')&&view.includes('The Bear Jew'),'2017 yearbook available');
+ events.change({target:{id:'historyYear',value:'2025'}});
+ view=node('view').innerHTML;
  events.change({target:{id:'historyYear',value:'2023'}});
  view=node('view').innerHTML;
  assert.ok(view.includes('2023 Yearbook')&&view.includes('Team Figueroa'),'Legacy franchise remains in league yearbook');
@@ -255,8 +271,19 @@ async function main(){
  assert.ok(view.includes('2021 Playoff bracket')&&view.includes('Lord Farquaad')&&view.includes('Watertown Teapots'),'2021 final is available by changing the year');
  view=sub('history','draft');
  assert.ok(view.includes('id="draftTag"'),'Draft outcome selector is rendered');
- assert.ok(view.includes('Draft History · 2021–2026')&&view.includes('Jahmyr Gibbs'),'Current draft is selectable');
+ assert.ok(view.includes('Draft History · 2014–2026')&&view.includes('Jahmyr Gibbs'),'Current draft is selectable');
  assert.equal((view.split('<tbody id="draftRows">')[1].split('</tbody>')[0].match(/<tr>/g)||[]).length,160,'2026 draft displays all 160 picks');
+
+ events.change({target:{id:'draftYear',value:'2014'}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('Shady Akers')&&view.includes('ESPN player ID')&&view.includes('Pending original-era player-name verification'),'2014 original ESPN draft displays without fabricated names or franchise mapping');
+ assert.equal((view.split('<tbody id="draftRows">')[1].split('</tbody>')[0].match(/<tr>/g)||[]).length,170,'2014 draft displays all 170 original picks');
+ events.change({target:{id:'draftYear',value:'2016'}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('The General&#39;s &quot;Dorm Room&quot;')&&view.includes('170 picks'),'2016 draft is available');
+ events.change({target:{id:'draftYear',value:'2026'}});
+ view=node('view').innerHTML;
+ assert.ok(view.includes('Jahmyr Gibbs'),'Changing from legacy draft to modern draft preserves modern view');
  events.change({target:{id:'draftYear',value:'2021'}});
  view=node('view').innerHTML;
  assert.ok(view.includes('Christian McCaffrey')&&view.includes('Includes punters'),'2021 draft recovered with punctuated historical format');

@@ -1,8 +1,1112 @@
 {
   "league_id": 418244680,
-  "source": "Validated final ESPN regular-season scores: 2021–2022 old league 1493036707 (read-only archived discovery run 38288934702; scoring validator run 38281776553); 2023–2025 league 418244680 (discovery run 38146729094). Historical roster-quality metrics unavailable for old seasons.",
+  "source": "ESPN final regular-season scores: user-confirmed 2014–2017 league 791996 (research archive); 2021–2022 league 1493036707; 2023–2025 league 418244680. 2014–2017 franchise attribution remains unmapped and excluded from current franchise DNA.",
   "regular_season_weeks": 14,
   "seasons": [
+    {
+      "year": 2014,
+      "league_id": 791996,
+      "source_status": "user_confirmed_and_70_ESPN_games_reconciled",
+      "franchise_attribution": "unmapped_not_assumed",
+      "scoring_environment": {
+        "starting_punter": true,
+        "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison."
+      },
+      "postseason": {
+        "status": "validated_bracket_path",
+        "winner_espn_team_id": 8,
+        "winner_team_name": "Sleazy Veasey's Teenie Peenie",
+        "runner_up_espn_team_id": 10,
+        "final_points": 132,
+        "bracket_validated": true,
+        "final_matchup_id": 75,
+        "runner_up_points": 114,
+        "final_week": 16,
+        "winners_bracket_games": [
+          {
+            "week": 15,
+            "matchup_id": 70,
+            "winner": "HOME",
+            "teams": [
+              {
+                "espn_team_id": 10,
+                "side": "home",
+                "points": 128
+              },
+              {
+                "espn_team_id": 9,
+                "side": "away",
+                "points": 128
+              }
+            ]
+          },
+          {
+            "week": 15,
+            "matchup_id": 71,
+            "winner": "AWAY",
+            "teams": [
+              {
+                "espn_team_id": 3,
+                "side": "home",
+                "points": 141
+              },
+              {
+                "espn_team_id": 8,
+                "side": "away",
+                "points": 145
+              }
+            ]
+          },
+          {
+            "week": 16,
+            "matchup_id": 75,
+            "winner": "AWAY",
+            "teams": [
+              {
+                "espn_team_id": 10,
+                "side": "home",
+                "points": 114
+              },
+              {
+                "espn_team_id": 8,
+                "side": "away",
+                "points": 132
+              }
+            ]
+          }
+        ]
+      },
+      "teams": [
+        {
+          "espn_team_id": 1,
+          "name": "Shady Akers",
+          "scores": [
+            90,
+            88,
+            122,
+            129,
+            105,
+            95,
+            93,
+            123,
+            119,
+            148,
+            136,
+            127,
+            155,
+            132
+          ]
+        },
+        {
+          "espn_team_id": 2,
+          "name": "Pewter City Giodudes",
+          "scores": [
+            132,
+            112,
+            110,
+            118,
+            133,
+            142,
+            92,
+            149,
+            95,
+            109,
+            119,
+            100,
+            136,
+            154
+          ]
+        },
+        {
+          "espn_team_id": 3,
+          "name": "Lucille's Baby Daddy",
+          "scores": [
+            139,
+            127,
+            128,
+            117,
+            164,
+            148,
+            163,
+            191,
+            174,
+            120,
+            137,
+            151,
+            130,
+            154
+          ]
+        },
+        {
+          "espn_team_id": 4,
+          "name": "Pittsburgh Pig Fuckers",
+          "scores": [
+            128,
+            134,
+            98,
+            130,
+            174,
+            92,
+            137,
+            152,
+            82,
+            120,
+            93,
+            115,
+            109,
+            114
+          ]
+        },
+        {
+          "espn_team_id": 5,
+          "name": "Kanye West",
+          "scores": [
+            134,
+            78,
+            85,
+            108,
+            95,
+            150,
+            88,
+            103,
+            101,
+            85,
+            120,
+            114,
+            163,
+            88
+          ]
+        },
+        {
+          "espn_team_id": 6,
+          "name": "Team Alumni Stink",
+          "scores": [
+            128,
+            139,
+            107,
+            125,
+            152,
+            100,
+            128,
+            134,
+            161,
+            175,
+            114,
+            126,
+            102,
+            105
+          ]
+        },
+        {
+          "espn_team_id": 7,
+          "name": "Jimmy Graham's UnderPerformers",
+          "scores": [
+            106,
+            164,
+            88,
+            102,
+            106,
+            153,
+            110,
+            121,
+            106,
+            165,
+            76,
+            117,
+            78,
+            107
+          ]
+        },
+        {
+          "espn_team_id": 8,
+          "name": "Sleazy Veasey's Teenie Peenie",
+          "scores": [
+            122,
+            77,
+            94,
+            145,
+            109,
+            127,
+            122,
+            124,
+            99,
+            137,
+            124,
+            164,
+            141,
+            165
+          ]
+        },
+        {
+          "espn_team_id": 9,
+          "name": "Pokerwithmy Fleener",
+          "scores": [
+            117,
+            96,
+            155,
+            154,
+            92,
+            75,
+            95,
+            185,
+            166,
+            84,
+            80,
+            126,
+            165,
+            115
+          ]
+        },
+        {
+          "espn_team_id": 10,
+          "name": "Touchdown Syndrome",
+          "scores": [
+            142,
+            108,
+            112,
+            126,
+            102,
+            111,
+            123,
+            131,
+            178,
+            137,
+            115,
+            133,
+            151,
+            169
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2015,
+      "league_id": 791996,
+      "source_status": "user_confirmed_and_70_ESPN_games_reconciled",
+      "franchise_attribution": "unmapped_not_assumed",
+      "scoring_environment": {
+        "starting_punter": true,
+        "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison."
+      },
+      "postseason": {
+        "status": "source_final_record_only_advancement_unresolved",
+        "winner_espn_team_id": 2,
+        "winner_team_name": "The General's \"Dorm Room\"",
+        "runner_up_espn_team_id": 9,
+        "final_points": 173.62,
+        "bracket_validated": false,
+        "final_matchup_id": 75,
+        "runner_up_points": 88.2,
+        "final_week": 16,
+        "winners_bracket_games": [
+          {
+            "week": 15,
+            "matchup_id": 70,
+            "winner": "AWAY",
+            "teams": [
+              {
+                "espn_team_id": 1,
+                "side": "home",
+                "points": 97.86
+              },
+              {
+                "espn_team_id": 2,
+                "side": "away",
+                "points": 149.34
+              }
+            ]
+          },
+          {
+            "week": 15,
+            "matchup_id": 71,
+            "winner": "AWAY",
+            "teams": [
+              {
+                "espn_team_id": 9,
+                "side": "home",
+                "points": 159.2
+              },
+              {
+                "espn_team_id": 3,
+                "side": "away",
+                "points": 160.26
+              }
+            ]
+          },
+          {
+            "week": 16,
+            "matchup_id": 75,
+            "winner": "HOME",
+            "teams": [
+              {
+                "espn_team_id": 2,
+                "side": "home",
+                "points": 173.62
+              },
+              {
+                "espn_team_id": 9,
+                "side": "away",
+                "points": 88.2
+              }
+            ]
+          }
+        ]
+      },
+      "teams": [
+        {
+          "espn_team_id": 1,
+          "name": "Crosby Sweaters",
+          "scores": [
+            112.76,
+            90.36,
+            187.92,
+            93.86,
+            128.64,
+            142.3,
+            142.62,
+            116.48,
+            151.26,
+            153.22,
+            144.78,
+            142.28,
+            135.72,
+            137.02
+          ]
+        },
+        {
+          "espn_team_id": 2,
+          "name": "The General's \"Dorm Room\"",
+          "scores": [
+            160.14,
+            186.94,
+            202.92,
+            121.24,
+            163.32,
+            162.6,
+            149.44,
+            146.68,
+            126.78,
+            88.76,
+            104.38,
+            93.42,
+            123.68,
+            120.8
+          ]
+        },
+        {
+          "espn_team_id": 3,
+          "name": "The Bear Jew",
+          "scores": [
+            137.94,
+            140.28,
+            155.16,
+            122.88,
+            133.84,
+            157.66,
+            175.08,
+            200.8,
+            135.62,
+            135.94,
+            106.42,
+            114.14,
+            115.74,
+            142.18
+          ]
+        },
+        {
+          "espn_team_id": 4,
+          "name": "Adam Vinatier U a New Asshole",
+          "scores": [
+            112.92,
+            75.4,
+            165.5,
+            102.76,
+            92.4,
+            114.28,
+            97.52,
+            159.64,
+            148.78,
+            116.88,
+            115.94,
+            116.82,
+            154.14,
+            127.2
+          ]
+        },
+        {
+          "espn_team_id": 5,
+          "name": "Kanye West",
+          "scores": [
+            99.54,
+            95.68,
+            107.1,
+            119.88,
+            104.12,
+            120.94,
+            86.6,
+            117.2,
+            125.64,
+            139.68,
+            60.96,
+            159.1,
+            119.06,
+            152.08
+          ]
+        },
+        {
+          "espn_team_id": 6,
+          "name": "Hustle Gang Homie",
+          "scores": [
+            120.7,
+            147.64,
+            135.26,
+            116.92,
+            134.34,
+            128.6,
+            137.98,
+            142.16,
+            152.4,
+            122.84,
+            80.72,
+            126.3,
+            152.48,
+            135.74
+          ]
+        },
+        {
+          "espn_team_id": 7,
+          "name": "Please Don't Forsett",
+          "scores": [
+            113.5,
+            138.8,
+            123.64,
+            150.92,
+            140.3,
+            137.38,
+            85.7,
+            99.74,
+            132.26,
+            112.02,
+            79.62,
+            177.6,
+            97.38,
+            86.82
+          ]
+        },
+        {
+          "espn_team_id": 8,
+          "name": "Edwin's 20/70 Eyesight",
+          "scores": [
+            143.04,
+            141.7,
+            115.44,
+            98.38,
+            83.14,
+            104.04,
+            120.2,
+            125.46,
+            137.84,
+            161.32,
+            116.28,
+            141.24,
+            187.74,
+            136.8
+          ]
+        },
+        {
+          "espn_team_id": 9,
+          "name": "Pokerwithmy Fleener",
+          "scores": [
+            108.74,
+            113.76,
+            70.68,
+            105.34,
+            113.96,
+            133.62,
+            127.84,
+            96.74,
+            171.76,
+            143.88,
+            110.2,
+            118.02,
+            130.86,
+            96.68
+          ]
+        },
+        {
+          "espn_team_id": 10,
+          "name": "Touchdown Syndrome",
+          "scores": [
+            140.74,
+            102.7,
+            151.32,
+            104.66,
+            144.4,
+            156.98,
+            142.2,
+            123.14,
+            125.86,
+            104.36,
+            125.08,
+            104,
+            174.32,
+            105.54
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2016,
+      "league_id": 791996,
+      "source_status": "user_confirmed_and_70_ESPN_games_reconciled",
+      "franchise_attribution": "unmapped_not_assumed",
+      "scoring_environment": {
+        "starting_punter": true,
+        "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison."
+      },
+      "postseason": {
+        "status": "validated_bracket_path",
+        "winner_espn_team_id": 9,
+        "winner_team_name": "Jaqiuzz so much I Philip Rivers",
+        "runner_up_espn_team_id": 10,
+        "final_points": 177.68,
+        "bracket_validated": true,
+        "final_matchup_id": 75,
+        "runner_up_points": 157.96,
+        "final_week": 16,
+        "winners_bracket_games": [
+          {
+            "week": 15,
+            "matchup_id": 70,
+            "winner": "AWAY",
+            "teams": [
+              {
+                "espn_team_id": 2,
+                "side": "home",
+                "points": 113.14
+              },
+              {
+                "espn_team_id": 10,
+                "side": "away",
+                "points": 143.82
+              }
+            ]
+          },
+          {
+            "week": 15,
+            "matchup_id": 71,
+            "winner": "HOME",
+            "teams": [
+              {
+                "espn_team_id": 9,
+                "side": "home",
+                "points": 168.96
+              },
+              {
+                "espn_team_id": 8,
+                "side": "away",
+                "points": 82.92
+              }
+            ]
+          },
+          {
+            "week": 16,
+            "matchup_id": 75,
+            "winner": "AWAY",
+            "teams": [
+              {
+                "espn_team_id": 10,
+                "side": "home",
+                "points": 157.96
+              },
+              {
+                "espn_team_id": 9,
+                "side": "away",
+                "points": 177.68
+              }
+            ]
+          }
+        ]
+      },
+      "teams": [
+        {
+          "espn_team_id": 1,
+          "name": "Nacho Players",
+          "scores": [
+            127.14,
+            133.64,
+            134.86,
+            112.42,
+            142.1,
+            118.56,
+            90.66,
+            135.8,
+            119.54,
+            116.32,
+            140.68,
+            109.24,
+            141.66,
+            92.26
+          ]
+        },
+        {
+          "espn_team_id": 2,
+          "name": "The General's \"Dorm Room\"",
+          "scores": [
+            121.5,
+            114.96,
+            119.36,
+            178.88,
+            146.96,
+            109.24,
+            163.94,
+            128.68,
+            143.6,
+            188.24,
+            102.48,
+            173.28,
+            112,
+            113.34
+          ]
+        },
+        {
+          "espn_team_id": 3,
+          "name": "The Bear Jew",
+          "scores": [
+            160.56,
+            123.92,
+            189.7,
+            110.82,
+            143.16,
+            122.96,
+            135.44,
+            162.64,
+            124.38,
+            125.24,
+            93.92,
+            112.78,
+            169.66,
+            80.82
+          ]
+        },
+        {
+          "espn_team_id": 4,
+          "name": "A. Foster n The Rosterfarians",
+          "scores": [
+            118.66,
+            101.22,
+            139.98,
+            168.1,
+            112.36,
+            139.18,
+            148.14,
+            88.18,
+            139.9,
+            112.44,
+            127.28,
+            130.44,
+            116.78,
+            92.6
+          ]
+        },
+        {
+          "espn_team_id": 5,
+          "name": "Kanye West",
+          "scores": [
+            120.3,
+            138.44,
+            144.8,
+            114.82,
+            148.88,
+            131.3,
+            102.72,
+            98.32,
+            120.36,
+            134.38,
+            122.1,
+            102.46,
+            95.18,
+            140.28
+          ]
+        },
+        {
+          "espn_team_id": 6,
+          "name": "Harambe DayCare Services",
+          "scores": [
+            127.12,
+            108.92,
+            98.84,
+            76.98,
+            144.66,
+            69.16,
+            117.22,
+            118.7,
+            139.32,
+            98.72,
+            109.3,
+            155.4,
+            102.64,
+            84.88
+          ]
+        },
+        {
+          "espn_team_id": 7,
+          "name": "Gosh Darnit Andy",
+          "scores": [
+            156.5,
+            149.48,
+            78.94,
+            120.86,
+            130.88,
+            114.38,
+            141.32,
+            70.2,
+            92.24,
+            108.24,
+            80.48,
+            108.76,
+            102.9,
+            105.4
+          ]
+        },
+        {
+          "espn_team_id": 8,
+          "name": "Cuckleberry Finn",
+          "scores": [
+            142.84,
+            138.36,
+            101.78,
+            131.32,
+            120.22,
+            76.76,
+            144.98,
+            148.82,
+            205.72,
+            188.5,
+            119.8,
+            139.44,
+            127.1,
+            76.12
+          ]
+        },
+        {
+          "espn_team_id": 9,
+          "name": "Jaqiuzz so much I Philip Rivers",
+          "scores": [
+            140.32,
+            145.2,
+            127.34,
+            99.94,
+            134.46,
+            124.7,
+            118.8,
+            149.62,
+            118.38,
+            165.16,
+            149.88,
+            143.3,
+            156.78,
+            146.1
+          ]
+        },
+        {
+          "espn_team_id": 10,
+          "name": "Touchdown Syndrome",
+          "scores": [
+            140.76,
+            163.36,
+            107.36,
+            148.46,
+            149.54,
+            171.38,
+            127.18,
+            124.6,
+            94.66,
+            147.74,
+            167.1,
+            142.84,
+            151.76,
+            171.94
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2017,
+      "league_id": 791996,
+      "source_status": "user_confirmed_and_70_ESPN_games_reconciled",
+      "franchise_attribution": "unmapped_not_assumed",
+      "scoring_environment": {
+        "starting_punter": true,
+        "note": "Original-era punter-inclusive scoring; compare season-relative performance; no current lineup-quality comparison."
+      },
+      "postseason": {
+        "status": "validated_bracket_path",
+        "winner_espn_team_id": 3,
+        "winner_team_name": "The Bear Jew",
+        "runner_up_espn_team_id": 8,
+        "final_points": 113.1,
+        "bracket_validated": true,
+        "final_matchup_id": 75,
+        "runner_up_points": 96.96,
+        "final_week": 16,
+        "winners_bracket_games": [
+          {
+            "week": 15,
+            "matchup_id": 70,
+            "winner": "HOME",
+            "teams": [
+              {
+                "espn_team_id": 3,
+                "side": "home",
+                "points": 169.78
+              },
+              {
+                "espn_team_id": 4,
+                "side": "away",
+                "points": 98.58
+              }
+            ]
+          },
+          {
+            "week": 15,
+            "matchup_id": 71,
+            "winner": "HOME",
+            "teams": [
+              {
+                "espn_team_id": 8,
+                "side": "home",
+                "points": 153.84
+              },
+              {
+                "espn_team_id": 2,
+                "side": "away",
+                "points": 150.24
+              }
+            ]
+          },
+          {
+            "week": 16,
+            "matchup_id": 75,
+            "winner": "HOME",
+            "teams": [
+              {
+                "espn_team_id": 3,
+                "side": "home",
+                "points": 113.1
+              },
+              {
+                "espn_team_id": 8,
+                "side": "away",
+                "points": 96.96
+              }
+            ]
+          }
+        ]
+      },
+      "teams": [
+        {
+          "espn_team_id": 1,
+          "name": "Trump's  Troopers",
+          "scores": [
+            100.74,
+            128.9,
+            156.5,
+            105.56,
+            132,
+            103.66,
+            109.02,
+            85.06,
+            135.18,
+            150.36,
+            81.44,
+            105.86,
+            147.42,
+            116.08
+          ]
+        },
+        {
+          "espn_team_id": 2,
+          "name": "The General's \"Dorm Room\"",
+          "scores": [
+            162.98,
+            101.44,
+            123.48,
+            94.16,
+            128.48,
+            153.64,
+            134.18,
+            126.88,
+            94.92,
+            111.98,
+            133.6,
+            99.36,
+            159.94,
+            97.82
+          ]
+        },
+        {
+          "espn_team_id": 3,
+          "name": "The Bear Jew",
+          "scores": [
+            134.14,
+            142.52,
+            150.12,
+            150.06,
+            152.24,
+            146.92,
+            149.02,
+            116.18,
+            115.5,
+            116.22,
+            136.9,
+            171.7,
+            154.26,
+            151.26
+          ]
+        },
+        {
+          "espn_team_id": 4,
+          "name": "Boswell That Ends Well",
+          "scores": [
+            139.22,
+            104.42,
+            150.82,
+            181.4,
+            123.52,
+            86.88,
+            121.96,
+            120.48,
+            137.68,
+            107.52,
+            127.62,
+            153.52,
+            146.18,
+            145.04
+          ]
+        },
+        {
+          "espn_team_id": 5,
+          "name": "Kanye West",
+          "scores": [
+            115.84,
+            170.48,
+            103.76,
+            110.98,
+            101.16,
+            99.02,
+            107.72,
+            139.56,
+            129.24,
+            118.96,
+            122.06,
+            147.8,
+            126.42,
+            102.54
+          ]
+        },
+        {
+          "espn_team_id": 6,
+          "name": "Tiki  Torches",
+          "scores": [
+            92.76,
+            124.98,
+            99.92,
+            117.68,
+            86.56,
+            105.64,
+            117.56,
+            73.3,
+            83.18,
+            57.44,
+            123.48,
+            162.2,
+            89.28,
+            101.14
+          ]
+        },
+        {
+          "espn_team_id": 7,
+          "name": "Gosh Darnit Andy",
+          "scores": [
+            140,
+            94.66,
+            195.3,
+            102.34,
+            103.44,
+            152.94,
+            140.42,
+            119.82,
+            101.48,
+            103.84,
+            182.68,
+            141.88,
+            88.94,
+            176.68
+          ]
+        },
+        {
+          "espn_team_id": 8,
+          "name": "Cuckleberry Finn",
+          "scores": [
+            125.34,
+            144.74,
+            139,
+            113.12,
+            99.9,
+            137.74,
+            101.42,
+            162.14,
+            152.36,
+            103.76,
+            115.22,
+            142.98,
+            105.02,
+            149.24
+          ]
+        },
+        {
+          "espn_team_id": 9,
+          "name": "Jaqiuzz so much I Philip Rivers",
+          "scores": [
+            94.38,
+            117.58,
+            162.32,
+            101.28,
+            99.22,
+            137.48,
+            156.36,
+            128.02,
+            125.7,
+            180.04,
+            147.4,
+            124.28,
+            115.22,
+            88.52
+          ]
+        },
+        {
+          "espn_team_id": 10,
+          "name": "Touchdown Syndrome",
+          "scores": [
+            77.94,
+            104.62,
+            85.28,
+            133.28,
+            166.74,
+            145.1,
+            95.58,
+            139.42,
+            106.84,
+            130.9,
+            102.4,
+            108.16,
+            139.6,
+            115.16
+          ]
+        }
+      ]
+    },
     {
       "year": 2021,
       "league_id": 1493036707,

@@ -1,0 +1,3781 @@
+{
+  "season": 2015,
+  "league_id": 791996,
+  "verification": {
+    "league_identity": "user_confirmed_2026_10_12",
+    "source": "authenticated_ESPN_leagueHistory",
+    "regular_season": "70_game_14_week_reconciled",
+    "postseason": "source_final_record_only_advancement_unresolved",
+    "draft": "retrieved_original_espn_picks",
+    "franchise_mapping": "not_started"
+  },
+  "league_name": "Horny Bryant Men Pt. Deux",
+  "settings": {
+    "regular_season_matchup_period_count": 14,
+    "playoff_team_count": 4,
+    "playoff_matchup_period_length": 1,
+    "scoring_type": "H2H_POINTS",
+    "scoring_item_count": 50,
+    "lineup_slot_counts": {
+      "0": 1,
+      "1": 0,
+      "2": 2,
+      "3": 0,
+      "4": 2,
+      "5": 0,
+      "6": 1,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0,
+      "15": 0,
+      "16": 1,
+      "17": 1,
+      "18": 1,
+      "19": 0,
+      "20": 7,
+      "21": 0,
+      "22": 0,
+      "23": 1
+    },
+    "draft_type": "SNAKE"
+  },
+  "teams": [
+    {
+      "espn_team_id": 1,
+      "display_name": "Crosby Sweaters",
+      "abbreviation": "CRBS"
+    },
+    {
+      "espn_team_id": 2,
+      "display_name": "The General's \"Dorm Room\"",
+      "abbreviation": "GDR"
+    },
+    {
+      "espn_team_id": 3,
+      "display_name": "The Bear Jew",
+      "abbreviation": "JAG"
+    },
+    {
+      "espn_team_id": 4,
+      "display_name": "Adam Vinatier U a New Asshole",
+      "abbreviation": "TEAR"
+    },
+    {
+      "espn_team_id": 5,
+      "display_name": "Kanye West",
+      "abbreviation": "YEZY"
+    },
+    {
+      "espn_team_id": 6,
+      "display_name": "Hustle Gang Homie",
+      "abbreviation": "BANG"
+    },
+    {
+      "espn_team_id": 7,
+      "display_name": "Please Don't Forsett",
+      "abbreviation": "COKE"
+    },
+    {
+      "espn_team_id": 8,
+      "display_name": "Edwin's 20/70 Eyesight",
+      "abbreviation": "EYE"
+    },
+    {
+      "espn_team_id": 9,
+      "display_name": "Pokerwithmy Fleener",
+      "abbreviation": "Flee"
+    },
+    {
+      "espn_team_id": 10,
+      "display_name": "Touchdown Syndrome",
+      "abbreviation": "Stam"
+    }
+  ],
+  "standings": {
+    "type": "derived_from_ESPN_regular_season_matchups_not_official_rank",
+    "rows": [
+      {
+        "espn_team_id": 2,
+        "name": "The General's \"Dorm Room\"",
+        "wins": 11,
+        "losses": 3,
+        "ties": 0,
+        "points_for": 1951.1,
+        "points_against": 1678.02,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 160.14
+          },
+          {
+            "week": 2,
+            "points": 186.94
+          },
+          {
+            "week": 3,
+            "points": 202.92
+          },
+          {
+            "week": 4,
+            "points": 121.24
+          },
+          {
+            "week": 5,
+            "points": 163.32
+          },
+          {
+            "week": 6,
+            "points": 162.6
+          },
+          {
+            "week": 7,
+            "points": 149.44
+          },
+          {
+            "week": 8,
+            "points": 146.68
+          },
+          {
+            "week": 9,
+            "points": 126.78
+          },
+          {
+            "week": 10,
+            "points": 88.76
+          },
+          {
+            "week": 11,
+            "points": 104.38
+          },
+          {
+            "week": 12,
+            "points": 93.42
+          },
+          {
+            "week": 13,
+            "points": 123.68
+          },
+          {
+            "week": 14,
+            "points": 120.8
+          }
+        ]
+      },
+      {
+        "espn_team_id": 3,
+        "name": "The Bear Jew",
+        "wins": 8,
+        "losses": 6,
+        "ties": 0,
+        "points_for": 1973.68,
+        "points_against": 1780.08,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 137.94
+          },
+          {
+            "week": 2,
+            "points": 140.28
+          },
+          {
+            "week": 3,
+            "points": 155.16
+          },
+          {
+            "week": 4,
+            "points": 122.88
+          },
+          {
+            "week": 5,
+            "points": 133.84
+          },
+          {
+            "week": 6,
+            "points": 157.66
+          },
+          {
+            "week": 7,
+            "points": 175.08
+          },
+          {
+            "week": 8,
+            "points": 200.8
+          },
+          {
+            "week": 9,
+            "points": 135.62
+          },
+          {
+            "week": 10,
+            "points": 135.94
+          },
+          {
+            "week": 11,
+            "points": 106.42
+          },
+          {
+            "week": 12,
+            "points": 114.14
+          },
+          {
+            "week": 13,
+            "points": 115.74
+          },
+          {
+            "week": 14,
+            "points": 142.18
+          }
+        ]
+      },
+      {
+        "espn_team_id": 1,
+        "name": "Crosby Sweaters",
+        "wins": 8,
+        "losses": 6,
+        "ties": 0,
+        "points_for": 1879.22,
+        "points_against": 1731.52,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 112.76
+          },
+          {
+            "week": 2,
+            "points": 90.36
+          },
+          {
+            "week": 3,
+            "points": 187.92
+          },
+          {
+            "week": 4,
+            "points": 93.86
+          },
+          {
+            "week": 5,
+            "points": 128.64
+          },
+          {
+            "week": 6,
+            "points": 142.3
+          },
+          {
+            "week": 7,
+            "points": 142.62
+          },
+          {
+            "week": 8,
+            "points": 116.48
+          },
+          {
+            "week": 9,
+            "points": 151.26
+          },
+          {
+            "week": 10,
+            "points": 153.22
+          },
+          {
+            "week": 11,
+            "points": 144.78
+          },
+          {
+            "week": 12,
+            "points": 142.28
+          },
+          {
+            "week": 13,
+            "points": 135.72
+          },
+          {
+            "week": 14,
+            "points": 137.02
+          }
+        ]
+      },
+      {
+        "espn_team_id": 9,
+        "name": "Pokerwithmy Fleener",
+        "wins": 8,
+        "losses": 6,
+        "ties": 0,
+        "points_for": 1642.08,
+        "points_against": 1760.48,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 108.74
+          },
+          {
+            "week": 2,
+            "points": 113.76
+          },
+          {
+            "week": 3,
+            "points": 70.68
+          },
+          {
+            "week": 4,
+            "points": 105.34
+          },
+          {
+            "week": 5,
+            "points": 113.96
+          },
+          {
+            "week": 6,
+            "points": 133.62
+          },
+          {
+            "week": 7,
+            "points": 127.84
+          },
+          {
+            "week": 8,
+            "points": 96.74
+          },
+          {
+            "week": 9,
+            "points": 171.76
+          },
+          {
+            "week": 10,
+            "points": 143.88
+          },
+          {
+            "week": 11,
+            "points": 110.2
+          },
+          {
+            "week": 12,
+            "points": 118.02
+          },
+          {
+            "week": 13,
+            "points": 130.86
+          },
+          {
+            "week": 14,
+            "points": 96.68
+          }
+        ]
+      },
+      {
+        "espn_team_id": 10,
+        "name": "Touchdown Syndrome",
+        "wins": 7,
+        "losses": 7,
+        "ties": 0,
+        "points_for": 1805.3,
+        "points_against": 1799.08,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 140.74
+          },
+          {
+            "week": 2,
+            "points": 102.7
+          },
+          {
+            "week": 3,
+            "points": 151.32
+          },
+          {
+            "week": 4,
+            "points": 104.66
+          },
+          {
+            "week": 5,
+            "points": 144.4
+          },
+          {
+            "week": 6,
+            "points": 156.98
+          },
+          {
+            "week": 7,
+            "points": 142.2
+          },
+          {
+            "week": 8,
+            "points": 123.14
+          },
+          {
+            "week": 9,
+            "points": 125.86
+          },
+          {
+            "week": 10,
+            "points": 104.36
+          },
+          {
+            "week": 11,
+            "points": 125.08
+          },
+          {
+            "week": 12,
+            "points": 104
+          },
+          {
+            "week": 13,
+            "points": 174.32
+          },
+          {
+            "week": 14,
+            "points": 105.54
+          }
+        ]
+      },
+      {
+        "espn_team_id": 7,
+        "name": "Please Don't Forsett",
+        "wins": 7,
+        "losses": 7,
+        "ties": 0,
+        "points_for": 1675.68,
+        "points_against": 1762.64,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 113.5
+          },
+          {
+            "week": 2,
+            "points": 138.8
+          },
+          {
+            "week": 3,
+            "points": 123.64
+          },
+          {
+            "week": 4,
+            "points": 150.92
+          },
+          {
+            "week": 5,
+            "points": 140.3
+          },
+          {
+            "week": 6,
+            "points": 137.38
+          },
+          {
+            "week": 7,
+            "points": 85.7
+          },
+          {
+            "week": 8,
+            "points": 99.74
+          },
+          {
+            "week": 9,
+            "points": 132.26
+          },
+          {
+            "week": 10,
+            "points": 112.02
+          },
+          {
+            "week": 11,
+            "points": 79.62
+          },
+          {
+            "week": 12,
+            "points": 177.6
+          },
+          {
+            "week": 13,
+            "points": 97.38
+          },
+          {
+            "week": 14,
+            "points": 86.82
+          }
+        ]
+      },
+      {
+        "espn_team_id": 6,
+        "name": "Hustle Gang Homie",
+        "wins": 6,
+        "losses": 8,
+        "ties": 0,
+        "points_for": 1834.08,
+        "points_against": 1821.36,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 120.7
+          },
+          {
+            "week": 2,
+            "points": 147.64
+          },
+          {
+            "week": 3,
+            "points": 135.26
+          },
+          {
+            "week": 4,
+            "points": 116.92
+          },
+          {
+            "week": 5,
+            "points": 134.34
+          },
+          {
+            "week": 6,
+            "points": 128.6
+          },
+          {
+            "week": 7,
+            "points": 137.98
+          },
+          {
+            "week": 8,
+            "points": 142.16
+          },
+          {
+            "week": 9,
+            "points": 152.4
+          },
+          {
+            "week": 10,
+            "points": 122.84
+          },
+          {
+            "week": 11,
+            "points": 80.72
+          },
+          {
+            "week": 12,
+            "points": 126.3
+          },
+          {
+            "week": 13,
+            "points": 152.48
+          },
+          {
+            "week": 14,
+            "points": 135.74
+          }
+        ]
+      },
+      {
+        "espn_team_id": 8,
+        "name": "Edwin's 20/70 Eyesight",
+        "wins": 6,
+        "losses": 8,
+        "ties": 0,
+        "points_for": 1812.62,
+        "points_against": 1924.56,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 143.04
+          },
+          {
+            "week": 2,
+            "points": 141.7
+          },
+          {
+            "week": 3,
+            "points": 115.44
+          },
+          {
+            "week": 4,
+            "points": 98.38
+          },
+          {
+            "week": 5,
+            "points": 83.14
+          },
+          {
+            "week": 6,
+            "points": 104.04
+          },
+          {
+            "week": 7,
+            "points": 120.2
+          },
+          {
+            "week": 8,
+            "points": 125.46
+          },
+          {
+            "week": 9,
+            "points": 137.84
+          },
+          {
+            "week": 10,
+            "points": 161.32
+          },
+          {
+            "week": 11,
+            "points": 116.28
+          },
+          {
+            "week": 12,
+            "points": 141.24
+          },
+          {
+            "week": 13,
+            "points": 187.74
+          },
+          {
+            "week": 14,
+            "points": 136.8
+          }
+        ]
+      },
+      {
+        "espn_team_id": 4,
+        "name": "Adam Vinatier U a New Asshole",
+        "wins": 6,
+        "losses": 8,
+        "ties": 0,
+        "points_for": 1700.18,
+        "points_against": 1814.22,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 112.92
+          },
+          {
+            "week": 2,
+            "points": 75.4
+          },
+          {
+            "week": 3,
+            "points": 165.5
+          },
+          {
+            "week": 4,
+            "points": 102.76
+          },
+          {
+            "week": 5,
+            "points": 92.4
+          },
+          {
+            "week": 6,
+            "points": 114.28
+          },
+          {
+            "week": 7,
+            "points": 97.52
+          },
+          {
+            "week": 8,
+            "points": 159.64
+          },
+          {
+            "week": 9,
+            "points": 148.78
+          },
+          {
+            "week": 10,
+            "points": 116.88
+          },
+          {
+            "week": 11,
+            "points": 115.94
+          },
+          {
+            "week": 12,
+            "points": 116.82
+          },
+          {
+            "week": 13,
+            "points": 154.14
+          },
+          {
+            "week": 14,
+            "points": 127.2
+          }
+        ]
+      },
+      {
+        "espn_team_id": 5,
+        "name": "Kanye West",
+        "wins": 3,
+        "losses": 11,
+        "ties": 0,
+        "points_for": 1607.58,
+        "points_against": 1809.56,
+        "weekly_points": [
+          {
+            "week": 1,
+            "points": 99.54
+          },
+          {
+            "week": 2,
+            "points": 95.68
+          },
+          {
+            "week": 3,
+            "points": 107.1
+          },
+          {
+            "week": 4,
+            "points": 119.88
+          },
+          {
+            "week": 5,
+            "points": 104.12
+          },
+          {
+            "week": 6,
+            "points": 120.94
+          },
+          {
+            "week": 7,
+            "points": 86.6
+          },
+          {
+            "week": 8,
+            "points": 117.2
+          },
+          {
+            "week": 9,
+            "points": 125.64
+          },
+          {
+            "week": 10,
+            "points": 139.68
+          },
+          {
+            "week": 11,
+            "points": 60.96
+          },
+          {
+            "week": 12,
+            "points": 159.1
+          },
+          {
+            "week": 13,
+            "points": 119.06
+          },
+          {
+            "week": 14,
+            "points": 152.08
+          }
+        ]
+      }
+    ],
+    "score_winner_anomalies": []
+  },
+  "postseason": {
+    "status": "source_final_record_only_advancement_unresolved",
+    "winner_record": {
+      "espn_team_id": 2,
+      "team_name": "The General's \"Dorm Room\"",
+      "final_matchup_id": 75,
+      "final_week": 16,
+      "final_points": 173.62,
+      "runner_up_team_id": 9,
+      "semifinal_advancement_matches_finalists": false,
+      "winner_field_matches_final_score": true
+    }
+  },
+  "matchups": [
+    {
+      "matchup_id": 0,
+      "week": 1,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 137.94
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 120.7
+        }
+      ]
+    },
+    {
+      "matchup_id": 1,
+      "week": 1,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 9,
+          "points": 108.74
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 99.54
+        }
+      ]
+    },
+    {
+      "matchup_id": 2,
+      "week": 1,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 2,
+          "points": 160.14
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 112.76
+        }
+      ]
+    },
+    {
+      "matchup_id": 3,
+      "week": 1,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 113.5
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 140.74
+        }
+      ]
+    },
+    {
+      "matchup_id": 4,
+      "week": 1,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 8,
+          "points": 143.04
+        },
+        {
+          "side": "away",
+          "espn_team_id": 4,
+          "points": 112.92
+        }
+      ]
+    },
+    {
+      "matchup_id": 5,
+      "week": 2,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 95.68
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 90.36
+        }
+      ]
+    },
+    {
+      "matchup_id": 6,
+      "week": 2,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 102.7
+        },
+        {
+          "side": "away",
+          "espn_team_id": 3,
+          "points": 140.28
+        }
+      ]
+    },
+    {
+      "matchup_id": 7,
+      "week": 2,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 75.4
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 147.64
+        }
+      ]
+    },
+    {
+      "matchup_id": 8,
+      "week": 2,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 138.8
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 113.76
+        }
+      ]
+    },
+    {
+      "matchup_id": 9,
+      "week": 2,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 8,
+          "points": 141.7
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 186.94
+        }
+      ]
+    },
+    {
+      "matchup_id": 10,
+      "week": 3,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 151.32
+        },
+        {
+          "side": "away",
+          "espn_team_id": 4,
+          "points": 165.5
+        }
+      ]
+    },
+    {
+      "matchup_id": 11,
+      "week": 3,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 107.1
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 123.64
+        }
+      ]
+    },
+    {
+      "matchup_id": 12,
+      "week": 3,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 187.92
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 115.44
+        }
+      ]
+    },
+    {
+      "matchup_id": 13,
+      "week": 3,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 155.16
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 70.68
+        }
+      ]
+    },
+    {
+      "matchup_id": 14,
+      "week": 3,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 135.26
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 202.92
+        }
+      ]
+    },
+    {
+      "matchup_id": 15,
+      "week": 4,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 150.92
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 98.38
+        }
+      ]
+    },
+    {
+      "matchup_id": 16,
+      "week": 4,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 9,
+          "points": 105.34
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 104.66
+        }
+      ]
+    },
+    {
+      "matchup_id": 17,
+      "week": 4,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 2,
+          "points": 121.24
+        },
+        {
+          "side": "away",
+          "espn_team_id": 4,
+          "points": 102.76
+        }
+      ]
+    },
+    {
+      "matchup_id": 18,
+      "week": 4,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 122.88
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 119.88
+        }
+      ]
+    },
+    {
+      "matchup_id": 19,
+      "week": 4,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 116.92
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 93.86
+        }
+      ]
+    },
+    {
+      "matchup_id": 20,
+      "week": 5,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 9,
+          "points": 113.96
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 163.32
+        }
+      ]
+    },
+    {
+      "matchup_id": 21,
+      "week": 5,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 140.3
+        },
+        {
+          "side": "away",
+          "espn_team_id": 3,
+          "points": 133.84
+        }
+      ]
+    },
+    {
+      "matchup_id": 22,
+      "week": 5,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 8,
+          "points": 83.14
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 134.34
+        }
+      ]
+    },
+    {
+      "matchup_id": 23,
+      "week": 5,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 144.4
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 104.12
+        }
+      ]
+    },
+    {
+      "matchup_id": 24,
+      "week": 5,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 92.4
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 128.64
+        }
+      ]
+    },
+    {
+      "matchup_id": 25,
+      "week": 6,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 128.6
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 120.94
+        }
+      ]
+    },
+    {
+      "matchup_id": 26,
+      "week": 6,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 142.3
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 156.98
+        }
+      ]
+    },
+    {
+      "matchup_id": 27,
+      "week": 6,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 114.28
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 137.38
+        }
+      ]
+    },
+    {
+      "matchup_id": 28,
+      "week": 6,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 8,
+          "points": 104.04
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 133.62
+        }
+      ]
+    },
+    {
+      "matchup_id": 29,
+      "week": 6,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 2,
+          "points": 162.6
+        },
+        {
+          "side": "away",
+          "espn_team_id": 3,
+          "points": 157.66
+        }
+      ]
+    },
+    {
+      "matchup_id": 30,
+      "week": 7,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 142.2
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 137.98
+        }
+      ]
+    },
+    {
+      "matchup_id": 31,
+      "week": 7,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 85.7
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 142.62
+        }
+      ]
+    },
+    {
+      "matchup_id": 32,
+      "week": 7,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 9,
+          "points": 127.84
+        },
+        {
+          "side": "away",
+          "espn_team_id": 4,
+          "points": 97.52
+        }
+      ]
+    },
+    {
+      "matchup_id": 33,
+      "week": 7,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 175.08
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 120.2
+        }
+      ]
+    },
+    {
+      "matchup_id": 34,
+      "week": 7,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 86.6
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 149.44
+        }
+      ]
+    },
+    {
+      "matchup_id": 35,
+      "week": 8,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 142.16
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 99.74
+        }
+      ]
+    },
+    {
+      "matchup_id": 36,
+      "week": 8,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 116.48
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 96.74
+        }
+      ]
+    },
+    {
+      "matchup_id": 37,
+      "week": 8,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 159.64
+        },
+        {
+          "side": "away",
+          "espn_team_id": 3,
+          "points": 200.8
+        }
+      ]
+    },
+    {
+      "matchup_id": 38,
+      "week": 8,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 8,
+          "points": 125.46
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 117.2
+        }
+      ]
+    },
+    {
+      "matchup_id": 39,
+      "week": 8,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 2,
+          "points": 146.68
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 123.14
+        }
+      ]
+    },
+    {
+      "matchup_id": 40,
+      "week": 9,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 9,
+          "points": 171.76
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 152.4
+        }
+      ]
+    },
+    {
+      "matchup_id": 41,
+      "week": 9,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 135.62
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 132.26
+        }
+      ]
+    },
+    {
+      "matchup_id": 42,
+      "week": 9,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 151.26
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 126.78
+        }
+      ]
+    },
+    {
+      "matchup_id": 43,
+      "week": 9,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 125.64
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 125.86
+        }
+      ]
+    },
+    {
+      "matchup_id": 44,
+      "week": 9,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 148.78
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 137.84
+        }
+      ]
+    },
+    {
+      "matchup_id": 45,
+      "week": 10,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 135.94
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 153.22
+        }
+      ]
+    },
+    {
+      "matchup_id": 46,
+      "week": 10,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 139.68
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 143.88
+        }
+      ]
+    },
+    {
+      "matchup_id": 47,
+      "week": 10,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 122.84
+        },
+        {
+          "side": "away",
+          "espn_team_id": 4,
+          "points": 116.88
+        }
+      ]
+    },
+    {
+      "matchup_id": 48,
+      "week": 10,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 104.36
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 112.02
+        }
+      ]
+    },
+    {
+      "matchup_id": 49,
+      "week": 10,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 2,
+          "points": 88.76
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 161.32
+        }
+      ]
+    },
+    {
+      "matchup_id": 50,
+      "week": 11,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 60.96
+        },
+        {
+          "side": "away",
+          "espn_team_id": 4,
+          "points": 115.94
+        }
+      ]
+    },
+    {
+      "matchup_id": 51,
+      "week": 11,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 106.42
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 125.08
+        }
+      ]
+    },
+    {
+      "matchup_id": 52,
+      "week": 11,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 8,
+          "points": 116.28
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 144.78
+        }
+      ]
+    },
+    {
+      "matchup_id": 53,
+      "week": 11,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 9,
+          "points": 110.2
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 79.62
+        }
+      ]
+    },
+    {
+      "matchup_id": 54,
+      "week": 11,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 2,
+          "points": 104.38
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 80.72
+        }
+      ]
+    },
+    {
+      "matchup_id": 55,
+      "week": 12,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 104
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 141.24
+        }
+      ]
+    },
+    {
+      "matchup_id": 56,
+      "week": 12,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 177.6
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 159.1
+        }
+      ]
+    },
+    {
+      "matchup_id": 57,
+      "week": 12,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 116.82
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 93.42
+        }
+      ]
+    },
+    {
+      "matchup_id": 58,
+      "week": 12,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 9,
+          "points": 118.02
+        },
+        {
+          "side": "away",
+          "espn_team_id": 3,
+          "points": 114.14
+        }
+      ]
+    },
+    {
+      "matchup_id": 59,
+      "week": 12,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 142.28
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 126.3
+        }
+      ]
+    },
+    {
+      "matchup_id": 60,
+      "week": 13,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 97.38
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 123.68
+        }
+      ]
+    },
+    {
+      "matchup_id": 61,
+      "week": 13,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 10,
+          "points": 174.32
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 130.86
+        }
+      ]
+    },
+    {
+      "matchup_id": 62,
+      "week": 13,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 152.48
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 187.74
+        }
+      ]
+    },
+    {
+      "matchup_id": 63,
+      "week": 13,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 119.06
+        },
+        {
+          "side": "away",
+          "espn_team_id": 3,
+          "points": 115.74
+        }
+      ]
+    },
+    {
+      "matchup_id": 64,
+      "week": 13,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 135.72
+        },
+        {
+          "side": "away",
+          "espn_team_id": 4,
+          "points": 154.14
+        }
+      ]
+    },
+    {
+      "matchup_id": 65,
+      "week": 14,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 6,
+          "points": 135.74
+        },
+        {
+          "side": "away",
+          "espn_team_id": 3,
+          "points": 142.18
+        }
+      ]
+    },
+    {
+      "matchup_id": 66,
+      "week": 14,
+      "playoff_tier_type": "NONE",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 137.02
+        },
+        {
+          "side": "away",
+          "espn_team_id": 5,
+          "points": 152.08
+        }
+      ]
+    },
+    {
+      "matchup_id": 67,
+      "week": 14,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 127.2
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 105.54
+        }
+      ]
+    },
+    {
+      "matchup_id": 68,
+      "week": 14,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 8,
+          "points": 136.8
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 86.82
+        }
+      ]
+    },
+    {
+      "matchup_id": 69,
+      "week": 14,
+      "playoff_tier_type": "NONE",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 2,
+          "points": 120.8
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 96.68
+        }
+      ]
+    },
+    {
+      "matchup_id": 70,
+      "week": 15,
+      "playoff_tier_type": "WINNERS_BRACKET",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 1,
+          "points": 97.86
+        },
+        {
+          "side": "away",
+          "espn_team_id": 2,
+          "points": 149.34
+        }
+      ]
+    },
+    {
+      "matchup_id": 71,
+      "week": 15,
+      "playoff_tier_type": "WINNERS_BRACKET",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 9,
+          "points": 159.2
+        },
+        {
+          "side": "away",
+          "espn_team_id": 3,
+          "points": 160.26
+        }
+      ]
+    },
+    {
+      "matchup_id": 72,
+      "week": 15,
+      "playoff_tier_type": "LOSERS_CONSOLATION_LADDER",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 155.06
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 194.04
+        }
+      ]
+    },
+    {
+      "matchup_id": 73,
+      "week": 15,
+      "playoff_tier_type": "LOSERS_CONSOLATION_LADDER",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 8,
+          "points": 169.16
+        },
+        {
+          "side": "away",
+          "espn_team_id": 7,
+          "points": 118.54
+        }
+      ]
+    },
+    {
+      "matchup_id": 74,
+      "week": 15,
+      "playoff_tier_type": "LOSERS_CONSOLATION_LADDER",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 190.2
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 90.38
+        }
+      ]
+    },
+    {
+      "matchup_id": 75,
+      "week": 16,
+      "playoff_tier_type": "WINNERS_BRACKET",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 2,
+          "points": 173.62
+        },
+        {
+          "side": "away",
+          "espn_team_id": 9,
+          "points": 88.2
+        }
+      ]
+    },
+    {
+      "matchup_id": 76,
+      "week": 16,
+      "playoff_tier_type": "WINNERS_CONSOLATION_LADDER",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 3,
+          "points": 128.04
+        },
+        {
+          "side": "away",
+          "espn_team_id": 1,
+          "points": 99.92
+        }
+      ]
+    },
+    {
+      "matchup_id": 77,
+      "week": 16,
+      "playoff_tier_type": "LOSERS_CONSOLATION_LADDER",
+      "winner": "HOME",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 4,
+          "points": 129.08
+        },
+        {
+          "side": "away",
+          "espn_team_id": 6,
+          "points": 125.4
+        }
+      ]
+    },
+    {
+      "matchup_id": 78,
+      "week": 16,
+      "playoff_tier_type": "LOSERS_CONSOLATION_LADDER",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 5,
+          "points": 130.46
+        },
+        {
+          "side": "away",
+          "espn_team_id": 8,
+          "points": 155.3
+        }
+      ]
+    },
+    {
+      "matchup_id": 79,
+      "week": 16,
+      "playoff_tier_type": "LOSERS_CONSOLATION_LADDER",
+      "winner": "AWAY",
+      "sides": [
+        {
+          "side": "home",
+          "espn_team_id": 7,
+          "points": 120.08
+        },
+        {
+          "side": "away",
+          "espn_team_id": 10,
+          "points": 142.14
+        }
+      ]
+    }
+  ],
+  "draft": {
+    "status": "retrieved_original_espn_picks",
+    "drafted": true,
+    "pick_count": 170,
+    "round_count": 17,
+    "team_pick_counts": {
+      "1": 17,
+      "2": 17,
+      "3": 17,
+      "4": 17,
+      "5": 17,
+      "6": 17,
+      "7": 17,
+      "8": 17,
+      "9": 17,
+      "10": 17
+    },
+    "picks": [
+      {
+        "overallPickNumber": 1,
+        "roundId": 1,
+        "roundPickNumber": 1,
+        "teamId": 7,
+        "playerId": 15825,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 2,
+        "roundId": 1,
+        "roundPickNumber": 2,
+        "teamId": 5,
+        "playerId": 10452,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 3,
+        "roundId": 1,
+        "roundPickNumber": 3,
+        "teamId": 4,
+        "playerId": 15848,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 4,
+        "roundId": 1,
+        "roundPickNumber": 4,
+        "teamId": 2,
+        "playerId": 11307,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 5,
+        "roundId": 1,
+        "roundPickNumber": 5,
+        "teamId": 6,
+        "playerId": 10456,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 6,
+        "roundId": 1,
+        "roundPickNumber": 6,
+        "teamId": 1,
+        "playerId": 11278,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 7,
+        "roundId": 1,
+        "roundPickNumber": 7,
+        "teamId": 8,
+        "playerId": 13934,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 8,
+        "roundId": 1,
+        "roundPickNumber": 8,
+        "teamId": 9,
+        "playerId": 16040,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 9,
+        "roundId": 1,
+        "roundPickNumber": 9,
+        "teamId": 10,
+        "playerId": 12514,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 10,
+        "roundId": 1,
+        "roundPickNumber": 10,
+        "teamId": 3,
+        "playerId": 13216,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 11,
+        "roundId": 2,
+        "roundPickNumber": 1,
+        "teamId": 3,
+        "playerId": 13229,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 12,
+        "roundId": 2,
+        "roundPickNumber": 2,
+        "teamId": 10,
+        "playerId": 13215,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 13,
+        "roundId": 2,
+        "roundPickNumber": 3,
+        "teamId": 9,
+        "playerId": 14005,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 14,
+        "roundId": 2,
+        "roundPickNumber": 4,
+        "teamId": 8,
+        "playerId": 15009,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 15,
+        "roundId": 2,
+        "roundPickNumber": 5,
+        "teamId": 1,
+        "playerId": 8439,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 16,
+        "roundId": 2,
+        "roundPickNumber": 6,
+        "teamId": 6,
+        "playerId": 16733,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 17,
+        "roundId": 2,
+        "roundPickNumber": 7,
+        "teamId": 2,
+        "playerId": 13982,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 18,
+        "roundId": 2,
+        "roundPickNumber": 8,
+        "teamId": 4,
+        "playerId": 14874,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 19,
+        "roundId": 2,
+        "roundPickNumber": 9,
+        "teamId": 5,
+        "playerId": 16803,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 20,
+        "roundId": 2,
+        "roundPickNumber": 10,
+        "teamId": 7,
+        "playerId": 10447,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 21,
+        "roundId": 3,
+        "roundPickNumber": 1,
+        "teamId": 7,
+        "playerId": 14053,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 22,
+        "roundId": 3,
+        "roundPickNumber": 2,
+        "teamId": 5,
+        "playerId": 11270,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 23,
+        "roundId": 3,
+        "roundPickNumber": 3,
+        "teamId": 4,
+        "playerId": 13983,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 24,
+        "roundId": 3,
+        "roundPickNumber": 4,
+        "teamId": 2,
+        "playerId": 14924,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 25,
+        "roundId": 3,
+        "roundPickNumber": 5,
+        "teamId": 6,
+        "playerId": 14912,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 26,
+        "roundId": 3,
+        "roundPickNumber": 6,
+        "teamId": 1,
+        "playerId": 13232,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 27,
+        "roundId": 3,
+        "roundPickNumber": 7,
+        "teamId": 8,
+        "playerId": 13295,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 28,
+        "roundId": 3,
+        "roundPickNumber": 8,
+        "teamId": 9,
+        "playerId": 14886,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 29,
+        "roundId": 3,
+        "roundPickNumber": 9,
+        "teamId": 10,
+        "playerId": 15795,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 30,
+        "roundId": 3,
+        "roundPickNumber": 10,
+        "teamId": 3,
+        "playerId": 13981,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 31,
+        "roundId": 4,
+        "roundPickNumber": 1,
+        "teamId": 3,
+        "playerId": 2576434,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 32,
+        "roundId": 4,
+        "roundPickNumber": 2,
+        "teamId": 10,
+        "playerId": 8479,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 33,
+        "roundId": 4,
+        "roundPickNumber": 3,
+        "teamId": 9,
+        "playerId": 16731,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 34,
+        "roundId": 4,
+        "roundPickNumber": 4,
+        "teamId": 8,
+        "playerId": 15847,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 35,
+        "roundId": 4,
+        "roundPickNumber": 5,
+        "teamId": 1,
+        "playerId": 16737,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 36,
+        "roundId": 4,
+        "roundPickNumber": 6,
+        "teamId": 6,
+        "playerId": 1428,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 37,
+        "roundId": 4,
+        "roundPickNumber": 7,
+        "teamId": 2,
+        "playerId": 11247,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 38,
+        "roundId": 4,
+        "roundPickNumber": 8,
+        "teamId": 4,
+        "playerId": 16763,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 39,
+        "roundId": 4,
+        "roundPickNumber": 9,
+        "teamId": 5,
+        "playerId": 16777,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 40,
+        "roundId": 4,
+        "roundPickNumber": 10,
+        "teamId": 7,
+        "playerId": 11467,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 41,
+        "roundId": 5,
+        "roundPickNumber": 1,
+        "teamId": 7,
+        "playerId": 2580,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 42,
+        "roundId": 5,
+        "roundPickNumber": 2,
+        "teamId": 5,
+        "playerId": 14881,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 43,
+        "roundId": 5,
+        "roundPickNumber": 3,
+        "teamId": 4,
+        "playerId": 10475,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 44,
+        "roundId": 5,
+        "roundPickNumber": 4,
+        "teamId": 2,
+        "playerId": 16921,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 45,
+        "roundId": 5,
+        "roundPickNumber": 5,
+        "teamId": 6,
+        "playerId": 12649,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 46,
+        "roundId": 5,
+        "roundPickNumber": 6,
+        "teamId": 1,
+        "playerId": 11283,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 47,
+        "roundId": 5,
+        "roundPickNumber": 7,
+        "teamId": 8,
+        "playerId": 2977644,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 48,
+        "roundId": 5,
+        "roundPickNumber": 8,
+        "teamId": 9,
+        "playerId": 5536,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 49,
+        "roundId": 5,
+        "roundPickNumber": 9,
+        "teamId": 10,
+        "playerId": 8475,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 50,
+        "roundId": 5,
+        "roundPickNumber": 10,
+        "teamId": 3,
+        "playerId": 16725,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 51,
+        "roundId": 6,
+        "roundPickNumber": 1,
+        "teamId": 3,
+        "playerId": 15818,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 52,
+        "roundId": 6,
+        "roundPickNumber": 2,
+        "teamId": 10,
+        "playerId": 16790,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 53,
+        "roundId": 6,
+        "roundPickNumber": 3,
+        "teamId": 9,
+        "playerId": 2976499,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 54,
+        "roundId": 6,
+        "roundPickNumber": 4,
+        "teamId": 8,
+        "playerId": 16013,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 55,
+        "roundId": 6,
+        "roundPickNumber": 5,
+        "teamId": 1,
+        "playerId": 13203,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 56,
+        "roundId": 6,
+        "roundPickNumber": 6,
+        "teamId": 6,
+        "playerId": 15920,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 57,
+        "roundId": 6,
+        "roundPickNumber": 7,
+        "teamId": 2,
+        "playerId": 13217,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 58,
+        "roundId": 6,
+        "roundPickNumber": 8,
+        "teamId": 4,
+        "playerId": 15893,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 59,
+        "roundId": 6,
+        "roundPickNumber": 9,
+        "teamId": 5,
+        "playerId": 12579,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 60,
+        "roundId": 6,
+        "roundPickNumber": 10,
+        "teamId": 7,
+        "playerId": 11295,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 61,
+        "roundId": 7,
+        "roundPickNumber": 1,
+        "teamId": 7,
+        "playerId": 2976516,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 62,
+        "roundId": 7,
+        "roundPickNumber": 2,
+        "teamId": 5,
+        "playerId": 2971618,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 63,
+        "roundId": 7,
+        "roundPickNumber": 3,
+        "teamId": 4,
+        "playerId": 13536,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 64,
+        "roundId": 7,
+        "roundPickNumber": 4,
+        "teamId": 2,
+        "playerId": 2622,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 65,
+        "roundId": 7,
+        "roundPickNumber": 5,
+        "teamId": 6,
+        "playerId": 4461,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 66,
+        "roundId": 7,
+        "roundPickNumber": 6,
+        "teamId": 1,
+        "playerId": 5528,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 67,
+        "roundId": 7,
+        "roundPickNumber": 7,
+        "teamId": 8,
+        "playerId": 12601,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 68,
+        "roundId": 7,
+        "roundPickNumber": 8,
+        "teamId": 9,
+        "playerId": 9705,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 69,
+        "roundId": 7,
+        "roundPickNumber": 9,
+        "teamId": 10,
+        "playerId": 13213,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 70,
+        "roundId": 7,
+        "roundPickNumber": 10,
+        "teamId": 3,
+        "playerId": 13587,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 71,
+        "roundId": 8,
+        "roundPickNumber": 1,
+        "teamId": 3,
+        "playerId": 14876,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 72,
+        "roundId": 8,
+        "roundPickNumber": 2,
+        "teamId": 10,
+        "playerId": 15826,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 73,
+        "roundId": 8,
+        "roundPickNumber": 3,
+        "teamId": 9,
+        "playerId": 16886,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 74,
+        "roundId": 8,
+        "roundPickNumber": 4,
+        "teamId": 8,
+        "playerId": 2576336,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 75,
+        "roundId": 8,
+        "roundPickNumber": 5,
+        "teamId": 1,
+        "playerId": 14032,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 76,
+        "roundId": 8,
+        "roundPickNumber": 6,
+        "teamId": 6,
+        "playerId": 8442,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 77,
+        "roundId": 8,
+        "roundPickNumber": 7,
+        "teamId": 2,
+        "playerId": 17133,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 78,
+        "roundId": 8,
+        "roundPickNumber": 8,
+        "teamId": 4,
+        "playerId": 14885,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 79,
+        "roundId": 8,
+        "roundPickNumber": 9,
+        "teamId": 5,
+        "playerId": 13553,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 80,
+        "roundId": 8,
+        "roundPickNumber": 10,
+        "teamId": 7,
+        "playerId": 16799,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 81,
+        "roundId": 9,
+        "roundPickNumber": 1,
+        "teamId": 7,
+        "playerId": -16026,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 82,
+        "roundId": 9,
+        "roundPickNumber": 2,
+        "teamId": 5,
+        "playerId": 14189,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 83,
+        "roundId": 9,
+        "roundPickNumber": 3,
+        "teamId": 4,
+        "playerId": 14908,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 84,
+        "roundId": 9,
+        "roundPickNumber": 4,
+        "teamId": 2,
+        "playerId": 2977609,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 85,
+        "roundId": 9,
+        "roundPickNumber": 5,
+        "teamId": 6,
+        "playerId": 4527,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 86,
+        "roundId": 9,
+        "roundPickNumber": 6,
+        "teamId": 1,
+        "playerId": -16034,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 87,
+        "roundId": 9,
+        "roundPickNumber": 7,
+        "teamId": 8,
+        "playerId": 13204,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 88,
+        "roundId": 9,
+        "roundPickNumber": 8,
+        "teamId": 9,
+        "playerId": 16784,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 89,
+        "roundId": 9,
+        "roundPickNumber": 9,
+        "teamId": 10,
+        "playerId": 5209,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 90,
+        "roundId": 9,
+        "roundPickNumber": 10,
+        "teamId": 3,
+        "playerId": 15885,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 91,
+        "roundId": 10,
+        "roundPickNumber": 1,
+        "teamId": 3,
+        "playerId": 9704,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 92,
+        "roundId": 10,
+        "roundPickNumber": 2,
+        "teamId": 10,
+        "playerId": 12497,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 93,
+        "roundId": 10,
+        "roundPickNumber": 3,
+        "teamId": 9,
+        "playerId": 11237,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 94,
+        "roundId": 10,
+        "roundPickNumber": 4,
+        "teamId": 8,
+        "playerId": 11276,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 95,
+        "roundId": 10,
+        "roundPickNumber": 5,
+        "teamId": 1,
+        "playerId": 2330,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 96,
+        "roundId": 10,
+        "roundPickNumber": 6,
+        "teamId": 6,
+        "playerId": 16944,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 97,
+        "roundId": 10,
+        "roundPickNumber": 7,
+        "teamId": 2,
+        "playerId": 12483,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 98,
+        "roundId": 10,
+        "roundPickNumber": 8,
+        "teamId": 4,
+        "playerId": 13994,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 99,
+        "roundId": 10,
+        "roundPickNumber": 9,
+        "teamId": 5,
+        "playerId": 16800,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 100,
+        "roundId": 10,
+        "roundPickNumber": 10,
+        "teamId": 7,
+        "playerId": 12503,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 101,
+        "roundId": 11,
+        "roundPickNumber": 1,
+        "teamId": 7,
+        "playerId": 5529,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 102,
+        "roundId": 11,
+        "roundPickNumber": 2,
+        "teamId": 5,
+        "playerId": 16794,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 103,
+        "roundId": 11,
+        "roundPickNumber": 3,
+        "teamId": 4,
+        "playerId": 1097,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 104,
+        "roundId": 11,
+        "roundPickNumber": 4,
+        "teamId": 2,
+        "playerId": 16143,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 105,
+        "roundId": 11,
+        "roundPickNumber": 5,
+        "teamId": 6,
+        "playerId": 11788,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 106,
+        "roundId": 11,
+        "roundPickNumber": 6,
+        "teamId": 1,
+        "playerId": 14204,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 107,
+        "roundId": 11,
+        "roundPickNumber": 7,
+        "teamId": 8,
+        "playerId": 13197,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 108,
+        "roundId": 11,
+        "roundPickNumber": 8,
+        "teamId": 9,
+        "playerId": 15835,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 109,
+        "roundId": 11,
+        "roundPickNumber": 9,
+        "teamId": 10,
+        "playerId": 2969962,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 110,
+        "roundId": 11,
+        "roundPickNumber": 10,
+        "teamId": 3,
+        "playerId": 13271,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 111,
+        "roundId": 12,
+        "roundPickNumber": 1,
+        "teamId": 3,
+        "playerId": 12563,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 112,
+        "roundId": 12,
+        "roundPickNumber": 2,
+        "teamId": 10,
+        "playerId": 9684,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 113,
+        "roundId": 12,
+        "roundPickNumber": 3,
+        "teamId": 9,
+        "playerId": 2979477,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 114,
+        "roundId": 12,
+        "roundPickNumber": 4,
+        "teamId": 8,
+        "playerId": 4459,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 115,
+        "roundId": 12,
+        "roundPickNumber": 5,
+        "teamId": 1,
+        "playerId": 15823,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 116,
+        "roundId": 12,
+        "roundPickNumber": 6,
+        "teamId": 6,
+        "playerId": 4512,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 117,
+        "roundId": 12,
+        "roundPickNumber": 7,
+        "teamId": 2,
+        "playerId": 14901,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 118,
+        "roundId": 12,
+        "roundPickNumber": 8,
+        "teamId": 4,
+        "playerId": 11238,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 119,
+        "roundId": 12,
+        "roundPickNumber": 9,
+        "teamId": 5,
+        "playerId": 2576980,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 120,
+        "roundId": 12,
+        "roundPickNumber": 10,
+        "teamId": 7,
+        "playerId": 5362,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 121,
+        "roundId": 13,
+        "roundPickNumber": 1,
+        "teamId": 7,
+        "playerId": 14017,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 122,
+        "roundId": 13,
+        "roundPickNumber": 2,
+        "teamId": 5,
+        "playerId": 11674,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 123,
+        "roundId": 13,
+        "roundPickNumber": 3,
+        "teamId": 4,
+        "playerId": 9838,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 124,
+        "roundId": 13,
+        "roundPickNumber": 4,
+        "teamId": 2,
+        "playerId": 16749,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 125,
+        "roundId": 13,
+        "roundPickNumber": 5,
+        "teamId": 6,
+        "playerId": -16002,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 126,
+        "roundId": 13,
+        "roundPickNumber": 6,
+        "teamId": 1,
+        "playerId": 17082,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 127,
+        "roundId": 13,
+        "roundPickNumber": 7,
+        "teamId": 8,
+        "playerId": 16804,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 128,
+        "roundId": 13,
+        "roundPickNumber": 8,
+        "teamId": 9,
+        "playerId": 14909,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 129,
+        "roundId": 13,
+        "roundPickNumber": 9,
+        "teamId": 10,
+        "playerId": 12576,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 130,
+        "roundId": 13,
+        "roundPickNumber": 10,
+        "teamId": 3,
+        "playerId": 5526,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 131,
+        "roundId": 14,
+        "roundPickNumber": 1,
+        "teamId": 3,
+        "playerId": -16017,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 132,
+        "roundId": 14,
+        "roundPickNumber": 2,
+        "teamId": 10,
+        "playerId": -16014,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 133,
+        "roundId": 14,
+        "roundPickNumber": 3,
+        "teamId": 9,
+        "playerId": 2576623,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 134,
+        "roundId": 14,
+        "roundPickNumber": 4,
+        "teamId": 8,
+        "playerId": 16795,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 135,
+        "roundId": 14,
+        "roundPickNumber": 5,
+        "teamId": 1,
+        "playerId": 12569,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 136,
+        "roundId": 14,
+        "roundPickNumber": 6,
+        "teamId": 6,
+        "playerId": 2972460,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 137,
+        "roundId": 14,
+        "roundPickNumber": 7,
+        "teamId": 2,
+        "playerId": -16007,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 138,
+        "roundId": 14,
+        "roundPickNumber": 8,
+        "teamId": 4,
+        "playerId": 11439,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 139,
+        "roundId": 14,
+        "roundPickNumber": 9,
+        "teamId": 5,
+        "playerId": -16015,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 140,
+        "roundId": 14,
+        "roundPickNumber": 10,
+        "teamId": 7,
+        "playerId": -16020,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 141,
+        "roundId": 15,
+        "roundPickNumber": 1,
+        "teamId": 7,
+        "playerId": 11122,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 142,
+        "roundId": 15,
+        "roundPickNumber": 2,
+        "teamId": 5,
+        "playerId": 15364,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 143,
+        "roundId": 15,
+        "roundPickNumber": 3,
+        "teamId": 4,
+        "playerId": 10195,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 144,
+        "roundId": 15,
+        "roundPickNumber": 4,
+        "teamId": 2,
+        "playerId": 11737,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 145,
+        "roundId": 15,
+        "roundPickNumber": 5,
+        "teamId": 6,
+        "playerId": 11923,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 146,
+        "roundId": 15,
+        "roundPickNumber": 6,
+        "teamId": 1,
+        "playerId": 15832,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 147,
+        "roundId": 15,
+        "roundPickNumber": 7,
+        "teamId": 8,
+        "playerId": -16016,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 148,
+        "roundId": 15,
+        "roundPickNumber": 8,
+        "teamId": 9,
+        "playerId": 15683,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 149,
+        "roundId": 15,
+        "roundPickNumber": 9,
+        "teamId": 10,
+        "playerId": 4333,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 150,
+        "roundId": 15,
+        "roundPickNumber": 10,
+        "teamId": 3,
+        "playerId": 9761,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 151,
+        "roundId": 16,
+        "roundPickNumber": 1,
+        "teamId": 3,
+        "playerId": 10668,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 152,
+        "roundId": 16,
+        "roundPickNumber": 2,
+        "teamId": 10,
+        "playerId": 2578,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 153,
+        "roundId": 16,
+        "roundPickNumber": 3,
+        "teamId": 9,
+        "playerId": -16009,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 154,
+        "roundId": 16,
+        "roundPickNumber": 4,
+        "teamId": 8,
+        "playerId": 10636,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 155,
+        "roundId": 16,
+        "roundPickNumber": 5,
+        "teamId": 1,
+        "playerId": 5713,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 156,
+        "roundId": 16,
+        "roundPickNumber": 6,
+        "teamId": 6,
+        "playerId": 15994,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 157,
+        "roundId": 16,
+        "roundPickNumber": 7,
+        "teamId": 2,
+        "playerId": 3043263,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 158,
+        "roundId": 16,
+        "roundPickNumber": 8,
+        "teamId": 4,
+        "playerId": -16029,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 159,
+        "roundId": 16,
+        "roundPickNumber": 9,
+        "teamId": 5,
+        "playerId": 14322,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 160,
+        "roundId": 16,
+        "roundPickNumber": 10,
+        "teamId": 7,
+        "playerId": 16382,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 161,
+        "roundId": 17,
+        "roundPickNumber": 1,
+        "teamId": 7,
+        "playerId": 9588,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 162,
+        "roundId": 17,
+        "roundPickNumber": 2,
+        "teamId": 5,
+        "playerId": 2515576,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 163,
+        "roundId": 17,
+        "roundPickNumber": 3,
+        "teamId": 4,
+        "playerId": 16591,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 164,
+        "roundId": 17,
+        "roundPickNumber": 4,
+        "teamId": 2,
+        "playerId": 15153,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 165,
+        "roundId": 17,
+        "roundPickNumber": 5,
+        "teamId": 6,
+        "playerId": 17323,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 166,
+        "roundId": 17,
+        "roundPickNumber": 6,
+        "teamId": 1,
+        "playerId": 8544,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 167,
+        "roundId": 17,
+        "roundPickNumber": 7,
+        "teamId": 8,
+        "playerId": 17044,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 168,
+        "roundId": 17,
+        "roundPickNumber": 8,
+        "teamId": 9,
+        "playerId": 14950,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 169,
+        "roundId": 17,
+        "roundPickNumber": 9,
+        "teamId": 10,
+        "playerId": 17197,
+        "keeper": false,
+        "bidAmount": 0
+      },
+      {
+        "overallPickNumber": 170,
+        "roundId": 17,
+        "roundPickNumber": 10,
+        "teamId": 3,
+        "playerId": 2969939,
+        "keeper": false,
+        "bidAmount": 0
+      }
+    ]
+  },
+  "publication": "ISOLATED_RESEARCH_NOT_IMPORTED"
+}

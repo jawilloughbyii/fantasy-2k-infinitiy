@@ -14,12 +14,14 @@ TEAM_IDS=ROOT/'reference'/'team_id_map.json'
 CHAMPIONS=ROOT/'reference'/'championship_history.json'
 HISTORICAL_SCORES=ROOT/'reference'/'historical_regular_season_scores.json'
 HISTORICAL_DRAFTS=ROOT/'reference'/'historical_draft_picks.json'
+LEGACY_DRAFTS=ROOT/'reference'/'historical_legacy_draft_picks_2014_2017.json'
 HISTORICAL_DRAFT_GRADES=ROOT/'reference'/'historical_draft_grades.json'
 PLAYOFF_BRACKETS=ROOT/'reference'/'historical_playoff_brackets.json'
 METRIC_PATTERN=re.compile(r'(<script id="metricdefs" type="application/json">)(.*?)(</script>)',re.S)
 CHAMP_PATTERN=re.compile(r'(<script id="championships" type="application/json">)(.*?)(</script>)',re.S)
 HIST_PATTERN=re.compile(r'(<script id="historicalscores" type="application/json">)(.*?)(</script>)',re.S)
 DRAFT_PATTERN=re.compile(r'(<script id="historicaldrafts" type="application/json">)(.*?)(</script>)',re.S)
+LEGACY_DRAFT_PATTERN=re.compile(r'(<script id="legacydrafts" type="application/json">)(.*?)(</script>)',re.S)
 GRADE_PATTERN=re.compile(DRAFT_PATTERN.pattern.replace('historicaldrafts','historicaldraftgrades'),re.S)
 PLAYOFF_PATTERN=re.compile(r'(<script id="historicalplayoffs" type="application/json">)(.*?)(</script>)',re.S)
 
@@ -85,8 +87,10 @@ def sync(html,data):
     playoff=PLAYOFF_PATTERN.search(updated)
     if not playoff:raise ValueError('Missing historical playoff data block in HTML')
     brackets=json.loads(PLAYOFF_BRACKETS.read_text(encoding='utf8'))
-    if set(brackets['seasons'])!={str(s['year']) for s in source['seasons']}:
-        raise ValueError('Historical playoff seasons do not match approved scoring seasons')
+    if not set(brackets['seasons']).issubset({str(s['year']) for s in source['seasons']}):
+        raise ValueError('Approved playoff seasons have no matching scoring season')
+    if {s['year'] for s in source['seasons'] if s.get('league_id')==791996}!={2014,2015,2016,2017}:
+        raise ValueError('Legacy ESPN source coverage is incomplete')
     champions=json.loads(CHAMPIONS.read_text(encoding='utf8'))['champions']
     if {int(x['season']) for x in champions}!={int(y) for y in brackets['seasons']}:
         raise ValueError('Championship history coverage differs from verified playoff brackets')
@@ -99,6 +103,14 @@ def sync(html,data):
     if {str(s['year']):s['league_id'] for s in drafts['seasons']}!=identity_leagues():
         raise ValueError('Draft season ESPN league IDs do not match owner mapping')
     updated=updated[:draft.start(2)]+safe_json(drafts)+updated[draft.end(2):]
+    legacy_match=LEGACY_DRAFT_PATTERN.search(updated)
+    if not legacy_match:raise ValueError('Missing legacy draft snapshot')
+    legacy=json.loads(LEGACY_DRAFTS.read_text(encoding='utf8'))
+    if legacy.get('status')!='verified_raw_picks_player_enrichment_pending' or legacy.get('coverage',{}).get('pick_count')!=680:
+        raise ValueError('Legacy 2014-17 drafts are incomplete')
+    if [s['year'] for s in legacy['seasons']]!=[2014,2015,2016,2017] or any(s['league_id']!=791996 for s in legacy['seasons']):
+        raise ValueError('Legacy draft identity mismatch')
+    updated=updated[:legacy_match.start(2)]+safe_json(legacy)+updated[legacy_match.end(2):]
     grade_match=GRADE_PATTERN.search(updated)
     if not grade_match:raise ValueError('Missing historical draft grade block')
     grade_data=json.loads(HISTORICAL_DRAFT_GRADES.read_text(encoding='utf8'))

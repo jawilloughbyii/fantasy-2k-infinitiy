@@ -10,13 +10,14 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 SOURCE=json.loads((ROOT/'reference/historical_regular_season_scores.json').read_text(encoding='utf8'))
 IDENTITY=json.loads((ROOT/'reference/franchise_continuity.json').read_text(encoding='utf8'))
 METRICS=json.loads((ROOT/'reference/metric_definitions.json').read_text(encoding='utf8'))
-YEARS=(2021,2022,2023,2024,2025)
-TOTALS={2021:19773.13,2022:19061.08,2023:16553.42,2024:16744.84,2025:16694.92}
+YEARS=(2014,2015,2016,2017,2021,2022,2023,2024,2025)
+TOTALS={2014:17284.00,2015:17881.52,2016:17839.80,2017:17409.82,2021:19773.13,2022:19061.08,2023:16553.42,2024:16744.84,2025:16694.92}
 
 def records(franchise):
     output=[]
     for season in SOURCE['seasons']:
         year=season['year']
+        if str(year) not in IDENTITY['season_to_franchise']:continue  # Old-era owner continuity not yet mapped
         league_mean=statistics.mean(x for t in season['teams'] for x in t['scores'])
         for t in season['teams']:
             if IDENTITY['season_to_franchise'][str(year)][str(t['espn_team_id'])]!=franchise:
@@ -39,14 +40,16 @@ class TestHistoricalDna(unittest.TestCase):
         self.assertEqual(SOURCE['regular_season_weeks'],14)
         self.assertEqual([s['year'] for s in SOURCE['seasons']],list(YEARS))
         for s in SOURCE['seasons']:
-            self.assertEqual(s['league_id'],IDENTITY['league_ids_by_season'][str(s['year'])])
+            self.assertEqual(s['league_id'],791996 if s['year']<2021 else IDENTITY['league_ids_by_season'][str(s['year'])])
+            if s['year']<2021:
+                self.assertEqual(s['franchise_attribution'],'unmapped_not_assumed')
             self.assertEqual(len(s['teams']),10)
             self.assertEqual({t['espn_team_id'] for t in s['teams']},set(range(1,11)))
             for t in s['teams']:
                 self.assertEqual(len(t['scores']),14)
                 self.assertTrue(all(isinstance(x,(int,float)) and math.isfinite(x) and x>=0 for x in t['scores']))
             self.assertAlmostEqual(sum(sum(t['scores']) for t in s['teams']),TOTALS[s['year']],places=2)
-        self.assertEqual(sum(len(t['scores']) for s in SOURCE['seasons'] for t in s['teams']),700)
+        self.assertEqual(sum(len(t['scores']) for s in SOURCE['seasons'] for t in s['teams']),1260)
     def test_no_current_or_postseason_in_historical_source(self):
         self.assertTrue(all(s['year']<METRICS['season'] for s in SOURCE['seasons']))
         self.assertEqual(SOURCE['regular_season_weeks'],14)
@@ -75,7 +78,7 @@ class TestHistoricalDna(unittest.TestCase):
         for franchise in IDENTITY['season_to_franchise']['2026'].values():
             self.assertIn(len(records(franchise)),(3,4,5))
     def test_archived_punter_scoring_is_preserved_not_reinterpreted_as_roster_quality(self):
-        archive=SOURCE['seasons'][:2]
+        archive=[s for s in SOURCE['seasons'] if s['year'] in (2021,2022)]
         self.assertEqual([s['year'] for s in archive],[2021,2022])
         self.assertTrue(all(s['scoring_environment']['starting_punter'] for s in archive))
         self.assertEqual(METRICS['lineup']['weightedPossible'],8)

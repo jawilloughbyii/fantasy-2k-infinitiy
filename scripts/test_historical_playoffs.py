@@ -27,7 +27,8 @@ class VerifiedPlayoffs(unittest.TestCase):
     def test_seasons_and_publishing(self):
         self.assertEqual(sorted(map(int, B["seasons"])), [2021, 2022, 2023, 2024, 2025])
         self.assertEqual([x["season"] for x in C["champions"]], [2021, 2022, 2023, 2024, 2025])
-        self.assertEqual({s["year"] for s in H["seasons"]}, {int(s) for s in B["seasons"]})
+        self.assertTrue({int(s) for s in B["seasons"]}.issubset({s["year"] for s in H["seasons"]}))
+        self.assertEqual({s["year"] for s in H["seasons"] if s.get("postseason")}, {2014,2015,2016,2017})
         self.assertEqual(B["status"], "verified_brackets")
         self.assertEqual(len(set(x["franchise_id"] for x in C["champions"])), 4)
 
