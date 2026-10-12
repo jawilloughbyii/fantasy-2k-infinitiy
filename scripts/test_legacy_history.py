@@ -87,13 +87,21 @@ class HistoricalLegacyValidation(unittest.TestCase):
         for year in EXPECTED:
             a=archive(year)
             s=next(s for s in SCORES['seasons'] if s['year']==year)
-            self.assertEqual(s['postseason']['status'],a['postseason']['status'])
+            self.assertEqual(s['postseason']['status'],a['postseason']['status'] if year!=2015 else 'confirmed_recorded_final_semifinal_progression_discrepancy')
             self.assertEqual(s['postseason']['winner_espn_team_id'],
                              a['postseason']['winner_record']['espn_team_id'])
             self.assertEqual(len(s['postseason']['winners_bracket_games']),3)
             self.assertEqual(s['postseason']['bracket_validated'],year!=2015)
-        self.assertEqual(next(s for s in SCORES['seasons'] if s['year']==2015)['postseason']['status'],
-                         'source_final_record_only_advancement_unresolved')
+        p=next(s for s in SCORES['seasons'] if s['year']==2015)['postseason']
+        self.assertTrue(p['championship_confirmed'])
+        self.assertTrue(p['semifinal_progression_discrepancy'])
+        self.assertFalse(p['bracket_validated'])
+        self.assertEqual(p['championship_basis'],'ESPN_recorded_Week_16_final_authoritative_by_user_decision')
+        self.assertEqual(p['championship_record'],{
+            'matchup_id':75,'week':16,'winner_espn_team_id':2,'runner_up_espn_team_id':9,
+            'winner_points':173.62,'runner_up_points':88.2,'source_winner_side':'HOME'})
+        self.assertFalse(archive(2015)['postseason']['winner_record']['semifinal_advancement_matches_finalists'])
+        self.assertTrue(archive(2015)['postseason']['winner_record']['winner_field_matches_final_score'])
 
     def test_no_leaked_identity_or_live_data_mutation(self):
         assert DRAFTS['coverage']['team_seasons']==40

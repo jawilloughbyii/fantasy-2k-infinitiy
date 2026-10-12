@@ -72,21 +72,29 @@ class VerifiedPlayoffs(unittest.TestCase):
                     self.assertEqual(season["seed_exception_ids"], [])
 
     def test_legacy_season_trophies_do_not_infer_manager_identity(self):
-        expected={2014:8,2016:9,2017:3}
+        expected={2014:8,2015:2,2016:9,2017:3}
         records=C['legacy_champions']
         self.assertEqual({x['season']:x['espn_team_id'] for x in records},expected)
         for c in records:
             season=next(s for s in H['seasons'] if s['year']==c['season'])
             final=season['postseason']
             self.assertEqual((c['source_league_id'],season['league_id']),(791996,791996))
-            self.assertEqual((c['status'],c['bracket_status']),('confirmed_legacy_season','validated_bracket_path'))
+            self.assertEqual(c['status'],'confirmed_legacy_season')
             self.assertEqual(c['franchise_id'],F['season_to_franchise'][str(c['season'])][str(c['espn_team_id'])])
-            self.assertTrue(final['bracket_validated'])
             self.assertEqual((c['espn_team_id'],c['team_name_at_win']),
                              (final['winner_espn_team_id'],final['winner_team_name']))
             self.assertEqual(F['league_ids_by_season'][str(c['season'])],791996)
-        self.assertFalse(next(s for s in H['seasons'] if s['year']==2015)['postseason']['bracket_validated'])
-        self.assertNotIn(2015,expected)
+            if c['season']==2015:
+                self.assertEqual(c['bracket_status'],'confirmed_recorded_final_semifinal_discrepancy')
+                self.assertFalse(final['bracket_validated'])
+                self.assertTrue(final['semifinal_progression_discrepancy'])
+                self.assertTrue(final['championship_confirmed'])
+                self.assertEqual((final['winner_espn_team_id'],final['runner_up_espn_team_id'],final['final_points'],final['runner_up_points']),
+                                 (2,9,173.62,88.2))
+                self.assertEqual(c['franchise_id'],'franchise-01')
+            else:
+                self.assertEqual(c['bracket_status'],'validated_bracket_path')
+                self.assertTrue(final['bracket_validated'])
         self.assertEqual([x['season'] for x in C['champions']],[2021,2022,2023,2024,2025])
 
     def test_manager_gap_and_multiple_trophies(self):
