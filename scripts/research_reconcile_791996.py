@@ -124,6 +124,15 @@ def main():
               f"draft-member-bearing={dstatus.get('team_slots_with_draft_member',0)}")
     if not all(year in records for year in range(2014,2018)):
         raise SystemExit("SAFE ERROR: Missing one or more source-authentic 2014–2017 team snapshots")
+    # Only an identifier uniquely attributable to ONE slot in its source year
+    # is usable. ESPN sometimes supplies the same draft-member placeholder for
+    # every team, which otherwise creates spurious 10-to-10 internal matches.
+    frequency={}
+    for y,teams in records.items():
+        frequency[y]={ch:collections.Counter(value for v in teams.values() for value in v[ch])
+                      for ch in ("owner","draft")}
+    def unique(y,channel,value):
+        return frequency[y][channel][value]==1
     # Match same evidence channel only; never compare arbitrary owner and drafter identifiers.
     modern=collections.defaultdict(lambda:collections.defaultdict(set))
     for y in range(2021,2027):
@@ -135,13 +144,22 @@ def main():
             fid=refs[str(tid)]
             for channel in ("owner","draft"):
                 for value in v[channel]:
-                    modern[channel][value].add(fid)
+                    if unique(y,channel,value):
+                        modern[channel][value].add(fid)
     old=collections.defaultdict(lambda:collections.defaultdict(list))
     for y in range(2014,2018):
         for tid,v in records[y].items():
             for channel in ("owner","draft"):
                 for value in v[channel]:
-                    old[channel][value].append((y,tid))
+                    if unique(y,channel,value):
+                        old[channel][value].append((y,tid))
+    # Uniqueness counts reveal whether each evidence channel is discriminative,
+    # without saving its actual owner/drafter identifiers.
+    for row in diagnostics:
+        y=row["season"]
+        if y in frequency:
+            row["unique_source_owner_identifiers"]=sum(n==1 for n in frequency[y]["owner"].values())
+            row["unique_source_draft_identifiers"]=sum(n==1 for n in frequency[y]["draft"].values())
     seasons={}
     for y in range(2014,2018):
         names={t["espn_team_id"]:t["name"] for s in H["seasons"] if s["year"]==y for t in s["teams"]}
@@ -151,6 +169,7 @@ def main():
             same_era=collections.defaultdict(set)
             for channel in ("owner","draft"):
                 for value in r[channel]:
+                    if not unique(y,channel,value):continue
                     for other_year,other_slot in old[channel][value]:
                         if other_year!=y:same_era[other_year].add(other_slot)
             # Only unique cross-era references are shown as candidate identities.
@@ -158,6 +177,7 @@ def main():
             conflicting=[]
             for channel in ("owner","draft"):
                 for value in r[channel]:
+                    if not unique(y,channel,value):continue
                     fids=modern[channel].get(value,set())
                     if len(fids)==1:
                         hit[channel].update(fids)
