@@ -78,6 +78,32 @@ class AcquisitionDNACases(unittest.TestCase):
   self.assertEqual(y["mix"]["draft"],41.66)
   with self.assertRaisesRegex(ValueError,"Duplicate"):
    a.equal_weight_history([x,x])
+ def test_verified_vacant_slot_is_not_unknown_acquisition(self):
+  rows=self.rows()[:-1]
+  with self.assertRaisesRegex(ValueError,"Incomplete starter"):
+   self.summary(rows)
+  x=a.summarize("franchise-test",2026,[1,2],rows,["QB","RB","K"],
+                {"QB":1,"RB":1,"K":.5},vacant_slots_by_week={1:[],2:["K"]})
+  self.assertEqual(x["starter_week_count"],5)
+  self.assertEqual(x["verified_vacant_slots"],1)
+  self.assertEqual(sum(r["starter_weeks"] for r in x["mix"]),5)
+  with self.assertRaisesRegex(ValueError,"vacant"):
+   a.summarize("franchise-test",2026,[1,2],rows,["QB","RB","K"],
+               vacant_slots_by_week={1:[],2:["WR"]})
+ def test_no_keeper_source_or_transaction_is_accepted(self):
+  self.assertEqual(a.CATEGORIES,("draft","trade","waiver","free_agent","other","unknown"))
+  self.assertNotIn("keeper",json.loads((ROOT/"reference/metric_definitions.json").read_text())["acquisitionDna"]["sourceCategories"])
+  rows=self.rows();rows[0]["source"]="keeper"
+  with self.assertRaisesRegex(ValueError,"Invalid source"):
+   self.summary(rows)
+  with self.assertRaisesRegex(ValueError,"Unrecognized acquisition"):
+   a.last_verified_source(11,"F","2026-09-12T13:00:00-04:00",
+       [{"player_id":11,"franchise_id":"F","effective_at":"2026-09-01T10:00:00-04:00","action":"keeper"}],complete_chain=True)
+ def test_trade_out_and_release_end_an_ownership_spell(self):
+  for exit_action in ("drop","trade_out","release"):
+   events=[{"player_id":11,"franchise_id":"F","effective_at":"2026-08-01T10:00:00-04:00","action":"draft"},
+           {"player_id":11,"franchise_id":"F","effective_at":"2026-09-01T10:00:00-04:00","action":exit_action}]
+   self.assertEqual(a.last_verified_source(11,"F","2026-09-10T13:00:00-04:00",events,complete_chain=True),"unknown")
  def test_current_published_data_has_no_invented_provenance(self):
   r=json.loads((ROOT/"reference/acquisition_dna.json").read_text())
   self.assertEqual(r["status"],"awaiting_verified_starter_acquisition_provenance")

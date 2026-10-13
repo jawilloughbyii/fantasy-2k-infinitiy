@@ -29,6 +29,8 @@ assert.deepStrictEqual(embedded('fantasydata'),data,'External JSON and embedded 
 assert.deepStrictEqual(embedded('metricdefs'),definitions,'HTML definitions must come from one canonical file');
 assert.deepStrictEqual(embedded('acquisitiondna'),acquisitionDna,'Acquisition DNA must match approved canonical reference');
 assert.equal(acquisitionDna.source_readiness.audit_status,'sampled_endpoints_only_not_qualified_for_source_mix');
+assert.deepStrictEqual(definitions.acquisitionDna.sourceCategories,['draft','trade','waiver','free_agent','other','unknown']);
+assert.ok(!html.includes("keeper:'Keeper'"),'Unsupported keeper UI category must be removed');
 assert.equal(acquisitionDna.coverage.verified_source_starter_weeks,0,'Sampled source endpoints cannot be mistaken for verified acquisition events');
 const historyEmbedded={
  league_id:championshipHistory.league_id,
