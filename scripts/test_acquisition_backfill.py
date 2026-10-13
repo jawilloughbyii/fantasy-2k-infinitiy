@@ -13,6 +13,7 @@ class TestBackfill(unittest.TestCase):
   return {"starters":sorted(pairs),"all":sorted(pairs+[(999,20)])}
  def test_exact_year_specific_slots_and_invalid_duplicate(self):
   self.assertEqual(sum(expected_slots(2022).values()),10)
+  self.assertEqual(expected_slots(2022)[18],1)
   self.assertEqual(sum(expected_slots(2026).values()),9)
   for year in (2022,2026):
    found={tid:self.team(year) for tid in range(1,11)}
