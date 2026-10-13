@@ -93,7 +93,8 @@ function node(id){
  if(!elements.has(id))elements.set(id,{
   id,innerHTML:'',textContent:'',value:'',title:'',listeners:{},
   classList:{toggle(){}},
-  addEventListener(name,handler){this.listeners[name]=handler}
+  addEventListener(name,handler){this.listeners[name]=handler},
+  setAttribute(name,value){this[name]=String(value)}
  });
  return elements.get(id);
 }
@@ -145,7 +146,7 @@ async function main(){
  assert.ok(view.includes('power-desktop')&&view.includes('power-table')&&view.includes('power-mobile-item'));
  assert.equal((view.match(/<tr class="[^"]*" data-select="/g)||[]).length,10);
  assert.ok(view.includes('All-play')&&view.includes('Extra wins')&&view.includes('Form'));
- assert.ok(view.includes('What if opponents changed?')&&view.includes('Alternative completed schedules, not future forecasts.'),'What-if simulations and their retrospective caveat remain');
+ assert.ok(!view.includes('What if opponents changed?')&&!view.includes('Alternative completed schedules, not future forecasts.'),'PR #43 intentionally removes the Overview What-if disclosure');
  assert.ok(view.includes('How the numbers work'),'Definitions retained in disclosure');
  assert.ok(view.includes('Positive = favorable schedule · Negative = tougher draw'),'Short luck legend replaces repeated formula');
  assert.ok(!view.includes('PF ranks teams by points scored, not predicted strength.')&&!view.includes('All-play compares each score against all nine teams'),'Remove repeated standings methodology footer');
