@@ -60,7 +60,7 @@ def roster(raw):
             if type(pid)!=int or pid==0:invalid_id+=1;continue
             if type(slot)!=int:unknown_entry+=1;continue
             full.append((pid,slot))
-            if slot not in (20,21,23,24):starters.append((pid,slot))
+            if slot not in (20,21):starters.append((pid,slot))  # ESPN 23 is the valid FLEX starter slot
             for k in ("acquisitionType","acquisitionDate","playerPoolEntry"):source_fields[k]+=int(k in entry)
         found[tid]={"all":sorted(full),"starters":sorted(starters),"slot_counts":dict(sorted(collections.Counter(s for _,s in starters).items()))}
     if set(found)!=set(range(1,11)):return {"status":"missing_team_roster","team_count":len(found),"empty_team_rosters":empty},None
@@ -82,8 +82,29 @@ def transaction_summary(raw):
         for k in ("id","type","status","processDate","proposedDate","executionType","items","bidAmount","relatedTransactionId"):
             keys[k]+=int(k in t)
         items_count+=len(t.get("items") or []) if isinstance(t.get("items"),list) else 0
+    type_examples=collections.Counter()
+    status_examples=collections.Counter()
+    item_key_counts=collections.Counter()
+    item_action_counts=collections.Counter()
+    effective_dates=[]
+    for t in obj:
+        if not isinstance(t,dict):continue
+        if isinstance(t.get("status"),str):status_examples[t["status"]]+=1
+        if isinstance(t.get("type"),str):type_examples[t["type"]]+=1
+        for key in ("processDate","proposedDate"):
+            if type(t.get(key)) in (int,float) and t[key]>0:
+                effective_dates.append((key,datetime.datetime.fromtimestamp(t[key]/1000,datetime.timezone.utc).date().isoformat()))
+        for item in t.get("items") or []:
+            if not isinstance(item,dict):continue
+            for key in item:
+                if key in ("type","playerId","teamId","fromTeamId","toTeamId","status","rosterForCurrentScoringPeriod","rosterForFutureScoringPeriod","lineupSlotId"):
+                    item_key_counts[key]+=1
+            if isinstance(item.get("type"),str):item_action_counts[item["type"]]+=1
     return {"status":"returned","transaction_count":len(obj),"transaction_types":dict(counts),"selected_field_counts":dict(keys),"item_count":items_count,
-            "transaction_counter_present":"transactionCounter" in raw}
+            "transaction_counter_present":"transactionCounter" in raw,
+            "item_fields":dict(item_key_counts),"item_actions":dict(item_action_counts),
+            "status_counts":dict(status_examples),
+            "date_window":{"min":min((v for k,v in effective_dates),default=None),"max":max((v for k,v in effective_dates),default=None)}}
 def main():
     s2=os.getenv("ESPN_S2","").strip();swid=os.getenv("ESPN_SWID","").strip()
     if not s2 or not swid:raise SystemExit("SAFE ERROR: existing Actions ESPN secrets missing")
