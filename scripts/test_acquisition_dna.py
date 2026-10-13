@@ -83,6 +83,11 @@ class AcquisitionDNACases(unittest.TestCase):
   self.assertEqual(r["status"],"awaiting_verified_starter_acquisition_provenance")
   self.assertEqual(r["coverage"]["verified_source_starter_weeks"],0)
   self.assertFalse(r["season_summaries"])
+  audit=r["source_readiness"]
+  self.assertEqual(audit["audit_status"],"sampled_endpoints_only_not_qualified_for_source_mix")
+  self.assertIn("mRoster returns identical",audit["legacy_history_2014_2017"])
+  self.assertIn("full 14-week",audit["modern_history_2021_2025"].lower())
+  self.assertEqual(audit["excluded_years"],[2018,2019,2020])
   live=json.loads((ROOT/"data/league.json").read_text())
   self.assertNotIn("acquisitionDna",live)
   self.assertIn("rosterAnalysis",live)

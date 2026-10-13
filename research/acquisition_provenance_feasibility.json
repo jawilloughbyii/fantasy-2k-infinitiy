@@ -1,0 +1,98 @@
+{
+  "status": "SAMPLED_SOURCE_FEASIBILITY_VERIFIED_NO_SOURCE_ASSIGNMENTS_APPROVED",
+  "source": "Read-only authenticated ESPN API audit (GitHub Actions runs 38326151296 and 38326238238). Team roster and transaction coverage aggregates only; no owner/member/credentials or raw ESPN responses.",
+  "checked_at": "2026-10-12",
+  "rules": {
+    "one_occupied_final_starter": "one starter-week exposure; all starter slots including FLEX 23, K, DST and original P; bench 20 and IR 21 excluded",
+    "historical_aggregation": "calculate each season in its original slot rules; equal-weight only fully verified seasons for franchise legacy",
+    "source_attribution": "latest verified entry into same franchise, with all processed per-period transaction history, original draft and pre-game player lock validation; missing chain => unknown",
+    "yield": "separate source-conditional starter-worthy rate; exact original-year full player pool and eligibility required",
+    "execution": "independent final actual quality / best legal attainable starter ceiling; 2026 exists independently of source history"
+  },
+  "year_groups": [
+    {
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "season_league_id": 791996,
+      "regular_season_starters_per_team_week": 10,
+      "roster_sample_weeks": [
+        1,
+        2,
+        14
+      ],
+      "team_count_per_request": 10,
+      "weekly_roster_verification": "BLOCKED: all 10 team starter ID/slot sets identical between weeks 1,2,14, indicating historical leagueHistory mRoster does not honor requested week",
+      "transaction_verification": "BLOCKED: sampled mTransactions2 period 1,2,14 returns no transaction array",
+      "draft": "all 170 original picks each year verified; draft-only history cannot establish actual weekly source",
+      "next_source": "independent original-year archived matchup-scoped lineup or exports and complete acquisitions"
+    },
+    {
+      "years": [
+        2021,
+        2022
+      ],
+      "season_league_ids": [
+        1493036707
+      ],
+      "regular_season_starters_per_team_week": 10,
+      "roster_sample_weeks": [
+        1,
+        2,
+        14
+      ],
+      "team_count_per_request": 10,
+      "weekly_roster_verification": "week-specific starter ID/slot sets change across sample periods",
+      "transaction_verification": "mTransactions2 returns per-period records, including original draft transactions in week 1",
+      "remaining": "full 14-week roster and transaction scan, period and identity reconciliation, original punter-era quality eligibility"
+    },
+    {
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "season_league_ids": [
+        418244680
+      ],
+      "regular_season_starters_per_team_week": 9,
+      "roster_sample_weeks": [
+        1,
+        2,
+        14
+      ],
+      "team_count_per_request": 10,
+      "weekly_roster_verification": "week-specific starter ID/slot sets change across sample periods",
+      "transaction_verification": "mTransactions2 returns period-scoped records including original draft transactions in week 1",
+      "remaining": "all 14 regular weeks, exact acquisition chain/lock and year-specific player-quality validation"
+    },
+    {
+      "years": [
+        2026
+      ],
+      "season_league_ids": [
+        418244680
+      ],
+      "regular_season_starters_per_team_week": 9,
+      "roster_sample_weeks": [
+        1,
+        2,
+        4
+      ],
+      "team_count_per_request": 10,
+      "weekly_roster_verification": "week-specific starter ID/slot sets change across samples; FLEX slot 23 is included",
+      "transaction_verification": "per-period source returned 201 transactions in period 1 (160 draft records), 51 in period 2, and 76 in period 4; default unscoped call only returns most recent transactions and is insufficient",
+      "remaining": "retrieve missing period 3; reconcile executed/dropped/reacquired players and exact weekly lineup locks against verified Week 1-4 2026 rosters before publishing mix/yield",
+      "independent_execution": "2026 finalized roster-quality execution already available in dashboard"
+    }
+  ],
+  "excluded_missing_years": [
+    2018,
+    2019,
+    2020
+  ],
+  "publication": "Research readiness only. Never claim 2014-2017 starter source mix from frozen roster snapshots; never infer unknown acquisitions as draft picks."
+}

@@ -1,0 +1,56 @@
+name: Audit ESPN weekly starter and acquisition provenance
+
+on:
+  push:
+    branches: [research/acquisition-dna-provenance-audit]
+    paths:
+      - 'scripts/probe_acquisition_provenance.py'
+      - '.github/workflows/probe-acquisition-provenance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate source-audit syntax
+        run: python -m py_compile scripts/probe_acquisition_provenance.py
+      - name: Inspect selected weekly roster and transaction completeness privately
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/probe_acquisition_provenance.py
+      - name: Verify sanitized research output and production isolation
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('output/acquisition-provenance-audit/coverage.json')
+          d=json.loads(p.read_text())
+          assert d['status']=='RESEARCH_SOURCE_FEASIBILITY_ONLY_NO_PUBLISHED_MIX_OR_YIELD'
+          assert [v['year'] for v in d['years']]==[2014,2015,2016,2017,2021,2022,2023,2024,2025,2026]
+          bad={'owner','owners','member','members','cookie','espn_s2','espn_swid','email','username','swid','session'}
+          def scan(o):
+              if isinstance(o,dict):
+                  assert not set(map(str.lower,o)).intersection(bad)
+                  for v in o.values():scan(v)
+              elif isinstance(o,list):
+                  for v in o:scan(v)
+          scan(d)
+          print('PASS: original-source coverage only; no owner/member secrets.')
+          PY
+          git diff --exit-code -- data/league.json reference/acquisition_dna.json index.html
+      - name: Upload short-lived sanitized coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: acquisition-source-coverage
+          path: output/acquisition-provenance-audit/coverage.json
+          retention-days: 3
+          if-no-files-found: warn
