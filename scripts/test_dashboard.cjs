@@ -324,7 +324,7 @@ async function main(){
  events.change({target:{id:'draftTag',value:'STEAL'}});
  view=node('view').innerHTML;
  assert.equal((view.split('<tbody id="draftRows">')[1].split('</tbody>')[0].match(/<tr>/g)||[]).length,15,'2024 source-verified steals are filterable');
- view=sub('teams','dna');
+ view=sub('team','dna');
  assert.ok(view.includes('Acquisition DNA · 2026')&&view.includes('Awaiting provenance')&&view.includes('Lineup execution · ceiling captured'),'Current acquisition model is present and does not fabricate source attribution');
  assert.ok(view.includes('attainable weighted quality points')&&!view.includes('NaN%'),'Current execution comes from independently validated roster ceiling, not source attribution');
  view=sub('history','legacy');
