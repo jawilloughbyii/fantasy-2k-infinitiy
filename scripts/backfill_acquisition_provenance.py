@@ -157,6 +157,7 @@ def main():
     args.output.write_text(json.dumps(report,indent=2)+"\n")
     print(json.dumps({"year":args.year,"periods":len(report["periods"]),
         "valid_weekly_rosters":sum(p["roster_ok"] for p in report["periods"]),
+        "invalid_week_slot_patterns":[{"week":p["week"],"patterns":p["observed_starter_slot_patterns"]} for p in report["periods"] if not p["roster_ok"]],
         "agreeing_matchup_rosters":sum(p["matchup_roster_agreement"] for p in report["periods"]),
         "period_transaction_lists":sum(p["transaction_structure"]["status"]=="observed_not_chain_verified" for p in report["periods"]),
         "ready_for_attribution":False},sort_keys=True))
