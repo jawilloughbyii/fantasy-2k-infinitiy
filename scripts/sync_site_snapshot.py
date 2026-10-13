@@ -131,6 +131,9 @@ def sync(html,data):
     acquisition=json.loads(ACQUISITION_DNA.read_text(encoding='utf8'))
     if acquisition.get('version')!=1 or acquisition.get('current_year')!=2026:
         raise ValueError('Wrong Acquisition DNA schema/season')
+    audit=acquisition.get('source_readiness',{})
+    if audit.get('audit_status')!='sampled_endpoints_only_not_qualified_for_source_mix' or audit.get('excluded_years')!=[2018,2019,2020]:
+        raise ValueError('Acquisition DNA source-readiness evidence missing or unverified')
     permitted={'draft','trade','waiver','free_agent','keeper','other','unknown'}
     if acquisition.get('status')=='awaiting_verified_starter_acquisition_provenance':
         if acquisition.get('season_summaries') or acquisition.get('coverage',{}).get('verified_source_starter_weeks')!=0:
