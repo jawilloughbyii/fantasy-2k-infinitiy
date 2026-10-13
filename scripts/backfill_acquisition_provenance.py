@@ -24,11 +24,13 @@ def expected_slots(year):
     return slots
 
 
-def roster_check(found, year):
+def roster_check(found, year, allow_vacant=False):
     expected = expected_slots(year)
     if not isinstance(found, dict) or set(found) != set(range(1,11)):
         return False
-    return all(dict(collections.Counter(slot for _, slot in team["starters"])) == expected
+    return all((all(n <= expected.get(slot,0) for slot,n in collections.Counter(slot for _, slot in team["starters"]).items())
+                if allow_vacant else dict(collections.Counter(slot for _, slot in team["starters"])) == expected)
+               and len(team["starters"]) >= sum(expected.values())-1
                and len(team["starters"]) == len(set(pid for pid, _ in team["starters"]))
                and len(team["all"]) == len(set(pid for pid, _ in team["all"]))
                and all(slot in (*expected, *BENCH_IR) for _,slot in team["all"])
@@ -64,7 +66,7 @@ def boxscore_starters(raw, week, year):
                     return None
                 pairs.append((pid,slot))
             teams[team_id]={"starters":sorted(pairs),"all":sorted(pairs)}
-    return teams if roster_check(teams,year) else None
+    return teams if roster_check(teams,year,allow_vacant=True) else None
 
 
 def transaction_check(raw):
@@ -98,23 +100,26 @@ def audit(year, request=fetch):
     for week in range(1,completed+1):
         roster_raw,rstat=request(year,"mRoster",week=week,cookie=None)
         rsum,found=roster(roster_raw) if roster_raw is not None else ({"status":"unavailable"},None)
-        valid=rstat.get("status")=="ok" and roster_check(found,year)
-        changed=None if last is None or not valid else sum(
-            found[tid]["starters"]!=last[tid]["starters"] for tid in range(1,11))
-        if valid:last=found
-        else:last=None
+        shape_ok=rstat.get("status")=="ok" and roster_check(found,year,allow_vacant=True)
         filt={"schedule":{"filterMatchupPeriodIds":{"value":[week]}}}
         box,bstat=request(year,"mBoxscore",week=week,cookie=None,filter_=filt)
         prior=boxscore_starters(box,week,year) if bstat.get("status")=="ok" else None
-        agreement=bool(valid and prior and all(
+        agreement=bool(shape_ok and prior and all(
             prior[tid]["starters"]==found[tid]["starters"] for tid in range(1,11)))
+        full=shape_ok and roster_check(found,year)
+        # Vacancies are not acquisitions; require independent week-specific agreement.
+        valid=bool(full or (shape_ok and agreement))
+        changed=None if last is None or not valid else sum(
+            found[tid]["starters"]!=last[tid]["starters"] for tid in range(1,11))
+        last=found if valid else None
+        occupied=sum(len(team["starters"]) for team in found.values()) if valid else None
         tx,tstat=request(year,"mTransactions2",week=week,cookie=None)
         tresult,ids=transaction_check(tx if tstat.get("status")=="ok" else None)
         if ids is not None:
             for key,value in ids.items():
                 if key in all_tx and all_tx[key]!=value:conflicts+=1
                 all_tx[key]=value
-        rows.append({"week":week,"roster_ok":valid,"occupied_starters":10*sum(expected_slots(year).values()) if valid else None,
+        rows.append({"week":week,"roster_ok":valid,"occupied_starters":occupied,"verified_vacant_legal_slots":10*sum(expected_slots(year).values())-occupied if valid else None,
             "changed_team_lineups_from_previous_week":changed,"matchup_scoped_lineup_available":prior is not None,
             "matchup_roster_agreement":agreement,"observed_starter_slot_patterns":rsum.get("starter_slot_patterns") if not valid else None,"transaction_api":tstat.get("status"),
             "transaction_structure":tresult})
@@ -126,6 +131,8 @@ def audit(year, request=fetch):
         "status":"RESEARCH_ONLY_NO_ACQUISITION_ASSIGNMENTS",
         "year":year,"original_league_id":Y[year],"regular_season_periods_checked":list(range(1,completed+1)),
         "expected_starter_slots":sum(expected_slots(year).values()),
+        "occupied_starter_appearances":sum(p["occupied_starters"] for p in rows if p["roster_ok"]),
+        "verified_vacant_legal_slots":sum(p["verified_vacant_legal_slots"] for p in rows if p["roster_ok"]),
         "full_period_roster_structure":complete_roster,
         "full_period_transaction_structure":complete_transaction_structure,
         "matchup_comparisons_agree":all(r["matchup_roster_agreement"] for r in rows),
@@ -157,6 +164,7 @@ def main():
     args.output.write_text(json.dumps(report,indent=2)+"\n")
     print(json.dumps({"year":args.year,"periods":len(report["periods"]),
         "valid_weekly_rosters":sum(p["roster_ok"] for p in report["periods"]),
+        "verified_vacant_legal_slots":report["verified_vacant_legal_slots"],
         "invalid_week_slot_patterns":[{"week":p["week"],"patterns":p["observed_starter_slot_patterns"]} for p in report["periods"] if not p["roster_ok"]],
         "agreeing_matchup_rosters":sum(p["matchup_roster_agreement"] for p in report["periods"]),
         "period_transaction_lists":sum(p["transaction_structure"]["status"]=="observed_not_chain_verified" for p in report["periods"]),

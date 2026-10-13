@@ -12,7 +12,7 @@ CATEGORIES=("draft","trade","waiver","free_agent","other","unknown")
 def _number(x):
     return type(x) in (int,float) and math.isfinite(x)
 
-def summarize(franchise_id, year, weeks, starters, expected_slots, weight_by_slot=None, ceiling_by_week=None):
+def summarize(franchise_id, year, weeks, starters, expected_slots, weight_by_slot=None, ceiling_by_week=None, vacant_slots_by_week=None):
     """Summarize ALL finalized starters in EVERY requested completed week.
 
     Starter record: week, player_id (negative D/ST valid), slot, source (latest
@@ -28,7 +28,20 @@ def summarize(franchise_id, year, weeks, starters, expected_slots, weight_by_slo
     if not isinstance(expected_slots,list) or not expected_slots or any(not isinstance(x,str) or not x for x in expected_slots):
         raise ValueError("Expected season-specific legal starting slots required")
     expected=Counter(expected_slots)
-    if not isinstance(starters,list) or len(starters)!=len(weeks)*len(expected_slots):
+    if vacant_slots_by_week is None:
+        vacant_slots_by_week={w:[] for w in weeks}
+    if not isinstance(vacant_slots_by_week,dict) or set(vacant_slots_by_week)!=set(weeks):
+        raise ValueError("Each completed week's verified vacant starter slots must be explicit")
+    expected_by_week={}
+    for week in weeks:
+        vacant=vacant_slots_by_week[week]
+        if not isinstance(vacant,list) or any(slot not in expected for slot in vacant):
+            raise ValueError("Unverified vacant legal starter slot")
+        missing=Counter(vacant)
+        if any(n>expected[slot] for slot,n in missing.items()):
+            raise ValueError("Impossible vacant starting slot count")
+        expected_by_week[week]=expected-missing
+    if not isinstance(starters,list) or len(starters)!=sum(sum(c.values()) for c in expected_by_week.values()):
         raise ValueError("Incomplete starter-week coverage; never treat missing as unknown source")
     seen=defaultdict(set); slots=defaultdict(Counter); by_source=defaultdict(list)
     for row in starters:
@@ -41,7 +54,7 @@ def summarize(franchise_id, year, weeks, starters, expected_slots, weight_by_slo
         if "worthy" in row and type(row["worthy"]) is not bool:
             raise ValueError("Starter-worthy value must be verified boolean")
         by_source[src].append(row)
-    if any(slots[w]!=expected for w in weeks):
+    if any(slots[w]!=expected_by_week[w] for w in weeks):
         raise ValueError("Incomplete or invalid original-season slot configuration")
     total=len(starters)
     source_rows=[]; weights=weight_by_slot if isinstance(weight_by_slot,dict) else None
@@ -80,6 +93,7 @@ def summarize(franchise_id, year, weeks, starters, expected_slots, weight_by_slo
                    "capture_pct":round(100*actual/ceiling,2) if ceiling>0 else None}
     return {"year":year,"franchise_id":franchise_id,"status":"verified_complete_starter_weeks",
             "weeks":weeks,"starter_slots_per_week":len(expected_slots),"starter_week_count":total,
+            "verified_vacant_slots":sum(len(v) for v in vacant_slots_by_week.values()),
             "source_coverage":coverage_status,"known_source_starter_weeks":total-unknown,
             "known_source_pct":round(100*(total-unknown)/total,2),
             "mix":source_rows,"execution":execution,

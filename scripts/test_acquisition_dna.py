@@ -78,6 +78,18 @@ class AcquisitionDNACases(unittest.TestCase):
   self.assertEqual(y["mix"]["draft"],41.66)
   with self.assertRaisesRegex(ValueError,"Duplicate"):
    a.equal_weight_history([x,x])
+ def test_verified_vacant_slot_is_not_unknown_acquisition(self):
+  rows=self.rows()[:-1]
+  with self.assertRaisesRegex(ValueError,"Incomplete starter"):
+   self.summary(rows)
+  x=a.summarize("franchise-test",2026,[1,2],rows,["QB","RB","K"],
+                {"QB":1,"RB":1,"K":.5},vacant_slots_by_week={1:[],2:["K"]})
+  self.assertEqual(x["starter_week_count"],5)
+  self.assertEqual(x["verified_vacant_slots"],1)
+  self.assertEqual(sum(r["starter_weeks"] for r in x["mix"]),5)
+  with self.assertRaisesRegex(ValueError,"vacant"):
+   a.summarize("franchise-test",2026,[1,2],rows,["QB","RB","K"],
+               vacant_slots_by_week={1:[],2:["WR"]})
  def test_no_keeper_source_or_transaction_is_accepted(self):
   self.assertEqual(a.CATEGORIES,("draft","trade","waiver","free_agent","other","unknown"))
   self.assertNotIn("keeper",json.loads((ROOT/"reference/metric_definitions.json").read_text())["acquisitionDna"]["sourceCategories"])

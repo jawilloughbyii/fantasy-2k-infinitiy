@@ -20,6 +20,18 @@ class TestBackfill(unittest.TestCase):
    self.assertTrue(roster_check(found,year))
    found[1]["starters"].append(found[1]["starters"][0])
    self.assertFalse(roster_check(found,year))
+ def test_matchup_agreement_can_verify_an_occupied_slot_vacancy(self):
+  year=2022;found={tid:self.team(year) for tid in range(1,11)}
+  found[10]["starters"]=[x for x in found[10]["starters"] if x[1]!=16]
+  self.assertFalse(roster_check(found,year))
+  self.assertTrue(roster_check(found,year,allow_vacant=True))
+  games=[]
+  for i in range(1,11,2):
+   def side(tid):
+    return {"teamId":tid,"rosterForCurrentScoringPeriod":{"entries":[{"playerId":pid,"lineupSlotId":slot} for pid,slot in found[tid]["starters"]]}}
+   games.append({"matchupPeriodId":1,"home":side(i),"away":side(i+1)})
+  box=boxscore_starters({"schedule":games},1,year)
+  self.assertEqual(box[10]["starters"],found[10]["starters"])
  def test_matchup_scoped_lineup_requires_all_teams(self):
   year=2026;games=[]
   for i in range(1,11,2):

@@ -104,7 +104,7 @@
       "unknown": "Acquisition chain is missing, contradictory, post-lock or unverified; always included in mix denominator"
     },
     "mix": {
-      "denominator": "One finalized starter appearance = one starter-week, regardless of points or slot. All regular-season starters including K, D/ST and historical P are included; unknown is not discarded.",
+      "denominator": "One occupied finalized player-starting-slot appearance = one starter-week, regardless of points or slot; independently corroborated vacant legal starting slots are not player appearances. All regular-season starters including K, D/ST and historical P are included; unknown is not discarded.",
       "numerator": "Starter-weeks whose player's most recent verified entry into that franchise had the indicated source",
       "crossSeason": "Calculate each season separately. Display lifetime context as equal-weight means of complete verified seasons, never pool 9-slot and punter-era denominators."
     },
@@ -125,7 +125,8 @@
       "Enforce verified season-specific starting slot counts and completed week coverage before publication",
       "Never backfill unknown starter sources by assumption, owner ID, team name or current roster state",
       "Historical starter-worthy yield unavailable until original-year full player pool and lineup rules are reconciled; punter-era SWR must not reuse 2026 denominator",
-      "Mix and yield use regular-season finalized snapshots only, not pre-lock substitutions or unverified estimates"
+      "Mix and yield use regular-season finalized snapshots only, not pre-lock substitutions or unverified estimates",
+      "Preserve corroborated vacant legal starter slots separately from missing lineup data and Unknown acquired players; never inflate the starter denominator with vacancies."
     ]
   }
 }
