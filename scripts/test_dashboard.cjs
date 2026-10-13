@@ -28,6 +28,8 @@ function embedded(id){
 assert.deepStrictEqual(embedded('fantasydata'),data,'External JSON and embedded fallback must match');
 assert.deepStrictEqual(embedded('metricdefs'),definitions,'HTML definitions must come from one canonical file');
 assert.deepStrictEqual(embedded('acquisitiondna'),acquisitionDna,'Acquisition DNA must match approved canonical reference');
+assert.equal(acquisitionDna.source_readiness.audit_status,'sampled_endpoints_only_not_qualified_for_source_mix');
+assert.equal(acquisitionDna.coverage.verified_source_starter_weeks,0,'Sampled source endpoints cannot be mistaken for verified acquisition events');
 const historyEmbedded={
  league_id:championshipHistory.league_id,
  season_to_franchise:continuity.season_to_franchise,
@@ -326,10 +328,12 @@ async function main(){
  assert.equal((view.split('<tbody id="draftRows">')[1].split('</tbody>')[0].match(/<tr>/g)||[]).length,15,'2024 source-verified steals are filterable');
  view=sub('team','dna');
  assert.ok(view.includes('Acquisition DNA · 2026')&&view.includes('Awaiting provenance')&&view.includes('Lineup execution · ceiling captured'),'Current acquisition model is present and does not fabricate source attribution');
+ assert.ok(view.includes('Full W1–W4 executed acquisition chain'),'Live sourcing status explains incomplete chronological verification');
  assert.ok(view.includes('attainable weighted quality points')&&!view.includes('NaN%'),'Current execution comes from independently validated roster ceiling, not source attribution');
  view=sub('history','legacy');
  assert.ok(view.includes('Franchise Legacy'));
  assert.ok(view.includes('Historical Acquisition DNA')&&view.includes('No verified historical starter-source seasons yet'),'Historical section honestly awaits original-era transactions and roster provenance');
+ assert.ok(view.includes('mRoster returns identical')&&view.includes('Full 14-week source'),'Era-specific historical provenance blockage and next step appear');
  assert.ok(view.includes('Got Rice?')&&view.includes('2025')&&view.includes('2024')&&view.includes('2022')&&view.includes('2021'),'Returning franchise recovers old-league years');
  assert.ok(view.includes('Fully Staffed Young Hoes')&&view.includes('Let&#39;s Go Brandin'),'Historic aliases belong to current team owner');
  assert.ok(!view.includes('2023</td><td class="tiny">'),'Absent owner must have a gap in 2023');
