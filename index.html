@@ -593,7 +593,7 @@ Object.entries(HISTORY.season_to_franchise||{}).sort(([a],[b])=>Number(a)-Number
  registerName(score?.name,fid);registerName(score?.season_team_name,fid);registerName(draft?.season_team_name,fid);
 }));
 teams.forEach(t=>registerName(t.name,HISTORY.season_to_franchise[String(METRICS.season)]?.[String(HISTORY.dashboard_to_espn[String(t.id)])]??'current-'+t.id));
-const namePattern=new RegExp('(^|[^\\p{L}\\p{N}])('+[...namesToMask.keys()].sort((a,b)=>b.length-a.length).map(n=>n.replace(/[.*+?^${}()|[\\]\\]/g,'\\const navTabs=[['overview','Overview'],['teams','Teams'],['history','History']];')).join('|')+')(?=$|[^\\p{L}\\p{N}])','gu');
+const namePattern=new RegExp('(^|[^\\p{L}\\p{N}])('+[...namesToMask.keys()].sort((a,b)=>b.length-a.length).map(n=>[...n].map(c=>'.*+?^${}()|[]\\'.includes(c)?'\\'+c:c).join('')).join('|')+')(?=$|[^\\p{L}\\p{N}])','gu');
 function maskLabel(label){return String(label).replace(namePattern,(match,prefix,name)=>prefix+namesToMask.get(name));}
 function applyNameMode(){
  const root=document.querySelector('.main');
