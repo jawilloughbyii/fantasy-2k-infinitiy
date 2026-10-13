@@ -20,7 +20,7 @@ BENCH_IR = (20, 21)
 def expected_slots(year):
     slots = dict(SLOTS)
     if year <= 2022:
-        slots[7] = 1  # ESPN's original-year punter slot
+        slots[18] = 1  # ESPN lineup P slot (defaultPositionId 7 is not lineupSlotId 7)
     return slots
 
 
@@ -116,7 +116,7 @@ def audit(year, request=fetch):
                 all_tx[key]=value
         rows.append({"week":week,"roster_ok":valid,"occupied_starters":10*sum(expected_slots(year).values()) if valid else None,
             "changed_team_lineups_from_previous_week":changed,"matchup_scoped_lineup_available":prior is not None,
-            "matchup_roster_agreement":agreement,"transaction_api":tstat.get("status"),
+            "matchup_roster_agreement":agreement,"observed_starter_slot_patterns":rsum.get("starter_slot_patterns") if not valid else None,"transaction_api":tstat.get("status"),
             "transaction_structure":tresult})
     complete_roster=all(r["roster_ok"] for r in rows)
     complete_transaction_structure=all(r["transaction_api"]=="ok" and
