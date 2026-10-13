@@ -127,17 +127,20 @@ def main():
                 compares.append({"weeks":[a,b],"identical_starter_team_slots":same,"changed_starter_player_slot_entries":diff,
                                  "possible_ignored_week_filter":same==10})
         trans=[]
-        for view,f in [("mTransactions2",None),("mTransactions2",{"transactions":{"limit":1000}}),("mTransactions",None),("mDraftDetail",None)]:
-            raw,stat=fetch(year,view,cookie,filter_=f)
+        endpoints=[("mTransactions2",None,None)]
+        endpoints += [("mTransactions2",None,w) for w in PERIODS[year]]
+        endpoints += [("mTransactions",None,PERIODS[year][0]),("mDraftDetail",None,None)]
+        for view,f,transaction_week in endpoints:
+            raw,stat=fetch(year,view,cookie,week=transaction_week,filter_=f)
             if view=="mDraftDetail":
                 details=(raw or {}).get("draftDetail") or {}
                 extra={"status":"retrieved" if raw else "unavailable","pick_count":len(details.get("picks") or []) if isinstance(details.get("picks"),list) else None}
             else:extra=transaction_summary(raw)
-            trans.append({"view":view,"filter_provided":f is not None,**stat,"result":extra})
+            trans.append({"view":view,"scoring_period_requested":transaction_week,"filter_provided":f is not None,**stat,"result":extra})
         all_report.append({"year":year,"league_id":Y[year],"rosters":times,"cross_week_checks":compares,"endpoint_probes":trans})
         print(f"{year}: rosters="+json.dumps([{"week":x["week"],"result":x["roster"]["status"],"starters":x["roster"].get("starters_per_team",[])} for x in times],separators=(",",":")))
         print(f"{year}: changed-week-checks="+json.dumps(compares,separators=(",",":")))
-        print(f"{year}: transactions="+json.dumps([{"view":x["view"],"filtered":x["filter_provided"],"api":x["status"],"detail":x["result"]["status"],"n":x["result"].get("transaction_count"),"pick_count":x["result"].get("pick_count")} for x in trans],separators=(",",":")))
+        print(f"{year}: transactions="+json.dumps([{"view":x["view"],"scoring_period":x["scoring_period_requested"],"filtered":x["filter_provided"],"api":x["status"],"detail":x["result"]["status"],"n":x["result"].get("transaction_count"),"pick_count":x["result"].get("pick_count")} for x in trans],separators=(",",":")))
     report={"status":"RESEARCH_SOURCE_FEASIBILITY_ONLY_NO_PUBLISHED_MIX_OR_YIELD",
         "generated_utc":datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "years":all_report,
