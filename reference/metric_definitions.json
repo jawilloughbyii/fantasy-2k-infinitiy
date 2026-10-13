@@ -86,13 +86,12 @@
   },
   "acquisitionDna": {
     "version": 1,
-    "scope": "Finalized regular-season starter appearances; source is the most recent verified acquisition INTO the same franchise before that player's fantasy-game lineup lock.",
+    "scope": "Finalized regular-season starter appearances; source is the most recent verified acquisition INTO the same franchise before that player's fantasy-game lineup lock. This league has no keepers; keeper attribution is unsupported.",
     "sourceCategories": [
       "draft",
       "trade",
       "waiver",
       "free_agent",
-      "keeper",
       "other",
       "unknown"
     ],
@@ -101,7 +100,6 @@
       "trade": "Most recent entry into this franchise was an executed trade",
       "waiver": "Most recent entry was a processed waiver claim",
       "free_agent": "Most recent entry was an unrestricted free-agent add",
-      "keeper": "Player entered the current season through an ESPN-verified keeper allocation; do not infer",
       "other": "Verified commissioner/manual acquisition not otherwise classified",
       "unknown": "Acquisition chain is missing, contradictory, post-lock or unverified; always included in mix denominator"
     },

@@ -7,7 +7,7 @@ Incomplete coverage must not be published as a verified season.
 from collections import Counter, defaultdict
 import math
 
-CATEGORIES=("draft","trade","waiver","free_agent","keeper","other","unknown")
+CATEGORIES=("draft","trade","waiver","free_agent","other","unknown")
 
 def _number(x):
     return type(x) in (int,float) and math.isfinite(x)
@@ -106,7 +106,7 @@ def last_verified_source(player_id, franchise_id, locked_at, events, complete_ch
 
     Events are sanitized source-verified rows with player_id, franchise_id,
     effective_at (offset-aware ISO string) and action:
-    draft/trade/waiver/free_agent/keeper/other/drop.
+    draft/trade/waiver/free_agent/other/drop/trade_out/release.
     Every departure ends the previous source spell. Any unverified or partial
     transaction feed returns unknown instead of attributing a draft pick.
     """
@@ -124,10 +124,10 @@ def last_verified_source(player_id, franchise_id, locked_at, events, complete_ch
         at=datetime.fromisoformat(event["effective_at"])
         if at.tzinfo is None:raise ValueError("Transaction has no timezone")
         if at<=cutoff:
-            if event.get("action") not in (*CATEGORIES[:-1],"drop"):
+            if event.get("action") not in (*CATEGORIES[:-1],"drop","trade_out","release"):
                 raise ValueError("Unrecognized acquisition action; do not guess")
             eligible.append((at,event["action"]))
     if not eligible:return "unknown"
     eligible.sort()
     latest=eligible[-1][1]
-    return "unknown" if latest=="drop" else latest
+    return "unknown" if latest in ("drop","trade_out","release") else latest

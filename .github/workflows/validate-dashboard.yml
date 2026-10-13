@@ -23,6 +23,8 @@ on:
       - 'scripts/test_dashboard.cjs'
       - 'scripts/acquisition_dna.py'
       - 'scripts/test_acquisition_dna.py'
+      - 'scripts/test_acquisition_backfill.py'
+      - 'scripts/backfill_acquisition_provenance.py'
       - 'scripts/test_historical_dna.py'
       - 'scripts/test_legacy_history.py'
       - 'scripts/test_legacy_enriched.py'
@@ -76,6 +78,8 @@ jobs:
         run: python scripts/test_legacy_enriched.py
       - name: Validate starter-week acquisition mix, yield and independent execution
         run: python scripts/test_acquisition_dna.py
+      - name: Verify read-only full-period acquisition evidence contract
+        run: python scripts/test_acquisition_backfill.py
       - name: Verify historical postseason brackets, final scores and franchise titles
         run: python scripts/test_historical_playoffs.py
       - name: Verify six-season historical drafts and owner identities

@@ -1,0 +1,59 @@
+name: Backfill acquisition provenance evidence (read-only)
+
+on:
+  push:
+    branches: [research/action6-no-keepers-full-period]
+    paths:
+      - 'scripts/backfill_acquisition_provenance.py'
+      - 'scripts/probe_acquisition_provenance.py'
+      - '.github/workflows/backfill-acquisition-provenance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-period-preview:
+    strategy:
+      fail-fast: false
+      matrix:
+        year: [2021, 2022, 2023, 2024, 2025, 2026]
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate synthetic source shape and no-keeper model
+        run: |
+          python scripts/test_acquisition_dna.py
+          python scripts/test_acquisition_backfill.py
+      - name: Retrieve full-period original-year evidence privately
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/backfill_acquisition_provenance.py --year ${{ matrix.year }} --output output/acquisition-full-period/coverage.json
+      - name: Ensure read-only sanitized findings and fail-closed publication
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          report=json.loads(pathlib.Path("output/acquisition-full-period/coverage.json").read_text())
+          assert report["status"]=="RESEARCH_ONLY_NO_ACQUISITION_ASSIGNMENTS"
+          assert report["ready_for_attribution"] is False
+          assert report["no_public_snapshot_changes"] is True
+          assert report["original_league_id"] in (1493036707,418244680)
+          assert report["expected_starter_slots"] in (9,10)
+          assert report["regular_season_periods_checked"]==list(range(1,len(report["periods"])+1))
+          blob=json.dumps(report).lower()
+          assert not any(x in blob for x in ('"owner"','"member"','"cookie"','"espn_s2"','"espn_swid"','"player_id"'))
+          PY
+          git diff --exit-code -- index.html data/league.json reference/acquisition_dna.json
+      - name: Upload short-lived non-identifying coverage summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: acquisition-full-period-${{ matrix.year }}
+          path: output/acquisition-full-period/coverage.json
+          retention-days: 3
+          if-no-files-found: warn

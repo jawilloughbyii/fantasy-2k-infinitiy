@@ -134,7 +134,7 @@ def sync(html,data):
     audit=acquisition.get('source_readiness',{})
     if audit.get('audit_status')!='sampled_endpoints_only_not_qualified_for_source_mix' or audit.get('excluded_years')!=[2018,2019,2020]:
         raise ValueError('Acquisition DNA source-readiness evidence missing or unverified')
-    permitted={'draft','trade','waiver','free_agent','keeper','other','unknown'}
+    permitted={'draft','trade','waiver','free_agent','other','unknown'}
     if acquisition.get('status')=='awaiting_verified_starter_acquisition_provenance':
         if acquisition.get('season_summaries') or acquisition.get('coverage',{}).get('verified_source_starter_weeks')!=0:
             raise ValueError('Pending provenance must never contain manufactured source metrics')
@@ -149,7 +149,7 @@ def sync(html,data):
             if season.get('status')!='verified_complete_starter_weeks' or season.get('source_coverage') not in ('verified','partial','unavailable'):
                 raise ValueError('Incomplete Acquisition DNA source coverage')
             mix=season.get('mix')
-            if not isinstance(mix,list) or {r['source'] for r in mix}!=permitted or len(mix)!=7 or any(r['starter_weeks']<0 for r in mix):
+            if not isinstance(mix,list) or {r['source'] for r in mix}!=permitted or len(mix)!=6 or any(r['starter_weeks']<0 for r in mix):
                 raise ValueError('Acquisition DNA source mix invalid')
             if sum(r['starter_weeks'] for r in mix)!=season.get('starter_week_count'):
                 raise ValueError('Starter-week denominator does not reconcile')
