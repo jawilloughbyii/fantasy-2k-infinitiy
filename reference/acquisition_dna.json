@@ -12,5 +12,18 @@
     "historical_provenance": "pending"
   },
   "privacy": "Only player/slot fantasy metadata and anonymous franchise IDs may be published; never ESPN owners/members/cookies.",
-  "activation_rule": "Only complete original-year ESPN starter weeks with exact season-specific roster counts, verified acquisition chains, and original-year quality where yield is offered. Do not infer source from draft-only lists or current rosters."
+  "activation_rule": "Only complete original-year ESPN starter weeks with exact season-specific roster counts, verified acquisition chains, and original-year quality where yield is offered. Do not infer source from draft-only lists or current rosters.",
+  "source_readiness": {
+    "audit_status": "sampled_endpoints_only_not_qualified_for_source_mix",
+    "audit_file": "research/acquisition_provenance_feasibility.json",
+    "current_2026": "Week-specific nine-starter rosters and period-scoped draft/transaction records were retrieved for selected W1/W2/W4. Full W1–W4 executed acquisition chain, NFL lock timing and source-to-starter identity reconciliation are pending.",
+    "modern_history_2021_2025": "Sampled original week-specific rosters and period-scoped transactions are retrievable. Full 14-week source and final-lineup reconciliation remains pending; 2021–2022 include original punter slot.",
+    "legacy_history_2014_2017": "Historical mRoster returns identical starter ID/slot sets for requested W1/W2/W14 and mTransactions2 returns no transaction lists; this endpoint cannot support original weekly source attribution. Alternate verified records are needed.",
+    "excluded_years": [
+      2018,
+      2019,
+      2020
+    ],
+    "classification_rule": "A draft pick alone does not prove continuous ownership or a subsequent start; leave unverified source unknown. Never apply a default/latest transaction response to previous weeks."
+  }
 }
