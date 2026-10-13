@@ -13,6 +13,7 @@ IDENTITIES=ROOT/'reference'/'franchise_continuity.json'
 TEAM_IDS=ROOT/'reference'/'team_id_map.json'
 CHAMPIONS=ROOT/'reference'/'championship_history.json'
 HISTORICAL_SCORES=ROOT/'reference'/'historical_regular_season_scores.json'
+ACQUISITION_DNA=ROOT/'reference'/'acquisition_dna.json'
 HISTORICAL_DRAFTS=ROOT/'reference'/'historical_draft_picks.json'
 LEGACY_DRAFTS=ROOT/'reference'/'historical_legacy_draft_picks_2014_2017.json'
 HISTORICAL_DRAFT_GRADES=ROOT/'reference'/'historical_draft_grades.json'
@@ -20,6 +21,7 @@ PLAYOFF_BRACKETS=ROOT/'reference'/'historical_playoff_brackets.json'
 METRIC_PATTERN=re.compile(r'(<script id="metricdefs" type="application/json">)(.*?)(</script>)',re.S)
 CHAMP_PATTERN=re.compile(r'(<script id="championships" type="application/json">)(.*?)(</script>)',re.S)
 HIST_PATTERN=re.compile(r'(<script id="historicalscores" type="application/json">)(.*?)(</script>)',re.S)
+ACQUISITION_PATTERN=re.compile(r'(<script id="acquisitiondna" type="application/json">)(.*?)(</script>)',re.S)
 DRAFT_PATTERN=re.compile(r'(<script id="historicaldrafts" type="application/json">)(.*?)(</script>)',re.S)
 LEGACY_DRAFT_PATTERN=re.compile(r'(<script id="legacydrafts" type="application/json">)(.*?)(</script>)',re.S)
 GRADE_PATTERN=re.compile(DRAFT_PATTERN.pattern.replace('historicaldrafts','historicaldraftgrades'),re.S)
@@ -124,6 +126,36 @@ def sync(html,data):
     champ=CHAMP_PATTERN.search(updated)
     if not champ:raise ValueError('Missing championship metadata block in HTML')
     updated=updated[:champ.start(2)]+safe_json(championship_metadata())+updated[champ.end(2):]
+    acquisition_match=ACQUISITION_PATTERN.search(updated)
+    if not acquisition_match:raise ValueError('Missing acquisition DNA snapshot')
+    acquisition=json.loads(ACQUISITION_DNA.read_text(encoding='utf8'))
+    if acquisition.get('version')!=1 or acquisition.get('current_year')!=2026:
+        raise ValueError('Wrong Acquisition DNA schema/season')
+    permitted={'draft','trade','waiver','free_agent','keeper','other','unknown'}
+    if acquisition.get('status')=='awaiting_verified_starter_acquisition_provenance':
+        if acquisition.get('season_summaries') or acquisition.get('coverage',{}).get('verified_source_starter_weeks')!=0:
+            raise ValueError('Pending provenance must never contain manufactured source metrics')
+    elif acquisition.get('status')=='verified_acquisition_starter_weeks':
+        seasons=acquisition.get('season_summaries',[])
+        if not seasons:raise ValueError('Verified status lacks season summaries')
+        identity=json.loads(IDENTITIES.read_text(encoding='utf8'))
+        for season in seasons:
+            year,franchise=season.get('year'),season.get('franchise_id')
+            if str(year) not in identity['season_to_franchise'] or franchise not in identity['season_to_franchise'][str(year)].values():
+                raise ValueError('Unapproved Acquisition DNA franchise/season mapping')
+            if season.get('status')!='verified_complete_starter_weeks' or season.get('source_coverage') not in ('verified','partial','unavailable'):
+                raise ValueError('Incomplete Acquisition DNA source coverage')
+            mix=season.get('mix')
+            if not isinstance(mix,list) or {r['source'] for r in mix}!=permitted or len(mix)!=7 or any(r['starter_weeks']<0 for r in mix):
+                raise ValueError('Acquisition DNA source mix invalid')
+            if sum(r['starter_weeks'] for r in mix)!=season.get('starter_week_count'):
+                raise ValueError('Starter-week denominator does not reconcile')
+            if abs(sum(r['mix_pct'] for r in mix)-100)>.08:
+                raise ValueError('Starter-week mix is not fully normalized')
+            if year==2026 and (season.get('weeks')!=list(range(1,data['completedThrough']+1)) or season.get('starter_slots_per_week')!=9):
+                raise ValueError('Current-season acquisition weeks/slots do not match approved data')
+    else:raise ValueError('Unsupported acquisition coverage status')
+    updated=updated[:acquisition_match.start(2)]+safe_json(acquisition)+updated[acquisition_match.end(2):]
     historical=HIST_PATTERN.search(updated)
     if not historical:raise ValueError('Missing historical scoring data block in HTML')
     source=json.loads(HISTORICAL_SCORES.read_text(encoding='utf8'))
