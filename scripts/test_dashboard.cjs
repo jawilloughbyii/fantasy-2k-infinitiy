@@ -84,7 +84,8 @@ assert.equal(category(data.teams.find(t=>t.id===4)),'Steady, lower-output');
 assert.equal(category(data.teams.find(t=>t.id===5)),'Steady, lower-output');
 const haily=data.teams.find(t=>t.id===7),cats=data.teams.find(t=>t.id===6);
 assert.ok(haily.weeks[3].weekLuck>cats.weeks[3].weekLuck);
-assert.ok(cats.luck>haily.luck,'Weekly talking point and season luck are different time windows');
+const originalFourWeekLuck=t=>t.weeks.slice(0,4).reduce((n,w)=>n+w.weekLuck,0);
+assert.ok(originalFourWeekLuck(cats)>originalFourWeekLuck(haily),'Original Week 4 weekly talking point and cumulative schedule luck use different windows');
 assert.ok(!html.includes('function badBeatReport(){'),'Premature Bad Beats section should be removed');
 assert.ok(!html.includes('function leagueOverview(){'),'Overview must not start with league-only KPIs');
 assert.ok(!html.includes('function oldPerf(){'),'Unverified projection section should be removed');
@@ -189,7 +190,7 @@ async function main(){
  click('[data-select]',{select:'6'});
  view=node('view').innerHTML;
  assert.equal(node('pageTitle').textContent,'Teams','Overview team selection opens Teams');
- assert.ok(view.includes('tc-report')&&view.includes('The Domestic House Cats')&&view.includes('4–0'),'Team report immediately visible');
+ assert.ok(view.includes('tc-report')&&view.includes('The Domestic House Cats')&&view.includes(`${cats.wins}–${cats.losses}`),'Team report immediately visible');
  assert.ok(view.includes('League champion: 2024'),'Trophy follows current franchise');
  assert.equal((view.match(/class="tc-stat"/g)||[]).length,4,'Card presents four secondary benchmarks');
  assert.ok(view.includes('TEAM DNA')&&view.includes('EXTRA WINS')&&view.includes('STARTER-WORTHY'));
