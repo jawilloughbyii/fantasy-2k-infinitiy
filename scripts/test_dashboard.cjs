@@ -56,8 +56,10 @@ assert.deepStrictEqual(championshipHistory.champions.map(x=>[x.season,x.espn_tea
  [2021,3,'franchise-07'],[2022,5,'franchise-03'],[2023,7,'franchise-07'],[2024,10,'franchise-10'],[2025,1,'franchise-01']
 ]);
 assert.equal(data.teams.length,10);
-assert.equal(data.completedThrough,4);
-assert.equal(data.rosterAnalysis.weeks.length,4);
+assert.ok(Number.isInteger(data.completedThrough) && data.completedThrough>=4,'At least four approved, completed weeks');
+assert.equal(data.rosterAnalysis.throughWeek,data.completedThrough,'Lineup coverage must match approved scoring coverage');
+assert.equal(data.rosterAnalysis.weeks.length,data.completedThrough,'Every completed week requires finalized lineup coverage');
+assert.deepStrictEqual(data.rosterAnalysis.weeks.map(w=>w.week),Array.from({length:data.completedThrough},(_,i)=>i+1));
 const possible=definitions.lineup.weightedPossible;
 for(const w of data.rosterAnalysis.weeks){
  assert.equal(w.teams.length,10,'10 finalized rosters per week');
@@ -82,7 +84,8 @@ assert.equal(category(data.teams.find(t=>t.id===4)),'Steady, lower-output');
 assert.equal(category(data.teams.find(t=>t.id===5)),'Steady, lower-output');
 const haily=data.teams.find(t=>t.id===7),cats=data.teams.find(t=>t.id===6);
 assert.ok(haily.weeks[3].weekLuck>cats.weeks[3].weekLuck);
-assert.ok(cats.luck>haily.luck,'Weekly talking point and season luck are different time windows');
+const originalFourWeekLuck=t=>t.weeks.slice(0,4).reduce((n,w)=>n+w.weekLuck,0);
+assert.ok(originalFourWeekLuck(cats)>originalFourWeekLuck(haily),'Original Week 4 weekly talking point and cumulative schedule luck use different windows');
 assert.ok(!html.includes('function badBeatReport(){'),'Premature Bad Beats section should be removed');
 assert.ok(!html.includes('function leagueOverview(){'),'Overview must not start with league-only KPIs');
 assert.ok(!html.includes('function oldPerf(){'),'Unverified projection section should be removed');
@@ -140,7 +143,7 @@ async function main(){
  assert.deepStrictEqual((html.match(/class="navbtn[^"]*" data-tab="[^"]+"/g)||[]).map(x=>x.match(/data-tab="([^"]+)"/)[1]),['overview','teams','history']);
  assert.equal((node('mobileNav').innerHTML.match(/<option value=/g)||[]).length,3,'Mobile navigation also has three destinations');
  assert.ok(html.includes('id="weekStatus"')&&!html.includes('id="sourceStatus"')&&!html.includes('id="sideStatus"')&&!html.includes('id="footerStatus"'),'Only one persistent data-status indicator remains');
- assert.equal(node('weekStatus').textContent,'2026 · Finalized through Week 4','Data-status indicator is based on approved completed weeks');
+ assert.equal(node('weekStatus').textContent,`2026 · Finalized through Week ${data.completedThrough}`,'Data-status indicator is based on approved completed weeks');
  assert.ok(view.includes('League standings & scoring rank')&&view.includes('Schedule luck · extra wins'),'Overview presents standings and schedule luck');
  assert.ok(view.includes('League avg PF')&&view.includes('League form'),'League strength and trend context retained');
  assert.ok(view.includes('power-desktop')&&view.includes('power-table')&&view.includes('power-mobile-item'));
@@ -187,7 +190,7 @@ async function main(){
  click('[data-select]',{select:'6'});
  view=node('view').innerHTML;
  assert.equal(node('pageTitle').textContent,'Teams','Overview team selection opens Teams');
- assert.ok(view.includes('tc-report')&&view.includes('The Domestic House Cats')&&view.includes('4–0'),'Team report immediately visible');
+ assert.ok(view.includes('tc-report')&&view.includes('The Domestic House Cats')&&view.includes(`${cats.wins}–${cats.losses}`),'Team report immediately visible');
  assert.ok(view.includes('League champion: 2024'),'Trophy follows current franchise');
  assert.equal((view.match(/class="tc-stat"/g)||[]).length,4,'Card presents four secondary benchmarks');
  assert.ok(view.includes('TEAM DNA')&&view.includes('EXTRA WINS')&&view.includes('STARTER-WORTHY'));
@@ -200,7 +203,8 @@ async function main(){
  view=node('view').innerHTML;
  assert.ok(view.includes('Israeli Nutonyaboob'));
  click('[data-card-step]',{cardStep:'1'});
- assert.ok(node('view').innerHTML.includes('Quattro Padres'),'Report-card stepping remains functional');
+ const pfOrder=[...data.teams].sort((a,b)=>b.pf-a.pf||b.wins-a.wins),previousRank=pfOrder.findIndex(t=>t.id===3);
+assert.ok(previousRank>=0 && pfOrder[previousRank+1] && node('teamSelect').value===String(pfOrder[previousRank+1].id),'Report-card stepping follows current points-scored order');
  node('teamSelect').listeners.change({target:{value:'3'}});
  view=sub('team','dna');
  assert.ok(view.includes('The Scoring Personality Map'),'Keep Scoring Personality Map after concise summary');
@@ -210,10 +214,17 @@ async function main(){
  const collapsed=identity.split('<details class="deep-dive identity-details">')[0];
  assert.equal((collapsed.match(/class="identity-era"/g)||[]).length,2,'Exactly two compact identity columns');
  assert.ok(collapsed.includes('CURRENTLY · 2026')&&collapsed.includes('HISTORICALLY · 2023, 2024, 2025'),'Current versus history is immediately visible');
- assert.ok(collapsed.includes('Volatile underdogs')&&collapsed.includes('Steady, lower-output'),'Initial franchise has distinct current versus historical classifications');
- assert.ok(collapsed.includes('PF/wk')&&collapsed.includes('23.7% CV'),'Concise current scoring details are visible');
- assert.ok(collapsed.includes('Differs from its recency-weighted franchise tendency.'),'Comparison is readable without expanding');
- assert.ok(collapsed.includes('Heating up · +50.7 PF/wk'),'Preserve momentum as a compact badge');
+ const selectedScores=data.teams.find(t=>t.id===3).weeks.map(w=>w.pf),selectedMean=mean(selectedScores);
+ const selectedCv=100*Math.sqrt(mean(selectedScores.map(x=>(x-selectedMean)**2)))/selectedMean;
+ const selectedCategory=category(data.teams.find(t=>t.id===3)),historicalCategory='Steady, lower-output';
+ assert.ok(collapsed.includes(selectedCategory)&&collapsed.includes(historicalCategory),'Current scoring identity must use all approved weeks alongside verified historical identity');
+ assert.ok(collapsed.includes('PF/wk')&&collapsed.includes(selectedCv.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1})+'% CV'),'Concise current scoring details track all approved scores');
+ assert.ok(collapsed.includes(selectedCategory===historicalCategory?'Matches its recency-weighted franchise tendency.':'Differs from its recency-weighted franchise tendency.'),'Comparison must follow actual current classification');
+ const span=selectedScores.length>=definitions.momentum.fullWindowMinimumWeeks?definitions.momentum.window:definitions.momentum.earlyWindow;
+ const swing=mean(selectedScores.slice(-span))-mean(selectedScores.slice(-2*span,-span));
+ const swingPct=100*swing/Math.max(1,selectedMean);
+ const form=swingPct>=definitions.momentum.heatingPct?'Heating up':swingPct<=definitions.momentum.coolingPct?'Cooling off':'Mostly flat';
+ assert.ok(collapsed.includes(form+' · '+(swing>0?'+':'')+swing.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1})+' PF/wk'),'Momentum badge must use current approved scores');
  assert.ok(!collapsed.includes('Typical scoring strength')&&!collapsed.includes('Historical consistency'),'Advanced metrics are not in initial visible summary');
  assert.ok(identity.includes('<details class="deep-dive identity-details"><summary>Historical metrics & season-by-season details</summary>'),'One collapsed advanced details section');
  assert.ok(!identity.includes('<details class="deep-dive identity-details" open'),'Historical details start collapsed');
@@ -238,7 +249,7 @@ async function main(){
  view=sub('team','lineup');
  assert.ok(view.includes('lineup-quality')&&view.includes('Roster ceiling')&&view.includes('Weekly lineup quality'),'Deep lineup analysis kept');
  assert.ok(view.includes('Bench upgrades:')&&view.includes('Weekly opponent scores'),'Original lineup/box-score evidence stays available');
- assert.ok(view.includes('Finalized hindsight, not pregame predictions.')&&view.includes('Week 4 cutoff:'),'Retain crucial hindsight caveat and actual final-week cutoff');
+ assert.ok(view.includes('Finalized hindsight, not pregame predictions.')&&view.includes(`Week ${data.completedThrough} cutoff:`),'Retain crucial hindsight caveat and actual final-week cutoff');
  view=tab('history');
  assert.ok(view.includes('2025 Yearbook')&&view.includes('Regular-season scoring order'),'Yearbook built from actual completed scoring');
  assert.ok(!view.includes('This yearbook uses finalized regular-season scoring data.'),'Do not repeat yearbook methodology');

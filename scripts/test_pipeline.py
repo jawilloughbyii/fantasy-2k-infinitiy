@@ -25,7 +25,7 @@ class TestPipeline(unittest.TestCase):
         self.assertEqual(len(d['dnaHistory']),4)
         self.assertTrue(all(t['projWeeks']==4 for t in d['teams']))
         self.assertAlmostEqual(d['leagueAveragePf'],120.92,places=1)
-        self.assertEqual(d['simulationRuns'],100000)
+        self.assertEqual(d['simulationRuns'],self.base['simulationRuns'])  # Preserve the approved fallback's simulation baseline
     def test_shared_quadrants_match_generated_history(self):
         d=site.build(self.report(self.fixture),self.base)
         expected=site.METRICS['scoring']['quadrants']

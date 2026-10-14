@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Offline tests; synthetic identities only, no ESPN authentication."""
-import pathlib,sys,unittest
+import json,pathlib,sys,unittest
 sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
 from backfill_acquisition_provenance import expected_slots,roster_check,boxscore_starters,transaction_check,audit
 
@@ -58,7 +58,7 @@ class TestBackfill(unittest.TestCase):
   with self.assertRaises(ValueError):
    audit(2014,request)
   x=audit(2026,request)
-  self.assertEqual(len(x["periods"]),4)
+  self.assertEqual(len(x["periods"]),json.loads((pathlib.Path(__file__).resolve().parents[1]/"data"/"league.json").read_text())["completedThrough"])
   self.assertFalse(x["ready_for_attribution"])
   self.assertFalse(x["matchup_comparisons_agree"])
 
