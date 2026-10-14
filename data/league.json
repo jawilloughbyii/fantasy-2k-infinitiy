@@ -1,7 +1,7 @@
 {
   "title": "Fantasy 2K Infinity",
-  "completedThrough": 4,
-  "simulationRuns": 100000,
+  "completedThrough": 5,
+  "simulationRuns": 20000,
   "teams": [
     {
       "id": 1,
@@ -51,41 +51,54 @@
           "opp": 2,
           "proj": 117.66,
           "win": 1,
-          "xw": 1,
-          "weekLuck": 0,
+          "xw": 1.0,
+          "weekLuck": 0.0,
           "delta": 51.22,
           "rank": 1
+        },
+        {
+          "week": 5,
+          "pf": 85.94,
+          "pa": 148.16,
+          "opp": 3,
+          "proj": null,
+          "win": 0,
+          "xw": 0.0,
+          "weekLuck": 0.0,
+          "delta": null,
+          "rank": 10
         }
       ],
       "wins": 3,
-      "losses": 1,
+      "losses": 2,
       "divrank": 1,
-      "pf": 510.74,
-      "pa": 489.8,
+      "pf": 596.68,
+      "pa": 637.96,
       "proj": 491.09,
-      "pd": 20.94,
+      "pd": -41.28,
       "projdelta": 19.65,
       "projPct": 4.001,
       "xw": 2.44444444,
       "luck": 0.55555556,
       "winsAllPlay": 21.99999996,
-      "simWinMean": 2.441,
-      "simRankMean": 1.554,
+      "simWinMean": 2.44,
+      "simRankMean": 2.26,
       "winDist": [
-        0,
-        9.623,
-        44.108,
-        38.788,
-        7.481
+        0.0,
+        9.815,
+        43.9,
+        38.795,
+        7.49,
+        0.0
       ],
       "rankDist": [
-        63.022,
-        24.365,
-        7.619,
-        4.164,
-        0.83
+        28.925,
+        32.29,
+        25.125,
+        11.175,
+        2.485
       ],
-      "simTop2Pct": 87.4,
+      "simTop2Pct": 61.2,
       "projWeeks": 4
     },
     {
@@ -112,8 +125,8 @@
           "opp": 10,
           "proj": 130.9,
           "win": 1,
-          "xw": 1,
-          "weekLuck": 0,
+          "xw": 1.0,
+          "weekLuck": 0.0,
           "delta": 29.76,
           "rank": 1
         },
@@ -124,8 +137,8 @@
           "opp": 4,
           "proj": 137.69,
           "win": 1,
-          "xw": 1,
-          "weekLuck": 0,
+          "xw": 1.0,
+          "weekLuck": 0.0,
           "delta": 22.79,
           "rank": 1
         },
@@ -140,37 +153,50 @@
           "weekLuck": -0.11111111,
           "delta": -51.47,
           "rank": 9
+        },
+        {
+          "week": 5,
+          "pf": 189.4,
+          "pa": 106.84,
+          "opp": 8,
+          "proj": null,
+          "win": 1,
+          "xw": 1.0,
+          "weekLuck": 0.0,
+          "delta": null,
+          "rank": 1
         }
       ],
-      "wins": 2,
+      "wins": 3,
       "losses": 2,
-      "divrank": 2,
-      "pf": 533.28,
-      "pa": 530.54,
+      "divrank": 1,
+      "pf": 722.68,
+      "pa": 637.38,
       "proj": 536.41,
-      "pd": 2.74,
+      "pd": 85.3,
       "projdelta": -3.13,
       "projPct": -0.584,
-      "xw": 2.44444444,
+      "xw": 3.44444444,
       "luck": -0.44444444,
-      "winsAllPlay": 21.99999996,
-      "simWinMean": 2.445,
-      "simRankMean": 1.453,
+      "winsAllPlay": 30.99999996,
+      "simWinMean": 3.445,
+      "simRankMean": 1.124,
       "winDist": [
-        0,
-        0,
-        59.156,
-        37.183,
-        3.661
+        0.0,
+        0.0,
+        0.0,
+        59.37,
+        36.78,
+        3.85
       ],
       "rankDist": [
-        60.805,
-        33.317,
-        5.7,
-        0.178,
-        0
+        87.955,
+        11.695,
+        0.35,
+        0.0,
+        0.0
       ],
-      "simTop2Pct": 94.1,
+      "simTop2Pct": 99.7,
       "projWeeks": 4
     },
     {
@@ -197,8 +223,8 @@
           "opp": 7,
           "proj": 119.54,
           "win": 0,
-          "xw": 0,
-          "weekLuck": 0,
+          "xw": 0.0,
+          "weekLuck": 0.0,
           "delta": -41.32,
           "rank": 10
         },
@@ -225,37 +251,50 @@
           "weekLuck": 0.44444444,
           "delta": 10.85,
           "rank": 5
+        },
+        {
+          "week": 5,
+          "pf": 148.16,
+          "pa": 85.94,
+          "opp": 1,
+          "proj": null,
+          "win": 1,
+          "xw": 0.77777778,
+          "weekLuck": 0.22222222,
+          "delta": null,
+          "rank": 3
         }
       ],
-      "wins": 2,
+      "wins": 3,
       "losses": 2,
-      "divrank": 2,
-      "pf": 431.54,
-      "pa": 482.58,
+      "divrank": 1,
+      "pf": 579.7,
+      "pa": 568.52,
       "proj": 480.37,
-      "pd": -51.04,
+      "pd": 11.18,
       "projdelta": -48.83,
       "projPct": -10.165,
-      "xw": 1.44444445,
-      "luck": 0.55555555,
-      "winsAllPlay": 13.000000049999999,
-      "simWinMean": 1.443,
-      "simRankMean": 2.956,
+      "xw": 2.22222223,
+      "luck": 0.77777777,
+      "winsAllPlay": 20.00000007,
+      "simWinMean": 2.215,
+      "simRankMean": 2.554,
       "winDist": [
-        8.756,
-        42.912,
-        43.608,
-        4.724,
-        0
+        2.18,
+        16.47,
+        42.91,
+        34.535,
+        3.905,
+        0.0
       ],
       "rankDist": [
-        16.324,
-        23.539,
-        21.948,
-        24.574,
-        13.615
+        22.655,
+        29.09,
+        25.48,
+        15.765,
+        7.01
       ],
-      "simTop2Pct": 39.9,
+      "simTop2Pct": 51.7,
       "projWeeks": 4
     },
     {
@@ -270,8 +309,8 @@
           "opp": 9,
           "proj": 116.4,
           "win": 0,
-          "xw": 0,
-          "weekLuck": 0,
+          "xw": 0.0,
+          "weekLuck": 0.0,
           "delta": -30.34,
           "rank": 10
         },
@@ -310,37 +349,50 @@
           "weekLuck": -0.33333333,
           "delta": -24.2,
           "rank": 7
+        },
+        {
+          "week": 5,
+          "pf": 130.54,
+          "pa": 103.84,
+          "opp": 7,
+          "proj": null,
+          "win": 1,
+          "xw": 0.44444444,
+          "weekLuck": 0.55555556,
+          "delta": null,
+          "rank": 6
         }
       ],
-      "wins": 1,
+      "wins": 2,
       "losses": 3,
       "divrank": 4,
-      "pf": 428.72,
-      "pa": 524.4,
+      "pf": 559.26,
+      "pa": 628.24,
       "proj": 483.36,
-      "pd": -95.68,
+      "pd": -68.98,
       "projdelta": -54.64,
       "projPct": -11.304,
-      "xw": 1.44444444,
-      "luck": -0.44444444,
-      "winsAllPlay": 12.99999996,
-      "simWinMean": 1.45,
-      "simRankMean": 2.957,
+      "xw": 1.88888888,
+      "luck": 0.11111112,
+      "winsAllPlay": 16.99999992,
+      "simWinMean": 1.9,
+      "simRankMean": 3.005,
       "winDist": [
-        12.22,
-        40.781,
-        36.808,
-        10.191,
-        0
+        6.455,
+        28.47,
+        38.39,
+        21.995,
+        4.69,
+        0.0
       ],
       "rankDist": [
-        19.744,
-        21.156,
-        18.878,
-        24.064,
-        16.158
+        16.31,
+        21.245,
+        23.475,
+        23.605,
+        15.365
       ],
-      "simTop2Pct": 40.9,
+      "simTop2Pct": 37.6,
       "projWeeks": 4
     },
     {
@@ -395,37 +447,50 @@
           "weekLuck": -0.44444444,
           "delta": -18.74,
           "rank": 6
+        },
+        {
+          "week": 5,
+          "pf": 103.3,
+          "pa": 155.64,
+          "opp": 9,
+          "proj": null,
+          "win": 0,
+          "xw": 0.11111111,
+          "weekLuck": -0.11111111,
+          "delta": null,
+          "rank": 9
         }
       ],
       "wins": 0,
-      "losses": 4,
+      "losses": 5,
       "divrank": 5,
-      "pf": 428.86,
-      "pa": 547.28,
+      "pf": 532.16,
+      "pa": 702.92,
       "proj": 496.73,
-      "pd": -118.42,
+      "pd": -170.76,
       "projdelta": -67.87,
       "projPct": -13.663,
-      "xw": 1.22222222,
-      "luck": -1.22222222,
-      "winsAllPlay": 10.99999998,
-      "simWinMean": 1.224,
-      "simRankMean": 3.314,
+      "xw": 1.33333333,
+      "luck": -1.33333333,
+      "winsAllPlay": 11.99999997,
+      "simWinMean": 1.328,
+      "simRankMean": 3.787,
       "winDist": [
-        19.485,
-        44.746,
-        29.94,
-        5.514,
-        0.315
+        17.705,
+        41.625,
+        31.675,
+        8.16,
+        0.805,
+        0.03
       ],
       "rankDist": [
-        14.385,
-        16.639,
-        16.947,
-        27.293,
-        24.736
+        5.495,
+        11.49,
+        18.87,
+        27.07,
+        37.075
       ],
-      "simTop2Pct": 31,
+      "simTop2Pct": 17.0,
       "projWeeks": 4
     },
     {
@@ -480,37 +545,50 @@
           "weekLuck": 0.22222222,
           "delta": 27.84,
           "rank": 3
+        },
+        {
+          "week": 5,
+          "pf": 133.4,
+          "pa": 142.4,
+          "opp": 10,
+          "proj": null,
+          "win": 0,
+          "xw": 0.55555556,
+          "weekLuck": -0.55555556,
+          "delta": null,
+          "rank": 5
         }
       ],
       "wins": 4,
-      "losses": 0,
+      "losses": 1,
       "divrank": 1,
-      "pf": 540.06,
-      "pa": 421.5,
+      "pf": 673.46,
+      "pa": 563.9,
       "proj": 498.32,
-      "pd": 118.56,
+      "pd": 109.56,
       "projdelta": 41.74,
       "projPct": 8.376,
-      "xw": 2.66666667,
-      "luck": 1.33333333,
-      "winsAllPlay": 24.00000003,
-      "simWinMean": 2.672,
-      "simRankMean": 1.826,
+      "xw": 3.22222223,
+      "luck": 0.77777777,
+      "winsAllPlay": 29.00000007,
+      "simWinMean": 3.222,
+      "simRankMean": 1.944,
       "winDist": [
-        0.597,
-        8.16,
-        31.931,
-        42.099,
-        17.213
+        0.295,
+        4.065,
+        18.805,
+        36.39,
+        30.825,
+        9.62
       ],
       "rankDist": [
-        52.014,
-        25.008,
-        14.108,
-        6.077,
-        2.793
+        45.74,
+        28.535,
+        15.005,
+        7.05,
+        3.67
       ],
-      "simTop2Pct": 77,
+      "simTop2Pct": 74.3,
       "projWeeks": 4
     },
     {
@@ -549,9 +627,9 @@
           "opp": 6,
           "proj": 118.34,
           "win": 0,
-          "xw": 0,
-          "weekLuck": 0,
-          "delta": -34,
+          "xw": 0.0,
+          "weekLuck": 0.0,
+          "delta": -34.0,
           "rank": 10
         },
         {
@@ -565,37 +643,50 @@
           "weekLuck": 0.77777778,
           "delta": -16.91,
           "rank": 8
+        },
+        {
+          "week": 5,
+          "pf": 103.84,
+          "pa": 130.54,
+          "opp": 4,
+          "proj": null,
+          "win": 0,
+          "xw": 0.22222222,
+          "weekLuck": -0.22222222,
+          "delta": null,
+          "rank": 8
         }
       ],
       "wins": 3,
-      "losses": 1,
+      "losses": 2,
       "divrank": 2,
-      "pf": 470,
-      "pa": 407.32,
+      "pf": 573.84,
+      "pa": 537.86,
       "proj": 477.56,
-      "pd": 62.68,
+      "pd": 35.98,
       "projdelta": -7.56,
       "projPct": -1.583,
-      "xw": 1.77777778,
-      "luck": 1.22222222,
-      "winsAllPlay": 16.00000002,
-      "simWinMean": 1.776,
-      "simRankMean": 3.02,
+      "xw": 2.0,
+      "luck": 1.0,
+      "winsAllPlay": 18.0,
+      "simWinMean": 2.001,
+      "simRankMean": 3.446,
       "winDist": [
-        2.849,
-        29.683,
-        54.472,
-        12.996,
-        0
+        2.3,
+        23.435,
+        48.85,
+        22.705,
+        2.71,
+        0.0
       ],
       "rankDist": [
-        11.219,
-        23.18,
-        29.346,
-        24.848,
-        11.407
+        7.02,
+        15.8,
+        25.27,
+        29.41,
+        22.5
       ],
-      "simTop2Pct": 34.4,
+      "simTop2Pct": 22.8,
       "projWeeks": 4
     },
     {
@@ -610,8 +701,8 @@
           "opp": 1,
           "proj": 120.03,
           "win": 1,
-          "xw": 1,
-          "weekLuck": 0,
+          "xw": 1.0,
+          "weekLuck": 0.0,
           "delta": 64.47,
           "rank": 1
         },
@@ -650,37 +741,50 @@
           "weekLuck": 0.11111111,
           "delta": 32.08,
           "rank": 2
+        },
+        {
+          "week": 5,
+          "pf": 106.84,
+          "pa": 189.4,
+          "opp": 2,
+          "proj": null,
+          "win": 0,
+          "xw": 0.33333333,
+          "weekLuck": -0.33333333,
+          "delta": null,
+          "rank": 7
         }
       ],
       "wins": 2,
-      "losses": 2,
-      "divrank": 3,
-      "pf": 557.72,
-      "pa": 441.44,
+      "losses": 3,
+      "divrank": 4,
+      "pf": 664.56,
+      "pa": 630.84,
       "proj": 504.31,
-      "pd": 116.28,
+      "pd": 33.72,
       "projdelta": 53.41,
       "projPct": 10.591,
-      "xw": 2.55555555,
-      "luck": -0.55555555,
-      "winsAllPlay": 22.99999995,
-      "simWinMean": 2.553,
-      "simRankMean": 1.934,
+      "xw": 2.88888888,
+      "luck": -0.88888888,
+      "winsAllPlay": 25.99999992,
+      "simWinMean": 2.897,
+      "simRankMean": 2.28,
       "winDist": [
-        0,
-        4.943,
-        44.682,
-        40.538,
-        9.837
+        0.0,
+        3.165,
+        31.175,
+        41.795,
+        20.475,
+        3.39
       ],
       "rankDist": [
-        41.356,
-        31.731,
-        20.534,
-        4.943,
-        1.436
+        29.775,
+        30.62,
+        24.625,
+        11.755,
+        3.225
       ],
-      "simTop2Pct": 73.1,
+      "simTop2Pct": 60.4,
       "projWeeks": 4
     },
     {
@@ -735,37 +839,50 @@
           "weekLuck": -0.66666667,
           "delta": 7.33,
           "rank": 4
+        },
+        {
+          "week": 5,
+          "pf": 155.64,
+          "pa": 103.3,
+          "opp": 5,
+          "proj": null,
+          "win": 1,
+          "xw": 0.88888889,
+          "weekLuck": 0.11111111,
+          "delta": null,
+          "rank": 2
         }
       ],
-      "wins": 2,
+      "wins": 3,
       "losses": 2,
-      "divrank": 3,
-      "pf": 528.88,
-      "pa": 473.4,
+      "divrank": 2,
+      "pf": 684.52,
+      "pa": 576.7,
       "proj": 495.66,
-      "pd": 55.48,
+      "pd": 107.82,
       "projdelta": 33.22,
       "projPct": 6.702,
-      "xw": 2.66666668,
-      "luck": -0.66666668,
-      "winsAllPlay": 24.00000012,
-      "simWinMean": 2.665,
-      "simRankMean": 1.864,
+      "xw": 3.55555557,
+      "luck": -0.55555557,
+      "winsAllPlay": 32.000000130000004,
+      "simWinMean": 3.557,
+      "simRankMean": 1.622,
       "winDist": [
-        1.073,
-        9.703,
-        30.033,
-        40.008,
-        19.183
+        0.14,
+        2.055,
+        11.89,
+        31.09,
+        37.575,
+        17.25
       ],
       "rankDist": [
-        52.74,
-        22.93,
-        13.538,
-        6.727,
-        4.065
+        61.955,
+        21.91,
+        10.11,
+        3.995,
+        2.03
       ],
-      "simTop2Pct": 75.7,
+      "simTop2Pct": 83.9,
       "projWeeks": 4
     },
     {
@@ -816,65 +933,79 @@
           "opp": 7,
           "proj": 109.57,
           "win": 0,
-          "xw": 0,
-          "weekLuck": 0,
+          "xw": 0.0,
+          "weekLuck": 0.0,
           "delta": -47.75,
           "rank": 10
+        },
+        {
+          "week": 5,
+          "pf": 142.4,
+          "pa": 133.4,
+          "opp": 6,
+          "proj": null,
+          "win": 1,
+          "xw": 0.66666667,
+          "weekLuck": 0.33333333,
+          "delta": null,
+          "rank": 4
         }
       ],
-      "wins": 1,
+      "wins": 2,
       "losses": 3,
-      "divrank": 5,
-      "pf": 407.12,
-      "pa": 518.66,
+      "divrank": 4,
+      "pf": 549.52,
+      "pa": 652.06,
       "proj": 477.66,
-      "pd": -111.54,
+      "pd": -102.54,
       "projdelta": -70.54,
       "projPct": -14.768,
-      "xw": 1.33333333,
-      "luck": -0.33333333,
-      "winsAllPlay": 11.999999970000001,
-      "simWinMean": 1.331,
-      "simRankMean": 3.785,
+      "xw": 2.0,
+      "luck": 0.0,
+      "winsAllPlay": 18.0,
+      "simWinMean": 1.995,
+      "simRankMean": 3.449,
       "winDist": [
-        6.828,
-        57.566,
-        31.294,
-        4.312,
-        0
+        2.175,
+        24.015,
+        48.695,
+        22.38,
+        2.735,
+        0.0
       ],
       "rankDist": [
-        5.065,
-        12.57,
-        17.127,
-        29.303,
-        35.935
+        7.32,
+        15.825,
+        24.635,
+        29.115,
+        23.105
       ],
-      "simTop2Pct": 17.6,
+      "simTop2Pct": 23.1,
       "projWeeks": 4
     }
   ],
-  "generated": "2026-10-10T18:29:44.877533+00:00",
+  "generated": "2026-10-14T11:28:21.775857+00:00",
   "methodNotes": [
-    "Private ESPN backfill reconciled against 40 verified final scores and opponents for Weeks 1–4.",
-    "Only approved completed periods enter scoring and lineup calculations.",
-    "Historical displayed projections are not verified pregame and are excluded from dashboard comparisons.",
-    "Manager names, credentials and raw authenticated API responses are not published; finalized fantasy player roster summaries are public."
+    "Private ESPN backfill reconciled against 40 known scores and opponents for Weeks 1–4.",
+    "Only completed periods before ESPN's current matchup period enter scoring calculations.",
+    "Original Weeks 1–4 displayed projection values are not verified pregame snapshots. Missing future projections remain blank.",
+    "Manager names and ESPN authentication credentials are never published. Validated finalized roster metrics are published separately."
   ],
   "source": "ESPN authenticated, baseline reconciled",
   "projectionCoverage": {
     "kind": "historical ESPN screenshot displayed values",
     "throughWeek": 4,
-    "notice": "Screenshots may contain in-game projections; no future projections fabricated."
+    "notice": "Historical displayed values are not verified pregame and must not be used in headline comparisons."
   },
   "weeklyLeagueAverage": [
     126.96,
     116.81,
     118.42,
-    121.5
+    121.5,
+    129.95
   ],
-  "leagueAveragePf": 120.92,
-  "leagueMedianPf": 120.07,
+  "leagueAveragePf": 122.73,
+  "leagueMedianPf": 122.27,
   "dnaHistory": [
     {
       "throughWeek": 1,
@@ -884,61 +1015,61 @@
           "id": 1,
           "category": "Not enough weeks",
           "averagePf": 93.36,
-          "cvPct": 0
+          "cvPct": 0.0
         },
         {
           "id": 2,
           "category": "Not enough weeks",
           "averagePf": 126.22,
-          "cvPct": 0
+          "cvPct": 0.0
         },
         {
           "id": 3,
           "category": "Not enough weeks",
           "averagePf": 86.82,
-          "cvPct": 0
+          "cvPct": 0.0
         },
         {
           "id": 4,
           "category": "Not enough weeks",
           "averagePf": 86.06,
-          "cvPct": 0
+          "cvPct": 0.0
         },
         {
           "id": 5,
           "category": "Not enough weeks",
           "averagePf": 131.56,
-          "cvPct": 0
+          "cvPct": 0.0
         },
         {
           "id": 6,
           "category": "Not enough weeks",
           "averagePf": 127.76,
-          "cvPct": 0
+          "cvPct": 0.0
         },
         {
           "id": 7,
           "category": "Not enough weeks",
           "averagePf": 142.2,
-          "cvPct": 0
+          "cvPct": 0.0
         },
         {
           "id": 8,
           "category": "Not enough weeks",
           "averagePf": 184.5,
-          "cvPct": 0
+          "cvPct": 0.0
         },
         {
           "id": 9,
           "category": "Not enough weeks",
           "averagePf": 143.76,
-          "cvPct": 0
+          "cvPct": 0.0
         },
         {
           "id": 10,
           "category": "Not enough weeks",
           "averagePf": 147.36,
-          "cvPct": 0
+          "cvPct": 0.0
         }
       ]
     },
@@ -1093,7 +1224,7 @@
         {
           "id": 3,
           "category": "Volatile underdogs",
-          "averagePf": 107.89,
+          "averagePf": 107.88,
           "cvPct": 23.69
         },
         {
@@ -1105,7 +1236,7 @@
         {
           "id": 5,
           "category": "Steady, lower-output",
-          "averagePf": 107.21,
+          "averagePf": 107.22,
           "cvPct": 15.04
         },
         {
@@ -1139,13 +1270,79 @@
           "cvPct": 29.93
         }
       ]
+    },
+    {
+      "throughWeek": 5,
+      "status": "observed",
+      "teams": [
+        {
+          "id": 1,
+          "category": "Volatile underdogs",
+          "averagePf": 119.34,
+          "cvPct": 24.85
+        },
+        {
+          "id": 2,
+          "category": "High-upside wildcards",
+          "averagePf": 144.54,
+          "cvPct": 24.56
+        },
+        {
+          "id": 3,
+          "category": "Volatile underdogs",
+          "averagePf": 115.94,
+          "cvPct": 24.12
+        },
+        {
+          "id": 4,
+          "category": "Steady, lower-output",
+          "averagePf": 111.85,
+          "cvPct": 14.47
+        },
+        {
+          "id": 5,
+          "category": "Steady, lower-output",
+          "averagePf": 106.43,
+          "cvPct": 13.63
+        },
+        {
+          "id": 6,
+          "category": "Reliable contenders",
+          "averagePf": 134.69,
+          "cvPct": 8.77
+        },
+        {
+          "id": 7,
+          "category": "Volatile underdogs",
+          "averagePf": 114.77,
+          "cvPct": 23.62
+        },
+        {
+          "id": 8,
+          "category": "High-upside wildcards",
+          "averagePf": 132.91,
+          "cvPct": 26.13
+        },
+        {
+          "id": 9,
+          "category": "Reliable contenders",
+          "averagePf": 136.9,
+          "cvPct": 10.49
+        },
+        {
+          "id": 10,
+          "category": "Volatile underdogs",
+          "averagePf": 109.9,
+          "cvPct": 28.86
+        }
+      ]
     }
   ],
   "recentDna": [],
   "rosterAnalysis": {
     "status": "validated-final-rosters",
-    "throughWeek": 4,
-    "generatedAt": "2026-10-10T21:10:20.955617+00:00",
+    "throughWeek": 5,
+    "generatedAt": "2026-10-14T11:28:22.693756+00:00",
     "weights": {
       "skill": 1,
       "K": 0.5,
@@ -1159,23 +1356,23 @@
           "RB": 13.8,
           "WR": 15.4,
           "TE": 13.3,
-          "K": 10,
-          "DST": 9,
+          "K": 10.0,
+          "DST": 9.0,
           "FLEX": 12.2
         },
         "teams": [
           {
             "teamId": 1,
             "week": 1,
-            "weightedHits": 3,
-            "weightedMax": 5,
-            "weightedPossible": 8,
+            "weightedHits": 3.0,
+            "weightedMax": 5.0,
+            "weightedPossible": 8.0,
             "swrPct": 37.5,
             "qualifiedStarters": 3,
             "totalStarters": 9,
-            "missedWeighted": 2,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 2,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
             "benchQualifiedCount": 2,
             "potentiallyUsefulBenchCount": 2,
             "slots": [
@@ -1232,14 +1429,14 @@
                 "slot": "K",
                 "player": "Brandon Aubrey",
                 "position": "K",
-                "points": 1,
+                "points": 1.0,
                 "worthy": false
               },
               {
                 "slot": "DST",
                 "player": "Texans D/ST",
                 "position": "DST",
-                "points": -1,
+                "points": -1.0,
                 "worthy": false
               }
             ],
@@ -1252,22 +1449,22 @@
               {
                 "player": "Deebo Samuel Sr.",
                 "position": "WR",
-                "points": 18
+                "points": 18.0
               }
             ]
           },
           {
             "teamId": 2,
             "week": 1,
-            "weightedHits": 3,
-            "weightedMax": 5,
-            "weightedPossible": 8,
+            "weightedHits": 3.0,
+            "weightedMax": 5.0,
+            "weightedPossible": 8.0,
             "swrPct": 37.5,
             "qualifiedStarters": 3,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 1,
-            "totalOpportunityWeighted": 2,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 1.0,
+            "totalOpportunityWeighted": 2.0,
             "benchQualifiedCount": 1,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -1282,7 +1479,7 @@
                 "slot": "RB",
                 "player": "Saquon Barkley",
                 "position": "RB",
-                "points": 9,
+                "points": 9.0,
                 "worthy": false
               },
               {
@@ -1324,14 +1521,14 @@
                 "slot": "DST",
                 "player": "Broncos D/ST",
                 "position": "DST",
-                "points": 3,
+                "points": 3.0,
                 "worthy": false
               },
               {
                 "slot": "K",
                 "player": "Ka'imi Fairbairn",
                 "position": "K",
-                "points": 9,
+                "points": 9.0,
                 "worthy": false
               }
             ],
@@ -1348,13 +1545,13 @@
             "week": 1,
             "weightedHits": 1.5,
             "weightedMax": 3.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 18.75,
             "qualifiedStarters": 2,
             "totalStarters": 9,
-            "missedWeighted": 2,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 2,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
             "benchQualifiedCount": 2,
             "potentiallyUsefulBenchCount": 2,
             "slots": [
@@ -1383,7 +1580,7 @@
                 "slot": "TE",
                 "player": "Colston Loveland",
                 "position": "TE",
-                "points": 0,
+                "points": 0.0,
                 "worthy": false
               },
               {
@@ -1411,14 +1608,14 @@
                 "slot": "K",
                 "player": "Jason Myers",
                 "position": "K",
-                "points": 7,
+                "points": 7.0,
                 "worthy": false
               },
               {
                 "slot": "DST",
                 "player": "Jaguars D/ST",
                 "position": "DST",
-                "points": 14,
+                "points": 14.0,
                 "worthy": true
               }
             ],
@@ -1440,13 +1637,13 @@
             "week": 1,
             "weightedHits": 1.5,
             "weightedMax": 3.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 18.75,
             "qualifiedStarters": 2,
             "totalStarters": 9,
-            "missedWeighted": 2,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 2,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
             "benchQualifiedCount": 2,
             "potentiallyUsefulBenchCount": 2,
             "slots": [
@@ -1496,14 +1693,14 @@
                 "slot": "K",
                 "player": "Jake Bates",
                 "position": "K",
-                "points": 7,
+                "points": 7.0,
                 "worthy": false
               },
               {
                 "slot": "DST",
                 "player": "Lions D/ST",
                 "position": "DST",
-                "points": 10,
+                "points": 10.0,
                 "worthy": true
               },
               {
@@ -1518,7 +1715,7 @@
               {
                 "player": "DJ Moore",
                 "position": "WR",
-                "points": 21
+                "points": 21.0
               },
               {
                 "player": "Christian Watson",
@@ -1532,13 +1729,13 @@
             "week": 1,
             "weightedHits": 4.5,
             "weightedMax": 5.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 56.25,
             "qualifiedStarters": 5,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 1,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
             "benchQualifiedCount": 1,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -1588,21 +1785,21 @@
                 "slot": "TE",
                 "player": "Kyle Pitts Sr.",
                 "position": "TE",
-                "points": 0,
+                "points": 0.0,
                 "worthy": false
               },
               {
                 "slot": "K",
                 "player": "Cam Little",
                 "position": "K",
-                "points": 12,
+                "points": 12.0,
                 "worthy": true
               },
               {
                 "slot": "DST",
                 "player": "Eagles D/ST",
                 "position": "DST",
-                "points": 3,
+                "points": 3.0,
                 "worthy": false
               }
             ],
@@ -1617,15 +1814,15 @@
           {
             "teamId": 6,
             "week": 1,
-            "weightedHits": 3,
-            "weightedMax": 7,
-            "weightedPossible": 8,
+            "weightedHits": 3.0,
+            "weightedMax": 7.0,
+            "weightedPossible": 8.0,
             "swrPct": 37.5,
             "qualifiedStarters": 3,
             "totalStarters": 9,
-            "missedWeighted": 4,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 4,
+            "missedWeighted": 4.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 4.0,
             "benchQualifiedCount": 4,
             "potentiallyUsefulBenchCount": 4,
             "slots": [
@@ -1682,14 +1879,14 @@
                 "slot": "K",
                 "player": "Harrison Mevis",
                 "position": "K",
-                "points": 1,
+                "points": 1.0,
                 "worthy": false
               },
               {
                 "slot": "DST",
                 "player": "Patriots D/ST",
                 "position": "DST",
-                "points": 7,
+                "points": 7.0,
                 "worthy": false
               }
             ],
@@ -1721,13 +1918,13 @@
             "week": 1,
             "weightedHits": 3.5,
             "weightedMax": 4.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 43.75,
             "qualifiedStarters": 4,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 1,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
             "benchQualifiedCount": 1,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -1784,14 +1981,14 @@
                 "slot": "DST",
                 "player": "Rams D/ST",
                 "position": "DST",
-                "points": 2,
+                "points": 2.0,
                 "worthy": false
               },
               {
                 "slot": "K",
                 "player": "Evan McPherson",
                 "position": "K",
-                "points": 19,
+                "points": 19.0,
                 "worthy": true
               }
             ],
@@ -1808,13 +2005,13 @@
             "week": 1,
             "weightedHits": 6.5,
             "weightedMax": 6.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 81.25,
             "qualifiedStarters": 7,
             "totalStarters": 9,
-            "missedWeighted": 0,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 0,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
             "benchQualifiedCount": 1,
             "potentiallyUsefulBenchCount": 0,
             "slots": [
@@ -1843,7 +2040,7 @@
                 "slot": "WR",
                 "player": "Zay Flowers",
                 "position": "WR",
-                "points": 26,
+                "points": 26.0,
                 "worthy": true
               },
               {
@@ -1871,14 +2068,14 @@
                 "slot": "K",
                 "player": "Cameron Dicker",
                 "position": "K",
-                "points": 2,
+                "points": 2.0,
                 "worthy": false
               },
               {
                 "slot": "DST",
                 "player": "Steelers D/ST",
                 "position": "DST",
-                "points": 19,
+                "points": 19.0,
                 "worthy": true
               }
             ],
@@ -1887,15 +2084,15 @@
           {
             "teamId": 9,
             "week": 1,
-            "weightedHits": 5,
-            "weightedMax": 5,
-            "weightedPossible": 8,
+            "weightedHits": 5.0,
+            "weightedMax": 5.0,
+            "weightedPossible": 8.0,
             "swrPct": 62.5,
             "qualifiedStarters": 6,
             "totalStarters": 9,
-            "missedWeighted": 0,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 0,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
             "benchQualifiedCount": 3,
             "potentiallyUsefulBenchCount": 0,
             "slots": [
@@ -1952,14 +2149,14 @@
                 "slot": "DST",
                 "player": "Seahawks D/ST",
                 "position": "DST",
-                "points": 14,
+                "points": 14.0,
                 "worthy": true
               },
               {
                 "slot": "K",
                 "player": "Eddy Pineiro",
                 "position": "K",
-                "points": 10,
+                "points": 10.0,
                 "worthy": true
               }
             ],
@@ -1968,15 +2165,15 @@
           {
             "teamId": 10,
             "week": 1,
-            "weightedHits": 5,
-            "weightedMax": 6,
-            "weightedPossible": 8,
+            "weightedHits": 5.0,
+            "weightedMax": 6.0,
+            "weightedPossible": 8.0,
             "swrPct": 62.5,
             "qualifiedStarters": 5,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 1,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
             "benchQualifiedCount": 1,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -2005,7 +2202,7 @@
                 "slot": "FLEX",
                 "player": "Jeremiyah Love",
                 "position": "RB",
-                "points": 13,
+                "points": 13.0,
                 "worthy": true
               },
               {
@@ -2033,14 +2230,14 @@
                 "slot": "DST",
                 "player": "Ravens D/ST",
                 "position": "DST",
-                "points": 6,
+                "points": 6.0,
                 "worthy": false
               },
               {
                 "slot": "K",
                 "player": "Wil Lutz",
                 "position": "K",
-                "points": 4,
+                "points": 4.0,
                 "worthy": false
               }
             ],
@@ -2061,8 +2258,8 @@
           "RB": 11.1,
           "WR": 14.2,
           "TE": 14.4,
-          "K": 9,
-          "DST": 9,
+          "K": 9.0,
+          "DST": 9.0,
           "FLEX": 11.4
         },
         "teams": [
@@ -2071,13 +2268,13 @@
             "week": 2,
             "weightedHits": 4.5,
             "weightedMax": 4.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 56.25,
             "qualifiedStarters": 5,
             "totalStarters": 9,
-            "missedWeighted": 0,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 0,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
             "benchQualifiedCount": 0,
             "potentiallyUsefulBenchCount": 0,
             "slots": [
@@ -2134,14 +2331,14 @@
                 "slot": "K",
                 "player": "Brandon Aubrey",
                 "position": "K",
-                "points": 17,
+                "points": 17.0,
                 "worthy": true
               },
               {
                 "slot": "DST",
                 "player": "Texans D/ST",
                 "position": "DST",
-                "points": 6,
+                "points": 6.0,
                 "worthy": false
               }
             ],
@@ -2152,13 +2349,13 @@
             "week": 2,
             "weightedHits": 4.5,
             "weightedMax": 5.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 56.25,
             "qualifiedStarters": 5,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 1,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
             "benchQualifiedCount": 3,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -2173,7 +2370,7 @@
                 "slot": "RB",
                 "player": "Saquon Barkley",
                 "position": "RB",
-                "points": 3,
+                "points": 3.0,
                 "worthy": false
               },
               {
@@ -2215,14 +2412,14 @@
                 "slot": "DST",
                 "player": "Broncos D/ST",
                 "position": "DST",
-                "points": 9,
+                "points": 9.0,
                 "worthy": true
               },
               {
                 "slot": "K",
                 "player": "Ka'imi Fairbairn",
                 "position": "K",
-                "points": 6,
+                "points": 6.0,
                 "worthy": false
               }
             ],
@@ -2237,15 +2434,15 @@
           {
             "teamId": 3,
             "week": 2,
-            "weightedHits": 2,
-            "weightedMax": 4,
-            "weightedPossible": 8,
-            "swrPct": 25,
+            "weightedHits": 2.0,
+            "weightedMax": 4.0,
+            "weightedPossible": 8.0,
+            "swrPct": 25.0,
             "qualifiedStarters": 2,
             "totalStarters": 9,
-            "missedWeighted": 2,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 2,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
             "benchQualifiedCount": 2,
             "potentiallyUsefulBenchCount": 2,
             "slots": [
@@ -2302,14 +2499,14 @@
                 "slot": "K",
                 "player": "Jason Myers",
                 "position": "K",
-                "points": 7,
+                "points": 7.0,
                 "worthy": false
               },
               {
                 "slot": "DST",
                 "player": "Buccaneers D/ST",
                 "position": "DST",
-                "points": 2,
+                "points": 2.0,
                 "worthy": false
               }
             ],
@@ -2331,13 +2528,13 @@
             "week": 2,
             "weightedHits": 4.5,
             "weightedMax": 5.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 56.25,
             "qualifiedStarters": 5,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 1,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
             "benchQualifiedCount": 2,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -2387,21 +2584,21 @@
                 "slot": "TE",
                 "player": "Dalton Schultz",
                 "position": "TE",
-                "points": 26,
+                "points": 26.0,
                 "worthy": true
               },
               {
                 "slot": "DST",
                 "player": "Chiefs D/ST",
                 "position": "DST",
-                "points": 1,
+                "points": 1.0,
                 "worthy": false
               },
               {
                 "slot": "K",
                 "player": "Harrison Butker",
                 "position": "K",
-                "points": 16,
+                "points": 16.0,
                 "worthy": true
               }
             ],
@@ -2416,15 +2613,15 @@
           {
             "teamId": 5,
             "week": 2,
-            "weightedHits": 3,
-            "weightedMax": 5,
-            "weightedPossible": 8,
+            "weightedHits": 3.0,
+            "weightedMax": 5.0,
+            "weightedPossible": 8.0,
             "swrPct": 37.5,
             "qualifiedStarters": 3,
             "totalStarters": 9,
-            "missedWeighted": 2,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 2,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
             "benchQualifiedCount": 2,
             "potentiallyUsefulBenchCount": 2,
             "slots": [
@@ -2474,14 +2671,14 @@
                 "slot": "K",
                 "player": "Cam Little",
                 "position": "K",
-                "points": 7,
+                "points": 7.0,
                 "worthy": false
               },
               {
                 "slot": "DST",
                 "player": "Eagles D/ST",
                 "position": "DST",
-                "points": 3,
+                "points": 3.0,
                 "worthy": false
               },
               {
@@ -2510,13 +2707,13 @@
             "week": 2,
             "weightedHits": 3.5,
             "weightedMax": 5.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 43.75,
             "qualifiedStarters": 4,
             "totalStarters": 9,
-            "missedWeighted": 2,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 2,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
             "benchQualifiedCount": 3,
             "potentiallyUsefulBenchCount": 2,
             "slots": [
@@ -2538,7 +2735,7 @@
                 "slot": "WR",
                 "player": "George Pickens",
                 "position": "WR",
-                "points": 10,
+                "points": 10.0,
                 "worthy": false
               },
               {
@@ -2552,7 +2749,7 @@
                 "slot": "RB",
                 "player": "Javonte Williams",
                 "position": "RB",
-                "points": 8,
+                "points": 8.0,
                 "worthy": false
               },
               {
@@ -2573,14 +2770,14 @@
                 "slot": "K",
                 "player": "Harrison Mevis",
                 "position": "K",
-                "points": 3,
+                "points": 3.0,
                 "worthy": false
               },
               {
                 "slot": "DST",
                 "player": "Patriots D/ST",
                 "position": "DST",
-                "points": 21,
+                "points": 21.0,
                 "worthy": true
               }
             ],
@@ -2600,15 +2797,15 @@
           {
             "teamId": 7,
             "week": 2,
-            "weightedHits": 6,
-            "weightedMax": 6,
-            "weightedPossible": 8,
-            "swrPct": 75,
+            "weightedHits": 6.0,
+            "weightedMax": 6.0,
+            "weightedPossible": 8.0,
+            "swrPct": 75.0,
             "qualifiedStarters": 7,
             "totalStarters": 9,
-            "missedWeighted": 0,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 0,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
             "benchQualifiedCount": 0,
             "potentiallyUsefulBenchCount": 0,
             "slots": [
@@ -2665,14 +2862,14 @@
                 "slot": "DST",
                 "player": "Rams D/ST",
                 "position": "DST",
-                "points": 11,
+                "points": 11.0,
                 "worthy": true
               },
               {
                 "slot": "K",
                 "player": "Evan McPherson",
                 "position": "K",
-                "points": 12,
+                "points": 12.0,
                 "worthy": true
               }
             ],
@@ -2683,13 +2880,13 @@
             "week": 2,
             "weightedHits": 3.5,
             "weightedMax": 4.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 43.75,
             "qualifiedStarters": 4,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 1,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
             "benchQualifiedCount": 2,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -2746,14 +2943,14 @@
                 "slot": "K",
                 "player": "Cameron Dicker",
                 "position": "K",
-                "points": 1,
+                "points": 1.0,
                 "worthy": false
               },
               {
                 "slot": "DST",
                 "player": "49ers D/ST",
                 "position": "DST",
-                "points": 9,
+                "points": 9.0,
                 "worthy": true
               }
             ],
@@ -2770,13 +2967,13 @@
             "week": 2,
             "weightedHits": 5.5,
             "weightedMax": 6.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 68.75,
             "qualifiedStarters": 6,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 1,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
             "benchQualifiedCount": 4,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -2784,7 +2981,7 @@
                 "slot": "WR",
                 "player": "Puka Nacua",
                 "position": "WR",
-                "points": 0,
+                "points": 0.0,
                 "worthy": false
               },
               {
@@ -2812,7 +3009,7 @@
                 "slot": "FLEX",
                 "player": "Bucky Irving",
                 "position": "RB",
-                "points": 13,
+                "points": 13.0,
                 "worthy": true
               },
               {
@@ -2833,14 +3030,14 @@
                 "slot": "DST",
                 "player": "Seahawks D/ST",
                 "position": "DST",
-                "points": 9,
+                "points": 9.0,
                 "worthy": true
               },
               {
                 "slot": "K",
                 "player": "Eddy Pineiro",
                 "position": "K",
-                "points": 5,
+                "points": 5.0,
                 "worthy": false
               }
             ],
@@ -2857,13 +3054,13 @@
             "week": 2,
             "weightedHits": 3.5,
             "weightedMax": 3.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 43.75,
             "qualifiedStarters": 4,
             "totalStarters": 9,
-            "missedWeighted": 0,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 0,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
             "benchQualifiedCount": 0,
             "potentiallyUsefulBenchCount": 0,
             "slots": [
@@ -2920,14 +3117,14 @@
                 "slot": "DST",
                 "player": "Ravens D/ST",
                 "position": "DST",
-                "points": 3,
+                "points": 3.0,
                 "worthy": false
               },
               {
                 "slot": "K",
                 "player": "Wil Lutz",
                 "position": "K",
-                "points": 9,
+                "points": 9.0,
                 "worthy": true
               }
             ],
@@ -2942,9 +3139,9 @@
           "RB": 11.1,
           "WR": 15.8,
           "TE": 14.7,
-          "K": 12,
-          "DST": 9,
-          "FLEX": 13
+          "K": 12.0,
+          "DST": 9.0,
+          "FLEX": 13.0
         },
         "teams": [
           {
@@ -2952,13 +3149,13 @@
             "week": 3,
             "weightedHits": 4.5,
             "weightedMax": 4.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 56.25,
             "qualifiedStarters": 5,
             "totalStarters": 9,
-            "missedWeighted": 0,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 0,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
             "benchQualifiedCount": 0,
             "potentiallyUsefulBenchCount": 0,
             "slots": [
@@ -2994,14 +3191,14 @@
                 "slot": "RB",
                 "player": "Cam Skattebo",
                 "position": "RB",
-                "points": 13,
+                "points": 13.0,
                 "worthy": true
               },
               {
                 "slot": "K",
                 "player": "Brandon Aubrey",
                 "position": "K",
-                "points": 10,
+                "points": 10.0,
                 "worthy": false
               },
               {
@@ -3022,7 +3219,7 @@
                 "slot": "DST",
                 "player": "Vikings D/ST",
                 "position": "DST",
-                "points": 19,
+                "points": 19.0,
                 "worthy": true
               }
             ],
@@ -3033,13 +3230,13 @@
             "week": 3,
             "weightedHits": 5.5,
             "weightedMax": 6.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 68.75,
             "qualifiedStarters": 6,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 1,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
             "benchQualifiedCount": 2,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -3054,7 +3251,7 @@
                 "slot": "RB",
                 "player": "Saquon Barkley",
                 "position": "RB",
-                "points": 9,
+                "points": 9.0,
                 "worthy": false
               },
               {
@@ -3096,14 +3293,14 @@
                 "slot": "DST",
                 "player": "Broncos D/ST",
                 "position": "DST",
-                "points": 14,
+                "points": 14.0,
                 "worthy": true
               },
               {
                 "slot": "K",
                 "player": "Ka'imi Fairbairn",
                 "position": "K",
-                "points": 5,
+                "points": 5.0,
                 "worthy": false
               }
             ],
@@ -3118,15 +3315,15 @@
           {
             "teamId": 3,
             "week": 3,
-            "weightedHits": 3,
-            "weightedMax": 3,
-            "weightedPossible": 8,
+            "weightedHits": 3.0,
+            "weightedMax": 3.0,
+            "weightedPossible": 8.0,
             "swrPct": 37.5,
             "qualifiedStarters": 3,
             "totalStarters": 9,
-            "missedWeighted": 0,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 0,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
             "benchQualifiedCount": 0,
             "potentiallyUsefulBenchCount": 0,
             "slots": [
@@ -3162,7 +3359,7 @@
                 "slot": "K",
                 "player": "Jason Myers",
                 "position": "K",
-                "points": 9,
+                "points": 9.0,
                 "worthy": false
               },
               {
@@ -3190,7 +3387,7 @@
                 "slot": "DST",
                 "player": "Panthers D/ST",
                 "position": "DST",
-                "points": 5,
+                "points": 5.0,
                 "worthy": false
               }
             ],
@@ -3201,13 +3398,13 @@
             "week": 3,
             "weightedHits": 3.5,
             "weightedMax": 5.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 43.75,
             "qualifiedStarters": 4,
             "totalStarters": 9,
-            "missedWeighted": 2,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 2,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
             "benchQualifiedCount": 3,
             "potentiallyUsefulBenchCount": 2,
             "slots": [
@@ -3257,21 +3454,21 @@
                 "slot": "TE",
                 "player": "Dalton Schultz",
                 "position": "TE",
-                "points": 6,
+                "points": 6.0,
                 "worthy": false
               },
               {
                 "slot": "DST",
                 "player": "Chiefs D/ST",
                 "position": "DST",
-                "points": 9,
+                "points": 9.0,
                 "worthy": true
               },
               {
                 "slot": "K",
                 "player": "Harrison Butker",
                 "position": "K",
-                "points": 5,
+                "points": 5.0,
                 "worthy": false
               }
             ],
@@ -3291,15 +3488,15 @@
           {
             "teamId": 5,
             "week": 3,
-            "weightedHits": 3,
-            "weightedMax": 4,
-            "weightedPossible": 8,
+            "weightedHits": 3.0,
+            "weightedMax": 4.0,
+            "weightedPossible": 8.0,
             "swrPct": 37.5,
             "qualifiedStarters": 3,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 1,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
             "benchQualifiedCount": 1,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -3349,14 +3546,14 @@
                 "slot": "K",
                 "player": "Cam Little",
                 "position": "K",
-                "points": 4,
+                "points": 4.0,
                 "worthy": false
               },
               {
                 "slot": "DST",
                 "player": "Eagles D/ST",
                 "position": "DST",
-                "points": 0,
+                "points": 0.0,
                 "worthy": false
               },
               {
@@ -3371,7 +3568,7 @@
               {
                 "player": "Jordan Addison",
                 "position": "WR",
-                "points": 20
+                "points": 20.0
               }
             ]
           },
@@ -3380,13 +3577,13 @@
             "week": 3,
             "weightedHits": 3.5,
             "weightedMax": 6.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 43.75,
             "qualifiedStarters": 4,
             "totalStarters": 9,
-            "missedWeighted": 2,
-            "reassignmentWeighted": 1,
-            "totalOpportunityWeighted": 3,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 1.0,
+            "totalOpportunityWeighted": 3.0,
             "benchQualifiedCount": 3,
             "potentiallyUsefulBenchCount": 2,
             "slots": [
@@ -3415,7 +3612,7 @@
                 "slot": "WR",
                 "player": "Tee Higgins",
                 "position": "WR",
-                "points": 21,
+                "points": 21.0,
                 "worthy": true
               },
               {
@@ -3436,14 +3633,14 @@
                 "slot": "K",
                 "player": "Harrison Mevis",
                 "position": "K",
-                "points": 16,
+                "points": 16.0,
                 "worthy": true
               },
               {
                 "slot": "DST",
                 "player": "Patriots D/ST",
                 "position": "DST",
-                "points": 0,
+                "points": 0.0,
                 "worthy": false
               },
               {
@@ -3470,15 +3667,15 @@
           {
             "teamId": 7,
             "week": 3,
-            "weightedHits": 0,
-            "weightedMax": 1,
-            "weightedPossible": 8,
-            "swrPct": 0,
+            "weightedHits": 0.0,
+            "weightedMax": 1.0,
+            "weightedPossible": 8.0,
+            "swrPct": 0.0,
             "qualifiedStarters": 0,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 1,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
             "benchQualifiedCount": 1,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -3535,14 +3732,14 @@
                 "slot": "DST",
                 "player": "Rams D/ST",
                 "position": "DST",
-                "points": 3,
+                "points": 3.0,
                 "worthy": false
               },
               {
                 "slot": "K",
                 "player": "Evan McPherson",
                 "position": "K",
-                "points": 11,
+                "points": 11.0,
                 "worthy": false
               }
             ],
@@ -3557,15 +3754,15 @@
           {
             "teamId": 8,
             "week": 3,
-            "weightedHits": 2,
-            "weightedMax": 3,
-            "weightedPossible": 8,
-            "swrPct": 25,
+            "weightedHits": 2.0,
+            "weightedMax": 3.0,
+            "weightedPossible": 8.0,
+            "swrPct": 25.0,
             "qualifiedStarters": 2,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 1,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
             "benchQualifiedCount": 1,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -3615,14 +3812,14 @@
                 "slot": "K",
                 "player": "Cameron Dicker",
                 "position": "K",
-                "points": 9,
+                "points": 9.0,
                 "worthy": false
               },
               {
                 "slot": "DST",
                 "player": "49ers D/ST",
                 "position": "DST",
-                "points": 1,
+                "points": 1.0,
                 "worthy": false
               },
               {
@@ -3644,15 +3841,15 @@
           {
             "teamId": 9,
             "week": 3,
-            "weightedHits": 3,
-            "weightedMax": 6,
-            "weightedPossible": 8,
+            "weightedHits": 3.0,
+            "weightedMax": 6.0,
+            "weightedPossible": 8.0,
             "swrPct": 37.5,
             "qualifiedStarters": 3,
             "totalStarters": 9,
-            "missedWeighted": 2,
-            "reassignmentWeighted": 1,
-            "totalOpportunityWeighted": 3,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 1.0,
+            "totalOpportunityWeighted": 3.0,
             "benchQualifiedCount": 3,
             "potentiallyUsefulBenchCount": 2,
             "slots": [
@@ -3688,7 +3885,7 @@
                 "slot": "RB",
                 "player": "Chuba Hubbard",
                 "position": "RB",
-                "points": 15,
+                "points": 15.0,
                 "worthy": true
               },
               {
@@ -3709,14 +3906,14 @@
                 "slot": "DST",
                 "player": "Seahawks D/ST",
                 "position": "DST",
-                "points": 2,
+                "points": 2.0,
                 "worthy": false
               },
               {
                 "slot": "K",
                 "player": "Eddy Pineiro",
                 "position": "K",
-                "points": 6,
+                "points": 6.0,
                 "worthy": false
               }
             ],
@@ -3736,15 +3933,15 @@
           {
             "teamId": 10,
             "week": 3,
-            "weightedHits": 3,
-            "weightedMax": 5,
-            "weightedPossible": 8,
+            "weightedHits": 3.0,
+            "weightedMax": 5.0,
+            "weightedPossible": 8.0,
             "swrPct": 37.5,
             "qualifiedStarters": 3,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 1,
-            "totalOpportunityWeighted": 2,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 1.0,
+            "totalOpportunityWeighted": 2.0,
             "benchQualifiedCount": 2,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -3780,7 +3977,7 @@
                 "slot": "WR",
                 "player": "Parker Washington",
                 "position": "WR",
-                "points": 13,
+                "points": 13.0,
                 "worthy": false
               },
               {
@@ -3794,7 +3991,7 @@
                 "slot": "DST",
                 "player": "Ravens D/ST",
                 "position": "DST",
-                "points": 4,
+                "points": 4.0,
                 "worthy": false
               },
               {
@@ -3808,7 +4005,7 @@
                 "slot": "K",
                 "player": "Jake Bates",
                 "position": "K",
-                "points": 7,
+                "points": 7.0,
                 "worthy": false
               }
             ],
@@ -3826,11 +4023,11 @@
         "week": 4,
         "cutoffs": {
           "QB": 18.52,
-          "RB": 16,
+          "RB": 16.0,
           "WR": 15.5,
-          "TE": 13,
-          "K": 11,
-          "DST": 7,
+          "TE": 13.0,
+          "K": 11.0,
+          "DST": 7.0,
           "FLEX": 13.3
         },
         "teams": [
@@ -3839,13 +4036,13 @@
             "week": 4,
             "weightedHits": 4.5,
             "weightedMax": 6.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 56.25,
             "qualifiedStarters": 5,
             "totalStarters": 9,
-            "missedWeighted": 2,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 2,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
             "benchQualifiedCount": 3,
             "potentiallyUsefulBenchCount": 2,
             "slots": [
@@ -3881,7 +4078,7 @@
                 "slot": "K",
                 "player": "Brandon Aubrey",
                 "position": "K",
-                "points": 10,
+                "points": 10.0,
                 "worthy": false
               },
               {
@@ -3895,7 +4092,7 @@
                 "slot": "FLEX",
                 "player": "Deebo Samuel Sr.",
                 "position": "WR",
-                "points": 18,
+                "points": 18.0,
                 "worthy": true
               },
               {
@@ -3909,7 +4106,7 @@
                 "slot": "DST",
                 "player": "Vikings D/ST",
                 "position": "DST",
-                "points": 9,
+                "points": 9.0,
                 "worthy": true
               }
             ],
@@ -3931,13 +4128,13 @@
             "week": 4,
             "weightedHits": 1.5,
             "weightedMax": 3.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 18.75,
             "qualifiedStarters": 2,
             "totalStarters": 9,
-            "missedWeighted": 2,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 2,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
             "benchQualifiedCount": 2,
             "potentiallyUsefulBenchCount": 2,
             "slots": [
@@ -3952,7 +4149,7 @@
                 "slot": "RB",
                 "player": "Saquon Barkley",
                 "position": "RB",
-                "points": 2,
+                "points": 2.0,
                 "worthy": false
               },
               {
@@ -3987,7 +4184,7 @@
                 "slot": "DST",
                 "player": "Broncos D/ST",
                 "position": "DST",
-                "points": 2,
+                "points": 2.0,
                 "worthy": false
               },
               {
@@ -4001,7 +4198,7 @@
                 "slot": "K",
                 "player": "Ka'imi Fairbairn",
                 "position": "K",
-                "points": 16,
+                "points": 16.0,
                 "worthy": true
               }
             ],
@@ -4023,13 +4220,13 @@
             "week": 4,
             "weightedHits": 4.5,
             "weightedMax": 6.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 56.25,
             "qualifiedStarters": 5,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 1,
-            "totalOpportunityWeighted": 2,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 1.0,
+            "totalOpportunityWeighted": 2.0,
             "benchQualifiedCount": 3,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -4079,21 +4276,21 @@
                 "slot": "RB",
                 "player": "Ollie Gordon II",
                 "position": "RB",
-                "points": 18,
+                "points": 18.0,
                 "worthy": true
               },
               {
                 "slot": "DST",
                 "player": "Packers D/ST",
                 "position": "DST",
-                "points": 10,
+                "points": 10.0,
                 "worthy": true
               },
               {
                 "slot": "K",
                 "player": "Tyler Loop",
                 "position": "K",
-                "points": 8,
+                "points": 8.0,
                 "worthy": false
               }
             ],
@@ -4110,13 +4307,13 @@
             "week": 4,
             "weightedHits": 3.5,
             "weightedMax": 4.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 43.75,
             "qualifiedStarters": 4,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 1,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
             "benchQualifiedCount": 1,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -4173,14 +4370,14 @@
                 "slot": "DST",
                 "player": "Bears D/ST",
                 "position": "DST",
-                "points": 8,
+                "points": 8.0,
                 "worthy": true
               },
               {
                 "slot": "K",
                 "player": "Chase McLaughlin",
                 "position": "K",
-                "points": 2,
+                "points": 2.0,
                 "worthy": false
               }
             ],
@@ -4197,13 +4394,13 @@
             "week": 4,
             "weightedHits": 3.5,
             "weightedMax": 5.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 43.75,
             "qualifiedStarters": 4,
             "totalStarters": 9,
-            "missedWeighted": 2,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 2,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
             "benchQualifiedCount": 2,
             "potentiallyUsefulBenchCount": 2,
             "slots": [
@@ -4253,7 +4450,7 @@
                 "slot": "K",
                 "player": "Cam Little",
                 "position": "K",
-                "points": 14,
+                "points": 14.0,
                 "worthy": true
               },
               {
@@ -4267,7 +4464,7 @@
                 "slot": "DST",
                 "player": "Bills D/ST",
                 "position": "DST",
-                "points": 4,
+                "points": 4.0,
                 "worthy": false
               }
             ],
@@ -4289,13 +4486,13 @@
             "week": 4,
             "weightedHits": 4.5,
             "weightedMax": 5.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 56.25,
             "qualifiedStarters": 5,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 1,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
             "benchQualifiedCount": 1,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -4352,14 +4549,14 @@
                 "slot": "K",
                 "player": "Harrison Mevis",
                 "position": "K",
-                "points": 6,
+                "points": 6.0,
                 "worthy": false
               },
               {
                 "slot": "DST",
                 "player": "Browns D/ST",
                 "position": "DST",
-                "points": 9,
+                "points": 9.0,
                 "worthy": true
               }
             ],
@@ -4374,15 +4571,15 @@
           {
             "teamId": 7,
             "week": 4,
-            "weightedHits": 2,
-            "weightedMax": 3,
-            "weightedPossible": 8,
-            "swrPct": 25,
+            "weightedHits": 2.0,
+            "weightedMax": 3.0,
+            "weightedPossible": 8.0,
+            "swrPct": 25.0,
             "qualifiedStarters": 2,
             "totalStarters": 9,
-            "missedWeighted": 0,
-            "reassignmentWeighted": 1,
-            "totalOpportunityWeighted": 1,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 1.0,
+            "totalOpportunityWeighted": 1.0,
             "benchQualifiedCount": 0,
             "potentiallyUsefulBenchCount": 0,
             "slots": [
@@ -4432,21 +4629,21 @@
                 "slot": "FLEX",
                 "player": "Quentin Johnston",
                 "position": "WR",
-                "points": 5,
+                "points": 5.0,
                 "worthy": false
               },
               {
                 "slot": "DST",
                 "player": "Rams D/ST",
                 "position": "DST",
-                "points": 5,
+                "points": 5.0,
                 "worthy": false
               },
               {
                 "slot": "K",
                 "player": "Evan McPherson",
                 "position": "K",
-                "points": 5,
+                "points": 5.0,
                 "worthy": false
               }
             ],
@@ -4457,13 +4654,13 @@
             "week": 4,
             "weightedHits": 5.5,
             "weightedMax": 6.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 68.75,
             "qualifiedStarters": 6,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 1,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 1.0,
             "benchQualifiedCount": 2,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -4520,14 +4717,14 @@
                 "slot": "DST",
                 "player": "Steelers D/ST",
                 "position": "DST",
-                "points": 6,
+                "points": 6.0,
                 "worthy": false
               },
               {
                 "slot": "K",
                 "player": "Will Reichard",
                 "position": "K",
-                "points": 19,
+                "points": 19.0,
                 "worthy": true
               }
             ],
@@ -4544,13 +4741,13 @@
             "week": 4,
             "weightedHits": 5.5,
             "weightedMax": 7.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 68.75,
             "qualifiedStarters": 6,
             "totalStarters": 9,
-            "missedWeighted": 1,
-            "reassignmentWeighted": 1,
-            "totalOpportunityWeighted": 2,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 1.0,
+            "totalOpportunityWeighted": 2.0,
             "benchQualifiedCount": 3,
             "potentiallyUsefulBenchCount": 1,
             "slots": [
@@ -4586,7 +4783,7 @@
                 "slot": "TE",
                 "player": "George Kittle",
                 "position": "TE",
-                "points": 17,
+                "points": 17.0,
                 "worthy": true
               },
               {
@@ -4607,14 +4804,14 @@
                 "slot": "DST",
                 "player": "Seahawks D/ST",
                 "position": "DST",
-                "points": 12,
+                "points": 12.0,
                 "worthy": true
               },
               {
                 "slot": "K",
                 "player": "Eddy Pineiro",
                 "position": "K",
-                "points": 5,
+                "points": 5.0,
                 "worthy": false
               }
             ],
@@ -4631,13 +4828,13 @@
             "week": 4,
             "weightedHits": 1.5,
             "weightedMax": 3.5,
-            "weightedPossible": 8,
+            "weightedPossible": 8.0,
             "swrPct": 18.75,
             "qualifiedStarters": 2,
             "totalStarters": 9,
-            "missedWeighted": 2,
-            "reassignmentWeighted": 0,
-            "totalOpportunityWeighted": 2,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
             "benchQualifiedCount": 2,
             "potentiallyUsefulBenchCount": 2,
             "slots": [
@@ -4645,14 +4842,14 @@
                 "slot": "RB",
                 "player": "Christian McCaffrey",
                 "position": "RB",
-                "points": 16,
+                "points": 16.0,
                 "worthy": true
               },
               {
                 "slot": "FLEX",
                 "player": "Rashee Rice",
                 "position": "WR",
-                "points": 0,
+                "points": 0.0,
                 "worthy": false
               },
               {
@@ -4666,35 +4863,35 @@
                 "slot": "WR",
                 "player": "Terry McLaurin",
                 "position": "WR",
-                "points": 0,
+                "points": 0.0,
                 "worthy": false
               },
               {
                 "slot": "WR",
                 "player": "Parker Washington",
                 "position": "WR",
-                "points": 2,
+                "points": 2.0,
                 "worthy": false
               },
               {
                 "slot": "DST",
                 "player": "Ravens D/ST",
                 "position": "DST",
-                "points": 6,
+                "points": 6.0,
                 "worthy": false
               },
               {
                 "slot": "K",
                 "player": "Jake Bates",
                 "position": "K",
-                "points": 18,
+                "points": 18.0,
                 "worthy": true
               },
               {
                 "slot": "TE",
                 "player": "Kenyon Sadiq",
                 "position": "TE",
-                "points": 0,
+                "points": 0.0,
                 "worthy": false
               },
               {
@@ -4715,6 +4912,896 @@
                 "player": "Isaiah Likely",
                 "position": "TE",
                 "points": 13.6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "week": 5,
+        "cutoffs": {
+          "QB": 24.04,
+          "RB": 13.2,
+          "WR": 14.6,
+          "TE": 13.4,
+          "K": 10.0,
+          "DST": 9.0,
+          "FLEX": 12.0
+        },
+        "teams": [
+          {
+            "teamId": 1,
+            "week": 5,
+            "weightedHits": 2.5,
+            "weightedMax": 4.5,
+            "weightedPossible": 8.0,
+            "swrPct": 31.25,
+            "qualifiedStarters": 3,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 3,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "CeeDee Lamb",
+                "position": "WR",
+                "points": 2.9,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Tyler Warren",
+                "position": "TE",
+                "points": 21.4,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Cam Skattebo",
+                "position": "RB",
+                "points": 7.1,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Brandon Aubrey",
+                "position": "K",
+                "points": 5.0,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "DK Metcalf",
+                "position": "WR",
+                "points": 5.3,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "T.J. Hockenson",
+                "position": "TE",
+                "points": 1.7,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Jared Goff",
+                "position": "QB",
+                "points": 28.94,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Vikings D/ST",
+                "position": "DST",
+                "points": 12.0,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Brian Robinson Jr.",
+                "position": "RB",
+                "points": 1.6,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Woody Marks",
+                "position": "RB",
+                "points": 12.5
+              },
+              {
+                "player": "MarShawn Lloyd",
+                "position": "RB",
+                "points": 16.7
+              }
+            ]
+          },
+          {
+            "teamId": 2,
+            "week": 5,
+            "weightedHits": 7.0,
+            "weightedMax": 7.0,
+            "weightedPossible": 8.0,
+            "swrPct": 87.5,
+            "qualifiedStarters": 8,
+            "totalStarters": 9,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
+            "benchQualifiedCount": 1,
+            "potentiallyUsefulBenchCount": 0,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Jaxon Smith-Njigba",
+                "position": "WR",
+                "points": 22.8,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Trey McBride",
+                "position": "TE",
+                "points": 21.6,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Garrett Wilson",
+                "position": "WR",
+                "points": 23.4,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Jalen Hurts",
+                "position": "QB",
+                "points": 13.0,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Davante Adams",
+                "position": "WR",
+                "points": 22.1,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Jaylen Warren",
+                "position": "RB",
+                "points": 36.8,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Broncos D/ST",
+                "position": "DST",
+                "points": 14.0,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Aaron Jones Sr.",
+                "position": "RB",
+                "points": 18.7,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Ka'imi Fairbairn",
+                "position": "K",
+                "points": 17.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": []
+          },
+          {
+            "teamId": 3,
+            "week": 5,
+            "weightedHits": 4.5,
+            "weightedMax": 6.5,
+            "weightedPossible": 8.0,
+            "swrPct": 56.25,
+            "qualifiedStarters": 5,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Jahmyr Gibbs",
+                "position": "RB",
+                "points": 37.7,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Drake London",
+                "position": "WR",
+                "points": 18.8,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Drake Maye",
+                "position": "QB",
+                "points": 39.46,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Carnell Tate",
+                "position": "WR",
+                "points": 1.6,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Jameson Williams",
+                "position": "WR",
+                "points": 18.7,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Juwan Johnson",
+                "position": "TE",
+                "points": 5.6,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Tyler Loop",
+                "position": "K",
+                "points": 14.0,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Jaguars D/ST",
+                "position": "DST",
+                "points": 4.0,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Will Shipley",
+                "position": "RB",
+                "points": 8.3,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Denzel Boston",
+                "position": "WR",
+                "points": 13.6
+              },
+              {
+                "player": "Ollie Gordon II",
+                "position": "RB",
+                "points": 14.8
+              }
+            ]
+          },
+          {
+            "teamId": 4,
+            "week": 5,
+            "weightedHits": 4.5,
+            "weightedMax": 4.5,
+            "weightedPossible": 8.0,
+            "swrPct": 56.25,
+            "qualifiedStarters": 5,
+            "totalStarters": 9,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
+            "benchQualifiedCount": 0,
+            "potentiallyUsefulBenchCount": 0,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "James Cook III",
+                "position": "RB",
+                "points": 22.8,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Chase Brown",
+                "position": "RB",
+                "points": 7.0,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Brock Bowers",
+                "position": "TE",
+                "points": 23.0,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Rome Odunze",
+                "position": "WR",
+                "points": 5.0,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Christian Watson",
+                "position": "WR",
+                "points": 32.3,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Tyler Shough",
+                "position": "QB",
+                "points": -0.16,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Braelon Allen",
+                "position": "RB",
+                "points": 18.6,
+                "worthy": true
+              },
+              {
+                "slot": "DST",
+                "player": "Bears D/ST",
+                "position": "DST",
+                "points": 1.0,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Spencer Shrader",
+                "position": "K",
+                "points": 21.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": []
+          },
+          {
+            "teamId": 5,
+            "week": 5,
+            "weightedHits": 3.0,
+            "weightedMax": 6.0,
+            "weightedPossible": 8.0,
+            "swrPct": 37.5,
+            "qualifiedStarters": 3,
+            "totalStarters": 9,
+            "missedWeighted": 3.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 3.0,
+            "benchQualifiedCount": 3,
+            "potentiallyUsefulBenchCount": 3,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Ja'Marr Chase",
+                "position": "WR",
+                "points": 19.7,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Ashton Jeanty",
+                "position": "RB",
+                "points": 10.7,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Nico Collins",
+                "position": "WR",
+                "points": 10.6,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "D'Andre Swift",
+                "position": "RB",
+                "points": 17.3,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Joe Burrow",
+                "position": "QB",
+                "points": 24.6,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Josh Downs",
+                "position": "WR",
+                "points": 7.7,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Cam Little",
+                "position": "K",
+                "points": 8.0,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Dalton Kincaid",
+                "position": "TE",
+                "points": 3.7,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Cowboys D/ST",
+                "position": "DST",
+                "points": 1.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Malik Nabers",
+                "position": "WR",
+                "points": 29.1
+              },
+              {
+                "player": "Kyle Pitts Sr.",
+                "position": "TE",
+                "points": 15.2
+              },
+              {
+                "player": "J.K. Dobbins",
+                "position": "RB",
+                "points": 15.4
+              }
+            ]
+          },
+          {
+            "teamId": 6,
+            "week": 5,
+            "weightedHits": 5.5,
+            "weightedMax": 5.5,
+            "weightedPossible": 8.0,
+            "swrPct": 68.75,
+            "qualifiedStarters": 6,
+            "totalStarters": 9,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
+            "benchQualifiedCount": 1,
+            "potentiallyUsefulBenchCount": 0,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Bijan Robinson",
+                "position": "RB",
+                "points": 15.8,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Josh Allen",
+                "position": "QB",
+                "points": 30.5,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "George Pickens",
+                "position": "WR",
+                "points": 28.0,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Tee Higgins",
+                "position": "WR",
+                "points": 4.2,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Javonte Williams",
+                "position": "RB",
+                "points": 14.2,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Harold Fannin Jr.",
+                "position": "TE",
+                "points": 1.4,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Mike Evans",
+                "position": "WR",
+                "points": 26.3,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Harrison Mevis",
+                "position": "K",
+                "points": 2.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Browns D/ST",
+                "position": "DST",
+                "points": 11.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": []
+          },
+          {
+            "teamId": 7,
+            "week": 5,
+            "weightedHits": 2.5,
+            "weightedMax": 4.5,
+            "weightedPossible": 8.0,
+            "swrPct": 31.25,
+            "qualifiedStarters": 3,
+            "totalStarters": 9,
+            "missedWeighted": 1.0,
+            "reassignmentWeighted": 1.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 1,
+            "potentiallyUsefulBenchCount": 1,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Amon-Ra St. Brown",
+                "position": "WR",
+                "points": 12.9,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Omarion Hampton",
+                "position": "RB",
+                "points": 4.9,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Emeka Egbuka",
+                "position": "WR",
+                "points": 17.2,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "David Montgomery",
+                "position": "RB",
+                "points": 1.1,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Dak Prescott",
+                "position": "QB",
+                "points": 12.64,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Sam LaPorta",
+                "position": "TE",
+                "points": 19.8,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Wan'Dale Robinson",
+                "position": "WR",
+                "points": 11.3,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Evan McPherson",
+                "position": "K",
+                "points": 7.0,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Jets D/ST",
+                "position": "DST",
+                "points": 17.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Jacory Croskey-Merritt",
+                "position": "RB",
+                "points": 14.2
+              }
+            ]
+          },
+          {
+            "teamId": 8,
+            "week": 5,
+            "weightedHits": 2.5,
+            "weightedMax": 4.5,
+            "weightedPossible": 8.0,
+            "swrPct": 31.25,
+            "qualifiedStarters": 3,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Jonathan Taylor",
+                "position": "RB",
+                "points": 11.2,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Chris Olave",
+                "position": "WR",
+                "points": 8.6,
+                "worthy": false
+              },
+              {
+                "slot": "FLEX",
+                "player": "Zay Flowers",
+                "position": "WR",
+                "points": 14.6,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Luther Burden III",
+                "position": "WR",
+                "points": 8.9,
+                "worthy": false
+              },
+              {
+                "slot": "TE",
+                "player": "Tucker Kraft",
+                "position": "TE",
+                "points": 11.6,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Trevor Lawrence",
+                "position": "QB",
+                "points": 21.74,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Steelers D/ST",
+                "position": "DST",
+                "points": 1.0,
+                "worthy": false
+              },
+              {
+                "slot": "K",
+                "player": "Will Reichard",
+                "position": "K",
+                "points": 16.0,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Emanuel Wilson",
+                "position": "RB",
+                "points": 13.2,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Rhamondre Stevenson",
+                "position": "RB",
+                "points": 17.5
+              },
+              {
+                "player": "Malik Washington",
+                "position": "WR",
+                "points": 12.1
+              }
+            ]
+          },
+          {
+            "teamId": 9,
+            "week": 5,
+            "weightedHits": 4.5,
+            "weightedMax": 4.5,
+            "weightedPossible": 8.0,
+            "swrPct": 56.25,
+            "qualifiedStarters": 5,
+            "totalStarters": 9,
+            "missedWeighted": 0.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 0.0,
+            "benchQualifiedCount": 0,
+            "potentiallyUsefulBenchCount": 0,
+            "slots": [
+              {
+                "slot": "WR",
+                "player": "Puka Nacua",
+                "position": "WR",
+                "points": 37.7,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Derrick Henry",
+                "position": "RB",
+                "points": 21.0,
+                "worthy": true
+              },
+              {
+                "slot": "RB",
+                "player": "Kyren Williams",
+                "position": "RB",
+                "points": 19.6,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Bucky Irving",
+                "position": "RB",
+                "points": 31.5,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "George Kittle",
+                "position": "TE",
+                "points": 7.4,
+                "worthy": false
+              },
+              {
+                "slot": "QB",
+                "player": "Brock Purdy",
+                "position": "QB",
+                "points": 16.16,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Michael Wilson",
+                "position": "WR",
+                "points": 7.28,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Seahawks D/ST",
+                "position": "DST",
+                "points": 9.0,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Eddy Pineiro",
+                "position": "K",
+                "points": 6.0,
+                "worthy": false
+              }
+            ],
+            "benchOpportunities": []
+          },
+          {
+            "teamId": 10,
+            "week": 5,
+            "weightedHits": 5.0,
+            "weightedMax": 7.0,
+            "weightedPossible": 8.0,
+            "swrPct": 62.5,
+            "qualifiedStarters": 6,
+            "totalStarters": 9,
+            "missedWeighted": 2.0,
+            "reassignmentWeighted": 0.0,
+            "totalOpportunityWeighted": 2.0,
+            "benchQualifiedCount": 2,
+            "potentiallyUsefulBenchCount": 2,
+            "slots": [
+              {
+                "slot": "RB",
+                "player": "Christian McCaffrey",
+                "position": "RB",
+                "points": 17.3,
+                "worthy": true
+              },
+              {
+                "slot": "WR",
+                "player": "Justin Jefferson",
+                "position": "WR",
+                "points": 18.8,
+                "worthy": true
+              },
+              {
+                "slot": "FLEX",
+                "player": "Jeremiyah Love",
+                "position": "RB",
+                "points": 2.2,
+                "worthy": false
+              },
+              {
+                "slot": "RB",
+                "player": "Quinshon Judkins",
+                "position": "RB",
+                "points": 8.0,
+                "worthy": false
+              },
+              {
+                "slot": "WR",
+                "player": "Parker Washington",
+                "position": "WR",
+                "points": 30.4,
+                "worthy": true
+              },
+              {
+                "slot": "TE",
+                "player": "Isaiah Likely",
+                "position": "TE",
+                "points": 32.4,
+                "worthy": true
+              },
+              {
+                "slot": "K",
+                "player": "Jake Bates",
+                "position": "K",
+                "points": 10.0,
+                "worthy": true
+              },
+              {
+                "slot": "QB",
+                "player": "Sam Darnold",
+                "position": "QB",
+                "points": 8.3,
+                "worthy": false
+              },
+              {
+                "slot": "DST",
+                "player": "Texans D/ST",
+                "position": "DST",
+                "points": 15.0,
+                "worthy": true
+              }
+            ],
+            "benchOpportunities": [
+              {
+                "player": "Terry McLaurin",
+                "position": "WR",
+                "points": 12.2
+              },
+              {
+                "player": "Blake Corum",
+                "position": "RB",
+                "points": 16.2
               }
             ]
           }
