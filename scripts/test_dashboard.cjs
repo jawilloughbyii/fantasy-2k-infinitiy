@@ -56,8 +56,10 @@ assert.deepStrictEqual(championshipHistory.champions.map(x=>[x.season,x.espn_tea
  [2021,3,'franchise-07'],[2022,5,'franchise-03'],[2023,7,'franchise-07'],[2024,10,'franchise-10'],[2025,1,'franchise-01']
 ]);
 assert.equal(data.teams.length,10);
-assert.equal(data.completedThrough,4);
-assert.equal(data.rosterAnalysis.weeks.length,4);
+assert.ok(Number.isInteger(data.completedThrough) && data.completedThrough>=4,'At least four approved, completed weeks');
+assert.equal(data.rosterAnalysis.throughWeek,data.completedThrough,'Lineup coverage must match approved scoring coverage');
+assert.equal(data.rosterAnalysis.weeks.length,data.completedThrough,'Every completed week requires finalized lineup coverage');
+assert.deepStrictEqual(data.rosterAnalysis.weeks.map(w=>w.week),Array.from({length:data.completedThrough},(_,i)=>i+1));
 const possible=definitions.lineup.weightedPossible;
 for(const w of data.rosterAnalysis.weeks){
  assert.equal(w.teams.length,10,'10 finalized rosters per week');
@@ -140,7 +142,7 @@ async function main(){
  assert.deepStrictEqual((html.match(/class="navbtn[^"]*" data-tab="[^"]+"/g)||[]).map(x=>x.match(/data-tab="([^"]+)"/)[1]),['overview','teams','history']);
  assert.equal((node('mobileNav').innerHTML.match(/<option value=/g)||[]).length,3,'Mobile navigation also has three destinations');
  assert.ok(html.includes('id="weekStatus"')&&!html.includes('id="sourceStatus"')&&!html.includes('id="sideStatus"')&&!html.includes('id="footerStatus"'),'Only one persistent data-status indicator remains');
- assert.equal(node('weekStatus').textContent,'2026 · Finalized through Week 4','Data-status indicator is based on approved completed weeks');
+ assert.equal(node('weekStatus').textContent,`2026 · Finalized through Week ${data.completedThrough}`,'Data-status indicator is based on approved completed weeks');
  assert.ok(view.includes('League standings & scoring rank')&&view.includes('Schedule luck · extra wins'),'Overview presents standings and schedule luck');
  assert.ok(view.includes('League avg PF')&&view.includes('League form'),'League strength and trend context retained');
  assert.ok(view.includes('power-desktop')&&view.includes('power-table')&&view.includes('power-mobile-item'));
@@ -238,7 +240,7 @@ async function main(){
  view=sub('team','lineup');
  assert.ok(view.includes('lineup-quality')&&view.includes('Roster ceiling')&&view.includes('Weekly lineup quality'),'Deep lineup analysis kept');
  assert.ok(view.includes('Bench upgrades:')&&view.includes('Weekly opponent scores'),'Original lineup/box-score evidence stays available');
- assert.ok(view.includes('Finalized hindsight, not pregame predictions.')&&view.includes('Week 4 cutoff:'),'Retain crucial hindsight caveat and actual final-week cutoff');
+ assert.ok(view.includes('Finalized hindsight, not pregame predictions.')&&view.includes(`Week ${data.completedThrough} cutoff:`),'Retain crucial hindsight caveat and actual final-week cutoff');
  view=tab('history');
  assert.ok(view.includes('2025 Yearbook')&&view.includes('Regular-season scoring order'),'Yearbook built from actual completed scoring');
  assert.ok(!view.includes('This yearbook uses finalized regular-season scoring data.'),'Do not repeat yearbook methodology');
