@@ -5,6 +5,8 @@ on:
     branches: [data/2026-week-5-verified]
     paths:
       - '.github/workflows/prepare-week5.yml'
+      - 'scripts/test_pipeline.py'
+      - 'scripts/test_dashboard.cjs'
   workflow_dispatch:
 
 permissions:
