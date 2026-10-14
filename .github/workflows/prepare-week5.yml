@@ -7,6 +7,7 @@ on:
       - '.github/workflows/prepare-week5.yml'
       - 'scripts/test_pipeline.py'
       - 'scripts/test_dashboard.cjs'
+      - 'scripts/test_acquisition_backfill.py'
   workflow_dispatch:
 
 permissions:
