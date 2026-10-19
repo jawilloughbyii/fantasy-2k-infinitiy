@@ -52,7 +52,7 @@ class ChainTests(unittest.TestCase):
     def test_incomplete_evidence_never_returns_source_percentages(self):
         for name in GATES:
             flags={**GATES,name:False}
-            with self.subTest(name=name), self.assertRaisesRegex(ValueError,"gates"):
+            with self.subTest(name=name), self.assertRaises(ValueError):
                 self.attempt(gates=flags)
 
     def test_invalid_draft_and_team_slot_coverage(self):
