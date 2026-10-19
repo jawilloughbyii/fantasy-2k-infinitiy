@@ -9,6 +9,8 @@ on:
       - 'scripts/normalize_acquisition_2026.py'
       - 'scripts/test_normalize_acquisition_2026.py'
       - 'scripts/test_audit_acquisition_2026.py'
+      - 'scripts/report_acquisition_2026_exceptions.py'
+      - 'scripts/test_report_acquisition_2026_exceptions.py'
       - 'scripts/test_reconcile_acquisition_2026.py'
       - '.github/workflows/preview-2026-acquisition-chain.yml'
   workflow_dispatch:
@@ -32,11 +34,35 @@ jobs:
           python scripts/test_reconcile_acquisition_2026.py
           python scripts/test_normalize_acquisition_2026.py
           python scripts/test_audit_acquisition_2026.py
+          python scripts/test_report_acquisition_2026_exceptions.py
       - name: Retrieve original-season ESPN evidence privately
         env:
           ESPN_S2: ${{ secrets.ESPN_S2 }}
           ESPN_SWID: ${{ secrets.ESPN_SWID }}
         run: python scripts/audit_acquisition_2026.py
+      - name: Generate minimized fantasy-player exception review
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/report_acquisition_2026_exceptions.py
+      - name: Validate exception-report content boundary
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path("output/acquisition-2026-private/exceptions.json")
+          r=json.loads(p.read_text())
+          assert r["status"]=="PRIVATE_REVIEW_ONLY_NO_ACQUISITION_ASSIGNMENTS"
+          assert not r["ready_for_publication"] and not r["ready_for_attribution"]
+          assert r["exception_item_count"]==len(r["items"])
+          assert sum(r["counts_by_action"].values())==len(r["items"])
+          assert all(x["process_at_utc"] is None and
+                     x["temporal_attribution"]=="UNVERIFIED_PROPOSED_DATE_NOT_EXECUTION"
+                     for x in r["items"])
+          assert not any(k in r for k in ("owners","members","cookies","raw_transactions"))
+          assert all(set(x)=={"item_number","player","name_status","franchise","action",
+                                "proposed_at_utc","process_at_utc","finalized_starter_weeks",
+                                "matched_finalized_starter","temporal_attribution"} for x in r["items"])
+          PY
       - name: Require research-only output and unchanged public data
         run: |
           python - <<'PY'
@@ -58,5 +84,13 @@ jobs:
         with:
           name: acquisition-2026-private-coverage
           path: output/acquisition-2026-private/coverage.json
+          retention-days: 3
+          if-no-files-found: warn
+      - name: Upload short-lived minimized fantasy-player exception review
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: acquisition-2026-timestamp-exceptions
+          path: output/acquisition-2026-private/exceptions.json
           retention-days: 3
           if-no-files-found: warn
