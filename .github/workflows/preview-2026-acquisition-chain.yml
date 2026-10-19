@@ -11,6 +11,8 @@ on:
       - 'scripts/test_audit_acquisition_2026.py'
       - 'scripts/report_acquisition_2026_exceptions.py'
       - 'scripts/test_report_acquisition_2026_exceptions.py'
+      - 'scripts/probe_2026_opening_evidence.py'
+      - 'scripts/test_probe_2026_opening_evidence.py'
       - 'scripts/test_reconcile_acquisition_2026.py'
       - '.github/workflows/preview-2026-acquisition-chain.yml'
   workflow_dispatch:
@@ -35,6 +37,7 @@ jobs:
           python scripts/test_normalize_acquisition_2026.py
           python scripts/test_audit_acquisition_2026.py
           python scripts/test_report_acquisition_2026_exceptions.py
+          python scripts/test_probe_2026_opening_evidence.py
       - name: Retrieve original-season ESPN evidence privately
         env:
           ESPN_S2: ${{ secrets.ESPN_S2 }}
@@ -67,6 +70,23 @@ jobs:
                                 "matched_finalized_starter","draft_origin","prior_executed_movements",
                                 "observed_roster_weeks","opening_roster_verified","prestart_evidence_gap","temporal_attribution"} for x in r["items"])
           PY
+      - name: Probe original draft-adjacent roster and transaction history
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/probe_2026_opening_evidence.py
+      - name: Confirm pre-week-one query evidence remains research-only
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          r=json.loads(pathlib.Path("output/acquisition-2026-private/preweek1-evidence.json").read_text())
+          assert r["status"]=="PRIVATE_PREWEEK1_EVIDENCE_DISCOVERY_ONLY"
+          assert not r["ready_for_attribution"] and not r["ready_for_publication"]
+          assert not r["opening_rosters"]["draft_day_opening_roster_verified"]
+          assert not r["transaction_query_comparison"]["full_draft_to_week_one_transaction_history_verified"]
+          assert r["eight_player_gaps"]["matched_exception_items"]==8
+          assert r["no_public_snapshot_changes"]
+          PY
       - name: Require research-only output and unchanged public data
         run: |
           python - <<'PY'
@@ -98,3 +118,11 @@ jobs:
           path: output/acquisition-2026-private/exceptions.json
           retention-days: 3
           if-no-files-found: warn
+      - name: Upload short-lived early-source coverage audit
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: acquisition-2026-preweek1-evidence
+          path: output/acquisition-2026-private/preweek1-evidence.json
+          retention-days: 3
+          if-no-files-found: error
