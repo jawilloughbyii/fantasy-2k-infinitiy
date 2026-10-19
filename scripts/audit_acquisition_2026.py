@@ -44,6 +44,8 @@ def transaction_evidence(raw, period_records):
     types=collections.Counter()
     items=collections.Counter()
     dated=0
+    executed_actions=collections.Counter()
+    executed_fields=collections.Counter()
     records=raw.get("transactions") if isinstance(raw,dict) else None
     for tx in records if isinstance(records,list) else []:
         if not isinstance(tx,dict):continue
@@ -52,7 +54,13 @@ def transaction_evidence(raw, period_records):
         if isinstance(tx.get("processDate"),(int,float)) and math.isfinite(tx["processDate"]) and tx["processDate"]>0:
             dated+=1
         for item in tx.get("items") or []:
-            if isinstance(item,dict):items[str(item.get("type","missing"))]+=1
+            if isinstance(item,dict):
+                action=str(item.get("type","missing"))
+                items[action]+=1
+                if tx.get("status")=="EXECUTED":
+                    executed_actions[str(tx.get("type","missing"))+"/"+action]+=1
+                    for key in ("teamId","fromTeamId","toTeamId","playerId","lineupSlotId"):
+                        executed_fields[action+"/"+key]+=int(key in item)
     # All per-period transaction records must be present unchanged in an
     # unscoped feed, but this condition is NECESSARY, never sufficient.
     merged={}
@@ -77,6 +85,8 @@ def transaction_evidence(raw, period_records):
             "status_counts":dict(sorted(statuses.items())),
             "transaction_type_counts":dict(sorted(types.items())),
             "item_action_counts":dict(sorted(items.items())),
+            "executed_transaction_actions":dict(sorted(executed_actions.items())),
+            "executed_item_field_coverage":dict(sorted(executed_fields.items())),
             "chain_completeness_verified":False}
 
 
@@ -180,6 +190,8 @@ def main():
         "transaction_status_counts":report["transaction_evidence"]["status_counts"],
         "transaction_type_counts":report["transaction_evidence"]["transaction_type_counts"],
         "item_action_counts":report["transaction_evidence"]["item_action_counts"],
+        "executed_transaction_actions":report["transaction_evidence"]["executed_transaction_actions"],
+        "executed_item_field_coverage":report["transaction_evidence"]["executed_item_field_coverage"],
         "ready_for_publication":False},sort_keys=True))
 
 if __name__=="__main__":
