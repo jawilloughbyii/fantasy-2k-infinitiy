@@ -85,6 +85,8 @@ jobs:
           assert not r["opening_rosters"]["draft_day_opening_roster_verified"]
           assert not r["transaction_query_comparison"]["full_draft_to_week_one_transaction_history_verified"]
           assert r["eight_player_gaps"]["matched_exception_items"]==8
+          assert r["eight_player_gaps"]["early_period_transaction_evidence"]["focus_player_count"]==8
+          assert r["eight_player_gaps"]["early_period_transaction_evidence"]["timing_and_ownership_not_yet_replayed"] is True
           assert r["no_public_snapshot_changes"]
           PY
       - name: Require research-only output and unchanged public data
