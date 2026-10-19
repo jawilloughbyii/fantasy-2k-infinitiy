@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 from probe_acquisition_provenance import fetch, roster
 from backfill_acquisition_provenance import transaction_check
-from report_acquisition_2026_exceptions import entry_id, inspect, valid_ms
+from report_acquisition_2026_exceptions import entry_id, fantasy_name, inspect, valid_ms
 from audit_acquisition_2026 import ROOT, YEAR
 
 VIEWS=("mTransactions2","mTransactions")
@@ -120,6 +120,7 @@ def focus_gaps(exceptions,roster_snapshots,draft_picks,raw_transactions=None,wee
     early_history=None
     if raw_transactions is not None and weekly_boxes is not None:
         started=set()
+        labels=collections.defaultdict(set)
         for week,raw in weekly_boxes.items():
             for game in raw.get('schedule') or []:
                 if game.get('matchupPeriodId')!=week:continue
@@ -130,7 +131,10 @@ def focus_gaps(exceptions,roster_snapshots,draft_picks,raw_transactions=None,wee
                     for e in entries:
                         if e.get('lineupSlotId') in (0,2,4,6,23,17,16):
                             pid=entry_id(e)
-                            if type(tid) is int and pid is not None:started.add((tid,pid))
+                            if type(tid) is int and pid is not None:
+                                started.add((tid,pid))
+                                label=fantasy_name(e)
+                                if label:labels[pid].add(label)
         focus=[]
         for tx in raw_transactions.get('transactions') or []:
             if tx.get('status')!='EXECUTED' or tx.get('type') not in ('FREEAGENT','ROSTER'):continue
@@ -153,6 +157,9 @@ def focus_gaps(exceptions,roster_snapshots,draft_picks,raw_transactions=None,wee
                     pid=item.get('playerId')
                     if type(pid) is not int:continue
                     historical[pid].append((period,typ,item.get('type'),item.get('fromTeamId'),item.get('toTeamId'),valid_ms(tx.get('processDate')),valid_ms(tx.get('proposedDate'))))
+        for pick in draft_picks:
+            pid=pick.get('player_id');label=pick.get('player_name')
+            if type(pid) is int and isinstance(label,str) and label.strip():labels[pid].add(label.strip())
         matched=set(pair[1] for pair in focus)
         history_actions=collections.Counter()
         per_period=collections.Counter()
@@ -162,7 +169,18 @@ def focus_gaps(exceptions,roster_snapshots,draft_picks,raw_transactions=None,wee
                 history_actions[typ+'/'+action]+=1
                 per_period[str(period)]+=1
                 players_with_executed_early_action.add(pid)
-        early_history={'focus_player_count':len(matched),'players_with_executed_period_1_to_5_action':len(players_with_executed_early_action),
+        details=[]
+        for tid,pid in focus:
+            names=labels.get(pid,set())
+            name=next(iter(names)) if len(names)==1 else ('Name requires manual reconciliation' if names else 'Name unavailable in inspected evidence')
+            entries=historical.get(pid,[])
+            details.append({'player':name,
+                            'events':[{'period':period,'action':typ+'/'+action,
+                                       'time_basis':'processDate' if has_process else 'proposedDate_unverified' if has_proposed else 'missing'}
+                                      for period,typ,action,frm,to,has_process,has_proposed in entries],
+                            'ownership_reconciled':False})
+        details.sort(key=lambda x:x['player'])
+        early_history={'player_evidence':details,'focus_player_count':len(matched),'players_with_executed_period_1_to_5_action':len(players_with_executed_early_action),
                        'observed_action_counts':dict(sorted(history_actions.items())),
                        'period_action_item_counts':dict(sorted(per_period.items())),
                        'timing_and_ownership_not_yet_replayed':True}
