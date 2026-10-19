@@ -83,6 +83,21 @@ def inspect(raw_transactions, weekly_boxes, approved, mapping, draft_picks):
     for p in draft_picks:
         pid=p.get("player_id");label=p.get("player_name")
         if type(pid) is int and isinstance(label,str) and label.strip():names.setdefault(pid,set()).add(label.strip())
+    draft_owner={p["player_id"]:p["espn_team_id"] for p in draft_picks if type(p.get("player_id")) is int and type(p.get("espn_team_id")) is int}
+    # A backwards trace is an observed evidence ledger, NOT verified ownership.
+    # Collect every executed player movement by ID in memory, without exporting IDs.
+    movement={}
+    for tx in txs:
+        if not isinstance(tx,dict) or tx.get("status")!="EXECUTED":continue
+        typ=tx.get("type")
+        if typ not in ("FREEAGENT","WAIVER","ROSTER","TRADE_ACCEPT"):continue
+        for item in tx.get("items") or []:
+            if not isinstance(item,dict) or item.get("type") not in ("ADD","DROP","TRADE"):continue
+            pid=item.get("playerId")
+            if type(pid) is not int or pid==0:continue
+            processed=tx.get("processDate");proposed=tx.get("proposedDate")
+            stamp=processed if valid_ms(processed) else proposed if valid_ms(proposed) else None
+            movement.setdefault(pid,[]).append((stamp,typ,item.get("type"),item.get("fromTeamId"),item.get("toTeamId"),valid_ms(processed)))
     result=[]
     dedup=set()
     for tx in txs:
@@ -120,6 +135,18 @@ def inspect(raw_transactions, weekly_boxes, approved, mapping, draft_picks):
             else:
                 display="Name unavailable in inspected evidence";name_status="not_observed"
             hit=sorted(set(starters.get((team,pid),[])))
+            # Exclude the current proposed-only movement by comparing its exact
+            # player/action/team/date; list only strictly earlier observed events.
+            prior=[]
+            for stamp,prior_type,prior_action,frm,to,has_process in movement.get(pid,[]):
+                if stamp is None or stamp>=proposed:continue
+                prior.append({"action":prior_type+"/"+prior_action,
+                              "from_franchise":by_team.get(frm) if type(frm) is int else None,
+                              "to_franchise":by_team.get(to) if type(to) is int else None,
+                              "observed_at_utc":instant(stamp),
+                              "time_basis":"processDate" if has_process else "proposedDate_unverified"})
+            prior.sort(key=lambda x:(x["observed_at_utc"],x["action"]))
+            original=draft_owner.get(pid)
             result.append({"item_number":len(result)+1,"player":display,
                            "name_status":name_status,"franchise":by_team[team],
                            "action":typ+"/"+action,
@@ -127,6 +154,9 @@ def inspect(raw_transactions, weekly_boxes, approved, mapping, draft_picks):
                            "process_at_utc":None,
                            "finalized_starter_weeks":hit,
                            "matched_finalized_starter":bool(hit),
+                           "draft_origin":("same_franchise" if original==team else
+                               "another_franchise" if original in by_team else "not_in_verified_draft"),
+                           "prior_executed_movements":prior,
                            "temporal_attribution":"UNVERIFIED_PROPOSED_DATE_NOT_EXECUTION"})
     result.sort(key=lambda x:(x["proposed_at_utc"],x["franchise"],x["action"],x["item_number"]))
     counts=dict(sorted(collections.Counter(r["action"] for r in result).items()))
