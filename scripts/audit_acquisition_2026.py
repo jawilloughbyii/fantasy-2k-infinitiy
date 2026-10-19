@@ -46,6 +46,7 @@ def transaction_evidence(raw, period_records):
     dated=0
     executed_actions=collections.Counter()
     executed_fields=collections.Counter()
+    executed_value_shapes=collections.Counter()
     records=raw.get("transactions") if isinstance(raw,dict) else None
     for tx in records if isinstance(records,list) else []:
         if not isinstance(tx,dict):continue
@@ -61,6 +62,10 @@ def transaction_evidence(raw, period_records):
                     executed_actions[str(tx.get("type","missing"))+"/"+action]+=1
                     for key in ("teamId","fromTeamId","toTeamId","playerId","lineupSlotId"):
                         executed_fields[action+"/"+key]+=int(key in item)
+                        value=item.get(key)
+                        shape="league_team" if type(value) is int and 1<=value<=10 else "unassigned" if value is None or value in (0,-1) else "other"
+                        if key in ("fromTeamId","toTeamId"):
+                            executed_value_shapes[action+"/"+key+"/"+shape]+=1
     # All per-period transaction records must be present unchanged in an
     # unscoped feed, but this condition is NECESSARY, never sufficient.
     merged={}
@@ -87,6 +92,7 @@ def transaction_evidence(raw, period_records):
             "item_action_counts":dict(sorted(items.items())),
             "executed_transaction_actions":dict(sorted(executed_actions.items())),
             "executed_item_field_coverage":dict(sorted(executed_fields.items())),
+            "executed_team_value_shapes":dict(sorted(executed_value_shapes.items())),
             "chain_completeness_verified":False}
 
 
@@ -192,6 +198,7 @@ def main():
         "item_action_counts":report["transaction_evidence"]["item_action_counts"],
         "executed_transaction_actions":report["transaction_evidence"]["executed_transaction_actions"],
         "executed_item_field_coverage":report["transaction_evidence"]["executed_item_field_coverage"],
+        "executed_team_value_shapes":report["transaction_evidence"]["executed_team_value_shapes"],
         "ready_for_publication":False},sort_keys=True))
 
 if __name__=="__main__":
