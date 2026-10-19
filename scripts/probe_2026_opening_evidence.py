@@ -7,6 +7,7 @@ snapshot without independent timestamp/selection semantics. Only minimized
 coverage and source gaps are saved, no stable player/transaction or owner IDs.
 """
 import collections
+import datetime as dt
 import hashlib
 import json
 import os
@@ -56,6 +57,10 @@ def compare_transaction_queries(responses):
         result,ids=transaction_check(raw)
         observed=raw.get('transactions') if isinstance(raw,dict) else None
         schema=collections.Counter()
+        executed_types=collections.Counter()
+        executed_actions=collections.Counter()
+        proposed=[]
+        processed=[]
         if isinstance(observed,list):
             for tx in observed:
                 if not isinstance(tx,dict):
@@ -66,12 +71,24 @@ def compare_transaction_queries(responses):
                 schema['list_items']+=int(isinstance(tx.get('items'),list))
                 schema['missing_items']+=int(not isinstance(tx.get('items'),list))
                 schema['executed_status']+=int(tx.get('status')=='EXECUTED')
+                if tx.get('status')=='EXECUTED':
+                    category=str(tx.get('type','missing'))
+                    executed_types[category]+=1
+                    for item in tx.get('items') or []:
+                        if isinstance(item,dict):executed_actions[category+'/'+str(item.get('type','missing'))]+=1
+                    for field,values in (('proposedDate',proposed),('processDate',processed)):
+                        v=tx.get(field)
+                        if type(v) in (int,float) and v>0:values.append(dt.datetime.fromtimestamp(v/1000,dt.timezone.utc).isoformat())
         if isinstance(observed,list) and all(isinstance(tx,dict) for tx in observed):
             records[label]=collections.Counter(hashlib.sha256(json.dumps(tx,sort_keys=True,separators=(',',':')).encode()).digest() for tx in observed)
         else:
             records[label]=None
         summaries[label]={"api":"ok","structure":result["status"],"returned_records":result["records"],
-                          "malformed":result["malformed"],"transaction_schema_counts":dict(sorted(schema.items()))}
+                          "malformed":result["malformed"],"transaction_schema_counts":dict(sorted(schema.items())),
+                          "executed_types":dict(sorted(executed_types.items())),
+                          "executed_actions":dict(sorted(executed_actions.items())),
+                          "proposed_utc_window":[min(proposed),max(proposed)] if proposed else None,
+                          "processed_utc_window":[min(processed),max(processed)] if processed else None}
     main=records.get("mTransactions2_unscoped")
     main_valid=main is not None
     for label,ids in records.items():
