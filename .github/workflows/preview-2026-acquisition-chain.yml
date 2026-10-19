@@ -86,6 +86,9 @@ jobs:
           assert not r["transaction_query_comparison"]["full_draft_to_week_one_transaction_history_verified"]
           assert r["eight_player_gaps"]["matched_exception_items"]==8
           assert r["eight_player_gaps"]["early_period_transaction_evidence"]["focus_player_count"]==8
+          assert len(r["eight_player_gaps"]["early_period_transaction_evidence"]["player_evidence"])==8
+          assert all(x["ownership_reconciled"] is False for x in r["eight_player_gaps"]["early_period_transaction_evidence"]["player_evidence"])
+          assert all(set(x)=={"player","events","ownership_reconciled"} for x in r["eight_player_gaps"]["early_period_transaction_evidence"]["player_evidence"])
           assert r["eight_player_gaps"]["early_period_transaction_evidence"]["timing_and_ownership_not_yet_replayed"] is True
           assert r["no_public_snapshot_changes"]
           PY
