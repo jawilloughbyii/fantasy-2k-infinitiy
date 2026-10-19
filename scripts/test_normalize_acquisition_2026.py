@@ -16,11 +16,14 @@ class Normalization(unittest.TestCase):
           record("ROSTER",[item("LINEUP",100,None,None),item("DROP",400,2,-1)],id=3),
           record("TRADE_ACCEPT",[item("TRADE",500,1,2)],id=4),
           record("WAIVER",[item("ADD",600,None,3)],status="FAILED_INVALIDPLAYERSOURCE",id=5),
-          record("TRADE_PROPOSAL",[item("TRADE",500,1,2)],status="PENDING",id=6)]}
+          record("TRADE_PROPOSAL",[item("TRADE",500,1,2)],status="PENDING",id=6),
+          {"type":"TRADE_UPHOLD","status":"EXECUTED","items":[]},
+          {"type":"ROSTER","status":"EXECUTED","items":[item("LINEUP",500,None,None)]}]}
         rows,counts=normalize_executed(r)
         self.assertEqual(len(rows),5)
         self.assertEqual(counts["nonexecuted_ignored"],2)
-        self.assertEqual(counts["lineup_edits_ignored"],1)
+        self.assertEqual(counts["lineup_edits_ignored"],2)
+        self.assertEqual(counts["empty_trade_uphold_ignored"],1)
         self.assertEqual(counts["trade"],1)
         self.assertEqual({r["action"] for r in rows},{"waiver","free_agent","drop","trade"})
         trade=next(r for r in rows if r["action"]=="trade")
