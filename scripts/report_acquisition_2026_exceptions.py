@@ -49,6 +49,7 @@ def inspect(raw_transactions, weekly_boxes, approved, mapping, draft_picks):
     by_team={int(mapping[str(t["id"])]):t["name"] for t in approved["teams"]}
     if set(by_team)!=set(range(1,11)):raise ValueError("Team identity mapping incomplete")
     starters=collections.defaultdict(list)
+    weekly_membership=collections.defaultdict(set)
     names={}
     for w in range(1,weeks+1):
         raw=weekly_boxes.get(w)
@@ -73,6 +74,8 @@ def inspect(raw_transactions, weekly_boxes, approved, mapping, draft_picks):
                     if not isinstance(entry,dict):raise ValueError("Malformed roster entry")
                     pid=entry_id(entry)
                     slot=entry.get("lineupSlotId")
+                    if pid is not None and type(slot) is int and slot in (*SLOTS,20,21):
+                        weekly_membership[(tid,pid)].add(w)
                     if slot in SLOTS:
                         if pid is None:raise ValueError("Missing stable starter identity")
                         extracted.append((pid,slot))
@@ -147,6 +150,16 @@ def inspect(raw_transactions, weekly_boxes, approved, mapping, draft_picks):
                               "time_basis":"processDate" if has_process else "proposedDate_unverified"})
             prior.sort(key=lambda x:(x["observed_at_utc"],x["action"]))
             original=draft_owner.get(pid)
+            members=sorted(weekly_membership.get((team,pid),set()))
+            if original==team:
+                gap="DRAFT_SAME_FRANCHISE_CONTINUITY_UNVERIFIED"
+            elif original in by_team:
+                gap="DRAFTED_ELSEWHERE_TRANSFER_UNOBSERVED"
+            else:
+                gap="UNDRAFTED_PRESTART_ACQUISITION_UNOBSERVED"
+            # No draft-day snapshot is supplied by mRoster week-one finals.
+            # An absent movement is a genuine evidence gap, not proof of FA source.
+            if prior:gap="EARLIER_MOVEMENTS_OBSERVED_REQUIRE_TIMESTAMP_REPLAY"
             result.append({"item_number":len(result)+1,"player":display,
                            "name_status":name_status,"franchise":by_team[team],
                            "action":typ+"/"+action,
@@ -157,6 +170,9 @@ def inspect(raw_transactions, weekly_boxes, approved, mapping, draft_picks):
                            "draft_origin":("same_franchise" if original==team else
                                "another_franchise" if original in by_team else "not_in_verified_draft"),
                            "prior_executed_movements":prior,
+                           "observed_roster_weeks":members,
+                           "opening_roster_verified":False,
+                           "prestart_evidence_gap":gap,
                            "temporal_attribution":"UNVERIFIED_PROPOSED_DATE_NOT_EXECUTION"})
     result.sort(key=lambda x:(x["proposed_at_utc"],x["franchise"],x["action"],x["item_number"]))
     counts=dict(sorted(collections.Counter(r["action"] for r in result).items()))
