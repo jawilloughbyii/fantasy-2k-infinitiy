@@ -12,7 +12,7 @@ import os
 from pathlib import Path
 from probe_acquisition_provenance import fetch, roster
 from backfill_acquisition_provenance import transaction_check
-from report_acquisition_2026_exceptions import entry_id, inspect
+from report_acquisition_2026_exceptions import entry_id, inspect, valid_ms
 from audit_acquisition_2026 import ROOT, YEAR
 
 VIEWS=("mTransactions2","mTransactions")
@@ -68,7 +68,7 @@ def compare_transaction_queries(responses):
     return {"queries":summaries,"transaction_identity_comparisons_valid":main_valid,
             "full_draft_to_week_one_transaction_history_verified":False}
 
-def focus_gaps(exceptions,roster_snapshots,draft_picks):
+def focus_gaps(exceptions,roster_snapshots,draft_picks,raw_transactions=None,weekly_boxes=None):
     """Use the existing identified eight; match only to full source data in memory.
 
     Exception export intentionally lacks player IDs, so link by a private
@@ -82,17 +82,46 @@ def focus_gaps(exceptions,roster_snapshots,draft_picks):
     # inspect() deliberately strips player IDs; rematch by its exception item
     # order against the executed proposed-only movements before sorting would
     # be unsafe, so this separate probe does not guess missing joins.
-    return {"matched_exception_items":len(relevant),
+    early={}
+    if raw_transactions is not None and weekly_boxes is not None:
+        started=set()
+        for week,raw in weekly_boxes.items():
+            for game in raw.get('schedule') or []:
+                if game.get('matchupPeriodId')!=week:continue
+                for side in ('home','away'):
+                    obj=game.get(side) or {}
+                    tid=obj.get('teamId')
+                    entries=(obj.get('rosterForCurrentScoringPeriod') or {}).get('entries') or []
+                    for e in entries:
+                        if e.get('lineupSlotId') in (0,2,4,6,23,17,16):
+                            pid=entry_id(e)
+                            if type(tid) is int and pid is not None:started.add((tid,pid))
+        focus=[]
+        for tx in raw_transactions.get('transactions') or []:
+            if tx.get('status')!='EXECUTED' or tx.get('type') not in ('FREEAGENT','ROSTER'):continue
+            if valid_ms(tx.get('processDate')) or not valid_ms(tx.get('proposedDate')):continue
+            for e in tx.get('items') or []:
+                act=e.get('type')
+                if (tx.get('type'),act) not in (('FREEAGENT','ADD'),('FREEAGENT','DROP'),('ROSTER','DROP')):continue
+                tid=e.get('toTeamId') if act=='ADD' else e.get('fromTeamId')
+                if (tid,e.get('playerId')) in started:focus.append((tid,e['playerId']))
+        if len(focus)!=len(relevant):raise ValueError('Original-ID exception join mismatch')
+        for label,sets in roster_snapshots.items():
+            if sets is not None:
+                early[label]={'matched_items_on_same_franchise_roster':sum(pair in sets for pair in focus),
+                              'matched_items_on_any_roster':sum(any(pid==pair[1] for tid,pid in sets) for pair in focus),
+                              'observation_only_not_draft_day_ownership':True}
+    return {"early_snapshot_eight_item_coverage":early,"matched_exception_items":len(relevant),
             "draft_origin_counts":dict(sorted(collections.Counter(r["draft_origin"] for r in relevant).items())),
             "prior_movement_items":sum(len(r["prior_executed_movements"]) for r in relevant),
             "unresolved_prestart_items":sum(not bool(r["prior_executed_movements"]) for r in relevant),
             "opening_ownership_verified":False,
             "note":"No player identity join to period-zero roster is promoted: ESPN period-zero semantics are not independently established."}
 
-def summarize(rosters,transaction_queries,exceptions,draft_picks):
-    rr,_=compare_rosters(rosters,draft_picks)
+def summarize(rosters,transaction_queries,exceptions,draft_picks,raw_transactions=None,weekly_boxes=None):
+    rr,snapshots=compare_rosters(rosters,draft_picks)
     tt=compare_transaction_queries(transaction_queries)
-    ff=focus_gaps(exceptions,{},draft_picks)
+    ff=focus_gaps(exceptions,snapshots,draft_picks,raw_transactions,weekly_boxes)
     return {"status":"PRIVATE_PREWEEK1_EVIDENCE_DISCOVERY_ONLY","season":YEAR,
             "opening_rosters":rr,"transaction_query_comparison":tt,"eight_player_gaps":ff,
             "ready_for_attribution":False,"ready_for_publication":False,
@@ -120,7 +149,7 @@ def main():
         if st.get("status")!="ok":raise ValueError("Finalized original-week lineup unavailable")
         box[w]=raw
     exception=inspect(original,box,approved,mapping,draft["picks"])
-    report=summarize(rosters,tx,exception,draft["picks"])
+    report=summarize(rosters,tx,exception,draft["picks"],original,box)
     path=ROOT/"output/acquisition-2026-private/preweek1-evidence.json"
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(report,indent=2)+"\n")
