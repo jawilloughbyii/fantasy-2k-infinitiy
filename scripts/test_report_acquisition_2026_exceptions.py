@@ -29,6 +29,9 @@ class ReportCases(unittest.TestCase):
         self.assertEqual(item["player"],"Synthetic Player A")
         self.assertIn(1,item["finalized_starter_weeks"])
         self.assertIsNone(item["process_at_utc"])
+        self.assertIn(1,item["observed_roster_weeks"])
+        self.assertFalse(item["opening_roster_verified"])
+        self.assertEqual(item["prestart_evidence_gap"],"UNDRAFTED_PRESTART_ACQUISITION_UNOBSERVED")
         self.assertFalse(r["ready_for_publication"])
         blob=json.dumps(r)
         for secret in ('"player_id"','"transaction_id"','"cookie"','"owner"','"member"'):
@@ -61,4 +64,5 @@ class ReportCases(unittest.TestCase):
         draft=[{"player_id":pid,"player_name":"Different Synthetic Name"}]
         r=inspect(tx,boxes,PUBLISHED,MAPPING,draft)
         self.assertEqual(r["items"][0]["name_status"],"conflicting_display_labels")
+
 if __name__=="__main__":unittest.main()
