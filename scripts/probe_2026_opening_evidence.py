@@ -53,9 +53,21 @@ def compare_transaction_queries(responses):
         if status.get("status")!="ok":
             summaries[label]={"api":status.get("status"),"structure":"unavailable"};continue
         result,ids=transaction_check(raw)
+        observed=raw.get('transactions') if isinstance(raw,dict) else None
+        schema=collections.Counter()
+        if isinstance(observed,list):
+            for tx in observed:
+                if not isinstance(tx,dict):
+                    schema['non_object']+=1
+                    continue
+                schema['integer_id']+=int(type(tx.get('id')) is int)
+                schema['missing_id']+=int(type(tx.get('id')) is not int)
+                schema['list_items']+=int(isinstance(tx.get('items'),list))
+                schema['missing_items']+=int(not isinstance(tx.get('items'),list))
+                schema['executed_status']+=int(tx.get('status')=='EXECUTED')
         records[label]=ids
         summaries[label]={"api":"ok","structure":result["status"],"returned_records":result["records"],
-                          "malformed":result["malformed"]}
+                          "malformed":result["malformed"],"transaction_schema_counts":dict(sorted(schema.items()))}
     main=records.get("mTransactions2_unscoped")
     main_valid=bool(main is not None and summaries["mTransactions2_unscoped"]["malformed"]==0)
     for label,ids in records.items():
