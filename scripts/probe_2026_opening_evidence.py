@@ -228,12 +228,16 @@ def main():
         box[w]=raw
     exception=inspect(original,box,approved,mapping,draft["picks"])
     report=summarize(rosters,tx,exception,draft["picks"],original,box)
+    from conserve_2026_period_events import examine
+    windows={p:(raw,status) for view,p,raw,status in tx if view=='mTransactions2' and type(p) is int and 1<=p<=5}
+    report["period_event_conservation"]=examine(windows,draft["picks"],rosters)
     path=ROOT/"output/acquisition-2026-private/preweek1-evidence.json"
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(report,indent=2)+"\n")
     print(json.dumps({"status":report["status"],"distinct_roster_sets":report["opening_rosters"]["distinct_observed_roster_sets"],
                       "eight_item_early_action_coverage":report["eight_player_gaps"]["early_period_transaction_evidence"]["players_with_executed_period_1_to_5_action"],
                       "transaction_query_coverage":report["transaction_query_comparison"]["queries"],
+                      "draft_event_coverage_complete":report["period_event_conservation"]["draft_event_coverage_complete"],
                       "opening_ownership_verified":False,"ready_for_publication":False},sort_keys=True))
 if __name__=="__main__":
     try:main()
