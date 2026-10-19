@@ -82,7 +82,7 @@ def transaction_evidence(raw, period_records):
 
 def score_check(weekly_boxscores, published, team_map):
     """Independent finalized matchup PF comparison against approved data."""
-    expected={(w["week"],team_map[str(t["id"]) ]):w["pf"]
+    expected={(w["week"],team_map[str(t["id"])]):(w["pf"], team_map[str(w["opp"])])
               for t in published["teams"] for w in t["weeks"]}
     matched=set()
     for week, raw in weekly_boxscores.items():
@@ -90,14 +90,15 @@ def score_check(weekly_boxscores, published, team_map):
         games=[g for g in schedule if isinstance(g,dict) and g.get("matchupPeriodId")==week] if isinstance(schedule,list) else []
         if len(games)!=5:return False
         for game in games:
-            for side in ("home","away"):
-                row=game.get(side)
-                if not isinstance(row,dict):return False
+            for side,other in (("home","away"),("away","home")):
+                row,peer=game.get(side),game.get(other)
+                if not isinstance(row,dict) or not isinstance(peer,dict):return False
                 key=(week,row.get("teamId"))
                 points=row.get("totalPoints")
                 if key not in expected or key in matched or type(points) not in (int,float) or not math.isfinite(points):
                     return False
-                if abs(expected[key]-points)>.011:return False
+                approved_pf,approved_opponent=expected[key]
+                if abs(approved_pf-points)>.011 or approved_opponent!=peer.get("teamId"):return False
                 matched.add(key)
     return len(matched)==10*published["completedThrough"] and matched==set(expected)
 
@@ -176,6 +177,9 @@ def main():
         "matchup_lineups":report["gates"]["independent_lineup_agreement"],
         "pf_reconciled":report["gates"]["verified_original_week_pf"],
         "transaction_feed_consistent":report["gates"]["observed_transaction_feed_consistency"],
+        "transaction_status_counts":report["transaction_evidence"]["status_counts"],
+        "transaction_type_counts":report["transaction_evidence"]["transaction_type_counts"],
+        "item_action_counts":report["transaction_evidence"]["item_action_counts"],
         "ready_for_publication":False},sort_keys=True))
 
 if __name__=="__main__":
