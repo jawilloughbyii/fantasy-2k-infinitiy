@@ -151,6 +151,10 @@ async function main(){
  assert.ok(view.includes('All-play')&&view.includes('Extra wins')&&view.includes('Form'));
  assert.ok(!view.includes('What if opponents changed?')&&!view.includes('Alternative completed schedules, not future forecasts.'),'PR #43 intentionally removes the Overview What-if disclosure');
  assert.ok(view.includes('How the numbers work'),'Definitions retained in disclosure');
+ assert.equal((view.match(/class="rankline luck-choice /g)||[]).length,10,'All ten luck rows are semantic buttons');
+ assert.ok(view.includes('aria-label="View ')&&view.includes('schedule luck, '),'Luck choices have explicit accessible names');
+ assert.ok(html.includes('.luck-choice:focus-visible'),'Luck choices have visible keyboard focus');
+ assert.ok(html.includes('id="weekStatus">2026 · Finalized through Week '+data.completedThrough),'Initial HTML status matches approved data');
  assert.ok(view.includes('Positive = favorable schedule · Negative = tougher draw'),'Short luck legend replaces repeated formula');
  assert.ok(!view.includes('PF ranks teams by points scored, not predicted strength.')&&!view.includes('All-play compares each score against all nine teams'),'Remove repeated standings methodology footer');
  assert.ok(view.includes('Ranked by total points scored'),'Preserve PF ranking context in heading');
@@ -341,7 +345,9 @@ assert.ok(previousRank>=0 && pfOrder[previousRank+1] && node('teamSelect').value
  view=node('view').innerHTML;
  assert.equal((view.split('<tbody id="draftRows">')[1].split('</tbody>')[0].match(/<tr>/g)||[]).length,15,'2024 source-verified steals are filterable');
  view=sub('team','dna');
- assert.ok(view.includes('Acquisition DNA · 2026')&&view.includes('Awaiting provenance')&&view.includes('Lineup execution · ceiling captured'),'Current acquisition model is present and does not fabricate source attribution');
+ assert.ok(view.includes('Roster Construction & Execution · 2026')&&view.includes('Awaiting provenance')&&view.includes('Lineup execution · ceiling captured'),'Current acquisition model is present and does not fabricate source attribution');
+ assert.ok(view.indexOf('The Scoring Personality Map')<view.indexOf('Roster Construction & Execution · 2026'),'Verified scoring map precedes pending acquisition panel');
+ assert.ok(view.includes('Acquisition source coverage'),'Source placeholder is accurately labeled');
  assert.ok(view.includes('Full W1–W4 executed acquisition chain'),'Live sourcing status explains incomplete chronological verification');
  assert.ok(view.includes('attainable weighted quality points')&&!view.includes('NaN%'),'Current execution comes from independently validated roster ceiling, not source attribution');
  view=sub('history','legacy');
