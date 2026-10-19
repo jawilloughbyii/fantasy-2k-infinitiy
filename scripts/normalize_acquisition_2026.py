@@ -31,12 +31,20 @@ def normalize_executed(raw):
             counts["nonexecuted_ignored"]+=1
             continue
         category=tx.get("type")
+        fields=tx.get("items")
+        if category=="TRADE_UPHOLD" and not fields:
+            # ESPN records a separate empty administrative confirmation; the
+            # executed TRADE_ACCEPT player movement is the ownership event.
+            counts["empty_trade_uphold_ignored"]+=1
+            continue
+        if category=="ROSTER" and not fields:
+            counts["empty_roster_edit_ignored"]+=1
+            continue
         if category not in (*ASSIGNABLE,"ROSTER","TRADE_ACCEPT"):
             raise ValueError("Unsupported executed transaction category")
         txid=tx.get("id")
-        fields=tx.get("items")
-        if type(txid) is not int or not isinstance(fields,list):
-            raise ValueError("Missing original executed transaction identity/items")
+        if not isinstance(fields,list):
+            raise ValueError("Missing original executed transaction items")
         for i,item in enumerate(fields):
             if not isinstance(item,dict):
                 raise ValueError("Malformed executed transaction item")
@@ -72,6 +80,8 @@ def normalize_executed(raw):
             if type(process) not in (int,float) or not math.isfinite(process) or process<=0:
                 raise ValueError("No verified executed process time")
             when=datetime.fromtimestamp(process/1000, timezone.utc).isoformat()
+            if type(txid) is not int:
+                raise ValueError("Acquisition event lacks stable transaction identity")
             key=f"{txid}:{i}"
             if key in event_keys:
                 raise ValueError("Duplicate executed event identity")
