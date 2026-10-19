@@ -102,7 +102,7 @@ def compare_transaction_queries(responses):
             "transaction_identity_comparisons_valid":main_valid,
             "full_draft_to_week_one_transaction_history_verified":False}
 
-def focus_gaps(exceptions,roster_snapshots,draft_picks,raw_transactions=None,weekly_boxes=None):
+def focus_gaps(exceptions,roster_snapshots,draft_picks,raw_transactions=None,weekly_boxes=None,period_transactions=None):
     """Use the existing identified eight; match only to full source data in memory.
 
     Exception export intentionally lacks player IDs, so link by a private
@@ -117,6 +117,7 @@ def focus_gaps(exceptions,roster_snapshots,draft_picks,raw_transactions=None,wee
     # order against the executed proposed-only movements before sorting would
     # be unsafe, so this separate probe does not guess missing joins.
     early={}
+    early_history=None
     if raw_transactions is not None and weekly_boxes is not None:
         started=set()
         for week,raw in weekly_boxes.items():
@@ -140,12 +141,37 @@ def focus_gaps(exceptions,roster_snapshots,draft_picks,raw_transactions=None,wee
                 tid=e.get('toTeamId') if act=='ADD' else e.get('fromTeamId')
                 if (tid,e.get('playerId')) in started:focus.append((tid,e['playerId']))
         if len(focus)!=len(relevant):raise ValueError('Original-ID exception join mismatch')
+        historical=collections.defaultdict(list)
+        for view,period,raw,status in period_transactions or []:
+            if view!='mTransactions2' or type(period) is not int or period<1 or status.get('status')!='ok':continue
+            for tx in raw.get('transactions') or []:
+                if not isinstance(tx,dict) or tx.get('status')!='EXECUTED':continue
+                typ=tx.get('type')
+                if typ not in ('DRAFT','FREEAGENT','WAIVER','TRADE_ACCEPT','ROSTER'):continue
+                for item in tx.get('items') or []:
+                    if not isinstance(item,dict) or item.get('type') not in ('DRAFT','ADD','DROP','TRADE'):continue
+                    pid=item.get('playerId')
+                    if type(pid) is not int:continue
+                    historical[pid].append((period,typ,item.get('type'),item.get('fromTeamId'),item.get('toTeamId'),valid_ms(tx.get('processDate')),valid_ms(tx.get('proposedDate'))))
+        matched=set(pair[1] for pair in focus)
+        history_actions=collections.Counter()
+        per_period=collections.Counter()
+        players_with_executed_early_action=set()
+        for pid in matched:
+            for period,typ,action,frm,to,has_process,has_proposed in historical.get(pid,[]):
+                history_actions[typ+'/'+action]+=1
+                per_period[str(period)]+=1
+                players_with_executed_early_action.add(pid)
+        early_history={'focus_player_count':len(matched),'players_with_executed_period_1_to_5_action':len(players_with_executed_early_action),
+                       'observed_action_counts':dict(sorted(history_actions.items())),
+                       'period_action_item_counts':dict(sorted(per_period.items())),
+                       'timing_and_ownership_not_yet_replayed':True}
         for label,sets in roster_snapshots.items():
             if sets is not None:
                 early[label]={'matched_items_on_same_franchise_roster':sum(pair in sets for pair in focus),
                               'matched_items_on_any_roster':sum(any(pid==pair[1] for tid,pid in sets) for pair in focus),
                               'observation_only_not_draft_day_ownership':True}
-    return {"early_snapshot_eight_item_coverage":early,"matched_exception_items":len(relevant),
+    return {"early_period_transaction_evidence":early_history,"early_snapshot_eight_item_coverage":early,"matched_exception_items":len(relevant),
             "draft_origin_counts":dict(sorted(collections.Counter(r["draft_origin"] for r in relevant).items())),
             "prior_movement_items":sum(len(r["prior_executed_movements"]) for r in relevant),
             "unresolved_prestart_items":sum(not bool(r["prior_executed_movements"]) for r in relevant),
@@ -155,7 +181,7 @@ def focus_gaps(exceptions,roster_snapshots,draft_picks,raw_transactions=None,wee
 def summarize(rosters,transaction_queries,exceptions,draft_picks,raw_transactions=None,weekly_boxes=None):
     rr,snapshots=compare_rosters(rosters,draft_picks)
     tt=compare_transaction_queries(transaction_queries)
-    ff=focus_gaps(exceptions,snapshots,draft_picks,raw_transactions,weekly_boxes)
+    ff=focus_gaps(exceptions,snapshots,draft_picks,raw_transactions,weekly_boxes,transaction_queries)
     return {"status":"PRIVATE_PREWEEK1_EVIDENCE_DISCOVERY_ONLY","season":YEAR,
             "opening_rosters":rr,"transaction_query_comparison":tt,"eight_player_gaps":ff,
             "ready_for_attribution":False,"ready_for_publication":False,
