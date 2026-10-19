@@ -13,6 +13,7 @@ import pathlib
 from backfill_acquisition_provenance import audit, transaction_check
 from probe_acquisition_provenance import fetch
 from reconcile_acquisition_2026 import validate_draft
+from normalize_acquisition_2026 import normalize_executed
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 YEAR = 2026
@@ -79,7 +80,16 @@ def transaction_evidence(raw, period_records):
             merged[key]=payload
     subset=bool(all_ids is not None and periods_valid==len(period_records) and
                 conflicts==0 and all(all_ids.get(k)==v for k,v in merged.items()))
-    return {"unscoped_transaction_status":summary["status"],
+    try:
+        normalized,normalized_counts=normalize_executed(raw)
+        normalized_ok=True
+    except (ValueError,TypeError,OverflowError):
+        normalized,normalized_counts=[],{}
+        normalized_ok=False
+    return {"normalized_executed_schema":normalized_ok,
+            "normalized_candidate_event_count":len(normalized),
+            "normalized_candidate_action_counts":normalized_counts,
+            "unscoped_transaction_status":summary["status"],
             "unscoped_transaction_records":summary["records"],
             "unscoped_malformed_records":summary["malformed"],
             "period_transaction_lists_observed":periods_valid,
@@ -193,6 +203,8 @@ def main():
         "matchup_lineups":report["gates"]["independent_lineup_agreement"],
         "pf_reconciled":report["gates"]["verified_original_week_pf"],
         "transaction_feed_consistent":report["gates"]["observed_transaction_feed_consistency"],
+        "executed_schema_normalized":report["transaction_evidence"]["normalized_executed_schema"],
+        "normalized_event_counts":report["transaction_evidence"]["normalized_candidate_action_counts"],
         "transaction_status_counts":report["transaction_evidence"]["status_counts"],
         "transaction_type_counts":report["transaction_evidence"]["transaction_type_counts"],
         "item_action_counts":report["transaction_evidence"]["item_action_counts"],
