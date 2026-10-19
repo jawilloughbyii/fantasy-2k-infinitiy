@@ -26,13 +26,17 @@ def request(year,view,week=None,filter_=None,cookie=None):
         return {"teams":[{"id":tid,"roster":{"entries":team_roster(tid)}} for tid in range(1,11)]},{"status":"ok"}
     if view=="mBoxscore":
         games=[]
-        for a in range(1,11,2):
-            def side(tid):
-                bid=next(k for k,v in MAPPING.items() if int(v)==tid)
-                tm=next(t for t in PUBLISHED["teams"] if t["id"]==int(bid))
-                return {"teamId":tid,"totalPoints":tm["weeks"][week-1]["pf"],
-                        "rosterForCurrentScoringPeriod":{"entries":team_roster(tid)}}
-            games.append({"matchupPeriodId":week,"home":side(a),"away":side(a+1)})
+        by_id={t["id"]:t for t in PUBLISHED["teams"]}
+        seen=set()
+        def side(bid):
+            tid=MAPPING[str(bid)]
+            return {"teamId":tid,"totalPoints":by_id[bid]["weeks"][week-1]["pf"],
+                    "rosterForCurrentScoringPeriod":{"entries":team_roster(tid)}}
+        for bid in sorted(by_id):
+            if bid in seen:continue
+            opponent=by_id[bid]["weeks"][week-1]["opp"]
+            seen.update((bid,opponent))
+            games.append({"matchupPeriodId":week,"home":side(bid),"away":side(opponent)})
         return {"schedule":games},{"status":"ok"}
     raise ValueError("Unexpected view")
 
@@ -58,6 +62,9 @@ class PreviewTests(unittest.TestCase):
         boxes={w:request(2026,"mBoxscore",week=w)[0] for w in range(1,PUBLISHED["completedThrough"]+1)}
         self.assertTrue(score_check(boxes,PUBLISHED,MAPPING))
         boxes[1]["schedule"][0]["home"]["totalPoints"]+=1
+        self.assertFalse(score_check(boxes,PUBLISHED,MAPPING))
+        boxes={w:request(2026,"mBoxscore",week=w)[0] for w in range(1,PUBLISHED["completedThrough"]+1)}
+        boxes[1]["schedule"][0]["home"]["teamId"],boxes[1]["schedule"][0]["away"]["teamId"]=boxes[1]["schedule"][0]["away"]["teamId"],boxes[1]["schedule"][0]["home"]["teamId"]
         self.assertFalse(score_check(boxes,PUBLISHED,MAPPING))
 
     def test_full_private_preview_never_publishes_source_percentages(self):
