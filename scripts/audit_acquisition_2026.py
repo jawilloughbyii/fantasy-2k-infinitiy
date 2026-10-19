@@ -49,6 +49,7 @@ def transaction_evidence(raw, period_records):
     executed_fields=collections.Counter()
     executed_value_shapes=collections.Counter()
     executed_empty_types=collections.Counter()
+    executed_movement_time=collections.Counter()
     records=raw.get("transactions") if isinstance(raw,dict) else None
     for tx in records if isinstance(records,list) else []:
         if not isinstance(tx,dict):continue
@@ -63,7 +64,13 @@ def transaction_evidence(raw, period_records):
                 action=str(item.get("type","missing"))
                 items[action]+=1
                 if tx.get("status")=="EXECUTED":
-                    executed_actions[str(tx.get("type","missing"))+"/"+action]+=1
+                    kind=str(tx.get("type","missing"))+"/"+action
+                    executed_actions[kind]+=1
+                    if action in ("ADD","DROP","TRADE"):
+                        for datekey in ("processDate","proposedDate"):
+                            val=tx.get(datekey)
+                            label="valid" if type(val) in (int,float) and math.isfinite(val) and val>0 else "missing_or_invalid"
+                            executed_movement_time[kind+"/"+datekey+"/"+label]+=1
                     for key in ("teamId","fromTeamId","toTeamId","playerId","lineupSlotId"):
                         executed_fields[action+"/"+key]+=int(key in item)
                         value=item.get(key)
@@ -95,6 +102,7 @@ def transaction_evidence(raw, period_records):
     return {"normalized_executed_schema":normalized_ok,
             "normalized_schema_issue":normalization_issue,
             "executed_empty_transaction_types":dict(sorted(executed_empty_types.items())),
+            "executed_movement_time_coverage":dict(sorted(executed_movement_time.items())),
             "normalized_candidate_event_count":len(normalized),
             "normalized_candidate_action_counts":normalized_counts,
             "unscoped_transaction_status":summary["status"],
@@ -214,6 +222,7 @@ def main():
         "executed_schema_normalized":report["transaction_evidence"]["normalized_executed_schema"],
         "executed_schema_issue":report["transaction_evidence"]["normalized_schema_issue"],
         "executed_empty_transaction_types":report["transaction_evidence"]["executed_empty_transaction_types"],
+        "executed_movement_time_coverage":report["transaction_evidence"]["executed_movement_time_coverage"],
         "normalized_event_counts":report["transaction_evidence"]["normalized_candidate_action_counts"],
         "transaction_status_counts":report["transaction_evidence"]["status_counts"],
         "transaction_type_counts":report["transaction_evidence"]["transaction_type_counts"],
