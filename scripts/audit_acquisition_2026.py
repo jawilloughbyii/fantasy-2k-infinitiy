@@ -48,6 +48,7 @@ def transaction_evidence(raw, period_records):
     executed_actions=collections.Counter()
     executed_fields=collections.Counter()
     executed_value_shapes=collections.Counter()
+    executed_empty_types=collections.Counter()
     records=raw.get("transactions") if isinstance(raw,dict) else None
     for tx in records if isinstance(records,list) else []:
         if not isinstance(tx,dict):continue
@@ -55,6 +56,8 @@ def transaction_evidence(raw, period_records):
         types[str(tx.get("type","missing"))]+=1
         if isinstance(tx.get("processDate"),(int,float)) and math.isfinite(tx["processDate"]) and tx["processDate"]>0:
             dated+=1
+        if tx.get("status")=="EXECUTED" and not (tx.get("items") or []):
+            executed_empty_types[str(tx.get("type","missing"))]+=1
         for item in tx.get("items") or []:
             if isinstance(item,dict):
                 action=str(item.get("type","missing"))
@@ -83,10 +86,15 @@ def transaction_evidence(raw, period_records):
     try:
         normalized,normalized_counts=normalize_executed(raw)
         normalized_ok=True
-    except (ValueError,TypeError,OverflowError):
+    except (ValueError,TypeError,OverflowError) as exc:
         normalized,normalized_counts=[],{}
         normalized_ok=False
+        normalization_issue=type(exc).__name__+":"+str(exc)
+    else:
+        normalization_issue=None
     return {"normalized_executed_schema":normalized_ok,
+            "normalized_schema_issue":normalization_issue,
+            "executed_empty_transaction_types":dict(sorted(executed_empty_types.items())),
             "normalized_candidate_event_count":len(normalized),
             "normalized_candidate_action_counts":normalized_counts,
             "unscoped_transaction_status":summary["status"],
@@ -204,6 +212,8 @@ def main():
         "pf_reconciled":report["gates"]["verified_original_week_pf"],
         "transaction_feed_consistent":report["gates"]["observed_transaction_feed_consistency"],
         "executed_schema_normalized":report["transaction_evidence"]["normalized_executed_schema"],
+        "executed_schema_issue":report["transaction_evidence"]["normalized_schema_issue"],
+        "executed_empty_transaction_types":report["transaction_evidence"]["executed_empty_transaction_types"],
         "normalized_event_counts":report["transaction_evidence"]["normalized_candidate_action_counts"],
         "transaction_status_counts":report["transaction_evidence"]["status_counts"],
         "transaction_type_counts":report["transaction_evidence"]["transaction_type_counts"],
