@@ -89,6 +89,8 @@ def inspect(raw_transactions, weekly_boxes, approved, mapping, draft_picks):
         if not isinstance(tx,dict):raise ValueError("Malformed source transaction")
         if tx.get("status")!="EXECUTED":continue
         typ=tx.get("type")
+        if typ not in ("FREEAGENT","ROSTER"):
+            continue  # e.g. empty administrative TRADE_UPHOLD or unrelated trade
         items=tx.get("items")
         if not isinstance(items,list):raise ValueError("Executed transaction has no item list")
         for idx,item in enumerate(items):
