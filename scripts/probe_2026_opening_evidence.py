@@ -7,6 +7,7 @@ snapshot without independent timestamp/selection semantics. Only minimized
 coverage and source gaps are saved, no stable player/transaction or owner IDs.
 """
 import collections
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -65,19 +66,23 @@ def compare_transaction_queries(responses):
                 schema['list_items']+=int(isinstance(tx.get('items'),list))
                 schema['missing_items']+=int(not isinstance(tx.get('items'),list))
                 schema['executed_status']+=int(tx.get('status')=='EXECUTED')
-        records[label]=ids
+        if isinstance(observed,list) and all(isinstance(tx,dict) for tx in observed):
+            records[label]=collections.Counter(hashlib.sha256(json.dumps(tx,sort_keys=True,separators=(',',':')).encode()).digest() for tx in observed)
+        else:
+            records[label]=None
         summaries[label]={"api":"ok","structure":result["status"],"returned_records":result["records"],
                           "malformed":result["malformed"],"transaction_schema_counts":dict(sorted(schema.items()))}
     main=records.get("mTransactions2_unscoped")
-    main_valid=bool(main is not None and summaries["mTransactions2_unscoped"]["malformed"]==0)
+    main_valid=main is not None
     for label,ids in records.items():
-        if ids is None or not main_valid or summaries[label]["malformed"]!=0:
+        if ids is None or not main_valid:
             summaries[label]["all_records_in_primary_unscoped"]=False
             summaries[label]["additional_distinct_records"]=None
         else:
-            summaries[label]["all_records_in_primary_unscoped"]=all(main.get(k)==v for k,v in ids.items())
-            summaries[label]["additional_distinct_records"]=sum(main.get(k)!=v for k,v in ids.items())
-    return {"queries":summaries,"transaction_identity_comparisons_valid":main_valid,
+            summaries[label]["all_records_in_primary_unscoped"]=all(main[k]>=v for k,v in ids.items())
+            summaries[label]["additional_distinct_records"]=sum(max(0,v-main[k]) for k,v in ids.items())
+    return {"queries":summaries,"comparison_method":"in_memory_canonical_record_fingerprints_not_source_ids",
+            "transaction_identity_comparisons_valid":main_valid,
             "full_draft_to_week_one_transaction_history_verified":False}
 
 def focus_gaps(exceptions,roster_snapshots,draft_picks,raw_transactions=None,weekly_boxes=None):
