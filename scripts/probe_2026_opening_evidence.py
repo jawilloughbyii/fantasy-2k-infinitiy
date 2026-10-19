@@ -57,14 +57,16 @@ def compare_transaction_queries(responses):
         summaries[label]={"api":"ok","structure":result["status"],"returned_records":result["records"],
                           "malformed":result["malformed"]}
     main=records.get("mTransactions2_unscoped")
+    main_valid=bool(main is not None and summaries["mTransactions2_unscoped"]["malformed"]==0)
     for label,ids in records.items():
-        if ids is None or main is None:
+        if ids is None or not main_valid or summaries[label]["malformed"]!=0:
             summaries[label]["all_records_in_primary_unscoped"]=False
             summaries[label]["additional_distinct_records"]=None
         else:
             summaries[label]["all_records_in_primary_unscoped"]=all(main.get(k)==v for k,v in ids.items())
             summaries[label]["additional_distinct_records"]=sum(main.get(k)!=v for k,v in ids.items())
-    return {"queries":summaries,"full_draft_to_week_one_transaction_history_verified":False}
+    return {"queries":summaries,"transaction_identity_comparisons_valid":main_valid,
+            "full_draft_to_week_one_transaction_history_verified":False}
 
 def focus_gaps(exceptions,roster_snapshots,draft_picks):
     """Use the existing identified eight; match only to full source data in memory.
@@ -75,6 +77,11 @@ def focus_gaps(exceptions,roster_snapshots,draft_picks):
     """
     relevant=[r for r in exceptions["items"] if r["matched_finalized_starter"]]
     if len(relevant)!=8:raise ValueError("Expected eight matched-starter exceptions; source snapshot changed")
+    # Compare the eight players' original ESPN IDs to early snapshots only
+    # in-memory. No snapshot row, player ID or owner data is exported.
+    # inspect() deliberately strips player IDs; rematch by its exception item
+    # order against the executed proposed-only movements before sorting would
+    # be unsafe, so this separate probe does not guess missing joins.
     return {"matched_exception_items":len(relevant),
             "draft_origin_counts":dict(sorted(collections.Counter(r["draft_origin"] for r in relevant).items())),
             "prior_movement_items":sum(len(r["prior_executed_movements"]) for r in relevant),
