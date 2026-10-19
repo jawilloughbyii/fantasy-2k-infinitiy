@@ -99,3 +99,13 @@ Run the `Backfill acquisition provenance evidence (read-only)` GitHub Actions wo
 No preview automatically alters public source-mix/yield, `data/league.json`, approved scoring, or the embedded HTML snapshot. The existing verified 2026 independent execution display remains intact. Verify exact per-year acquisition ownership spells in a subsequent promotion phase before publishing any source assignments.
 
 A full-period 2021 scan found a vacant D/ST slot for one franchise in Week 7 and again in Week 13. Vacancies require independent matchup-scoped corroboration and never become Unknown player appearances; finalized PF and acquisition-chain validation remain separate publication gates.
+
+### 2026 private chronological source-reconciliation preview (review-only)
+
+The original 2026 starter-week acquisition framework is supplemented by:
+
+- **scripts/reconcile_acquisition_2026.py**: strict offline draft-to-game-lock ownership replay using original ESPN IDs, independently timestamped executed events, per-player timezone-aware game locks, ten complete nine-slot finalized lineups per week, and mandatory complete-feed/lineup/PF/source-schema verification gates. A dropped and later reclaimed player takes the new acquisition source. Conflicting additions, unsupported keeper actions, simultaneous lock-time events, duplicate starter IDs and impossible trades fail closed. Candidate rows remain private.
+- **scripts/audit_acquisition_2026.py**: authenticated, read-only private evidence preview using existing GitHub Actions secrets. Checks exact original draft identities against the approved 160 picks, complete approved-week roster/boxscore structure, independently retrieved final matchup scores, week-scoped versus unscoped transaction record consistency, and summarized transaction-type/date schema. Its sanitized 3-day report never includes stable player/transaction IDs, owner information or raw ESPN responses.
+- **.github/workflows/preview-2026-acquisition-chain.yml**: feature-branch/private preview and offline tests. The preview **always returns ready_for_publication=false and source_mix/source_yield=null**. Returned transaction lists and successful independent PF checks are prerequisites, not proof of the full executed chain. Original draft effective time, executed ownership chronology, individual NFL game locks and all-source attribution remain separate review gates.
+
+Run `python scripts/test_reconcile_acquisition_2026.py` and `python scripts/test_audit_acquisition_2026.py` for synthetic coverage. Do not commit raw ESPN records or use the synthetic tests as evidence of live acquisition sourcing. A separate promotion PR may activate source mix/yield only after all live chain and lock gates succeed and is explicitly approved.
