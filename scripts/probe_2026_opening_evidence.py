@@ -231,6 +231,8 @@ def main():
     from conserve_2026_period_events import examine
     windows={p:(raw,status) for view,p,raw,status in tx if view=='mTransactions2' and type(p) is int and 1<=p<=5}
     report["period_event_conservation"]=examine(windows,draft["picks"],rosters)
+    from audit_2026_roster_movements import audit as movement_audit
+    report["movement_roster_comparison"]=movement_audit(windows,draft["picks"],rosters)
     path=ROOT/"output/acquisition-2026-private/preweek1-evidence.json"
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(report,indent=2)+"\n")
