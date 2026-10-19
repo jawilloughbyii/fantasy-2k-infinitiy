@@ -58,6 +58,8 @@ def validate_starters(starters, weeks, corroborated):
         by_team = {t: [] for t in TEAMS}
         by_player = set()
         for r in found:
+            if not isinstance(r, dict):
+                raise ValueError("Malformed final starter")
             p, t, s = r.get("player_id"), r.get("espn_team_id"), r.get("slot")
             if type(p) is not int or p == 0 or type(t) is not int or t not in TEAMS or type(s) is not int:
                 raise ValueError("Invalid final starter identity")
@@ -163,6 +165,8 @@ def replay(picks, draft_at, events, starters, weeks, locks, *,
                 ownership[player] = target
                 origin[player] = action
             pointer += 1
+        if pointer < len(ordered) and ordered[pointer][0] == lock:
+            raise ValueError("Ambiguous transaction at player lock")
         if ownership.get(pid) != tid or origin.get(pid) not in SOURCES:
             raise ValueError("Finalized starter contradicts pre-lock ownership")
         result.append({"week": w, "player_id": pid, "espn_team_id": tid,
