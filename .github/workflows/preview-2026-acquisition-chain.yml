@@ -13,6 +13,7 @@ on:
       - 'scripts/test_report_acquisition_2026_exceptions.py'
       - 'scripts/probe_2026_opening_evidence.py'
       - 'scripts/conserve_2026_period_events.py'
+      - 'scripts/test_conserve_2026_period_events.py'
       - 'scripts/test_probe_2026_opening_evidence.py'
       - 'scripts/test_reconcile_acquisition_2026.py'
       - '.github/workflows/preview-2026-acquisition-chain.yml'
@@ -39,6 +40,7 @@ jobs:
           python scripts/test_audit_acquisition_2026.py
           python scripts/test_report_acquisition_2026_exceptions.py
           python scripts/test_probe_2026_opening_evidence.py
+          python scripts/test_conserve_2026_period_events.py
       - name: Retrieve original-season ESPN evidence privately
         env:
           ESPN_S2: ${{ secrets.ESPN_S2 }}
