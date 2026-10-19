@@ -92,6 +92,8 @@ jobs:
           python scripts/test_reconcile_acquisition_2026.py
           python scripts/test_normalize_acquisition_2026.py
           python scripts/test_audit_acquisition_2026.py
+      - name: Verify period acquisition conservation
+        run: python scripts/test_conserve_2026_period_events.py
       - name: Verify historical postseason brackets, final scores and franchise titles
         run: python scripts/test_historical_playoffs.py
       - name: Verify six-season historical drafts and owner identities
