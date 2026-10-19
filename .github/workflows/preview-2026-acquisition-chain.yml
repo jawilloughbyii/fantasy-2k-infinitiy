@@ -6,6 +6,8 @@ on:
     paths:
       - 'scripts/audit_acquisition_2026.py'
       - 'scripts/reconcile_acquisition_2026.py'
+      - 'scripts/normalize_acquisition_2026.py'
+      - 'scripts/test_normalize_acquisition_2026.py'
       - 'scripts/test_audit_acquisition_2026.py'
       - 'scripts/test_reconcile_acquisition_2026.py'
       - '.github/workflows/preview-2026-acquisition-chain.yml'
@@ -28,6 +30,7 @@ jobs:
           python scripts/test_acquisition_dna.py
           python scripts/test_acquisition_backfill.py
           python scripts/test_reconcile_acquisition_2026.py
+          python scripts/test_normalize_acquisition_2026.py
           python scripts/test_audit_acquisition_2026.py
       - name: Retrieve original-season ESPN evidence privately
         env:
