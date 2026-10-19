@@ -174,9 +174,9 @@ def focus_gaps(exceptions,roster_snapshots,draft_picks,raw_transactions=None,wee
     return {"early_period_transaction_evidence":early_history,"early_snapshot_eight_item_coverage":early,"matched_exception_items":len(relevant),
             "draft_origin_counts":dict(sorted(collections.Counter(r["draft_origin"] for r in relevant).items())),
             "prior_movement_items":sum(len(r["prior_executed_movements"]) for r in relevant),
-            "unresolved_prestart_items":sum(not bool(r["prior_executed_movements"]) for r in relevant),
+            "recent_unscoped_feed_items_without_prior_movement":sum(not bool(r["prior_executed_movements"]) for r in relevant),
             "opening_ownership_verified":False,
-            "note":"No player identity join to period-zero roster is promoted: ESPN period-zero semantics are not independently established."}
+            "note":"Early-period source records now exist for all eight players; no final ownership attribution until timing, movement chronology and game locks are reconciled. Period zero is not approved as draft-day ownership."}
 
 def summarize(rosters,transaction_queries,exceptions,draft_picks,raw_transactions=None,weekly_boxes=None):
     rr,snapshots=compare_rosters(rosters,draft_picks)
@@ -214,7 +214,7 @@ def main():
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(report,indent=2)+"\n")
     print(json.dumps({"status":report["status"],"distinct_roster_sets":report["opening_rosters"]["distinct_observed_roster_sets"],
-                      "eight_item_prestart_gaps":report["eight_player_gaps"]["unresolved_prestart_items"],
+                      "eight_item_early_action_coverage":report["eight_player_gaps"]["early_period_transaction_evidence"]["players_with_executed_period_1_to_5_action"],
                       "transaction_query_coverage":report["transaction_query_comparison"]["queries"],
                       "opening_ownership_verified":False,"ready_for_publication":False},sort_keys=True))
 if __name__=="__main__":
