@@ -59,9 +59,11 @@ jobs:
                      x["temporal_attribution"]=="UNVERIFIED_PROPOSED_DATE_NOT_EXECUTION"
                      for x in r["items"])
           assert not any(k in r for k in ("owners","members","cookies","raw_transactions"))
+          assert all(x["draft_origin"] in ("same_franchise","another_franchise","not_in_verified_draft") for x in r["items"])
+          assert all(all(y["time_basis"] in ("processDate","proposedDate_unverified") for y in x["prior_executed_movements"]) for x in r["items"])
           assert all(set(x)=={"item_number","player","name_status","franchise","action",
                                 "proposed_at_utc","process_at_utc","finalized_starter_weeks",
-                                "matched_finalized_starter","temporal_attribution"} for x in r["items"])
+                                "matched_finalized_starter","draft_origin","prior_executed_movements","temporal_attribution"} for x in r["items"])
           PY
       - name: Require research-only output and unchanged public data
         run: |
