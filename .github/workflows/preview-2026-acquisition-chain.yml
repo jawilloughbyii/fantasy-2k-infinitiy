@@ -12,6 +12,7 @@ on:
       - 'scripts/report_acquisition_2026_exceptions.py'
       - 'scripts/test_report_acquisition_2026_exceptions.py'
       - 'scripts/probe_2026_opening_evidence.py'
+      - 'scripts/conserve_2026_period_events.py'
       - 'scripts/test_probe_2026_opening_evidence.py'
       - 'scripts/test_reconcile_acquisition_2026.py'
       - '.github/workflows/preview-2026-acquisition-chain.yml'
@@ -90,6 +91,9 @@ jobs:
           assert all(x["ownership_reconciled"] is False for x in r["eight_player_gaps"]["early_period_transaction_evidence"]["player_evidence"])
           assert all(set(x)=={"player","events","ownership_reconciled"} for x in r["eight_player_gaps"]["early_period_transaction_evidence"]["player_evidence"])
           assert r["eight_player_gaps"]["early_period_transaction_evidence"]["timing_and_ownership_not_yet_replayed"] is True
+          assert r["period_event_conservation"]["status"]=="PRIVATE_PERIOD_EVENT_CONSERVATION_RESEARCH_ONLY"
+          assert not r["period_event_conservation"]["full_ownership_chain_verified"]
+          assert not r["period_event_conservation"]["ready_for_publication"]
           assert r["no_public_snapshot_changes"]
           PY
       - name: Require research-only output and unchanged public data
