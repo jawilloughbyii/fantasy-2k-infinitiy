@@ -1,0 +1,59 @@
+name: Preview 2026 acquisition provenance (private, read-only)
+
+on:
+  push:
+    branches: [feature/2026-acquisition-provenance-reconciliation]
+    paths:
+      - 'scripts/audit_acquisition_2026.py'
+      - 'scripts/reconcile_acquisition_2026.py'
+      - 'scripts/test_audit_acquisition_2026.py'
+      - 'scripts/test_reconcile_acquisition_2026.py'
+      - '.github/workflows/preview-2026-acquisition-chain.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate offline acquisition ownership replay and evidence gates
+        run: |
+          python scripts/test_acquisition_dna.py
+          python scripts/test_acquisition_backfill.py
+          python scripts/test_reconcile_acquisition_2026.py
+          python scripts/test_audit_acquisition_2026.py
+      - name: Retrieve original-season ESPN evidence privately
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/audit_acquisition_2026.py
+      - name: Require research-only output and unchanged public data
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path("output/acquisition-2026-private/coverage.json")
+          r=json.loads(p.read_text())
+          assert r["status"]=="PRIVATE_2026_PROVENANCE_RESEARCH_ONLY"
+          assert r["ready_for_attribution"] is False and r["ready_for_publication"] is False
+          assert r["source_mix"] is None and r["source_yield"] is None
+          assert r["no_public_snapshot_changes"] is True
+          assert r["expected_occupied_starts"]==90*r["approved_through_week"]
+          blob=json.dumps(r).lower()
+          assert not any(x in blob for x in ('"player_id"','"owner"','"member"','"cookie"','"espn_s2"','"espn_swid"'))
+          PY
+          git diff --exit-code -- index.html data/league.json reference/acquisition_dna.json
+      - name: Upload short-lived sanitized evidence gates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: acquisition-2026-private-coverage
+          path: output/acquisition-2026-private/coverage.json
+          retention-days: 3
+          if-no-files-found: warn
