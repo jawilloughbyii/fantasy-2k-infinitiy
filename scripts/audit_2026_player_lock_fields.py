@@ -13,7 +13,7 @@ CANDIDATE=("proTeamId","proTeam","gameId","gameDate","gameTime","kickoff",
 def inspect(boxes,week_count):
     if set(boxes)!=set(range(1,week_count+1)):raise ValueError("Original-week coverage incomplete")
     fields=collections.Counter();player_fields=collections.Counter()
-    meta=collections.Counter();pro_ids=collections.Counter();unique=set()
+    meta=collections.Counter();pro_ids=collections.Counter();invalid_pro=collections.Counter();unique=set()
     for week,raw in boxes.items():
         schedule=raw.get("schedule") if isinstance(raw,dict) else None
         games=[g for g in schedule or [] if isinstance(g,dict) and g.get("matchupPeriodId")==week]
@@ -41,6 +41,8 @@ def inspect(boxes,week_count):
                         player_fields[key]+=int(key in player)
                     pro=player.get("proTeamId")
                     if type(pro) is int and pro>0:pro_ids[pro]+=1
+                    else:invalid_pro["missing"]+=int(pro is None)
+                    if pro is not None and (type(pro) is not int or pro<=0):invalid_pro["nonpositive_or_nonnumeric"]+=1
                     meta["player_pro_team_id_present"]+=int(type(pro) is int and pro>0)
                     meta["pool_scoring_period_present"]+=int("scoringPeriodId" in pool)
                     meta["entry_scoring_period_present"]+=int("scoringPeriodId" in e)
@@ -54,6 +56,7 @@ def inspect(boxes,week_count):
             "expected_starter_appearances":total,"observed_starter_appearances":len(unique),
             "unique_nfl_team_ids_observed":len(pro_ids),
             "player_nfl_team_identity_coverage":meta["player_pro_team_id_present"],
+            "unusable_nfl_team_id_reasons":dict(sorted(invalid_pro.items())),
             "candidate_direct_time_field_occurrences":direct,
             "selected_field_coverage":{"entry":dict(sorted((k,fields["entry/"+k]) for k in CANDIDATE)),
                                       "player_pool":dict(sorted((k,fields["pool/"+k]) for k in CANDIDATE)),
