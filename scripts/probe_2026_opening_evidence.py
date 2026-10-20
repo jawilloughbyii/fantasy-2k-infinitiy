@@ -233,6 +233,8 @@ def main():
     report["period_event_conservation"]=examine(windows,draft["picks"],rosters)
     from audit_2026_roster_movements import audit as movement_audit
     report["movement_roster_comparison"]=movement_audit(windows,draft["picks"],rosters)
+    from diagnose_2026_event_order import review as ordering_review
+    report["same_period_order_diagnostic"]=ordering_review(windows,draft["picks"],rosters)
     path=ROOT/"output/acquisition-2026-private/preweek1-evidence.json"
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(report,indent=2)+"\n")
