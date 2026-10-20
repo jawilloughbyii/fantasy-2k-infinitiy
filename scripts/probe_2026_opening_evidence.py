@@ -228,6 +228,8 @@ def main():
         box[w]=raw
     exception=inspect(original,box,approved,mapping,draft["picks"])
     report=summarize(rosters,tx,exception,draft["picks"],original,box)
+    from audit_2026_player_lock_fields import inspect as inspect_player_lock_fields
+    report["player_lock_field_evidence"]=inspect_player_lock_fields(box,approved["completedThrough"])
     from conserve_2026_period_events import examine
     windows={p:(raw,status) for view,p,raw,status in tx if view=='mTransactions2' and type(p) is int and 1<=p<=5}
     report["period_event_conservation"]=examine(windows,draft["picks"],rosters)
