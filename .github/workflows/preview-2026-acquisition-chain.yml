@@ -15,6 +15,8 @@ on:
       - 'scripts/conserve_2026_period_events.py'
       - 'scripts/audit_2026_roster_movements.py'
       - 'scripts/diagnose_2026_event_order.py'
+      - 'scripts/audit_2026_player_lock_fields.py'
+      - 'scripts/test_audit_2026_player_lock_fields.py'
       - 'scripts/test_diagnose_2026_event_order.py'
       - 'scripts/test_audit_2026_roster_movements.py'
       - 'scripts/test_conserve_2026_period_events.py'
@@ -47,6 +49,7 @@ jobs:
           python scripts/test_conserve_2026_period_events.py
           python scripts/test_audit_2026_roster_movements.py
           python scripts/test_diagnose_2026_event_order.py
+          python scripts/test_audit_2026_player_lock_fields.py
       - name: Retrieve original-season ESPN evidence privately
         env:
           ESPN_S2: ${{ secrets.ESPN_S2 }}
@@ -108,6 +111,10 @@ jobs:
           assert r["same_period_order_diagnostic"]["status"]=="PRIVATE_SAME_PERIOD_ORDER_DIAGNOSTIC_ONLY"
           assert not r["same_period_order_diagnostic"]["ownership_chain_verified"]
           assert not r["same_period_order_diagnostic"]["ready_for_publication"]
+          assert r["player_lock_field_evidence"]["status"]=="PRIVATE_PLAYER_LOCK_SCHEMA_AUDIT_ONLY"
+          assert r["player_lock_field_evidence"]["observed_starter_appearances"]==90*r["approved_through_week"] if "approved_through_week" in r else r["player_lock_field_evidence"]["observed_starter_appearances"]==450
+          assert not r["player_lock_field_evidence"]["verified_individual_game_locks"]
+          assert not r["player_lock_field_evidence"]["ready_for_publication"]
           assert r["no_public_snapshot_changes"]
           PY
       - name: Require research-only output and unchanged public data
