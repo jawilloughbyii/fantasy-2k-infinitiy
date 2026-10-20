@@ -14,6 +14,8 @@ on:
       - 'scripts/probe_2026_opening_evidence.py'
       - 'scripts/conserve_2026_period_events.py'
       - 'scripts/audit_2026_roster_movements.py'
+      - 'scripts/diagnose_2026_event_order.py'
+      - 'scripts/test_diagnose_2026_event_order.py'
       - 'scripts/test_audit_2026_roster_movements.py'
       - 'scripts/test_conserve_2026_period_events.py'
       - 'scripts/test_probe_2026_opening_evidence.py'
@@ -44,6 +46,7 @@ jobs:
           python scripts/test_probe_2026_opening_evidence.py
           python scripts/test_conserve_2026_period_events.py
           python scripts/test_audit_2026_roster_movements.py
+          python scripts/test_diagnose_2026_event_order.py
       - name: Retrieve original-season ESPN evidence privately
         env:
           ESPN_S2: ${{ secrets.ESPN_S2 }}
@@ -102,6 +105,9 @@ jobs:
           assert r["movement_roster_comparison"]["status"]=="PRIVATE_NET_MOVEMENT_VS_ROSTER_OBSERVATIONS_ONLY"
           assert r["movement_roster_comparison"]["ownership_chain_verified"] is False
           assert r["movement_roster_comparison"]["ready_for_publication"] is False
+          assert r["same_period_order_diagnostic"]["status"]=="PRIVATE_SAME_PERIOD_ORDER_DIAGNOSTIC_ONLY"
+          assert not r["same_period_order_diagnostic"]["ownership_chain_verified"]
+          assert not r["same_period_order_diagnostic"]["ready_for_publication"]
           assert r["no_public_snapshot_changes"]
           PY
       - name: Require research-only output and unchanged public data
