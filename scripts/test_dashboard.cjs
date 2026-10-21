@@ -164,7 +164,8 @@ async function main(){
   assert.deepStrictEqual(orderFromHtml(view),expectedAll,'All-Play default uses weekly opponent comparisons, not rounded expected wins');
   assert.equal(view.match(/data-performance-view="all" aria-pressed="true"/g)?.length,1,'Only All-Play is active initially');
   assert.ok(view.includes('data-expand-standing="'+expectedAll[0]+'"'),'Mobile ranking uses the same first-place franchise');
-  assert.ok(view.includes('All-Play</small><strong>36–18</strong>'),'Mobile primary statistic is the All-Play record at W6');
+  const leader=data.teams.find(t=>t.id===expectedAll[0]),leaderWins=allWins(leader),apFormat=n=>Number.isInteger(n)?String(n):n.toFixed(1);
+  assert.ok(view.includes('All-Play</small><strong>'+apFormat(leaderWins)+'–'+apFormat(9*data.completedThrough-leaderWins)+'</strong>'),'Mobile primary statistic tracks the actual approved All-Play record');
   assert.ok(view.includes('aria-sort="descending">All-Play'),'Primary sorted desktop column is declared accessibly');
   const originalResults=data.teams.map(t=>[t.id,t.wins,t.losses,t.pf,t.winsAllPlay,t.luck]);
   click('[data-performance-view]',{performanceView:'pf'});view=node('view').innerHTML;
