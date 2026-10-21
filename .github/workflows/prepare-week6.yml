@@ -36,8 +36,8 @@ jobs:
           import json
           from pathlib import Path
           d=json.loads(Path('data/league.json').read_text())
-          assert d['completedThrough']==6, 'Unexpected baseline; stop rather than overwrite later published data'
-          assert d['rosterAnalysis']['throughWeek']==6 and len(d['rosterAnalysis']['weeks'])==5
+          assert d['completedThrough']==5, 'Unexpected baseline; stop rather than overwrite later published data'
+          assert d['rosterAnalysis']['throughWeek']==5 and len(d['rosterAnalysis']['weeks'])==5
           PY
       - name: Retrieve ESPN results and reconcile approved 40 original team-weeks
         env:
