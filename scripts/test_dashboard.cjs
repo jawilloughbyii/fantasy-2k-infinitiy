@@ -382,7 +382,7 @@ assert.ok(previousRank>=0 && pfOrder[previousRank+1] && node('teamSelect').value
  assert.ok(!view.includes('Team Figueroa'),'2023 owner cannot inherit legacy history');
  assert.ok(view.includes('2023 ESPN slot 6 belongs to a different franchise and is excluded here.'),'Affected franchise retains identity continuity caveat');
  click('[data-tab]',{tab:'overview'});
- assert.equal(node('pageTitle').textContent,'League overview');
+ assert.equal(node('pageTitle').textContent,'League Performance','Returning to Overview retains the new League Performance title');
  console.log('Three-destination dashboard regression checks passed: standings, luck, expanded detail, team reports/DNA/lineup, source-backed history, trophies and ownership continuity.');
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});
