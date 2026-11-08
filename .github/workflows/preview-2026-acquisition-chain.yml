@@ -1,0 +1,158 @@
+name: Preview 2026 acquisition provenance (private, read-only)
+
+on:
+  push:
+    branches: [feature/2026-acquisition-provenance-reconciliation]
+    paths:
+      - 'scripts/audit_acquisition_2026.py'
+      - 'scripts/reconcile_acquisition_2026.py'
+      - 'scripts/normalize_acquisition_2026.py'
+      - 'scripts/test_normalize_acquisition_2026.py'
+      - 'scripts/test_audit_acquisition_2026.py'
+      - 'scripts/report_acquisition_2026_exceptions.py'
+      - 'scripts/test_report_acquisition_2026_exceptions.py'
+      - 'scripts/probe_2026_opening_evidence.py'
+      - 'scripts/conserve_2026_period_events.py'
+      - 'scripts/audit_2026_roster_movements.py'
+      - 'scripts/diagnose_2026_event_order.py'
+      - 'scripts/audit_2026_player_lock_fields.py'
+      - 'scripts/test_audit_2026_player_lock_fields.py'
+      - 'scripts/test_diagnose_2026_event_order.py'
+      - 'scripts/test_audit_2026_roster_movements.py'
+      - 'scripts/test_conserve_2026_period_events.py'
+      - 'scripts/test_probe_2026_opening_evidence.py'
+      - 'scripts/test_reconcile_acquisition_2026.py'
+      - '.github/workflows/preview-2026-acquisition-chain.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate offline acquisition ownership replay and evidence gates
+        run: |
+          python scripts/test_acquisition_dna.py
+          python scripts/test_acquisition_backfill.py
+          python scripts/test_reconcile_acquisition_2026.py
+          python scripts/test_normalize_acquisition_2026.py
+          python scripts/test_audit_acquisition_2026.py
+          python scripts/test_report_acquisition_2026_exceptions.py
+          python scripts/test_probe_2026_opening_evidence.py
+          python scripts/test_conserve_2026_period_events.py
+          python scripts/test_audit_2026_roster_movements.py
+          python scripts/test_diagnose_2026_event_order.py
+          python scripts/test_audit_2026_player_lock_fields.py
+      - name: Retrieve original-season ESPN evidence privately
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/audit_acquisition_2026.py
+      - name: Generate minimized fantasy-player exception review
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/report_acquisition_2026_exceptions.py
+      - name: Validate exception-report content boundary
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path("output/acquisition-2026-private/exceptions.json")
+          r=json.loads(p.read_text())
+          assert r["status"]=="PRIVATE_REVIEW_ONLY_NO_ACQUISITION_ASSIGNMENTS"
+          assert not r["ready_for_publication"] and not r["ready_for_attribution"]
+          assert r["exception_item_count"]==len(r["items"])
+          assert sum(r["counts_by_action"].values())==len(r["items"])
+          assert all(x["process_at_utc"] is None and
+                     x["temporal_attribution"]=="UNVERIFIED_PROPOSED_DATE_NOT_EXECUTION"
+                     for x in r["items"])
+          assert not any(k in r for k in ("owners","members","cookies","raw_transactions"))
+          assert all(x["draft_origin"] in ("same_franchise","another_franchise","not_in_verified_draft") for x in r["items"])
+          assert all(all(y["time_basis"] in ("processDate","proposedDate_unverified") for y in x["prior_executed_movements"]) for x in r["items"])
+          assert all(x["opening_roster_verified"] is False and isinstance(x["observed_roster_weeks"],list) for x in r["items"])
+          assert all(set(x)=={"item_number","player","name_status","franchise","action",
+                                "proposed_at_utc","process_at_utc","finalized_starter_weeks",
+                                "matched_finalized_starter","draft_origin","prior_executed_movements",
+                                "observed_roster_weeks","opening_roster_verified","prestart_evidence_gap","temporal_attribution"} for x in r["items"])
+          PY
+      - name: Probe original draft-adjacent roster and transaction history
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/probe_2026_opening_evidence.py
+      - name: Confirm pre-week-one query evidence remains research-only
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          r=json.loads(pathlib.Path("output/acquisition-2026-private/preweek1-evidence.json").read_text())
+          assert r["status"]=="PRIVATE_PREWEEK1_EVIDENCE_DISCOVERY_ONLY"
+          assert not r["ready_for_attribution"] and not r["ready_for_publication"]
+          assert not r["opening_rosters"]["draft_day_opening_roster_verified"]
+          assert not r["transaction_query_comparison"]["full_draft_to_week_one_transaction_history_verified"]
+          assert r["eight_player_gaps"]["matched_exception_items"]==8
+          assert r["eight_player_gaps"]["early_period_transaction_evidence"]["focus_player_count"]==8
+          assert len(r["eight_player_gaps"]["early_period_transaction_evidence"]["player_evidence"])==8
+          assert all(x["ownership_reconciled"] is False for x in r["eight_player_gaps"]["early_period_transaction_evidence"]["player_evidence"])
+          assert all(set(x)=={"player","events","ownership_reconciled"} for x in r["eight_player_gaps"]["early_period_transaction_evidence"]["player_evidence"])
+          assert r["eight_player_gaps"]["early_period_transaction_evidence"]["timing_and_ownership_not_yet_replayed"] is True
+          assert r["period_event_conservation"]["status"]=="PRIVATE_PERIOD_EVENT_CONSERVATION_RESEARCH_ONLY"
+          assert not r["period_event_conservation"]["full_ownership_chain_verified"]
+          assert not r["period_event_conservation"]["ready_for_publication"]
+          assert r["movement_roster_comparison"]["status"]=="PRIVATE_NET_MOVEMENT_VS_ROSTER_OBSERVATIONS_ONLY"
+          assert r["movement_roster_comparison"]["ownership_chain_verified"] is False
+          assert r["movement_roster_comparison"]["ready_for_publication"] is False
+          assert r["same_period_order_diagnostic"]["status"]=="PRIVATE_SAME_PERIOD_ORDER_DIAGNOSTIC_ONLY"
+          assert not r["same_period_order_diagnostic"]["ownership_chain_verified"]
+          assert not r["same_period_order_diagnostic"]["ready_for_publication"]
+          assert r["player_lock_field_evidence"]["status"]=="PRIVATE_PLAYER_LOCK_SCHEMA_AUDIT_ONLY"
+          assert r["player_lock_field_evidence"]["observed_starter_appearances"]==90*r["approved_through_week"] if "approved_through_week" in r else r["player_lock_field_evidence"]["observed_starter_appearances"]==450
+          assert not r["player_lock_field_evidence"]["verified_individual_game_locks"]
+          assert not r["player_lock_field_evidence"]["ready_for_publication"]
+          assert r["no_public_snapshot_changes"]
+          PY
+      - name: Require research-only output and unchanged public data
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path("output/acquisition-2026-private/coverage.json")
+          r=json.loads(p.read_text())
+          assert r["status"]=="PRIVATE_2026_PROVENANCE_RESEARCH_ONLY"
+          assert r["ready_for_attribution"] is False and r["ready_for_publication"] is False
+          assert r["source_mix"] is None and r["source_yield"] is None
+          assert r["no_public_snapshot_changes"] is True
+          assert r["expected_occupied_starts"]==90*r["approved_through_week"]
+          blob=json.dumps(r).lower()
+          assert not any(x in blob for x in ('"player_id"','"owner"','"member"','"cookie"','"espn_s2"','"espn_swid"'))
+          PY
+          git diff --exit-code -- index.html data/league.json reference/acquisition_dna.json
+      - name: Upload short-lived sanitized evidence gates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: acquisition-2026-private-coverage
+          path: output/acquisition-2026-private/coverage.json
+          retention-days: 3
+          if-no-files-found: warn
+      - name: Upload short-lived minimized fantasy-player exception review
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: acquisition-2026-timestamp-exceptions
+          path: output/acquisition-2026-private/exceptions.json
+          retention-days: 3
+          if-no-files-found: warn
+      - name: Upload short-lived early-source coverage audit
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: acquisition-2026-preweek1-evidence
+          path: output/acquisition-2026-private/preweek1-evidence.json
+          retention-days: 3
+          if-no-files-found: error

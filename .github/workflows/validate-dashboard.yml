@@ -24,6 +24,13 @@ on:
       - 'scripts/acquisition_dna.py'
       - 'scripts/test_acquisition_dna.py'
       - 'scripts/test_acquisition_backfill.py'
+      - 'scripts/reconcile_acquisition_2026.py'
+      - 'scripts/audit_acquisition_2026.py'
+      - 'scripts/normalize_acquisition_2026.py'
+      - 'scripts/test_normalize_acquisition_2026.py'
+      - 'scripts/test_reconcile_acquisition_2026.py'
+      - 'scripts/test_audit_acquisition_2026.py'
+      - '.github/workflows/preview-2026-acquisition-chain.yml'
       - 'scripts/backfill_acquisition_provenance.py'
       - 'scripts/test_historical_dna.py'
       - 'scripts/test_legacy_history.py'
@@ -80,6 +87,13 @@ jobs:
         run: python scripts/test_acquisition_dna.py
       - name: Verify read-only full-period acquisition evidence contract
         run: python scripts/test_acquisition_backfill.py
+      - name: Verify strict 2026 acquisition ownership replay and private preview gates
+        run: |
+          python scripts/test_reconcile_acquisition_2026.py
+          python scripts/test_normalize_acquisition_2026.py
+          python scripts/test_audit_acquisition_2026.py
+      - name: Verify period acquisition conservation
+        run: python scripts/test_conserve_2026_period_events.py
       - name: Verify historical postseason brackets, final scores and franchise titles
         run: python scripts/test_historical_playoffs.py
       - name: Verify six-season historical drafts and owner identities
