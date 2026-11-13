@@ -75,7 +75,7 @@ jobs:
           from pathlib import Path
           old=json.loads(Path('data/league.json').read_text())
           new=json.loads(Path('output/approved-league.json').read_text())
-          assert new['completedThrough']==10
+          assert new['completedThrough']==9
           assert new['rosterAnalysis']['status']=='validated-final-rosters'
           assert new['rosterAnalysis']['throughWeek']==9
           assert [w['week'] for w in new['rosterAnalysis']['weeks']]==list(range(1,10))
