@@ -22,7 +22,9 @@
       "8": "Dorm",
       "9": "Comepig",
       "10": "Rice"
-    }
+    },
+    "bandRelativePct": 5,
+    "sensitivityMinimumWeeks": 7
   },
   "momentum": {
     "minimumWeeks": 4,
