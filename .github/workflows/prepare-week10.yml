@@ -1,0 +1,125 @@
+name: Prepare verified 2026 Week 10 snapshot (review only)
+
+on:
+  push:
+    branches: [data/2026-week-10-verified]
+    paths:
+      - '.github/workflows/prepare-week10.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  prepare-week10:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Check out isolated review branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify previously approved Week 8 baseline and offline pipelines
+        run: |
+          python scripts/test_pipeline.py
+          python scripts/test_roster_analysis.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('data/league.json').read_text())
+          assert d['completedThrough']==8, 'Unexpected baseline: do not overwrite later published data'
+          assert d['rosterAnalysis']['throughWeek']==8 and len(d['rosterAnalysis']['weeks'])==8
+          assert len(d['teams'])==10 and all(len(t['weeks'])==8 for t in d['teams'])
+          PY
+      - name: Retrieve private ESPN results and reconcile 40 original team scores
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/refresh.py --output-dir output
+      - name: Require exactly finalized 2026 Weeks 9 and 10
+        run: |
+          python scripts/build_site_data.py --report output/validation.json --baseline-html index.html --output output/league.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path('output/validation.json').read_text())
+          d=json.loads(Path('output/league.json').read_text())
+          assert report['validation']['passed'] and report['validation']['verified_team_scores']==40
+          assert int(report['current_matchup_period'])==11, 'Require ESPN period 11: Weeks 9-10 finalized, Week 11 active'
+          assert d['completedThrough']==10 and len(d['teams'])==10
+          assert all([w['week'] for w in t['weeks']]==list(range(1,11)) for t in d['teams'])
+          assert sum(len(t['weeks']) for t in d['teams'])==100
+          for w in (9,10):
+              matches=[m for m in report['matchups'] if m['week']==w]
+              assert len(matches)==5 and {m['winner'] for m in matches}<={'HOME','AWAY'}, f'W{w}: matchups not finalized'
+              assert all(m['home_points'] is not None and m['away_points'] is not None for m in matches)
+              print(f'W{w}: five finalized matchups, ten verified team scores.')
+          print('100 completed team-weeks through W10.')
+          PY
+      - name: Independently retrieve and validate every finalized Week 1-10 lineup
+        env:
+          ESPN_S2: ${{ secrets.ESPN_S2 }}
+          ESPN_SWID: ${{ secrets.ESPN_SWID }}
+        run: python scripts/roster_analysis.py --league-data output/league.json --mapping reference/team_id_map.json --output output/roster_analysis.json
+      - name: Attach roster analysis, protect Weeks 1-8 and synchronize HTML fallback
+        run: |
+          python scripts/attach_roster_analysis.py --league-data output/league.json --roster-data output/roster_analysis.json --output output/approved-league.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          old=json.loads(Path('data/league.json').read_text())
+          new=json.loads(Path('output/approved-league.json').read_text())
+          assert new['completedThrough']==10
+          assert new['rosterAnalysis']['status']=='validated-final-rosters'
+          assert new['rosterAnalysis']['throughWeek']==10
+          assert [w['week'] for w in new['rosterAnalysis']['weeks']]==list(range(1,11))
+          assert all(len(w['teams'])==10 for w in new['rosterAnalysis']['weeks'])
+          assert new['rosterAnalysis']['weeks'][:8]==old['rosterAnalysis']['weeks'], 'Approved earlier roster results changed'
+          for prior in old['teams']:
+              updated=next(t for t in new['teams'] if t['id']==prior['id'])
+              assert prior['weeks']==updated['weeks'][:8], 'Prior scores/opponents changed'
+              assert prior['name']==updated['name'], 'Team identity changed'
+          assert old['projectionCoverage']['throughWeek']==new['projectionCoverage']['throughWeek']==4
+          serialized=json.dumps(new).lower()
+          assert not any(k in serialized for k in ('espn_s2','espn_swid','espn_cookie','owner_name','manager_name','first_name','last_name'))
+          print('Verified 100 finalized lineup records; prior Weeks 1-8 unchanged.')
+          PY
+          python scripts/sync_site_snapshot.py --html index.html --data output/approved-league.json --output output/index.html
+      - name: Stage exactly synchronized public data and run every repository regression
+        run: |
+          cp output/approved-league.json data/league.json
+          cp output/index.html index.html
+          python scripts/test_pipeline.py
+          python scripts/test_roster_analysis.py
+          python scripts/test_historical_dna.py
+          python scripts/test_legacy_history.py
+          python scripts/test_legacy_enriched.py
+          python scripts/test_acquisition_dna.py
+          python scripts/test_acquisition_backfill.py
+          python scripts/test_historical_playoffs.py
+          python scripts/test_historical_drafts.py
+          python scripts/test_historical_draft_grades.py
+          python scripts/test_franchise_identity.py
+          node scripts/test_dashboard.cjs
+          python scripts/sync_site_snapshot.py --html index.html --data data/league.json --output output/rechecked-index.html
+          cmp index.html output/rechecked-index.html
+          git diff --check
+          python - <<'PY'
+          import subprocess
+          paths=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
+          assert paths=={'data/league.json','index.html'}, f'Unexpected published files: {paths}'
+          PY
+      - name: Commit verified data to review branch, never directly to main
+        run: |
+          git add -- data/league.json index.html
+          git diff --cached --exit-code && { echo 'No new data changes staged'; exit 1; } || test "$?" -eq 1
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Prepare validated 2026 Weeks 9-10 scoring and finalized lineups"
+          git push origin HEAD:data/2026-week-10-verified
