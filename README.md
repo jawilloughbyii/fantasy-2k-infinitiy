@@ -12,6 +12,14 @@ There are **three primary destinations** on both desktop and mobile:
 
 Preserved calculations include schedule reshuffle distributions, all-play and luck, CV and scoring history, legal-lineup optimization, and the 50/30/20 Historical DNA weighting. Only one persistent data-status badge is shown, indicating the latest approved completed week and disclosing use of the approved embedded fallback when needed. The approved 2026 `data/league.json` data model and public ESPN credentials policy are unchanged. Current-year data and history use independent approved sources.
 
+### Interpreting Week 9 scoring cohorts
+
+Current-season Team DNA retains its canonical four scoring/volatility quadrants and 20% coefficient-of-variation boundary. The expanded **Team DNA** screen also offers a collapsed, descriptive **scoring-band** comparison: above league pace (>5% higher PF/week than the current league mean), near league pace (within ±5%), or below league pace (>5% lower). These are optional relative-scoring groups, not official standings, playoff tiers, a new DNA classification, or a replacement for All-Play.
+
+Starting at seven completed weeks, any franchise whose current quadrant would change by omitting one completed week **league-wide** is marked as *one-week-sensitive*. This is a leave-one-week-out descriptive check, not a confidence score or predictive probability. The latest-four-week DNA comparison separately displays short-window PF/week and CV and explicitly cautions against interpreting a recent snapshot as a permanently changed identity.
+
+**What If?** uses current wins-only division places (and identifies ties) through the approved completed week. Replayed historical schedules are counterfactuals over completed scores, not final-season division standings or future playoff forecasts.
+
 Definitions shared by the Python builder and the browser live in [reference/metric_definitions.json](reference/metric_definitions.json). `scripts/sync_site_snapshot.py` embeds approved 2026 data, historical scoring and verified championship metadata in the HTML fallback. Change the canonical reference files rather than creating independent UI categories.
 
 ## Recovered original league history (2014–2017)
