@@ -30,6 +30,8 @@ assert.deepStrictEqual(embedded('metricdefs'),definitions,'HTML definitions must
 assert.deepStrictEqual(embedded('acquisitiondna'),acquisitionDna,'Acquisition DNA must match approved canonical reference');
 assert.equal(acquisitionDna.source_readiness.audit_status,'sampled_endpoints_only_not_qualified_for_source_mix');
 assert.deepStrictEqual(definitions.acquisitionDna.sourceCategories,['draft','trade','waiver','free_agent','other','unknown']);
+assert.equal(definitions.scoring.bandRelativePct,5,'Descriptive scoring bands use an explicit +/-5% league-relative cut');
+assert.equal(definitions.scoring.sensitivityMinimumWeeks,7,'DNA leave-one-week-out gate must not run prematurely');
 assert.ok(!html.includes("keeper:'Keeper'"),'Unsupported keeper UI category must be removed');
 assert.equal(acquisitionDna.coverage.verified_source_starter_weeks,0,'Sampled source endpoints cannot be mistaken for verified acquisition events');
 const historyEmbedded={
@@ -191,6 +193,8 @@ async function main(){
  for(const phrase of ['What it measures','How we calculate it','How to read it'])assert.ok(view.includes(phrase),'Each metric uses approachable explanatory language');
  assert.ok(view.includes('Actual wins − all-play expected wins'),'Extra wins is plainly explained');
  assert.ok(view.includes('above 20% CV'),'DNA CV cutoff is derived from the shared definitions');
+ assert.ok(view.includes('short-window scoring snapshot')&&view.includes('Descriptive scoring bands'),'Methodology clarifies recent DNA and non-ranking scoring cohorts');
+ assert.ok(html.includes('Ties are not resolved using ESPN playoff tiebreakers.')&&!html.includes('finished #${t.divrank}'),'What If uses a current wins-only place, not a premature official finish');
  assert.ok(!view.includes('${m.')&&!view.includes('${fmt('),'No unresolved template expressions may appear in rendered definitions');
  assert.ok(view.includes('From Week 6'),'Momentum calculation uses the canonical full-window switch');
  assert.ok(view.includes('Weighted qualifying points ÷ 8'),'Starter-Worthy Rate uses canonical eight weighted slots');
@@ -236,6 +240,17 @@ assert.ok(previousRank>=0 && pfOrder[previousRank+1] && node('teamSelect').value
  node('teamSelect').listeners.change({target:{value:'3'}});
  view=sub('team','dna');
  assert.ok(view.includes('The Scoring Personality Map'),'Keep Scoring Personality Map after concise summary');
+ assert.ok(view.includes('<details class="deep-dive score-bands">')&&view.includes('Compare scoring bands · PF/week'),'Scoring bands remain optional and collapsed');
+ assert.equal((view.match(/class="score-band-row"/g)||[]).length,3,'All three descriptive scoring bands are present');
+ const bandIds=[...view.matchAll(/data-scoring-band-team="(\d+)"/g)].map(m=>Number(m[1]));
+ assert.deepStrictEqual(bandIds.slice().sort((a,b)=>a-b),data.teams.map(t=>t.id).sort((a,b)=>a-b),'Every team is assigned to exactly one scoring band');
+ for(const [label,sign] of [['Above league pace',1],['Near league pace',0],['Below league pace',-1]]){
+  const margin=definitions.scoring.bandRelativePct/100,leagueMean=mean(data.teams.map(t=>t.pf/data.completedThrough));
+  const count=data.teams.filter(t=>sign===1?t.pf/data.completedThrough>leagueMean*(1+margin):sign===-1?t.pf/data.completedThrough<leagueMean*(1-margin):t.pf/data.completedThrough>=leagueMean*(1-margin)&&t.pf/data.completedThrough<=leagueMean*(1+margin)).length;
+  assert.ok(view.includes('<strong>'+label+'</strong><span>'+count+' '+(count===1?'team':'teams')+'</span>'),'Band membership is derived from the same canonical league-average threshold');
+ }
+ assert.ok(view.includes('Recent 4-week snapshot')&&view.includes('not a verified permanent change in team identity'),'Four-week category is visibly labelled as short-window hindsight');
+
  const identityStart=view.indexOf('<section class="identity-strip"'),identityEnd=view.indexOf('</section>',identityStart);
  assert.ok(identityStart>=0&&identityEnd>identityStart,'One unified identity card');
  const identity=view.slice(identityStart,identityEnd);
@@ -244,6 +259,19 @@ assert.ok(previousRank>=0 && pfOrder[previousRank+1] && node('teamSelect').value
  assert.ok(collapsed.includes('CURRENTLY · 2026')&&collapsed.includes('HISTORICALLY · 2023, 2024, 2025'),'Current versus history is immediately visible');
  const selectedScores=data.teams.find(t=>t.id===3).weeks.map(w=>w.pf),selectedMean=mean(selectedScores);
  const selectedCv=100*Math.sqrt(mean(selectedScores.map(x=>(x-selectedMean)**2)))/selectedMean;
+ const currentTeam=data.teams.find(t=>t.id===3),seasonCategory=category(currentTeam);
+ const flipCount=Array.from({length:data.completedThrough},(_,skip)=>skip).filter(skip=>{
+  const scores=currentTeam.weeks.filter((_,i)=>i!==skip).map(w=>w.pf),avg=mean(scores);
+  const league=mean(data.teams.flatMap(t=>t.weeks.filter((_,i)=>i!==skip).map(w=>w.pf)));
+  const cv=Math.sqrt(mean(scores.map(x=>(x-avg)**2)))/avg;
+  return definitions.scoring.quadrants[(avg>=league?1:0)+(cv>definitions.scoring.quadrantCvBoundary?0:2)]!==seasonCategory;
+ }).length;
+ if(data.completedThrough>=definitions.scoring.sensitivityMinimumWeeks&&flipCount){
+  assert.ok(collapsed.includes('Removing '+flipCount+' of '+data.completedThrough+' individual completed weeks'),'Borderline classification is independently verified and visible');
+ }else{
+  assert.ok(!collapsed.includes('dna-boundary-note'),'Stable or premature classifications are not falsely flagged');
+ }
+
  const selectedCategory=category(data.teams.find(t=>t.id===3)),historicalCategory='Steady, lower-output';
  assert.ok(collapsed.includes(selectedCategory)&&collapsed.includes(historicalCategory),'Current scoring identity must use all approved weeks alongside verified historical identity');
  assert.ok(collapsed.includes('PF/wk')&&collapsed.includes(selectedCv.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1})+'% CV'),'Concise current scoring details track all approved scores');
