@@ -80,8 +80,8 @@ for(const t of data.teams){
  const historical=data.dnaHistory.at(-1).teams.find(x=>x.id===t.id);
  assert.equal(historical.category,category(t),'HTML and approved history quadrant must match for '+t.name);
 }
-assert.equal(category(data.teams.find(t=>t.id===4)),'Steady, lower-output');
-assert.equal(category(data.teams.find(t=>t.id===5)),'Steady, lower-output');
+assert.equal(category(data.teams.find(t=>t.id===4),4),'Steady, lower-output','Original Week 4 DNA must remain stable');
+assert.equal(category(data.teams.find(t=>t.id===5),4),'Steady, lower-output','Original Week 4 DNA must remain stable');
 const haily=data.teams.find(t=>t.id===7),cats=data.teams.find(t=>t.id===6);
 assert.ok(haily.weeks[3].weekLuck>cats.weeks[3].weekLuck);
 const originalFourWeekLuck=t=>t.weeks.slice(0,4).reduce((n,w)=>n+w.weekLuck,0);
