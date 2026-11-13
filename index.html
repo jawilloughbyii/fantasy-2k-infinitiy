@@ -721,17 +721,18 @@ function perf(){return profilePage();}
 function rankStack(t){return `<div class="stack" aria-label="Simulated position probabilities: ${t.rankDist.map((v,i)=>`place ${i+1}: ${fmt(v,1)} percent`).join(', ')}">${t.rankDist.map((v,i)=>`<span title="${i+1}${['st','nd','rd','th','th'][i]} place · ${fmt(v,1)}%" style="width:${v}%;background:${RANK_COLORS[i]}"></span>`).join('')}</div>`}
 function commonRank(t){let best=t.rankDist.indexOf(Math.max(...t.rankDist));return {place:best+1,pct:t.rankDist[best]}}
 function rankOrdinal(n){return `${n}${n===1?'st':n===2?'nd':n===3?'rd':'th'}`}
+function provisionalDivisionPlace(t){const tied=teams.filter(z=>z.division===t.division&&z.wins===t.wins).length>1;return (tied?'Tied ':'')+'#'+t.divrank+' by wins';}
 function standingsReading(t){
  const most=commonRank(t);const comparison=t.divrank<most.place?'better':t.divrank>most.place?'worse':'the same';
- return `<div class="simulation-verdict"><strong>${teamName(t)} finished #${t.divrank} in its division.</strong> Its most common historical reshuffled finish was #${most.place} (${fmt(most.pct,1)}% of runs). The actual finish was ${comparison} relative to that most common result. This describes a distribution of alternate schedules, not a separate luck score.</div>`;
+ return `<div class="simulation-verdict"><strong>Through Week ${DB.completedThrough}: ${teamName(t)} is ${provisionalDivisionPlace(t)} in its division.</strong> The most common reshuffled position across completed weeks is #${most.place} (${fmt(most.pct,1)}% of runs). The current wins-only position is ${comparison} relative to that most common reshuffle result. Ties are not resolved using ESPN playoff tiebreakers. These completed-week counterfactuals are not final standings or postseason forecasts.</div>`;
 }
 function divisionSection(name){
  const tt=teams.filter(x=>x.division===name).sort((a,b)=>a.divrank-b.divrank||b.pf-a.pf);
- return `<div class="card distcard">${section(name,'Same scores, different weekly opponents')}<div class="distlegend">${RANK_COLORS.map((c,i)=>`<span><i style="background:${c}"></i>${rankOrdinal(i+1)}</span>`).join('')}</div><div class="disthead refined-disthead"><span>Team · actual</span><span>Chance of each finish</span><span>Most likely</span></div><div>${tt.map(t=>{let common=commonRank(t);return `<div class="distrow refined-distrow ${t.id===state.selected?'selected':''}" data-select="${t.id}" title="Tap to see ${esc(t.name)}"><div><div class="rankname">${teamName(t)}</div><div class="tiny">Actual: #${t.divrank} · ${t.wins}–${t.losses}</div></div>${rankStack(t)}<div class="likely"><strong>#${common.place}</strong><small>${fmt(common.pct,1)}% of runs</small></div></div>`}).join('')}</div></div>`;
+ return `<div class="card distcard">${section(name,'Same scores, different weekly opponents')}<div class="distlegend">${RANK_COLORS.map((c,i)=>`<span><i style="background:${c}"></i>${rankOrdinal(i+1)}</span>`).join('')}</div><div class="disthead refined-disthead"><span>Team · actual</span><span>Share of reshuffled places</span><span>Most common</span></div><div>${tt.map(t=>{let common=commonRank(t);return `<div class="distrow refined-distrow ${t.id===state.selected?'selected':''}" data-select="${t.id}" title="Tap to see ${esc(t.name)}"><div><div class="rankname">${teamName(t)}</div><div class="tiny">Through W${DB.completedThrough}: ${provisionalDivisionPlace(t)} · ${t.wins}–${t.losses}</div></div>${rankStack(t)}<div class="likely"><strong>#${common.place}</strong><small>${fmt(common.pct,1)}% of runs</small></div></div>`}).join('')}</div></div>`;
 }
 function divisions(){
  const t=selected(),most=commonRank(t);
- return `<div class="explainer"><strong>What if the weekly opponents changed?</strong> Alternative completed schedules, not future forecasts. Extra wins remain the headline: <strong>${sign(t.luck,2)} extra wins</strong> for ${teamName(t)}.</div><div class="slot">${divisionSection('House Atreides')}${divisionSection('House Harkonnen')}</div><div class="card simspotlight">${section('Selected team · alternate schedules',teamName(t))}${standingsReading(t)}<div class="sim-facts"><div><span>Actual division place</span><strong>#${t.divrank}</strong></div><div><span>Most common reshuffled place</span><strong>#${most.place}</strong><small>${fmt(most.pct,1)}% of runs</small></div><div><span>Average reshuffled place</span><strong>#${fmt(t.simRankMean,1)}</strong></div></div><div class="simple-rank-list">${t.rankDist.map((v,i)=>`<div class="simple-rank"><span>${rankOrdinal(i+1)}</span><div class="barback"><div class="barfill" style="width:${v}%;background:${RANK_COLORS[i]}"></div></div><strong>${fmt(v,1)}%</strong></div>`).join('')}</div></div>`;
+ return `<div class="explainer"><strong>What if the weekly opponents changed?</strong> Alternative completed schedules, not future forecasts. Extra wins remain the headline: <strong>${sign(t.luck,2)} extra wins</strong> for ${teamName(t)}.</div><div class="slot">${divisionSection('House Atreides')}${divisionSection('House Harkonnen')}</div><div class="card simspotlight">${section('Selected team · alternate schedules',teamName(t))}${standingsReading(t)}<div class="sim-facts"><div><span>Current wins-only place</span><strong>${provisionalDivisionPlace(t)}</strong></div><div><span>Most common reshuffled place</span><strong>#${most.place}</strong><small>${fmt(most.pct,1)}% of runs</small></div><div><span>Average reshuffled place</span><strong>#${fmt(t.simRankMean,1)}</strong></div></div><div class="simple-rank-list">${t.rankDist.map((v,i)=>`<div class="simple-rank"><span>${rankOrdinal(i+1)}</span><div class="barback"><div class="barfill" style="width:${v}%;background:${RANK_COLORS[i]}"></div></div><strong>${fmt(v,1)}%</strong></div>`).join('')}</div></div>`;
 }
 const methodMetric=(title,what,how,read)=>`<div class="method-item"><h4>${title}</h4><p><b>What it measures</b> ${what}</p><p><b>How we calculate it</b> ${how}</p>${read?`<p><b>How to read it</b> ${read}</p>`:''}</div>`;
 const methodTopic=(title,summary,body)=>`<details class="method-topic"><summary><strong>${title}</strong><span>${summary}</span></summary><div class="method-topic-body">${body}</div></details>`;
@@ -743,7 +744,7 @@ function method(){
    ${methodMetric('All-Play Record','What if you faced every other team each week instead of just your scheduled opponent?','Compare your final score with all nine other teams each week, awarding half a comparison win for ties. Then add the results.','Overview defaults to All-Play wins, with total PF breaking ties. This does not determine ESPN standings or playoff seeding.')}
    ${methodMetric('Expected Wins','Your completed scoring performance translated into a schedule-neutral expected record.','Divide each week’s all-play wins (including half-credit ties) by nine, then add the weekly expectations.','It is based on actual completed scores, not a pregame prediction.')}
    ${methodMetric('Extra Wins (Schedule Luck)','Whether the assigned schedule helped or hurt your actual record.','Actual wins − all-play expected wins.','Positive: your schedule helped. Negative: a tougher draw than your scoring suggests. Near zero: record and all-play expectation closely align. It does not measure draft or lineup skill.')}
-   <p class="method-note"><b>What If?</b> Reshuffles completed weekly scores against alternative opponents to show possible division finishes. It provides context, not a second luck score.</p>`),
+   <p class="method-note"><b>What If?</b> Reshuffles completed weekly scores against alternative opponents to compare current wins-only division positions. This is not official ESPN seeding, a postseason forecast, or a second luck score.</p>`),
   methodTopic('Scoring & Team DNA','Scoring strength, volatility, identity and recent form.',`
    ${methodMetric('Scoring Identity (DNA)','The kind of scoring team you have been this season.',`Combine average PF/week compared with the current league average, and scoring volatility (CV). The high-volatility cutoff is above ${fmt(100*m.scoring.quadrantCvBoundary,0)}% CV.`,'Reliable contenders: above-average and steadier. High-upside wildcards: above-average and volatile. Steady, lower-output: below-average and steadier. Volatile underdogs: below-average and volatile. A score at the league average counts as high scoring.')}
    ${methodMetric('Volatility (CV)','How much your weekly scoring changes relative to your normal scoring level.','Population standard deviation of completed weekly PF ÷ your average weekly PF, expressed as a percentage.','A lower CV means steadier scoring. It does not directly measure management ability.')}
@@ -777,6 +778,26 @@ function scoringQuadrant(avg,cv,leagueAvg=leagueMean){
  const high=cv>METRICS.scoring.quadrantCvBoundary,right=avg>=leagueAvg;
  return METRICS.scoring.quadrants[(right?1:0)+(high?0:2)];
 }
+function scoringBand(avg,leagueAvg=leagueMean){
+ const margin=METRICS.scoring.bandRelativePct/100;
+ return avg>leagueAvg*(1+margin)?'Above league pace':avg<leagueAvg*(1-margin)?'Below league pace':'Near league pace';
+}
+// Remove the same completed week from every franchise when checking label sensitivity.
+// Not a forecast or a statistical confidence interval.
+function quadrantSensitivity(scores){
+ const n=scores.length;if(n<METRICS.scoring.sensitivityMinimumWeeks)return null;
+ const full=scoringQuadrant(mean(scores),stdev(scores)/Math.max(1,mean(scores)));
+ const flips=[];
+ for(let skip=0;skip<n;skip++){
+  const reduced=scores.filter((_,i)=>i!==skip),comparison=mean(teams.flatMap(z=>z.weeks.filter((_,i)=>i!==skip).map(w=>w.pf)));
+  if(scoringQuadrant(mean(reduced),stdev(reduced)/Math.max(1,mean(reduced)),comparison)!==full)flips.push(skip+1);
+ }
+ return {tested:n,flips};
+}
+function boundaryNote(p){
+ const s=p.sensitivity;if(!s?.flips.length)return '';
+ return '<p class="dna-boundary-note"><strong>One-week-sensitive scoring DNA.</strong> Removing '+s.flips.length+' of '+s.tested+' individual completed weeks (and that same week from the league) changes the quadrant. This describes the current sample, not a confidence percentage or prediction.</p>';
+}
 function shortTeam(t){return METRICS.scoring.shortNames[String(t.id)]||t.name.slice(0,7);}
 let scoringProfiles=buildScoringProfiles();
 function buildScoringProfiles(){return Object.fromEntries(teams.map(t=>{
@@ -786,9 +807,9 @@ function buildScoringProfiles(){return Object.fromEntries(teams.map(t=>{
  const old=ready?mean(oldScores):null,recent=ready?mean(newScores):null,shift=ready?recent-old:null,relShift=ready?100*shift/Math.max(1,average):null;
  const momentum=!ready?null:relShift>=METRICS.momentum.heatingPct?'Heating up':relShift<=METRICS.momentum.coolingPct?'Cooling off':'Mostly flat';
  const trendClass=!ready?'':relShift>=METRICS.momentum.heatingPct?'green':relShift<=METRICS.momentum.coolingPct?'red':'';
- const category=scoringQuadrant(average,cv);
+ const category=scoringQuadrant(average,cv),band=scoringBand(average),sensitivity=quadrantSensitivity(scores);
  const definition=`Averages ${fmt(average,1)} points per week with ${fmt(cv*100,1)}% relative weekly volatility.`;
- return [t.id,{scores,average,sd,low,high,spread,cv,category,definition,old,recent,shift,relShift,momentum,trendClass,window}];
+ return [t.id,{scores,average,sd,low,high,spread,cv,category,band,sensitivity,definition,old,recent,shift,relShift,momentum,trendClass,window}];
 }));}
 function identityBadge(t){return historicalFranchiseDNA(t);}
 
@@ -884,6 +905,7 @@ function historicalFranchiseDNA(t){
   <div class="identity-era"><span>HISTORICALLY · ${esc(seasonsLabel)}</span><strong>${esc(category)}</strong><small>${recent.length} completed ${recent.length===1?'season':'seasons'} · recency weighted</small></div>
  </div>
  <div class="identity-brief"><span>${esc(alignment)}</span>${p.momentum?`<span class="tag-soft ${p.trendClass}">${esc(p.momentum)} · ${sign(p.shift,1)} PF/wk</span>`:''}</div>
+ ${boundaryNote(p)}
  ${draftIdentity(t)}
  <details class="deep-dive identity-details"><summary>Historical metrics & season-by-season details</summary>
   <div class="histdna-grid"><div class="histdna-stat"><small>Typical scoring strength</small><strong>${signedPercent(relative)}</strong><span>PF per week versus the same-season league average</span></div><div class="histdna-stat"><small>Typical weekly volatility</small><strong>${fmt(cv*100,1)}%</strong><span>Recency-weighted season CV; lower means steadier</span></div><div class="histdna-stat"><small>Historical consistency</small><strong>${largest}/${all.length}</strong><span>${esc(tendency)} · all verified completed seasons, equally counted</span></div></div>
